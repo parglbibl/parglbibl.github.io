@@ -8,13 +8,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Lightbox2 CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     <style>
+        /* Общие стили */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #333; background-color: #fff; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         
+        /* Шапка */
         header { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
         .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
         .logo { font-size: 1.5rem; font-weight: 700; color: #2c3e50; text-decoration: none; }
@@ -42,6 +45,7 @@
         .history-block { background: #f8f9fa; padding: 2rem; border-radius: 8px; margin-bottom: 2rem; }
         .history-block p { margin-bottom: 1rem; }
         
+        /* Галерея */
         .photo-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -55,6 +59,7 @@
         .photo-gallery a {
             display: block;
             text-decoration: none;
+            cursor: pointer;
         }
         
         .photo-gallery img {
@@ -112,6 +117,7 @@
 
             <h2 class="section-title">Фотографии</h2>
             <div class="photo-gallery">
+                <!-- Важно: href ведёт на изображение, атрибуты data-lightbox и data-title -->
                 <a href="s_ylici.jpg" data-lightbox="library-gallery" data-title="Библиотека Парголовская">
                     <img src="s_ylici.jpg" alt="Библиотека Парголовская">
                 </a>
@@ -163,6 +169,7 @@
             else backToTop.classList.remove('show');
         });
     </script>
+    <!-- Lightbox2 JS должен быть загружен перед закрывающим </body> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 </body>
 </html>
