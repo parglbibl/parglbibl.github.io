@@ -42,8 +42,17 @@
         .map-placeholder { background: #e9ecef; border-radius: 8px; padding: 2rem; text-align: center; min-height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
         .map-placeholder i { font-size: 3rem; color: #adb5bd; margin-bottom: 1rem; }
         .map-link { color: #e67e22; text-decoration: none; font-weight: 600; }
+        
+        /* Видео теперь будет занимать всю ширину блока */
         .video-block { margin: 2rem 0; text-align: center; }
-        .video-block iframe { max-width: 100%; border-radius: 8px; }
+        .video-block iframe {
+            width: 100%;
+            max-width: 800px; /* можно убрать, если хотите совсем на всю ширину */
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+        }
+        
         .form-block { background: #f8f9fa; padding: 2rem; border-radius: 8px; margin-top: 2rem; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
@@ -104,17 +113,14 @@
                 </div>
             </div>
 
-            <!-- Видео с сурдопереводом (исправленный iframe) -->
+            <!-- Видео с сурдопереводом (теперь адаптивное) -->
             <div class="video-block">
                 <h3>Видео с сурдопереводом о библиотеке</h3>
                 <iframe src="https://vkvideo.ru/video_ext.php?oid=-132598808&id=456240068&hash=4" 
-                        width="640" height="360" 
                         frameborder="0" allowfullscreen="1" 
-                        style="background-color: #000; max-width: 100%; height: auto;" 
                         allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
                 </iframe>
-                <!-- Если видео не отображается, используйте этот код, скопированный с VK:
-                     Откройте видео, нажмите "Поделиться" → "Код встраивания" и вставьте сюда -->
+                <!-- Примечание: если видео не работает, получите код встраивания с VK и вставьте сюда -->
             </div>
 
             <!-- Форма обратной связи -->
