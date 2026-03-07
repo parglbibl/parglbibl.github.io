@@ -10,17 +10,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #333; background-color: #fff; }
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; }
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        header { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: #2c3e50; text-decoration: none; }
-        .logo span { color: #e67e22; }
+        header { background-color: #b5838d; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-weight: 700; font-size: 1.5rem; }
+        .logo img { height: 50px; width: auto; }
+        .logo span { color: #fff; }
         .nav ul { display: flex; list-style: none; gap: 2rem; }
-        .nav a { text-decoration: none; color: #2c3e50; font-weight: 600; transition: color 0.3s; }
-        .nav a:hover, .nav a.active { color: #e67e22; border-bottom: 2px solid #e67e22; }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #2c3e50; }
+        .nav a { text-decoration: none; color: #fff; font-weight: 600; transition: color 0.3s; }
+        .nav a:hover, .nav a.active { color: #f4e3d7; border-bottom: 2px solid #f4e3d7; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav { display: none; width: 100%; margin-top: 1rem; }
@@ -28,43 +29,31 @@
             .nav ul { flex-direction: column; gap: 1rem; text-align: center; }
             .header-inner { flex-wrap: wrap; }
         }
-        .btn { display: inline-block; background-color: #e67e22; color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s; border: none; cursor: pointer; }
-        .btn:hover { background-color: #cf711f; }
+        .btn { display: inline-block; background-color: #e5989b; color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn:hover { background-color: #d68b8e; }
         .section { padding: 4rem 0; }
-        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #2c3e50; }
-        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 0.5rem auto 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #5e4b3c; }
+        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e5989b; margin: 0.5rem auto 0; }
         .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         .contact-info p { margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
-        .contact-info i { width: 24px; color: #e67e22; }
-        .hours { margin-top: 2rem; background: #f8f9fa; padding: 1.5rem; border-radius: 8px; }
-        .hours h3 { margin-bottom: 1rem; }
-        .hours p { margin-bottom: 0.5rem; }
-        .map-placeholder { background: #e9ecef; border-radius: 8px; padding: 2rem; text-align: center; min-height: 250px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .map-placeholder i { font-size: 3rem; color: #adb5bd; margin-bottom: 1rem; }
-        .map-link { color: #e67e22; text-decoration: none; font-weight: 600; }
-        
-        /* Видео теперь будет занимать всю ширину блока */
+        .contact-info i { width: 24px; color: #b5838d; }
+        .hours { margin-top: 2rem; background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .map-container { width: 100%; margin: 1rem 0; }
+        .map-container iframe { width: 100%; height: 400px; border: 0; border-radius: 16px; }
         .video-block { margin: 2rem 0; text-align: center; }
-        .video-block iframe {
-            width: 100%;
-            max-width: 800px; /* можно убрать, если хотите совсем на всю ширину */
-            height: auto;
-            aspect-ratio: 16 / 9;
-            border-radius: 8px;
-        }
-        
-        .form-block { background: #f8f9fa; padding: 2rem; border-radius: 8px; margin-top: 2rem; }
+        .video-block iframe { max-width: 100%; border-radius: 16px; aspect-ratio: 16/9; }
+        .form-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 2rem; }
         .form-group { margin-bottom: 1rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-family: inherit; }
+        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
         .form-group textarea { min-height: 120px; }
-        .submit-btn { background-color: #e67e22; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
-        .submit-btn:hover { background-color: #cf711f; }
-        footer { background: #2c3e50; color: #fff; padding: 2rem 0; text-align: center; }
+        .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
+        .submit-btn:hover { background-color: #d68b8e; }
+        footer { background: #b5838d; color: #fff; padding: 2rem 0; text-align: center; }
         .social-links { margin: 1rem 0; }
         .social-links a { color: #fff; font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.3s; }
-        .social-links a:hover { color: #e67e22; }
-        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e67e22; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; }
+        .social-links a:hover { color: #f4e3d7; }
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .back-to-top.show { opacity: 1; visibility: visible; }
         @media (max-width: 768px) { .contacts-grid { grid-template-columns: 1fr; } }
     </style>
@@ -72,7 +61,10 @@
 <body>
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">Парголовская<span> библиотека</span></a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Логотип"> 
+                <span>Парголовская библиотека</span>
+            </a>
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
@@ -80,6 +72,7 @@
                     <li><a href="about.html">О нас</a></li>
                     <li><a href="services.html">Услуги</a></li>
                     <li><a href="events.html">События</a></li>
+                    <li><a href="speedcubing.html">Спидкубинг</a></li>
                     <li><a href="contacts.html" class="active">Контакты</a></li>
                 </ul>
             </nav>
@@ -102,27 +95,24 @@
                         <p>Пн: выходной</p>
                         <p>Вт–Сб: 12:00 – 18:00</p>
                         <p>Вс: выходной</p>
-                        <p><small>Санитарный день: последний четверг месяца</small></p>
+                        <p><small>Санитарный день: последний рабочий день месяца</small></p>
                     </div>
                 </div>
-                <div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps/2/saint-petersburg/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Санкт‑Петербург</a><a href="https://yandex.ru/maps/2/saint-petersburg/house/torfyanaya_ulitsa_25/Z0kYdANhSkcBQFhqfXx5cHhnYA==/?ll=30.241326%2C60.081444&utm_medium=mapframe&utm_source=maps&z=17" style="color:#eee;font-size:12px;position:absolute;top:14px;">Яндекс Карты — транспорт, навигация, поиск мест</a><iframe src="https://yandex.ru/map-widget/v1/?ll=30.241326%2C60.081444&mode=search&ol=geo&ouri=ymapsbm1%3A%2F%2Fgeo%3Fdata%3DCgg1NzQ0NDY0NhJv0KDQvtGB0YHQuNGPLCDQodCw0L3QutGCLdCf0LXRgtC10YDQsdGD0YDQsywg0L_QvtGB0ZHQu9C-0Log0J_QsNGA0LPQvtC70L7QstC-LCDQotC-0YDRhNGP0L3QsNGPINGD0LvQuNGG0LAsIDI1IgoNOu7xQRVmU3BC&z=17" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+                <div class="map-container">
+                    <iframe src="https://yandex.ru/map-widget/v1/?ll=30.265871%2C60.086237&z=16&pt=30.265871%2C60.086237%2Cpm2blm&l=map" allowfullscreen></iframe>
+                </div>
             </div>
 
-            <!-- Видео с сурдопереводом (теперь адаптивное) -->
             <div class="video-block">
                 <h3>Видео с сурдопереводом о библиотеке</h3>
                 <iframe src="https://vkvideo.ru/video_ext.php?oid=-132598808&id=456240068&hash=4" 
-                        frameborder="0" allowfullscreen="1" 
-                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture">
-                </iframe>
-                <!-- Примечание: если видео не работает, получите код встраивания с VK и вставьте сюда -->
+                        allowfullscreen></iframe>
             </div>
 
-            <!-- Форма обратной связи -->
             <div class="form-block">
                 <h3>Напишите нам</h3>
                 <p>Заполните форму, и мы ответим вам в ближайшее время.</p>
-                <form action="https://formspree.io/f/xdawoqrg" method="POST">
+                <form action="https://formspree.io/f/ваш_endpoint" method="POST">
                     <div class="form-group">
                         <label for="name">Ваше имя</label>
                         <input type="text" id="name" name="name" required>
@@ -137,6 +127,7 @@
                     </div>
                     <button type="submit" class="submit-btn">Отправить</button>
                 </form>
+                <p style="margin-top: 1rem; font-size: 0.9rem;">* Для работы формы зарегистрируйтесь на <a href="https://formspree.io/" target="_blank">Formspree</a> и замените "ваш_endpoint".</p>
             </div>
         </div>
     </section>
@@ -166,7 +157,3 @@
     </script>
 </body>
 </html>
-
-
-
-
