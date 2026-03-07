@@ -4,26 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - Услуги</title>
-    <!-- Подключите стили как в about.html (скопируйте блок <style> оттуда) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* Скопируйте сюда тот же блок стилей, что и в about.html */
-        /* Для краткости я не дублирую, но вы вставьте полный блок из about.html */
+        /* Те же общие стили, что в index.html */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #333; background-color: #fff; }
-        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; }
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; }
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        header { background-color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
-        .logo { font-size: 1.5rem; font-weight: 700; color: #2c3e50; text-decoration: none; }
-        .logo span { color: #e67e22; }
+        header { background-color: #b5838d; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .header-inner { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-weight: 700; font-size: 1.5rem; }
+        .logo img { height: 50px; width: auto; }
+        .logo span { color: #fff; }
         .nav ul { display: flex; list-style: none; gap: 2rem; }
-        .nav a { text-decoration: none; color: #2c3e50; font-weight: 600; transition: color 0.3s; }
-        .nav a:hover, .nav a.active { color: #e67e22; border-bottom: 2px solid #e67e22; }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #2c3e50; }
+        .nav a { text-decoration: none; color: #fff; font-weight: 600; transition: color 0.3s; }
+        .nav a:hover, .nav a.active { color: #f4e3d7; border-bottom: 2px solid #f4e3d7; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav { display: none; width: 100%; margin-top: 1rem; }
@@ -31,30 +30,31 @@
             .nav ul { flex-direction: column; gap: 1rem; text-align: center; }
             .header-inner { flex-wrap: wrap; }
         }
-        .btn { display: inline-block; background-color: #e67e22; color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s; }
-        .btn:hover { background-color: #cf711f; }
+        .btn { display: inline-block; background-color: #e5989b; color: #fff; padding: 0.8rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: background 0.3s; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .btn:hover { background-color: #d68b8e; }
         .section { padding: 4rem 0; }
-        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #2c3e50; }
-        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e67e22; margin: 0.5rem auto 0; }
+        .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #5e4b3c; }
+        .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e5989b; margin: 0.5rem auto 0; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .service-card { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s; }
+        .service-card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; transition: transform 0.3s; }
         .service-card:hover { transform: translateY(-5px); }
-        .service-icon { font-size: 2.5rem; color: #e67e22; margin-bottom: 1rem; }
-        .service-card h3 { margin-bottom: 1rem; }
-        .service-card p { color: #666; }
-        .access-block { background: #f8f9fa; padding: 2rem; border-radius: 8px; margin-top: 3rem; text-align: center; }
-        footer { background: #2c3e50; color: #fff; padding: 2rem 0; text-align: center; }
+        .service-icon { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
+        .access-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 3rem; text-align: center; }
+        footer { background: #b5838d; color: #fff; padding: 2rem 0; text-align: center; }
         .social-links { margin: 1rem 0; }
         .social-links a { color: #fff; font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.3s; }
-        .social-links a:hover { color: #e67e22; }
-        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e67e22; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; }
+        .social-links a:hover { color: #f4e3d7; }
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .back-to-top.show { opacity: 1; visibility: visible; }
     </style>
 </head>
 <body>
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">Парголовская<span> библиотека</span></a>
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Логотип"> 
+                <span>Парголовская библиотека</span>
+            </a>
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
@@ -62,6 +62,7 @@
                     <li><a href="about.html">О нас</a></li>
                     <li><a href="services.html" class="active">Услуги</a></li>
                     <li><a href="events.html">События</a></li>
+                    <li><a href="speedcubing.html">Спидкубинг</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
@@ -80,7 +81,7 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-laptop"></i></div>
                     <h3>Электронные ресурсы</h3>
-                    <p>Доступ ко многим электронным библиотекам, онлайн-базам данных и бесплатный Wi-Fi.</p>
+                    <p>Доступ к Национальной электронной библиотеке, онлайн-базам данных и бесплатный Wi-Fi.</p>
                 </div>
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
@@ -95,19 +96,19 @@
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-hands"></i></div>
                     <h3>Доступная среда</h3>
-                    <p>Видеоролики с судропереводом помогут легко ориентироваться в библиотеке.</p>
+                    <p>Видеоролики с сурдопереводом помогут легко ориентироваться в библиотеке.</p>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-truck"></i></div>
-                    <h3>Выездные мероприятия</h3>
-                    <p>Для детей и взрослых Выборгского района.</p>
+                    <div class="service-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Спидкубинг</h3>
+                    <p>Занятия по сборке кубика Рубика для детей и взрослых (6+).</p>
                 </div>
             </div>
 
             <div class="access-block">
                 <h3>ДОСТУПНАЯ НАВИГАЦИЯ: БИБЛИОТЕКА ДЛЯ ВСЕХ</h3>
                 <p>Мы заботимся о комфорте каждого посетителя. Специально подготовленные видеоролики наглядно показывают, как легко ориентироваться внутри помещения, пользоваться услугами и находить нужные ресурсы.</p>
-                <p>Видео с сурдопереводом доступно на нашей странице ВКонтакте и в разделе <a href="contacts.html">Контакты</a>.</p>
+                <p>Видео с сурдопереводом доступно в разделе <a href="contacts.html">Контакты</a>.</p>
             </div>
         </div>
     </section>
@@ -136,6 +137,4 @@
         });
     </script>
 </body>
-
 </html>
-
