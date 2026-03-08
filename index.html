@@ -34,7 +34,7 @@
         body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
         body.special-mode .btn:hover { background-color: #333 !important; }
         body.special-mode .card,
-        body.special-mode .vk-block {
+        body.special-mode .posts-grid .vk-post {
             background-color: #fff !important;
             color: #000 !important;
             box-shadow: none !important;
@@ -281,7 +281,7 @@
         </div>
     </section>
 
-    <!-- Блок с постами ВК (через CORS-прокси) -->
+    <!-- Блок с постами ВК через собственный прокси -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Последние новости из нашей группы</h2>
@@ -297,69 +297,63 @@
     <script>
         async function fetchVKPosts() {
             try {
-                const groupId = '176521452';
-                const token = 'vk1.a.Qwwl2ojHqq2nNb6B7zbxYzqvxbtif9R7V-M9Cxsi3dmcloKLGCQDtnarPhSftZx0WyspnVBlHRxopKZjVEX2Ys-Asb2sgJJzIehvCYadE9G980XfO2YCskB4ZQTtJdp2xreIHoIpLDrf0suM2iCgja19aA9auv_C7OpYJDhaSMTb0-qRvMH9sx7e7h5ARdu8bd_jWYB9ShFMD5V0TQAWFQ';
-                
-                // Используем другой прокси для обхода CORS
-                const proxy = 'https://corsproxy.io/?';
-                const vkUrl = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=3&v=5.131&access_token=${token}`;
-                const response = await fetch(proxy + vkUrl);
-                
+                // Адрес вашего прокси на InfinityFree
+                const proxyUrl = 'http://paglibib.infinityfreeapp.com/vk-proxy.php';
+                const response = await fetch(proxyUrl);
                 const data = await response.json();
-                
+
                 if (data.error) {
-                    console.error('Ошибка VK API:', data.error);
-                    document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК, чтобы быть в курсе событий.</p>';
+                    console.error('Ошибка прокси:', data.error);
+                    document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК.</p>';
                     return;
                 }
-                
+
                 const posts = data.response.items;
                 let html = '';
-                
+
                 posts.forEach(post => {
-                    // Пропускаем закреплённый пост, если он есть
                     if (post.is_pinned) return;
-                    
+
                     const date = new Date(post.date * 1000).toLocaleDateString('ru-RU', {
                         year: 'numeric',
                         month: 'long',
                         day: 'numeric'
                     });
-                    
+
                     let text = post.text || '';
                     if (text.length > 200) {
                         text = text.substr(0, 200) + '...';
                     }
-                    
+
                     let imageHtml = '';
                     if (post.attachments && post.attachments[0] && post.attachments[0].type === 'photo') {
                         const photo = post.attachments[0].photo;
                         const photoUrl = photo.sizes[photo.sizes.length - 1].url;
                         imageHtml = `<img src="${photoUrl}" alt="Фото поста" class="vk-post-image">`;
                     }
-                    
+
                     html += `
                         <div class="vk-post">
                             <div class="vk-post-date">${date}</div>
                             ${imageHtml}
                             <div class="vk-post-text">${text}</div>
-                            <a href="https://vk.com/wall-${groupId}_${post.id}" target="_blank" class="vk-post-link">Читать в источнике →</a>
+                            <a href="https://vk.com/wall-176521452_${post.id}" target="_blank" class="vk-post-link">Читать в источнике →</a>
                         </div>
                     `;
                 });
-                
+
                 if (html === '') {
                     html = '<p style="text-align:center;">Нет свежих новостей. Загляните в нашу группу ВК!</p>';
                 }
-                
+
                 document.getElementById('vk-posts').innerHTML = html;
-                
+
             } catch (error) {
-                console.error('Ошибка загрузки постов ВК:', error);
-                document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК, чтобы быть в курсе событий.</p>';
+                console.error('Ошибка загрузки:', error);
+                document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК.</p>';
             }
         }
-        
+
         window.addEventListener('load', fetchVKPosts);
     </script>
 
