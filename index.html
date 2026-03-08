@@ -91,14 +91,14 @@
         
         .vk-block {
             background: #fff;
-            padding: 0; /* убираем отступы, чтобы iframe вплотную прилегал */
+            padding: 0;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            overflow: hidden; /* для скругления углов */
+            overflow: hidden;
         }
         .vk-block iframe {
             width: 100%;
-            height: 500px;
+            height: 550px; /* немного увеличил высоту */
             border: 0;
             display: block;
         }
@@ -230,12 +230,12 @@
         </div>
     </section>
 
-    <!-- Блок с iframe-виджетом ВК -->
+    <!-- Блок с iframe-виджетом ВК (без боковой панели) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Новости из нашей группы</h2>
             <div class="vk-block">
-                <iframe src="https://vk.com/widget_community.php?oid=-176521452&width=100%&height=500&mode=4&wide=1&color1=fefaf5&color2=4a4a4a&color3=b5838d" width="100%" height="500" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                <iframe src="https://vk.com/widget_community.php?oid=-176521452&width=100%&height=550&mode=4&wide=1&no_sidebar=1&color1=fefaf5&color2=4a4a4a&color3=b5838d" width="100%" height="550" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
             </div>
         </div>
     </section>
