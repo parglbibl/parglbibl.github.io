@@ -21,6 +21,17 @@
             .container { width: 100%; padding: 0 15px; }
         }
         
+        /* Анимация появления */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
         body.special-mode {
             background-color: #fff !important;
             color: #000 !important;
@@ -250,28 +261,28 @@
         <div class="container">
             <h2 class="section-title">О нас в двух словах</h2>
             <div class="cards-grid">
-                <div class="card">
+                <div class="card fade-in">
                     <i class="fas fa-history"></i>
                     <h3>С 1938 года</h3>
                     <p>Библиотека им. М. Горького, с 2016 – «Парголовская».</p>
                 </div>
-                <div class="card">
+                <div class="card fade-in">
                     <i class="fas fa-calendar-alt"></i>
                     <h3>Активная жизнь</h3>
                     <p>Встречи, праздники, выездные мероприятия в больницах района.</p>
                 </div>
-                <div class="card">
+                <div class="card fade-in">
                     <i class="fas fa-map-marker-alt"></i>
                     <h3>ул. Торфяная, 25</h3>
                     <p>Парголово, СПб. Ждём вас!</p>
                 </div>
-                <div class="card">
+                <div class="card fade-in">
                     <i class="fas fa-puzzle-piece"></i>
                     <h3>Спидкубинг</h3>
                     <p>Обучаем сборке кубика Рубика и других головоломок. 6+</p>
                     <a href="speedcubing.html" class="btn" style="margin-top: 1rem;">Подробнее</a>
                 </div>
-                <div class="card">
+                <div class="card fade-in">
                     <i class="fas fa-book-open"></i>
                     <h3>Новые поступления</h3>
                     <p>Самые свежие книги уже в нашей библиотеке. Заходите посмотреть!</p>
@@ -281,7 +292,7 @@
         </div>
     </section>
 
-    <!-- Блок с постами ВК через собственный прокси -->
+    <!-- Блок с постами ВК (здесь пока заглушка, пока не заработает прокси) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Последние новости из нашей группы</h2>
@@ -297,7 +308,7 @@
     <script>
         async function fetchVKPosts() {
             try {
-                // Адрес вашего прокси на InfinityFree (исправлен)
+                // Здесь пока оставляем заглушку, позже заменим на реальный прокси
                 const proxyUrl = 'http://paglbibl.infinityfreeapp.com/vk-proxy.php';
                 const response = await fetch(proxyUrl);
                 const data = await response.json();
@@ -333,7 +344,7 @@
                     }
 
                     html += `
-                        <div class="vk-post">
+                        <div class="vk-post fade-in">
                             <div class="vk-post-date">${date}</div>
                             ${imageHtml}
                             <div class="vk-post-text">${text}</div>
@@ -394,6 +405,22 @@
         specialToggle.addEventListener('click', () => {
             document.body.classList.toggle('special-mode');
         });
+
+        // Анимация появления при скролле
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const appearOnScroll = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+        faders.forEach(fader => appearOnScroll.observe(fader));
     </script>
 </body>
 </html>
