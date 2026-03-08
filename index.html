@@ -281,7 +281,7 @@
         </div>
     </section>
 
-    <!-- Блок с постами ВК (реальные посты через API) -->
+    <!-- Блок с постами ВК (через CORS-прокси) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Последние новости из нашей группы</h2>
@@ -300,10 +300,10 @@
                 const groupId = '176521452';
                 const token = 'vk1.a.Qwwl2ojHqq2nNb6B7zbxYzqvxbtif9R7V-M9Cxsi3dmcloKLGCQDtnarPhSftZx0WyspnVBlHRxopKZjVEX2Ys-Asb2sgJJzIehvCYadE9G980XfO2YCskB4ZQTtJdp2xreIHoIpLDrf0suM2iCgja19aA9auv_C7OpYJDhaSMTb0-qRvMH9sx7e7h5ARdu8bd_jWYB9ShFMD5V0TQAWFQ';
                 
-                // Используем прокси для обхода CORS
-                const proxy = 'https://api.allorigins.win/raw?url=';
+                // Используем другой прокси для обхода CORS
+                const proxy = 'https://corsproxy.io/?';
                 const vkUrl = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=3&v=5.131&access_token=${token}`;
-                const response = await fetch(proxy + encodeURIComponent(vkUrl));
+                const response = await fetch(proxy + vkUrl);
                 
                 const data = await response.json();
                 
