@@ -16,9 +16,10 @@
         body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; transition: background-color 0.3s, color 0.3s, font-size 0.3s; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        /* На мобильных устройствах убираем max-width, чтобы контейнер занимал всю ширину */
+        
+        /* Мобильные устройства */
         @media (max-width: 768px) {
-            .container { width: 100%; max-width: none; padding: 0 10px; }
+            .container { width: 100%; max-width: none; padding: 0 15px; }
         }
         
         body.special-mode {
@@ -234,12 +235,12 @@
         </div>
     </section>
 
-    <!-- Блок с iframe стены ВК (без боковой панели, во всю ширину) -->
+    <!-- Рабочий виджет сообщества ВК (с лентой новостей) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Новости из нашей группы</h2>
             <div class="vk-block">
-                <iframe src="https://vk.com/widget_wall.php?oid=-176521452&width=100%&height=600&extended=1&mode=4&wide=1&color1=fefaf5&color2=4a4a4a&color3=b5838d" width="100%" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+                <iframe src="https://vk.com/widget_community.php?oid=-176521452&width=100%&height=600&mode=4&wide=1&color1=fefaf5&color2=4a4a4a&color3=b5838d" width="100%" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
             </div>
         </div>
     </section>
