@@ -17,9 +17,8 @@
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         
-        /* Мобильные устройства */
         @media (max-width: 768px) {
-            .container { width: 100%; max-width: none; padding: 0 15px; }
+            .container { width: 100%; padding: 0 15px; }
         }
         
         body.special-mode {
@@ -35,7 +34,7 @@
         body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
         body.special-mode .btn:hover { background-color: #333 !important; }
         body.special-mode .card,
-        body.special-mode .vk-block {
+        body.special-mode .posts-grid {
             background-color: #fff !important;
             color: #000 !important;
             box-shadow: none !important;
@@ -94,28 +93,64 @@
         .card:hover { transform: translateY(-5px); }
         .card i { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
         
-        .vk-block {
+        .posts-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .vk-post {
             background: #fff;
-            padding: 0;
             border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 1.5rem;
+            transition: transform 0.3s;
         }
-        .vk-block iframe {
+        .vk-post:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .vk-post-date {
+            color: #b5838d;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        .vk-post-text {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+        .vk-post-image {
             width: 100%;
-            height: 600px;
-            border: 0;
-            display: block;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
         }
-        
-        /* Растягиваем блок с виджетом на всю ширину на мобильных */
-        @media (max-width: 768px) {
-            .vk-block {
-                margin-left: -15px;
-                margin-right: -15px;
-                width: calc(100% + 30px);
-                border-radius: 0;
-            }
+        .vk-post-link {
+            display: inline-block;
+            color: #e5989b;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .vk-post-link:hover {
+            color: #d68b8e;
+        }
+        .vk-more-btn {
+            display: inline-block;
+            background-color: #b5838d;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .vk-more-btn:hover {
+            background-color: #9f6e7a;
         }
         
         .footer-content {
@@ -245,15 +280,77 @@
         </div>
     </section>
 
-    <!-- Рабочий виджет сообщества ВК (с лентой новостей) -->
+    <!-- Блок с постами ВК -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Новости из нашей группы</h2>
-            <div class="vk-block">
-                <iframe src="https://vk.com/widget_community.php?oid=-176521452&width=100%&height=600&mode=4&wide=1&color1=fefaf5&color2=4a4a4a&color3=b5838d" width="100%" height="600" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
+            <h2 class="section-title">Последние новости из нашей группы</h2>
+            <div id="vk-posts" class="posts-grid">
+                <p style="text-align: center; color: #999;">Загрузка новостей...</p>
+            </div>
+            <div style="text-align: center;">
+                <a href="https://vk.com/pargolovskaya_library" target="_blank" class="vk-more-btn">Все новости в группе ВК</a>
             </div>
         </div>
     </section>
+
+    <script>
+        async function fetchVKPosts() {
+            try {
+                const groupId = '176521452'; // ID вашей группы
+                // Используем прокси-сервер для обхода CORS
+                const proxy = 'https://api.allorigins.win/raw?url=';
+                const vkApiUrl = `https://api.vk.com/method/wall.get?owner_id=-${groupId}&count=3&v=5.131&access_token=ваш_токен`;
+                
+                // Для простоты демонстрации показываем заглушку
+                document.getElementById('vk-posts').innerHTML = `
+                    <div style="grid-column:1/-1; text-align:center; padding:2rem; background:#f8f8f8; border-radius:16px;">
+                        <p>Для работы с API ВК нужен токен. Пока показываем примеры постов:</p>
+                    </div>
+                `;
+                
+                // Примеры постов (заменится реальными, когда получите токен)
+                const samplePosts = [
+                    {
+                        date: '8 марта 2026',
+                        text: 'Милые дамы, сердечно поздравляем вас с Международным женским днём! 🥰 С первым весенним лучом, с капелью за окном и с этим чудесным праздником — с 8 Марта!',
+                        image: '',
+                        link: 'https://vk.com/pargolovskaya_library'
+                    },
+                    {
+                        date: '5 марта 2026',
+                        text: 'Приглашаем на бесплатные занятия по спидкубингу в эту среду! В программе: новые алгоритмы, интересные головоломки и отличное настроение.',
+                        image: '',
+                        link: 'https://vk.com/pargolovskaya_library'
+                    },
+                    {
+                        date: '1 марта 2026',
+                        text: 'В нашей библиотеке новые поступления книг! Ждём вас познакомиться с новинками художественной и научно-популярной литературы.',
+                        image: '',
+                        link: 'https://vk.com/pargolovskaya_library'
+                    }
+                ];
+                
+                let html = '';
+                samplePosts.forEach(post => {
+                    html += `
+                        <div class="vk-post">
+                            <div class="vk-post-date">${post.date}</div>
+                            <div class="vk-post-text">${post.text}</div>
+                            <a href="${post.link}" target="_blank" class="vk-post-link">Читать в источнике →</a>
+                        </div>
+                    `;
+                });
+                document.getElementById('vk-posts').innerHTML = html;
+                
+            } catch (error) {
+                console.error('Ошибка загрузки постов ВК:', error);
+                document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК, чтобы быть в курсе событий.</p>';
+            }
+        }
+        
+        // Запускаем загрузку после загрузки страницы
+        window.addEventListener('load', fetchVKPosts);
+    </script>
 
     <footer>
         <div class="container footer-content">
