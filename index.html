@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ... все предыдущие стили остаются без изменений ... */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; transition: background-color 0.3s, color 0.3s, font-size 0.3s; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
@@ -22,7 +21,6 @@
             .container { width: 100%; padding: 0 15px; }
         }
         
-        /* Анимация появления */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
@@ -48,7 +46,9 @@
         body.special-mode .card,
         body.special-mode .posts-grid .vk-post,
         body.special-mode .slider-container,
-        body.special-mode .quote-block {
+        body.special-mode .quote-block,
+        body.special-mode .footer-content,
+        body.special-mode .footer-links a {
             background-color: #fff !important;
             color: #000 !important;
             box-shadow: none !important;
@@ -61,6 +61,8 @@
             border-color: #fff !important;
         }
         body.special-mode footer { background-color: #000 !important; }
+        body.special-mode .footer-col a { color: #0000ee !important; }
+        
         .special-toggle {
             background: transparent; border: 2px solid #fff; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: 0.3s;
         }
@@ -107,7 +109,6 @@
         .card:hover { transform: translateY(-5px); }
         .card i { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
         
-        /* Стили для слайдера */
         .slider-container {
             position: relative;
             max-width: 1000px;
@@ -144,7 +145,6 @@
             background-color: #b5838d;
         }
         
-        /* Стили для блока цитаты */
         .quote-block {
             background: #fff;
             padding: 2.5rem;
@@ -228,23 +228,85 @@
             background-color: #9f6e7a;
         }
         
+        /* Улучшенный подвал */
         .footer-content {
+            background: #b5838d;
+            color: #fff;
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-col h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #fff;
+        }
+        .footer-col p, .footer-col a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover {
+            color: #f4e3d7;
+        }
+        .footer-col i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .footer-social {
             display: flex;
-            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social a {
+            display: flex;
             align-items: center;
-            gap: 1.5rem;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            transition: background-color 0.3s;
+        }
+        .footer-social a:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+        .footer-social i {
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
         .footer-actions {
             display: flex;
-            flex-wrap: wrap;
             justify-content: center;
-            align-items: center;
             gap: 2rem;
+            margin-bottom: 1rem;
         }
         .share-buttons {
             display: flex;
             gap: 1rem;
-            align-items: center;
         }
         .share-buttons a, .print-button a {
             display: inline-flex;
@@ -277,14 +339,22 @@
             background-color: #f4e3d7;
             color: #5e4b3c;
         }
-        .print-button a i {
-            font-size: 1.2rem;
-        }
-        
-        footer { background: #b5838d; color: #fff; padding: 2rem 0; text-align: center; }
+        .print-button a i { font-size: 1.2rem; }
         .social-links { margin: 1rem 0; }
         .social-links a { color: #fff; font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.3s; }
         .social-links a:hover { color: #f4e3d7; }
+        
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .footer-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
         
         .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .back-to-top.show { opacity: 1; visibility: visible; }
@@ -305,6 +375,7 @@
                     <li><a href="events.html">События</a></li>
                     <li><a href="speedcubing.html">Спидкубинг</a></li>
                     <li><a href="newbooks.html">Новинки</a></li>
+                    <li><a href="faq.html">Вопросы</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
                     <li><button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> Версия для слабовидящих</button></li>
                 </ul>
@@ -320,7 +391,6 @@
         </div>
     </section>
 
-    <!-- Слайдер с фотографиями -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Фотогалерея</h2>
@@ -338,7 +408,6 @@
         </div>
     </section>
 
-    <!-- Книжная цитата дня -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Книжная цитата дня</h2>
@@ -384,7 +453,6 @@
         </div>
     </section>
 
-    <!-- Блок с постами ВК (пока заглушка) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Последние новости из нашей группы</h2>
@@ -398,7 +466,6 @@
     </section>
 
     <script>
-        // Функция для получения постов ВК (оставлена как есть)
         async function fetchVKPosts() {
             try {
                 const proxyUrl = 'http://paglbibl.infinityfreeapp.com/vk-proxy.php';
@@ -459,18 +526,14 @@
 
         window.addEventListener('load', fetchVKPosts);
 
-        // Массив цитат
         const quotes = [
             { text: "Чтение — это окно в мир, через которое дети познают себя и жизнь.", author: "В.А. Сухомлинский" },
             { text: "Книга — это сосуд, который нас наполняет, но сам не пустеет.", author: "А. Декурсель" },
             { text: "Читая авторов, которые хорошо пишут, привыкаешь хорошо говорить.", author: "Вольтер" },
             { text: "Любить чтение — это обменивать часы скуки на часы наслаждения.", author: "Шарль Луи Монтескьё" },
             { text: "Книги — это корабли мысли, странствующие по волнам времени.", author: "Фрэнсис Бэкон" },
-            { text: "В книгах мы жадно читаем о том, на что не обращаем внимания в жизни.", author: "Эмиль Кроткий" },
-            { text: "Чтение хороших книг — это разговор с самыми лучшими людьми прошедших времен.", author: "Рене Декарт" },
         ];
 
-        // Функция для отображения случайной цитаты
         function displayRandomQuote() {
             const randomIndex = Math.floor(Math.random() * quotes.length);
             const quote = quotes[randomIndex];
@@ -478,26 +541,51 @@
             document.querySelector('.quote-author').textContent = quote.author;
         }
 
-        // Вызываем функцию при загрузке
         displayRandomQuote();
     </script>
 
-    <footer>
-        <div class="container footer-content">
-            <p>Парголовская библиотека © 2026 | ЦБС Выборгского района</p>
-            <div class="footer-actions">
-                <div class="share-buttons">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.github.io" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
-                    <a href="https://t.me/share/url?url=https://parglbibl.github.io" target="_blank" title="Поделиться в Telegram"><i class="fab fa-telegram"></i></a>
-                    <a href="https://apps.apple.com/ru/app/max/id6449714850" target="_blank" title="Поделиться в MAX"><i class="fas fa-comment-dots"></i></a>
+    <footer class="footer-content">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
-                <div class="print-button">
-                    <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                <div class="footer-col">
+                    <h3>Быстрые ссылки</h3>
+                    <p><a href="index.html">Главная</a></p>
+                    <p><a href="about.html">О нас</a></p>
+                    <p><a href="services.html">Услуги</a></p>
+                    <p><a href="events.html">События</a></p>
+                    <p><a href="speedcubing.html">Спидкубинг</a></p>
+                    <p><a href="newbooks.html">Новинки</a></p>
+                    <p><a href="faq.html">Вопросы</a></p>
+                    <p><a href="contacts.html">Контакты</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social">
+                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/..." target="_blank"><i class="fab fa-telegram"></i></a>
+                        <a href="https://apps.apple.com/ru/app/max/id6449714850" target="_blank"><i class="fas fa-comment-dots"></i></a>
+                    </div>
+                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
                 </div>
             </div>
-            <div class="social-links">
-                <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
-                <a href="https://cbsvib.ru/" target="_blank">🌐</a>
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.github.io" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://t.me/share/url?url=https://parglbibl.github.io" target="_blank" title="Поделиться в Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://apps.apple.com/ru/app/max/id6449714850" target="_blank" title="Поделиться в MAX"><i class="fas fa-comment-dots"></i></a>
+                    </div>
+                    <div class="print-button">
+                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                    </div>
+                </div>
+                <p>© 2026 Парголовская библиотека | ЦБС Выборгского района</p>
             </div>
         </div>
     </footer>
@@ -520,12 +608,8 @@
             document.body.classList.toggle('special-mode');
         });
 
-        // Анимация появления при скролле
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
         const appearOnScroll = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -536,7 +620,6 @@
         }, appearOptions);
         faders.forEach(fader => appearOnScroll.observe(fader));
 
-        // Слайдер
         const slider = document.getElementById('slider');
         const dotsContainer = document.getElementById('sliderDots');
         const images = slider.children;
@@ -544,7 +627,6 @@
         let currentIndex = 0;
         let autoSlideInterval;
 
-        // Создаем точки
         for (let i = 0; i < totalImages; i++) {
             const dot = document.createElement('div');
             dot.classList.add('slider-dot');
@@ -560,9 +642,7 @@
         function goToSlide(index) {
             currentIndex = index;
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === currentIndex);
-            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
         }
 
         function nextSlide() {
