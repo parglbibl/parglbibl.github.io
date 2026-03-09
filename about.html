@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - О нас</title>
-    <meta name="description" content="История и деятельность Парголовской библиотеки. Фотографии и описание.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги">
+    <meta name="description" content="История и деятельность Парголовской библиотеки. Фотографии и описание. Наши достижения и награды.">
+    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги, достижения, дипломы">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +78,7 @@
         body.special-mode .history-block,
         body.special-mode .photo-gallery a,
         body.special-mode .photo-gallery .download-icon,
+        body.special-mode .achievements-grid .achievement-card,
         body.special-mode .footer-content,
         body.special-mode .footer-links a {
             background-color: #fff !important;
@@ -85,7 +86,8 @@
             box-shadow: none !important;
             border: 1px solid #000 !important;
         }
-        body.special-mode .photo-gallery img {
+        body.special-mode .photo-gallery img,
+        body.special-mode .achievements-grid img {
             filter: grayscale(100%) contrast(150%);
         }
         body.special-mode .share-buttons a,
@@ -109,7 +111,7 @@
         .nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; flex-wrap: wrap; }
         .nav a { text-decoration: none; color: #fff; font-weight: 600; transition: color 0.3s; }
         .nav a:hover, .nav a.active { color: #f4e3d7; border-bottom: 2px solid #f4e3d7; }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; }
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav { display: none; width: 100%; margin-top: 1rem; }
@@ -161,6 +163,49 @@
             z-index: 2;
         }
         .photo-gallery a:hover .download-icon { opacity: 1; }
+        
+        /* Стили для блока достижений */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .achievement-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+        .achievement-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .achievement-card a {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .achievement-card h3 {
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        .achievement-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
         .footer-content {
             background: #b5838d;
             color: #fff;
@@ -327,6 +372,25 @@
             <div class="history-block">
                 <p>Несмотря на небольшую площадь, библиотека живёт в активном ритме – здесь проходят тематические встречи и масштабные праздники. Важной частью работы «Парголовской» являются выездные мероприятия для детей и взрослых в больницах Выборгского района.</p>
                 <p>Мы заботимся о комфорте каждого посетителя. Специально подготовленные видеоролики с сурдопереводом наглядно показывают, как легко ориентироваться внутри помещения, пользоваться услугами и находить нужные ресурсы.</p>
+            </div>
+
+            <h2 class="section-title">Наши достижения</h2>
+            <div class="achievements-grid">
+                <div class="achievement-card fade-in">
+                    <a href="diplom1.jpg" data-fancybox="achievements" data-caption="Диплом за активную работу">
+                        <img src="diplom1.jpg" alt="Диплом 1">
+                    </a>
+                    <h3>Диплом «Лучшая библиотека года»</h3>
+                    <p>2025, администрация Выборгского района</p>
+                </div>
+                <div class="achievement-card fade-in">
+                    <a href="diplom2.jpg" data-fancybox="achievements" data-caption="Благодарность за сотрудничество">
+                        <img src="diplom2.jpg" alt="Диплом 2">
+                    </a>
+                    <h3>Благодарность от реабилитационного центра</h3>
+                    <p>За работу с детьми с ОВЗ, 2025</p>
+                </div>
+                <!-- Если есть ещё достижения, добавьте по аналогии -->
             </div>
 
             <h2 class="section-title">Фотографии</h2>
