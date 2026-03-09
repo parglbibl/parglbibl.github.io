@@ -55,7 +55,8 @@
             border: 1px solid #000 !important;
         }
         body.special-mode .share-buttons a,
-        body.special-mode .print-button a {
+        body.special-mode .print-button a,
+        body.special-mode .quote-share a {
             background-color: #000 !important;
             color: #fff !important;
             border-color: #fff !important;
@@ -165,6 +166,29 @@
             font-size: 1.1rem;
             color: #b5838d;
             font-weight: 600;
+        }
+        .quote-share {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .quote-share a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #b5838d;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .quote-share a:hover {
+            background-color: #9f6e7a;
+            transform: scale(1.1);
         }
         
         .posts-grid {
@@ -414,6 +438,11 @@
             <div class="quote-block fade-in" id="quoteBlock">
                 <div class="quote-text"></div>
                 <div class="quote-author"></div>
+                <div class="quote-share">
+                    <a href="#" id="share-vk" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                    <a href="#" id="share-tg" target="_blank" title="Поделиться в Telegram"><i class="fab fa-telegram"></i></a>
+                    <a href="#" id="share-max" target="_blank" title="Поделиться в MAX"><i class="fas fa-comment-dots"></i></a>
+                </div>
             </div>
         </div>
     </section>
@@ -706,6 +735,26 @@
         }
 
         startAutoSlide();
+
+        // Обновляем ссылки для шаринга
+        function updateShareLinks() {
+            const quoteText = document.querySelector('.quote-text').textContent;
+            const quoteAuthor = document.querySelector('.quote-author').textContent;
+            const fullQuote = `${quoteText} — ${quoteAuthor}`;
+            const currentUrl = encodeURIComponent(window.location.href);
+            
+            const vkShare = document.getElementById('share-vk');
+            const tgShare = document.getElementById('share-tg');
+            const maxShare = document.getElementById('share-max');
+            
+            vkShare.href = `https://vk.com/share.php?url=${currentUrl}&title=${encodeURIComponent(fullQuote)}`;
+            tgShare.href = `https://t.me/share/url?url=${currentUrl}&text=${encodeURIComponent(fullQuote)}`;
+            maxShare.href = `https://apps.apple.com/ru/app/max/id6449714850`;
+        }
+
+        window.addEventListener('load', function() {
+            setTimeout(updateShareLinks, 100);
+        });
     </script>
 </body>
 </html>
