@@ -86,6 +86,7 @@
         body.special-mode .posts-grid .vk-post,
         body.special-mode .slider-container,
         body.special-mode .quote-block,
+        body.special-mode .random-book,
         body.special-mode .footer-content,
         body.special-mode .footer-links a {
             background-color: #fff !important;
@@ -228,6 +229,39 @@
         .quote-share a:hover {
             background-color: #9f6e7a;
             transform: scale(1.1);
+        }
+        
+        /* Стили для блока случайной книги */
+        .random-book {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            padding: 2rem;
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .random-book img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .random-book h3 {
+            color: #5e4b3c;
+            margin-bottom: 0.5rem;
+        }
+        .random-book .author {
+            font-weight: 600;
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+        }
+        .random-book .description {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
         
         .posts-grid {
@@ -521,6 +555,16 @@
         </div>
     </section>
 
+    <!-- НОВЫЙ БЛОК: Случайная книга из новинок -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Случайная книга из новинок</h2>
+            <div id="random-book" class="random-book fade-in">
+                <!-- сюда подставится карточка книги -->
+            </div>
+        </div>
+    </section>
+
     <section class="section">
         <div class="container">
             <h2 class="section-title">Последние новости из нашей группы</h2>
@@ -534,6 +578,7 @@
     </section>
 
     <script>
+        // Функция для загрузки постов ВК (оставляем без изменений)
         async function fetchVKPosts() {
             try {
                 const proxyUrl = 'http://paglbibl.infinityfreeapp.com/vk-proxy.php';
@@ -594,7 +639,7 @@
 
         window.addEventListener('load', fetchVKPosts);
 
-        // Цитаты из книги "Энциклопедия мысли"
+        // Цитаты из книги "Энциклопедия мысли" (оставляем)
         const quotes = [
             { text: "Все дело в мыслях. Мысль – начало всего. И мыслями можно управлять. И потому главное дело совершенствования: работать над мыслями.", author: "Л. Толстой" },
             { text: "Следовать за мыслями великого человека есть наука самая занимательная.", author: "А. Пушкин" },
@@ -656,6 +701,30 @@
         }
 
         displayRandomQuote();
+
+        // Массив книг из раздела "Новинки"
+        const newBooks = [
+            { title: "Название книги 1", author: "Иван Иванов", description: "Краткое описание первой книги. Несколько предложений о сюжете или содержании.", image: "images/book1.jpg" },
+            { title: "Название книги 2", author: "Петр Петров", description: "Краткое описание второй книги. Интересный сюжет и увлекательные персонажи.", image: "images/book2.jpg" },
+            { title: "Название книги 3", author: "Мария Сидорова", description: "Описание третьей книги, которая уже ждёт своих читателей.", image: "images/book3.jpg" },
+            { title: "Название книги 4", author: "Алексей Иванов", description: "Захватывающая история, которая никого не оставит равнодушным.", image: "images/book4.jpg" }
+        ];
+
+        // Функция для показа случайной книги
+        function displayRandomBook() {
+            const randomIndex = Math.floor(Math.random() * newBooks.length);
+            const book = newBooks[randomIndex];
+            const html = `
+                <img src="${book.image}" alt="${book.title}">
+                <h3>${book.title}</h3>
+                <div class="author">${book.author}</div>
+                <div class="description">${book.description}</div>
+                <a href="newbooks.html" class="btn">Все новинки</a>
+            `;
+            document.getElementById('random-book').innerHTML = html;
+        }
+
+        displayRandomBook();
     </script>
 
     <footer class="footer-content">
