@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека — События</title>
-    <meta name="description" content="Афиша мероприятий Парголовской библиотеки: встречи, лекции, праздники, мастер-классы. Следите за анонсами в нашей группе ВК.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, мероприятия, афиша, встречи, лекции, мастер-классы">
+    <title>Парголовская библиотека - События</title>
+    <meta name="description" content="Календарь событий и расписание мероприятий в Парголовской библиотеке.">
+    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Schema.org разметка (такая же, как на других страницах) -->
+    <!-- Schema.org разметка -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -51,7 +51,6 @@
     }
     </script>
     <style>
-        /* Все стили оставляем без изменений (можно скопировать из предыдущих страниц) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; transition: background-color 0.3s, color 0.3s, font-size 0.3s; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
@@ -75,8 +74,8 @@
         body.special-mode .nav a:hover { color: #ffff00 !important; border-bottom-color: #ffff00 !important; }
         body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
         body.special-mode .btn:hover { background-color: #333 !important; }
-        body.special-mode .event-card,
-        body.special-mode .info-block,
+        body.special-mode .calendar-container,
+        body.special-mode .schedule-item,
         body.special-mode .footer-content,
         body.special-mode .footer-links a {
             background-color: #fff !important;
@@ -119,55 +118,153 @@
         .section { padding: 4rem 0; }
         .section-title { text-align: center; margin-bottom: 3rem; font-size: 2.2rem; color: #5e4b3c; }
         .section-title:after { content: ''; display: block; width: 60px; height: 3px; background: #e5989b; margin: 0.5rem auto 0; }
-        .events-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .event-card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .event-card:hover { transform: translateY(-5px); }
-        .event-icon { font-size: 2rem; color: #b5838d; margin-bottom: 1rem; }
-        .info-block {
+        .calendar-container {
             background: #fff;
-            padding: 2.5rem;
+            padding: 1.5rem;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
+            margin-top: 2rem;
+            overflow: hidden;
         }
-        .info-block h3 {
-            color: #5e4b3c;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
+        .calendar-container iframe {
+            width: 100%;
+            min-height: 600px;
+            border: 0;
+            border-radius: 8px;
         }
-        .info-block p {
-            font-size: 1.2rem;
+        .schedule-section { margin-top: 3rem; }
+        .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .schedule-item { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .schedule-item h3 { margin-bottom: 1rem; color: #b5838d; }
+        .schedule-list { list-style: none; }
+        .schedule-list li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
+        .schedule-list li:last-child { border-bottom: none; }
+        .footer-content {
+            background: #b5838d;
+            color: #fff;
+            padding: 3rem 0 2rem;
+            margin-top: 2rem;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
             margin-bottom: 2rem;
-            color: #666;
         }
-        .social-links-block {
+        .footer-col h3 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #fff;
+        }
+        .footer-col p, .footer-col a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+        }
+        .footer-col a:hover {
+            color: #f4e3d7;
+        }
+        .footer-col i {
+            width: 20px;
+            margin-right: 10px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            transition: background-color 0.3s;
+        }
+        .footer-social a:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+        .footer-social i {
+            font-size: 1.3rem;
+            margin: 0;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .footer-actions {
             display: flex;
             justify-content: center;
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin-bottom: 1rem;
         }
-        .social-links-block a {
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        .share-buttons a, .print-button a {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background-color: #b5838d;
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            color: #b5838d;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        .share-buttons a:hover {
+            background-color: #f4e3d7;
+            color: #5e4b3c;
+            transform: translateY(-3px);
+        }
+        .print-button a {
+            width: auto;
+            padding: 0 1.2rem;
+            border-radius: 40px;
+            gap: 8px;
             text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s;
         }
-        .social-links-block a:hover {
-            background-color: #9f6e7a;
+        .print-button a:hover {
+            background-color: #f4e3d7;
+            color: #5e4b3c;
         }
-        .social-links-block i {
-            font-size: 1.3rem;
+        .print-button a i { font-size: 1.2rem; }
+        .social-links { margin: 1rem 0; }
+        .social-links a { color: #fff; font-size: 1.5rem; margin: 0 0.5rem; transition: color 0.3s; }
+        .social-links a:hover { color: #f4e3d7; }
+        @media (max-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .footer-actions {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            .schedule-grid { grid-template-columns: 1fr; }
         }
-        /* Стили подвала и прочего — как на других страницах (я не копирую их сюда полностью, но в реальном файле они должны быть) */
-        /* ... остальные стили (footer, back-to-top и т.д.) ... */
+        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .back-to-top.show { opacity: 1; visibility: visible; }
     </style>
 </head>
 <body>
@@ -197,20 +294,45 @@
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Ближайшие события</h2>
-            <div class="info-block fade-in">
-                <h3>Скоро в нашей библиотеке</h3>
-                <p>В данный момент мы готовим новую программу мероприятий. Следите за анонсами в нашей группе ВКонтакте и Telegram — там всегда появляются самые свежие новости!</p>
-                <div class="social-links-block">
-                    <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i> ВКонтакте</a>
-                    <a href="https://t.me/..." target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
-                </div>
+            <h2 class="section-title">Календарь событий</h2>
+            <div class="calendar-container fade-in">
+                <iframe src="https://calendar.google.com/calendar/embed?src=bibliotekapargolovskaa@gmail.com&ctz=Europe%2FMoscow&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH" style="border: 0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
             </div>
-            <!-- Если в будущем появятся мероприятия, можно будет добавить карточки сюда, используя .events-grid -->
+            <div class="schedule-section">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Регулярные занятия по спидкубингу</h3>
+                <p style="text-align: center; margin-bottom: 2rem;">Подробнее о спидкубинге читайте на <a href="speedcubing.html">отдельной странице</a>.</p>
+                <div class="schedule-grid">
+                    <div class="schedule-item fade-in">
+                        <h3><i class="fas fa-calendar-alt" style="color: #e5989b;"></i> Центральная районная библиотека «В Озерках»</h3>
+                        <p>Адрес: пр. Энгельса, 111</p>
+                        <p><strong>Расписание на март 2026:</strong></p>
+                        <ul class="schedule-list">
+                            <li>4 марта (среда) 17:00 – 18:00</li>
+                            <li>6 марта (пятница) 16:00 – 17:00</li>
+                            <li>11 марта (среда) 16:00 – 17:00</li>
+                            <li>20 марта (пятница) 17:00 – 18:00</li>
+                            <li>25 марта (среда) 17:00 – 18:00</li>
+                            <li>27 марта (пятница) 17:00 – 18:00</li>
+                        </ul>
+                    </div>
+                    <div class="schedule-item fade-in">
+                        <h3><i class="fas fa-calendar-alt" style="color: #e5989b;"></i> Библиотека «Авеню»</h3>
+                        <p>Адрес: пр. Просвещения, 87</p>
+                        <p><strong>Расписание на март 2026:</strong></p>
+                        <ul class="schedule-list">
+                            <li>13 марта (пятница) 18:00 – 19:00</li>
+                            <li>18 марта (среда) 18:00 – 19:00</li>
+                            <li>20 марта (пятница) 15:00 – 16:00</li>
+                            <li>25 марта (среда) 15:00 – 16:00</li>
+                            <li>27 марта (пятница) 15:00 – 16:00</li>
+                        </ul>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 2rem;">Вход свободный, по предварительной записи. Запись по телефону <strong>+7 (812) 246-93-05</strong> или в <a href="https://vk.com/pargolovskaya_library" target="_blank">группе ВКонтакте</a>.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Подвал (полностью копируем из других страниц) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -262,7 +384,6 @@
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
     <script>
-        // Все скрипты остаются такими же, как на других страницах
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('nav');
         menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
