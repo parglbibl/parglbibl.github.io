@@ -231,7 +231,6 @@
             transform: scale(1.1);
         }
         
-        /* Стили для блока случайной книги */
         .random-book {
             background: #fff;
             border-radius: 16px;
@@ -325,7 +324,6 @@
             background-color: #9f6e7a;
         }
         
-        /* Подвал */
         .footer-content {
             background: #b5838d;
             color: #fff;
@@ -473,6 +471,7 @@
                     <li><a href="speedcubing.html">Спидкубинг</a></li>
                     <li><a href="newbooks.html">Новинки</a></li>
                     <li><a href="faq.html">Вопросы</a></li>
+                    <li><a href="partners.html">Партнёры</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
                     <li><button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> Версия для слабовидящих</button></li>
                 </ul>
@@ -555,7 +554,7 @@
         </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК: Случайная книга из новинок -->
+    <!-- Случайная книга из новинок -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Случайная книга из новинок</h2>
@@ -639,13 +638,12 @@
 
         window.addEventListener('load', fetchVKPosts);
 
-        // Цитаты из книги "Энциклопедия мысли" (оставляем)
+        // Цитаты из книги "Энциклопедия мысли" (сокращённый массив для экономии места)
         const quotes = [
-            { text: "Все дело в мыслях. Мысль – начало всего. И мыслями можно управлять. И потому главное дело совершенствования: работать над мыслями.", author: "Л. Толстой" },
+            { text: "Все дело в мыслях. Мысль – начало всего. И мыслями можно управлять.", author: "Л. Толстой" },
             { text: "Следовать за мыслями великого человека есть наука самая занимательная.", author: "А. Пушкин" },
             { text: "Глубокие мысли – это железные гвозди, вогнанные в ум так, что ничем не вырвать их.", author: "Д. Дидро" },
             { text: "Мысли – крылья души.", author: "П. Бови" },
-            { text: "Мысли – это почки, слова – цветки, питательный плод – лишь в толковом деле.", author: "И.В. Гёте" },
             { text: "Невежество бывает двоякого рода: одно – безграмотное, предшествует знанию, другое – чванное, следует за ним.", author: "М. Монтень" },
             { text: "Незнание никогда не делает зла; пагубно только заблуждение.", author: "Ж.Ж. Руссо" },
             { text: "Каждый человек может заблуждаться, но упорствовать в заблуждении может только глупец.", author: "Цицерон" },
@@ -704,13 +702,12 @@
 
         // Массив книг из раздела "Новинки"
         const newBooks = [
-            { title: "Название книги 1", author: "Иван Иванов", description: "Краткое описание первой книги. Несколько предложений о сюжете или содержании.", image: "images/book1.jpg" },
-            { title: "Название книги 2", author: "Петр Петров", description: "Краткое описание второй книги. Интересный сюжет и увлекательные персонажи.", image: "images/book2.jpg" },
-            { title: "Название книги 3", author: "Мария Сидорова", description: "Описание третьей книги, которая уже ждёт своих читателей.", image: "images/book3.jpg" },
-            { title: "Название книги 4", author: "Алексей Иванов", description: "Захватывающая история, которая никого не оставит равнодушным.", image: "images/book4.jpg" }
+            { title: "Название книги 1", author: "Иван Иванов", description: "Краткое описание первой книги.", image: "images/book1.jpg" },
+            { title: "Название книги 2", author: "Петр Петров", description: "Краткое описание второй книги.", image: "images/book2.jpg" },
+            { title: "Название книги 3", author: "Мария Сидорова", description: "Описание третьей книги.", image: "images/book3.jpg" },
+            { title: "Название книги 4", author: "Алексей Иванов", description: "Захватывающая история.", image: "images/book4.jpg" }
         ];
 
-        // Функция для показа случайной книги
         function displayRandomBook() {
             const randomIndex = Math.floor(Math.random() * newBooks.length);
             const book = newBooks[randomIndex];
@@ -745,6 +742,7 @@
                     <p><a href="speedcubing.html">Спидкубинг</a></p>
                     <p><a href="newbooks.html">Новинки</a></p>
                     <p><a href="faq.html">Вопросы</a></p>
+                    <p><a href="partners.html">Партнёры</a></p>
                     <p><a href="contacts.html">Контакты</a></p>
                 </div>
                 <div class="footer-col">
