@@ -19,13 +19,51 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Копируем сюда все основные стили из вашего сайта (можно взять из index.html) */
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; }
+        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; transition: background-color 0.3s, color 0.3s, font-size 0.3s; }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
-        
-        /* Шапка (такая же, как на других страницах) */
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        @media (max-width: 768px) { .container { width: 100%; padding: 0 15px; } }
+
+        /* ===== ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ ===== */
+        body.special-mode {
+            background-color: #fff !important;
+            color: #000 !important;
+            font-size: 1.2em !important;
+        }
+        body.special-mode h1, body.special-mode h2, body.special-mode h3, body.special-mode h4 { color: #000 !important; }
+        body.special-mode a { color: #0000ee !important; text-decoration: underline !important; }
+        body.special-mode header { background-color: #000 !important; }
+        body.special-mode .nav a { color: #fff !important; }
+        body.special-mode .nav a:hover { color: #ffff00 !important; }
+        body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
+        body.special-mode .btn:hover { background-color: #333 !important; }
+        body.special-mode .privacy-block,
+        body.special-mode .footer-content,
+        body.special-mode .footer-links a {
+            background-color: #fff !important;
+            color: #000 !important;
+            box-shadow: none !important;
+            border: 1px solid #000 !important;
+        }
+        body.special-mode .share-buttons a,
+        body.special-mode .print-button a {
+            background-color: #000 !important;
+            color: #fff !important;
+            border-color: #fff !important;
+        }
+        body.special-mode footer { background-color: #000 !important; }
+        body.special-mode .footer-col a { color: #0000ee !important; }
+
+        .special-toggle {
+            background: transparent; border: 2px solid #fff; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: 0.3s;
+        }
+        .special-toggle:hover { background: rgba(255,255,255,0.2); }
+        body.special-mode .special-toggle { border-color: #000; color: #000; background: #fff; }
+        body.special-mode .special-toggle:hover { background: #ddd; }
+
+        /* ===== ШАПКА ===== */
         header {
             background-color: #b5838d;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -39,11 +77,32 @@
             align-items: center;
             padding: 0;
         }
-        .logo { display: flex; align-items: center; text-decoration: none; }
-        .logo img { height: 80px; width: auto; }
-        .nav ul { display: flex; list-style: none; gap: 2rem; align-items: center; flex-wrap: wrap; }
-        .nav a { text-decoration: none; color: #fff; font-weight: 600; transition: color 0.3s; }
-        .nav a:hover, .nav a.active { color: #f4e3d7; border-bottom: 2px solid #f4e3d7; }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #f4e3d7;
+            border-bottom: 2px solid #f4e3d7;
+        }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
@@ -51,9 +110,10 @@
             .nav.active { display: block; }
             .nav ul { flex-direction: column; gap: 1rem; text-align: center; }
             .header-inner { flex-wrap: wrap; }
+            .special-toggle { margin: 10px 0; }
         }
-        
-        /* Основной контент */
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
         .section { padding: 4rem 0; }
         .privacy-block {
             background: #fff;
@@ -63,12 +123,40 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        .privacy-block h2 { margin-top: 2rem; margin-bottom: 1rem; color: #b5838d; }
-        .privacy-block h2:first-of-type { margin-top: 0; }
-        .privacy-block p { margin-bottom: 1rem; }
-        .privacy-block ul { margin-left: 2rem; margin-bottom: 1rem; }
-        
-        /* Подвал */
+        .privacy-block h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #5e4b3c;
+        }
+        .privacy-block h2 {
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #b5838d;
+            font-size: 1.5rem;
+        }
+        .privacy-block h2:first-of-type {
+            margin-top: 0;
+        }
+        .privacy-block p {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
+        }
+        .privacy-block ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+        .privacy-block li {
+            margin-bottom: 0.5rem;
+        }
+        .privacy-block a {
+            color: #e5989b;
+            text-decoration: none;
+        }
+        .privacy-block a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== ПОДВАЛ ===== */
         .footer-content {
             background: #b5838d;
             color: #fff;
@@ -107,9 +195,15 @@
             color: #fff;
             text-decoration: none;
             transition: color 0.3s;
+            display: inline-block;
         }
-        .footer-col a:hover { color: #f4e3d7; }
-        .footer-col i { width: 20px; text-align: center; }
+        .footer-col a:hover {
+            color: #f4e3d7;
+        }
+        .footer-col i {
+            width: 20px;
+            text-align: center;
+        }
         .footer-social {
             display: flex;
             gap: 1rem;
@@ -123,9 +217,15 @@
             height: 40px;
             border-radius: 50%;
             background-color: rgba(255,255,255,0.2);
+            transition: background-color 0.3s;
         }
-        .footer-social a:hover { background-color: rgba(255,255,255,0.4); }
-        .footer-social i { font-size: 1.3rem; margin: 0; }
+        .footer-social a:hover {
+            background-color: rgba(255,255,255,0.4);
+        }
+        .footer-social i {
+            font-size: 1.3rem;
+            margin: 0;
+        }
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
@@ -137,7 +237,10 @@
             gap: 2rem;
             margin-bottom: 1rem;
         }
-        .share-buttons { display: flex; gap: 1rem; }
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
         .share-buttons a, .print-button a {
             display: inline-flex;
             align-items: center;
@@ -149,6 +252,7 @@
             color: #b5838d;
             font-size: 1.2rem;
             transition: all 0.3s;
+            border: 1px solid transparent;
             text-decoration: none;
         }
         .share-buttons a:hover {
@@ -171,7 +275,7 @@
             .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .footer-actions { flex-direction: column; align-items: center; gap: 1rem; }
         }
-        
+
         .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
         .back-to-top.show { opacity: 1; visibility: visible; }
     </style>
