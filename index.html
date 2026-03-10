@@ -173,7 +173,7 @@
             filter: brightness(1.02);
         }
 
-        /* ===== ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ ===== */
+        /* ===== ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ (оставлена на случай, если понадобится, но кнопка убрана) ===== */
         body.special-mode {
             background-color: #fff !important;
             color: #000 !important;
@@ -209,25 +209,7 @@
         body.special-mode footer { background-color: #000 !important; }
         body.special-mode .footer-col a { color: #0000ee !important; }
 
-        .special-toggle {
-            background: transparent;
-            border: 2px solid #fff;
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: 0.3s;
-            white-space: nowrap;
-        }
-        .special-toggle:hover { background: rgba(255,255,255,0.2); }
-        body.special-mode .special-toggle { border-color: #000; color: #000; background: #fff; }
-        body.special-mode .special-toggle:hover { background: #ddd; }
-
-        /* ===== ШАПКА ===== */
+        /* ===== ШАПКА (без бургера, всегда видимое меню) ===== */
         header {
             background-color: #b5838d;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -262,23 +244,6 @@
             align-items: center;
             flex-wrap: wrap;
             justify-content: flex-end;
-        }
-        .special-toggle {
-            /* кнопка всегда иконка без текста, но можно оставить padding */
-            padding: 5px 10px;
-            border: 2px solid #fff;
-            background: transparent;
-            border-radius: 20px;
-            color: #fff;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-        .special-toggle i {
-            font-size: 1.2rem;
-        }
-        .special-toggle span {
-            display: none; /* текст скрыт на всех устройствах */
         }
 
         /* ===== ГЕРО ===== */
@@ -618,7 +583,6 @@
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
-            <button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> <span style="display: none;">Версия для слабовидящих</span></button>
         </div>
     </header>
 
@@ -856,24 +820,14 @@
         }
         startAutoSlide();
 
-        // Меню, назад вверх, спецрежим
-        const menuToggle = document.getElementById('menuToggle'); // удалён, но скрипт можно убрать, если он не нужен
-        const nav = document.getElementById('nav');
-        // menuToggle больше нет, поэтому удаляем обработчик
-        // const menuToggle = document.getElementById('menuToggle'); // эта строка не нужна
-        // menuToggle.addEventListener('click', () => nav.classList.toggle('active')); // удалить
-
+        // Кнопка "Наверх"
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) backToTop.classList.add('show');
             else backToTop.classList.remove('show');
         });
 
-        const specialToggle = document.getElementById('specialToggle');
-        specialToggle.addEventListener('click', () => {
-            document.body.classList.toggle('special-mode');
-        });
-
+        // Анимация появления
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
         const appearOnScroll = new IntersectionObserver((entries, observer) => {
