@@ -540,7 +540,7 @@
             .footer-actions { flex-direction: column; align-items: center; gap: 1rem; }
         }
 
-        /* Аккордеон для карты сайта (только мобильные) */
+        /* Аккордеон для карты сайта (только на мобильных) */
         @media (max-width: 768px) {
             .footer-accordion .accordion-content {
                 display: none;
@@ -552,6 +552,7 @@
                 cursor: pointer;
                 position: relative;
                 padding-right: 25px;
+                user-select: none;
             }
             .accordion-header::after {
                 content: '\f107'; /* fa-chevron-down */
@@ -568,8 +569,10 @@
             }
         }
         /* На десктопе контент виден всегда */
-        .footer-accordion .accordion-content {
-            display: block;
+        @media (min-width: 769px) {
+            .footer-accordion .accordion-content {
+                display: block !important;
+            }
         }
 
         .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
@@ -871,13 +874,10 @@
             else backToTop.classList.remove('show');
         });
 
-        // Аккордеон в футере (только мобильные)
-        const accordionHeaders = document.querySelectorAll('.accordion-header');
-        accordionHeaders.forEach(header => {
-            header.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    header.parentElement.classList.toggle('open');
-                }
+        // Аккордеон в футере (без проверки ширины, стили управляют видимостью)
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                this.closest('.footer-accordion').classList.toggle('open');
             });
         });
 
