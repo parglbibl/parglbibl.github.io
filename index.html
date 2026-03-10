@@ -70,8 +70,8 @@
             line-height: 1.6;
             color: #4a4a4a;
             background-color: #fefaf5;
-            /* НОВЫЙ ФОН: текстура бумаги */
-            background-image: url("https://www.transparenttextures.com/patterns/paper.png");
+            /* ФОН: локальный файл paper.png */
+            background-image: url('paper.png');
             transition: background-color 0.3s, color 0.3s, font-size 0.3s;
         }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
@@ -179,7 +179,7 @@
             background-color: #fff !important;
             color: #000 !important;
             font-size: 1.2em !important;
-            background-image: none !important; /* убираем текстуру в спецрежиме */
+            background-image: none !important;
         }
         body.special-mode h1, body.special-mode h2, body.special-mode h3, body.special-mode h4 { color: #000 !important; }
         body.special-mode a { color: #0000ee !important; text-decoration: underline !important; }
@@ -241,12 +241,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 0;
+            flex-wrap: wrap; /* позволяет переносить элементы при нехватке места */
         }
         .logo {
             display: flex;
             align-items: center;
             text-decoration: none;
-            /* отступ будет добавлен только на десктопах через медиазапрос */
         }
         .logo img {
             height: 80px;
@@ -274,9 +274,8 @@
             .nav.active { display: block; }
             .nav ul { flex-direction: column; gap: 1rem; text-align: center; }
             .header-inner { flex-wrap: wrap; }
-            /* на мобильных кнопка спецверсии не имеет отступа, но в шапке она справа */
             .special-toggle span {
-                display: none; /* прячем текст, оставляем только иконку */
+                display: none;
             }
             .special-toggle {
                 padding: 5px;
@@ -606,10 +605,6 @@
             <a href="index.html" class="logo">
                 <img src="logo.PNG" alt="Парголовская библиотека">
             </a>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> <span>Версия для слабовидящих</span></button>
-                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            </div>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a href="index.html" class="active">Главная</a></li>
@@ -624,6 +619,10 @@
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> <span>Версия для слабовидящих</span></button>
+                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            </div>
         </div>
     </header>
 
