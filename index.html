@@ -386,12 +386,12 @@
         .random-book .author { font-weight: 600; color: #b5838d; margin-bottom: 0.5rem; }
         .random-book .description { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-        /* ===== ВИДЖЕТ ВК (адаптация) ===== */
+        /* ===== ВИДЖЕТ ВК (адаптация и центрирование) ===== */
         #vk_groups {
             width: 100%;
             max-width: 100%;
-            overflow: hidden;
-            margin-bottom: 1rem;
+            margin: 0 auto;          /* центрирование блока */
+            display: block;
         }
         #vk_groups iframe {
             width: 100% !important;
@@ -401,7 +401,7 @@
         }
         @media (max-width: 768px) {
             #vk_groups iframe {
-                height: 500px; /* больше места на мобильных */
+                height: 500px;        /* больше места на мобильных */
             }
         }
         .vk-more-btn {
