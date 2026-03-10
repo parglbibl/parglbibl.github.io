@@ -62,7 +62,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ (унифицированы с главной) ===== */
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Open Sans', sans-serif;
@@ -76,7 +76,7 @@
         .container { width: 90%; max-width: 1400px; margin: 0 auto; }
         @media (max-width: 768px) { .container { width: 100%; padding: 0 15px; } }
 
-        /* ===== УЛУЧШЕННАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
+        /* ===== АНИМАЦИИ ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(20px) scale(0.95);
@@ -86,8 +86,6 @@
             opacity: 1;
             transform: translateY(0) scale(1);
         }
-
-        /* ===== АНИМАЦИЯ ДЛЯ КАРТОЧЕК ПРИ НАВЕДЕНИИ ===== */
         .book-card {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
         }
@@ -95,8 +93,6 @@
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
-
-        /* ===== АНИМАЦИЯ ДЛЯ КНОПОК ===== */
         .btn {
             display: inline-block;
             background-color: #e5989b;
@@ -114,53 +110,6 @@
             background-color: #d68b8e;
             transform: scale(1.05);
             box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-
-        /* ===== АНИМАЦИЯ ПОДЧЁРКИВАНИЯ ССЫЛОК В МЕНЮ ===== */
-        .nav a {
-            position: relative;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #f4e3d7;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nav a:hover::after,
-        .nav a.active::after {
-            width: 100%;
-        }
-        .nav a:hover, .nav a.active {
-            border-bottom: none;
-        }
-
-        /* ===== АНИМАЦИЯ ДЛЯ ЗАГОЛОВКОВ ===== */
-        .section-title {
-            position: relative;
-            text-align: center !important;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            color: #5e4b3c;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #e5989b;
-            margin: 0.5rem auto 0;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .section-title:hover::after {
-            width: 100px;
         }
 
         /* ===== ШАПКА ===== */
@@ -193,6 +142,27 @@
             align-items: center;
             flex-wrap: wrap;
         }
+        .nav a {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f4e3d7;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav a:hover::after,
+        .nav a.active::after {
+            width: 100%;
+        }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
         
         @media (min-width: 769px) {
@@ -215,6 +185,26 @@
 
         /* ===== СЕКЦИИ ===== */
         .section { padding: 4rem 0; }
+        .section-title {
+            position: relative;
+            text-align: center !important;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #5e4b3c;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e5989b;
+            margin: 0.5rem auto 0;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .section-title:hover::after {
+            width: 100px;
+        }
+
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -488,12 +478,11 @@
     <!-- Fancybox JS -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
-        // Массив книг (20 книг с краткими аннотациями)
+        // Массив книг (19 книг, 20-я будет добавлена после уточнения данных для n6.jpg)
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n5.JPG", year: "2024" },
-            { title: "За спиной", author: "Омер М.", description: "Психологический триллер, продолжение истории профайлера.", image: "n6.jpg", year: "2025" },
-            { title: "Мир для детей", author: "Андрианова Н. А.", description: "Путеводитель по странам и континентам с яркими иллюстрациями.", image: "n7.jpg", year: "2022" },
+            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
+            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n7.jpg", year: "2025" },
             { title: "Мигрант", author: "Астахов П. А.", description: "Современный детектив о судьбах людей в большом городе.", image: "n8.JPG", year: "2025" },
             { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", year: "2025" },
             { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", year: "2025" },
@@ -529,7 +518,6 @@
                 `;
             });
             container.innerHTML = html;
-            // Инициализация Fancybox после добавления карточек
             Fancybox.bind("[data-fancybox]", {});
         }
 
