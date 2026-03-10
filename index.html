@@ -540,34 +540,6 @@
             .footer-actions { flex-direction: column; align-items: center; gap: 1rem; }
         }
 
-        /* Аккордеон для карты сайта (только на мобильных) */
-        @media (max-width: 768px) {
-            .footer-accordion .accordion-content {
-                display: none;
-            }
-            .footer-accordion.open .accordion-content {
-                display: block;
-            }
-            .accordion-header {
-                cursor: pointer;
-                position: relative;
-                padding-right: 25px;
-                user-select: none;
-            }
-            .accordion-header::after {
-                content: '\f107'; /* fa-chevron-down */
-                font-family: 'Font Awesome 6 Free';
-                font-weight: 900;
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                transition: transform 0.3s;
-            }
-            .footer-accordion.open .accordion-header::after {
-                transform: translateY(-50%) rotate(180deg);
-            }
-        }
         /* На десктопе контент виден всегда */
         @media (min-width: 769px) {
             .footer-accordion .accordion-content {
