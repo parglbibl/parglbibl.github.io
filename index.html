@@ -59,6 +59,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
+    <!-- Подключение Open API ВК (один раз) -->
+    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
+    
     <style>
         /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -383,41 +386,24 @@
         .random-book .author { font-weight: 600; color: #b5838d; margin-bottom: 0.5rem; }
         .random-book .description { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-        /* ===== ВК-НОВОСТИ ===== */
-        .posts-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .vk-post {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            padding: 1.5rem;
-            transition: transform 0.3s;
-        }
-        .vk-post:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        .vk-post-date { color: #b5838d; font-size: 0.9rem; margin-bottom: 0.8rem; font-weight: 600; }
-        .vk-post-text { margin-bottom: 1rem; color: #4a4a4a; overflow-wrap: break-word; }
-        .vk-post-image {
+        /* ===== ВИДЖЕТ ВК (адаптация) ===== */
+        #vk_groups {
             width: 100%;
-            max-height: 300px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin: 1rem 0;
+            max-width: 100%;
+            overflow: hidden;
+            margin-bottom: 1rem;
         }
-        .vk-post-link {
-            display: inline-block;
-            color: #e5989b;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
+        #vk_groups iframe {
+            width: 100% !important;
+            height: 400px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
-        .vk-post-link:hover { color: #d68b8e; }
+        @media (max-width: 768px) {
+            #vk_groups iframe {
+                height: 500px; /* больше места на мобильных */
+            }
+        }
         .vk-more-btn {
             display: inline-block;
             background-color: #b5838d;
@@ -428,9 +414,10 @@
             font-weight: 600;
             transition: background 0.3s;
             margin-top: 1.5rem;
-            text-align: center;
         }
-        .vk-more-btn:hover { background-color: #9f6e7a; }
+        .vk-more-btn:hover {
+            background-color: #9f6e7a;
+        }
 
         /* ===== ПОДВАЛ ===== */
         .footer-content {
@@ -461,7 +448,6 @@
             height: 2px;
             background-color: #fff;
         }
-        /* Исправление для отображения иконок и текста в одну строку */
         .footer-col p {
             display: flex;
             align-items: center;
@@ -667,17 +653,21 @@
         </div>
     </section>
 
+    <!-- Блок новостей ВКонтакте (виджет) -->
     <section class="section">
         <div class="container">
             <h2 class="section-title">Последние новости из нашей группы</h2>
-            <div id="vk-posts" class="posts-grid">
-                <p style="text-align: center; color: #999;">Загрузка новостей...</p>
-            </div>
-            <div style="text-align: center;">
+            <div id="vk_groups"></div>
+            <div style="text-align: center; margin-top: 2rem;">
                 <a href="https://vk.com/pargolovskaya_library" target="_blank" class="vk-more-btn">Все новости в группе ВК</a>
             </div>
         </div>
     </section>
+
+    <!-- Инициализация виджета ВК -->
+    <script type="text/javascript">
+        VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 400, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
+    </script>
 
     <footer class="footer-content">
         <div class="container">
@@ -762,50 +752,7 @@
 
         displayRandomBook();
 
-        // ВК-новости
-        async function fetchVKPosts() {
-            try {
-                const proxyUrl = 'http://paglbibl.infinityfreeapp.com/vk-proxy.php';
-                const response = await fetch(proxyUrl);
-                const data = await response.json();
-                if (data.error) {
-                    console.error('Ошибка прокси:', data.error);
-                    document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК.</p>';
-                    return;
-                }
-                const posts = data.response.items;
-                let html = '';
-                posts.forEach(post => {
-                    if (post.is_pinned) return;
-                    const date = new Date(post.date * 1000).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' });
-                    let text = post.text || '';
-                    if (text.length > 200) text = text.substr(0, 200) + '...';
-                    let imageHtml = '';
-                    if (post.attachments && post.attachments[0] && post.attachments[0].type === 'photo') {
-                        const photo = post.attachments[0].photo;
-                        const photoUrl = photo.sizes[photo.sizes.length - 1].url;
-                        imageHtml = `<img src="${photoUrl}" alt="Фото поста" class="vk-post-image">`;
-                    }
-                    html += `
-                        <div class="vk-post fade-in">
-                            <div class="vk-post-date">${date}</div>
-                            ${imageHtml}
-                            <div class="vk-post-text">${text}</div>
-                            <a href="https://vk.com/wall-176521452_${post.id}" target="_blank" class="vk-post-link">Читать в источнике →</a>
-                        </div>
-                    `;
-                });
-                if (html === '') html = '<p style="text-align:center;">Нет свежих новостей. Загляните в нашу группу ВК!</p>';
-                document.getElementById('vk-posts').innerHTML = html;
-            } catch (error) {
-                console.error('Ошибка загрузки:', error);
-                document.getElementById('vk-posts').innerHTML = '<p style="text-align:center;">Не удалось загрузить новости. Перейдите в нашу группу ВК.</p>';
-            }
-        }
-
-        window.addEventListener('load', fetchVKPosts);
-
-        // Цитаты (сокращённый массив для экономии места, в реальности их больше)
+        // Цитаты (сокращённый массив)
         const quotes = [
             { text: "Все дело в мыслях. Мысль – начало всего.", author: "Л. Толстой" },
             { text: "Следовать за мыслями великого человека есть наука самая занимательная.", author: "А. Пушкин" },
@@ -871,7 +818,6 @@
             document.body.classList.toggle('special-mode');
         });
 
-        // Анимация появления
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
         const appearOnScroll = new IntersectionObserver((entries, observer) => {
