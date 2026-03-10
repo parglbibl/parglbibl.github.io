@@ -18,7 +18,7 @@
     {
       "@context": "https://schema.org",
       "@type": "Library",
-      "name": "Парголовская библиотека",
+      "name": "Библиотека «Парголовская»",
       "description": "Уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.",
       "address": {
         "@type": "PostalAddress",
@@ -62,7 +62,15 @@
     <style>
         /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Open Sans', sans-serif; line-height: 1.6; color: #4a4a4a; background-color: #fefaf5; transition: background-color 0.3s, color 0.3s, font-size 0.3s; }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background-color: #fefaf5;
+            /* НОВЫЙ ФОН: текстура бумаги */
+            background-image: url("https://www.transparenttextures.com/patterns/paper.png");
+            transition: background-color 0.3s, color 0.3s, font-size 0.3s;
+        }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
         @media (max-width: 768px) { .container { width: 100%; padding: 0 15px; } }
@@ -159,6 +167,7 @@
             background-color: #fff !important;
             color: #000 !important;
             font-size: 1.2em !important;
+            background-image: none !important;
         }
         body.special-mode h1, body.special-mode h2, body.special-mode h3, body.special-mode h4 { color: #000 !important; }
         body.special-mode a { color: #0000ee !important; text-decoration: underline !important; }
@@ -185,7 +194,18 @@
         body.special-mode .footer-col a { color: #0000ee !important; }
 
         .special-toggle {
-            background: transparent; border: 2px solid #fff; color: #fff; padding: 5px 10px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: 0.3s;
+            background: transparent;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+            white-space: nowrap;
         }
         .special-toggle:hover { background: rgba(255,255,255,0.2); }
         body.special-mode .special-toggle { border-color: #000; color: #000; background: #fff; }
@@ -222,13 +242,25 @@
             flex-wrap: wrap;
         }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
+        
+        @media (min-width: 769px) {
+            .logo {
+                margin-right: 40px;
+            }
+        }
+
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav { display: none; width: 100%; margin-top: 1rem; }
             .nav.active { display: block; }
             .nav ul { flex-direction: column; gap: 1rem; text-align: center; }
             .header-inner { flex-wrap: wrap; }
-            .special-toggle { margin: 10px 0; }
+            .special-toggle span {
+                display: none;
+            }
+            .special-toggle {
+                padding: 5px;
+            }
         }
 
         /* ===== СЕКЦИИ ===== */
@@ -297,7 +329,6 @@
             height: 2px;
             background-color: #fff;
         }
-        /* Исправление для отображения иконок и текста в одну строку */
         .footer-col p {
             display: flex;
             align-items: center;
@@ -399,7 +430,10 @@
             <a href="index.html" class="logo">
                 <img src="logo.PNG" alt="Парголовская библиотека">
             </a>
-            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> <span>Версия для слабовидящих</span></button>
+                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            </div>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a href="index.html">Главная</a></li>
@@ -412,7 +446,6 @@
                     <li><a href="partners.html">Партнёры</a></li>
                     <li><a href="district-libraries.html">Библиотеки района</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
-                    <li><button class="special-toggle" id="specialToggle"><i class="fas fa-eye"></i> Версия для слабовидящих</button></li>
                 </ul>
             </nav>
         </div>
@@ -617,6 +650,7 @@
                     <p><a href="partners.html">Партнёры</a></p>
                     <p><a href="district-libraries.html">Библиотеки района</a></p>
                     <p><a href="contacts.html">Контакты</a></p>
+                    <p><a href="privacy.html">Политика конфиденциальности</a></p>
                 </div>
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
@@ -639,12 +673,20 @@
                         <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
                     </div>
                 </div>
-                <p>© 2026 Парголовская библиотека | ЦБС Выборгского района</p>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
+    <!-- Баннер для cookies -->
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; display: inline-block; margin-right: 20px; font-size: 0.95rem;">
+            Мы используем файлы cookie для улучшения работы сайта. Продолжая использовать наш сайт, вы соглашаетесь с <a href="privacy.html" style="color: #e5989b; text-decoration: underline;">политикой конфиденциальности</a>.
+        </p>
+        <button id="cookie-accept" style="background-color: #e5989b; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: background-color 0.3s;">Принять</button>
+    </div>
 
     <script>
         // Аккордеон для FAQ
@@ -668,7 +710,6 @@
             });
         });
 
-        // Меню, назад вверх, спецрежим
         const menuToggle = document.getElementById('menuToggle');
         const nav = document.getElementById('nav');
         menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
@@ -695,6 +736,15 @@
             });
         }, appearOptions);
         faders.forEach(fader => appearOnScroll.observe(fader));
+
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        }
+
+        document.getElementById('cookie-accept').addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+        });
     </script>
 </body>
 </html>
