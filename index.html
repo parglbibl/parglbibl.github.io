@@ -209,7 +209,7 @@
         body.special-mode footer { background-color: #000 !important; }
         body.special-mode .footer-col a { color: #0000ee !important; }
 
-        /* ===== ШАПКА (без бургера, всегда видимое меню) ===== */
+        /* ===== ШАПКА (с горизонтальным меню, всегда видимое, без переносов) ===== */
         header {
             background-color: #b5838d;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -221,7 +221,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Логотип остаётся сверху на узких экранах */
         }
         .logo {
             display: flex;
@@ -236,14 +236,37 @@
             flex: 1;
             display: flex;
             justify-content: flex-end;
+            min-width: 0; /* Для корректного сжатия */
         }
         .nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
             align-items: center;
-            flex-wrap: wrap;
             justify-content: flex-end;
+            /* Запрещаем перенос строк — всегда горизонтальное меню */
+            flex-wrap: nowrap;
+            /* Добавляем горизонтальную прокрутку при необходимости */
+            overflow-x: auto;
+            overflow-y: hidden;
+            -webkit-overflow-scrolling: touch;
+            /* Скрываем полосу прокрутки (опционально) */
+            scrollbar-width: none; /* Firefox */
+            margin: 0;
+            padding: 0 0 5px 0; /* небольшой отступ для эстетики */
+        }
+        .nav ul::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Edge */
+        }
+        .nav li {
+            white-space: nowrap; /* Текст пунктов не переносится */
+        }
+
+        /* Адаптация для мобильных: уменьшаем расстояние между пунктами */
+        @media (max-width: 768px) {
+            .nav ul {
+                gap: 1rem;
+            }
         }
 
         /* ===== ГЕРО ===== */
