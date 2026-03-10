@@ -75,7 +75,7 @@
             transition: background-color 0.3s, color 0.3s, font-size 0.3s;
         }
         h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: #5e4b3c; }
-        .container { width: 90%; max-width: 1400px; margin: 0 auto; } /* Увеличил максимальную ширину */
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
         @media (max-width: 768px) { .container { width: 100%; padding: 0 15px; } }
 
         /* ===== УЛУЧШЕННАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
@@ -204,7 +204,6 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
         
         /* Отступ логотипа на десктопах */
         @media (min-width: 769px) {
@@ -220,12 +219,15 @@
             }
         }
 
+        /* Мобильная версия – только адаптация контейнера, меню остаётся горизонтальным с переносом */
         @media (max-width: 768px) {
-            .menu-toggle { display: block; }
-            .nav { display: none; width: 100%; margin-top: 1rem; }
-            .nav.active { display: block; }
-            .nav ul { flex-direction: column; gap: 1rem; text-align: center; }
-            .header-inner { flex-wrap: wrap; }
+            .header-inner {
+                flex-wrap: wrap;
+            }
+            .nav ul {
+                gap: 0.8rem; /* чуть меньше отступы на мобильных */
+                justify-content: center; /* центрируем пункты при переносе */
+            }
         }
 
         /* ===== ГЕРО ===== */
@@ -551,9 +553,6 @@
             <a href="index.html" class="logo">
                 <img src="logo.PNG" alt="Парголовская библиотека">
             </a>
-            <div style="display: flex; align-items: center; gap: 10px;">
-                <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            </div>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a href="index.html" class="active">Главная</a></li>
@@ -805,11 +804,7 @@
         }
         startAutoSlide();
 
-        // Меню, назад вверх
-        const menuToggle = document.getElementById('menuToggle');
-        const nav = document.getElementById('nav');
-        menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
-
+        // Кнопка "Наверх"
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 300) backToTop.classList.add('show');
