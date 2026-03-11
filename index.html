@@ -587,12 +587,10 @@
         body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
         body.special-mode .btn:hover { background-color: #333 !important; }
         body.special-mode .card,
-        body.special-mode .posts-grid .vk-post,
         body.special-mode .slider-container,
         body.special-mode .quote-block,
         body.special-mode .random-book,
-        body.special-mode .footer-content,
-        body.special-mode .footer-links a {
+        body.special-mode .footer-content {
             background-color: #fff !important;
             color: #000 !important;
             box-shadow: none !important;
@@ -671,8 +669,6 @@
                 <div class="quote-author"></div>
                 <div class="quote-share">
                     <a href="#" id="share-vk" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
-                    <a href="#" id="share-tg" target="_blank" title="Поделиться в Telegram"><i class="fab fa-telegram"></i></a>
-                    <a href="#" id="share-max" target="_blank" title="Поделиться в MAX"><i class="fas fa-comment-dots"></i></a>
                 </div>
             </div>
         </div>
@@ -737,11 +733,9 @@
         VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
     </script>
 
-    <!-- Подвал с версией для слабовидящих (порядок изменён) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
-                <!-- Контакты -->
                 <div class="footer-col">
                     <h3>Парголовская библиотека</h3>
                     <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
@@ -749,7 +743,6 @@
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
 
-                <!-- Карта сайта (аккордеон) -->
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -767,15 +760,12 @@
                     </div>
                 </div>
 
-                <!-- Соцсети, подписка и ссылка на спецверсию (порядок изменён) -->
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
                         <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
-                    <!-- Сначала подписка на новости -->
                     <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
-                    <!-- Затем ссылка на версию для слабовидящих -->
                     <p style="margin-top: 0.5rem;">
                         <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
                             <i class="fas fa-eye"></i> Версия для слабовидящих
@@ -784,7 +774,6 @@
                 </div>
             </div>
 
-            <!-- Нижняя часть -->
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
@@ -940,15 +929,13 @@
         }, appearOptions);
         faders.forEach(fader => appearOnScroll.observe(fader));
 
-        // Обновление ссылок для шаринга цитаты
+        // Обновление ссылок для шаринга цитаты (только ВК)
         function updateShareLinks() {
             const quoteText = document.querySelector('.quote-text').textContent;
             const quoteAuthor = document.querySelector('.quote-author').textContent;
             const fullQuote = `${quoteText} — ${quoteAuthor}`;
             const currentUrl = encodeURIComponent(window.location.href);
             document.getElementById('share-vk').href = `https://vk.com/share.php?url=${currentUrl}&title=${encodeURIComponent(fullQuote)}`;
-            document.getElementById('share-tg').href = `https://t.me/share/url?url=${currentUrl}&text=${encodeURIComponent(fullQuote)}`;
-            document.getElementById('share-max').href = `https://apps.apple.com/ru/app/max/id6449714850`;
         }
         window.addEventListener('load', () => {
             setTimeout(updateShareLinks, 100);
