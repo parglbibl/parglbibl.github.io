@@ -35,7 +35,6 @@
         .container { width: 90%; max-width: 1400px; margin: 0 auto; }
         @media (max-width: 768px) { .container { width: 100%; padding: 0 15px; } }
 
-        /* ===== АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(20px) scale(0.95);
@@ -46,7 +45,6 @@
             transform: translateY(0) scale(1);
         }
 
-        /* ===== АНИМАЦИЯ ДЛЯ КАРТОЧЕК ===== */
         .culture-card, .quote-block {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
         }
@@ -55,7 +53,7 @@
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
 
-        /* ===== ШАПКА (полностью скопирована с index) ===== */
+        /* ===== ШАПКА ===== */
         header {
             background-color: #b5838d;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -148,7 +146,6 @@
             width: 100px;
         }
 
-        /* Карточки для разделов */
         .culture-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -178,7 +175,6 @@
             color: #666;
         }
 
-        /* Блок цитаты (как на главной) */
         .quote-block {
             background: #fff;
             padding: 2rem;
@@ -199,7 +195,7 @@
             color: #b5838d;
         }
 
-        /* ===== ПОДВАЛ (полностью скопирован с index) ===== */
+        /* ===== ПОДВАЛ ===== */
         .footer-content {
             background: #b5838d;
             color: #fff;
@@ -306,13 +302,11 @@
             background-color: #f4e3d7;
             color: #5e4b3c;
         }
-        .print-button a i { font-size: 1.2rem; }
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .footer-actions { flex-direction: column; align-items: center; gap: 1rem; }
         }
 
-        /* Аккордеон для карты сайта */
         @media (max-width: 768px) {
             .footer-accordion .accordion-content {
                 display: none;
@@ -347,7 +341,6 @@
             }
         }
 
-        /* Версия для слабовидящих (как на всём сайте) */
         body.special-mode {
             background-color: #fff !important;
             color: #000 !important;
@@ -431,17 +424,17 @@
 
     <section class="section">
         <div style="margin-bottom: 2rem; text-align: left;">
-    <a href="kraevedenie.html" style="display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#e5989b'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#e5989b'">
-        <i class="fas fa-arrow-left"></i> Назад к краеведению
-    </a>
-</div>
+            <a href="kraevedenie.html" style="display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#e5989b'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#e5989b'">
+                <i class="fas fa-arrow-left"></i> Назад к краеведению
+            </a>
+        </div>
         <div class="container">
             <h1 class="section-title">Парголово в литературе, музыке и искусстве</h1>
             <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem;">
                 Парголово издавна привлекало творческих людей. Живописная природа, дачная атмосфера и близость к столице вдохновляли писателей, композиторов и художников. Приглашаем вас в литературно-музыкальное путешествие.
             </p>
 
-            <!-- Литература -->
+            <!-- Литература (расширено на основе книги Гусенцовой) -->
             <h2 class="section-title">Литературное Парголово</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
@@ -450,14 +443,19 @@
                     <p>В 1825 году Фаддей Булгарин опубликовал идиллический очерк «Поездка в Парголово», восторженно описывая местную природу. Александр Грибоедов, живший летом 1826 года на даче Булгарина, ответил очерком «Загородная поездка», где с иронией описал северные пейзажи и высмеял восторги своего оппонента. Эта полемика стала заметным событием литературной жизни.</p>
                 </div>
                 <div class="culture-card fade-in">
-                    <i class="fas fa-book-open"></i>
-                    <h3>Дачная жизнь в прозе</h3>
-                    <p>В Шувалово и Парголово снимали дачи Иван Тургенев, Николай Некрасов, Аполлон Майков. Дмитрий Мамин-Сибиряк подолгу жил здесь и описал местный колорит в своих произведениях. В романе Алексея Писемского «Люди сороковых годов» целая глава («Пирушка») происходит в Парголово. Писатель Николай Позняков в повести «Товарищ. Вахлак и форсило» подробно изобразил дачную жизнь в Шувалово и Первом Парголово.</p>
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Некрасов, Тургенев, Достоевский</h3>
+                    <p>Николай Некрасов, Иван Тургенев и Фёдор Достоевский бывали в этих местах. Некрасов снимал дачу в Парголово, Тургенев приезжал к друзьям, а Достоевский, вероятно, отразил некоторые впечатления в своих произведениях. Их присутствие свидетельствует о том, что Парголово было литературной меккой своего времени.</p>
                 </div>
                 <div class="culture-card fade-in">
-                    <i class="fas fa-tree"></i>
-                    <h3>Пушкинская скамья</h3>
-                    <p>Существует предание, что Александр Пушкин бывал в Шуваловском парке. Местные старожилы до революции показывали «пушкинскую скамью», где, по легенде, любил сидеть поэт. Хотя документальных подтверждений нет, это место стало частью парголовского фольклора.</p>
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Блок, Маршак, Стругацкие</h3>
+                    <p>В XX веке Парголово продолжало привлекать поэтов и прозаиков. Александр Блок, Самуил Маршак и братья Стругацкие – все они так или иначе связаны с Выборгской стороной. Маршак провёл здесь детство, а Стругацкие не раз упоминали окрестности в своих произведениях.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-book"></i>
+                    <h3>Дачная жизнь в прозе</h3>
+                    <p>В Шувалово и Парголово снимали дачи Иван Тургенев, Николай Некрасов, Аполлон Майков. Дмитрий Мамин-Сибиряк подолгу жил здесь и описал местный колорит в своих произведениях. В романе Алексея Писемского «Люди сороковых годов» целая глава («Пирушка») происходит в Парголово. Писатель Николай Позняков в повести «Товарищ. Вахлак и форсило» подробно изобразил дачную жизнь в Шувалово и Первом Парголово.</p>
                 </div>
             </div>
 
@@ -519,7 +517,7 @@
 
             <!-- Заключение -->
             <div class="quote-block fade-in" style="margin-top: 3rem;">
-                <div class="quote-text">Парголово — не просто посёлок под Петербургом. Это место, где переплетаются судьбы великих творцов, где рождались произведения, ставшие гордостью русской культуры. Мы продолжаем собирать и сохранять эту историю. Если вам известны дополнительные факты или материалы, поделитесь с нами через раздел «Контакты».</div>
+                <div class="quote-text">Парголово — не просто посёлок под Петербургом. Это место, где переплетаются судьбы великих творцов, где рождались произведения, ставшие гордостью русской культуры. Мы продолжаем собирать и сохранять эту историю. Недавно в нашем фонде появилась книга «Литературное путешествие по Выборгской стороне» (Т.М. Гусенцова, И.Н. Добрынина), в которой собраны произведения и воспоминания многих классиков, связанных с нашим краем. Приглашаем познакомиться!</div>
                 <div class="quote-author">— Библиотека «Парголовская»</div>
             </div>
         </div>
