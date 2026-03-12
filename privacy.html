@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека - Политика конфиденциальности</title>
-    <meta name="description" content="Политика конфиденциальности Парголовской библиотеки. Как мы обрабатываем ваши персональные данные.">
+    <title>Парголовская библиотека - Услуги</title>
+    <meta name="description" content="Услуги Парголовской библиотеки: абонемент, электронные ресурсы, мероприятия, доступная среда, спидкубинг.">
+    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги">
     
     <!-- Favicon – правильный набор -->
 <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -14,7 +15,7 @@
 <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
 <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Schema.org разметка (можно не включать, но оставим для единообразия) -->
+    <!-- Schema.org разметка -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -87,10 +88,10 @@
         }
 
         /* ===== АНИМАЦИЯ ДЛЯ КАРТОЧЕК ПРИ НАВЕДЕНИИ ===== */
-        .privacy-block {
+        .service-card, .access-block {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
         }
-        .privacy-block:hover {
+        .service-card:hover, .access-block:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
@@ -216,46 +217,10 @@
 
         /* ===== СЕКЦИИ ===== */
         .section { padding: 4rem 0; }
-        .privacy-block {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .privacy-block h1 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #5e4b3c;
-        }
-        .privacy-block h2 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #b5838d;
-            font-size: 1.5rem;
-        }
-        .privacy-block h2:first-of-type {
-            margin-top: 0;
-        }
-        .privacy-block p {
-            margin-bottom: 1rem;
-            color: #4a4a4a;
-        }
-        .privacy-block ul {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-        .privacy-block li {
-            margin-bottom: 0.5rem;
-        }
-        .privacy-block a {
-            color: #e5989b;
-            text-decoration: none;
-        }
-        .privacy-block a:hover {
-            text-decoration: underline;
-        }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
+        .service-icon { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
+        .access-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 3rem; text-align: center; }
 
         /* ===== ПОДВАЛ (единый с index) ===== */
         .footer-content {
@@ -426,7 +391,8 @@
         body.special-mode .nav a:hover { color: #ffff00 !important; }
         body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
         body.special-mode .btn:hover { background-color: #333 !important; }
-        body.special-mode .privacy-block,
+        body.special-mode .service-card,
+        body.special-mode .access-block,
         body.special-mode .footer-content,
         body.special-mode .footer-links a {
             background-color: #fff !important;
@@ -460,7 +426,7 @@
                 <ul>
                     <li><a href="index.html">Главная</a></li>
                     <li><a href="about.html">О нас</a></li>
-                    <li><a href="services.html">Услуги</a></li>
+                    <li><a href="services.html" class="active">Услуги</a></li>
                     <li><a href="events.html">События</a></li>
                     <li><a href="speedcubing.html">Спидкубинг</a></li>
                     <li><a href="newbooks.html">Новинки</a></li>
@@ -476,72 +442,44 @@
 
     <section class="section">
         <div class="container">
-            <div class="privacy-block">
-                <h1>Политика конфиденциальности</h1>
-                
-                <h2>1. Общие положения</h2>
-                <p>Настоящая Политика конфиденциальности (далее — Политика) действует в отношении всей информации, которую сайт «Библиотека «Парголовская»» (далее — Оператор), расположенный на доменном имени <strong>parglbibl.ru</strong>, может получить о пользователе во время использования им сайта.</p>
-                <p>Использование сайта означает безоговорочное согласие пользователя с настоящей Политикой и указанными в ней условиями обработки его персональных данных. В случае несогласия с этими условиями пользователь должен воздержаться от использования сайта.</p>
-                
-                <h2>2. Сведения об Операторе</h2>
-                <ul>
-                    <li><strong>Наименование:</strong> Библиотека «Парголовская» (структурное подразделение ЦБС Выборгского района)</li>
-                    <li><strong>Адрес:</strong> 194362, Санкт-Петербург, пос. Парголово, ул. Торфяная, д. 25</li>
-                    <li><strong>Телефон:</strong> +7 (812) 246-93-05</li>
-                    <li><strong>Электронная почта:</strong> pargolovo@cbsvib.ru</li>
-                </ul>
-                
-                <h2>3. Какие данные мы собираем</h2>
-                <p><strong>3.1. Данные, которые вы предоставляете добровольно:</strong></p>
-                <ul>
-                    <li>Имя, адрес электронной почты, текст сообщения (при заполнении формы обратной связи).</li>
-                </ul>
-                <p><strong>3.2. Данные, собираемые автоматически:</strong></p>
-                <ul>
-                    <li>IP-адрес, тип браузера, время посещения, страницы, которые вы просматриваете, — с помощью файлов cookie и аналогичных технологий.</li>
-                </ul>
-                <p>Мы не собираем и не обрабатываем специальные категории персональных данных (касающиеся расовой, национальной принадлежности, политических взглядов, состояния здоровья и т.п.).</p>
-                
-                <h2>4. Цели обработки персональных данных</h2>
-                <ul>
-                    <li>Ответ на обращения пользователей (через форму обратной связи).</li>
-                    <li>Улучшение работы сайта, анализ посещаемости и предпочтений пользователей (с помощью метрических систем).</li>
-                </ul>
-                
-                <h2>5. Правовые основания обработки</h2>
-                <p>Обработка персональных данных осуществляется на основании Федерального закона от 27.07.2006 № 152-ФЗ «О персональных данных» и в соответствии с согласием пользователя, выраженным путем активного проставления галочки в чек-боксе при отправке формы, а также путем продолжения использования сайта после уведомления о cookie.</p>
-                
-                <h2>6. Сроки хранения и порядок уничтожения</h2>
-                <p>Персональные данные хранятся не дольше, чем это необходимо для целей обработки. Данные, полученные через форму обратной связи, хранятся до момента ответа на обращение, но не более 30 дней. По истечении срока или при отзыве согласия данные уничтожаются путем стирания из электронных баз.</p>
-                
-                <h2>7. Передача данных третьим лицам</h2>
-                <p>Мы не передаем персональные данные третьим лицам, за исключением случаев, предусмотренных законодательством РФ (по запросу суда, правоохранительных органов).</p>
-                
-                <h2>8. Использование файлов cookie и метрических систем</h2>
-                <p>На сайте используются файлы cookie и сервисы Яндекс.Метрика для сбора статистики посещений. Эти данные помогают нам улучшать сайт и делать его удобнее. Продолжая пользоваться сайтом, вы соглашаетесь с использованием cookie. Вы можете отключить cookie в настройках браузера, но тогда некоторые функции сайта могут быть недоступны.</p>
-                
-                <h2>9. Защита персональных данных</h2>
-                <p>Мы принимаем все необходимые организационные и технические меры для защиты персональных данных от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения. Сайт работает по защищенному протоколу HTTPS, что обеспечивает шифрование передаваемых данных.</p>
-                
-                <h2>10. Права пользователей</h2>
-                <p>Пользователь имеет право:</p>
-                <ul>
-                    <li>получить информацию о том, какие его данные хранятся;</li>
-                    <li>требовать уточнения, блокирования или уничтожения своих данных;</li>
-                    <li>отозвать согласие на обработку в любой момент.</li>
-                </ul>
-                <p>Для реализации этих прав достаточно написать нам на электронную почту <a href="mailto:pargolovo@cbsvib.ru">pargolovo@cbsvib.ru</a>.</p>
-                
-                <h2>11. Изменения в Политике</h2>
-                <p>Мы оставляем за собой право вносить изменения в настоящую Политику. Новая версия всегда будет доступна на этой странице. Продолжая пользоваться сайтом после изменений, вы автоматически соглашаетесь с обновленной Политикой.</p>
-                
-                <h2>12. Контактная информация</h2>
-                <p>По всем вопросам, связанным с обработкой персональных данных, обращайтесь:</p>
-                <ul>
-                    <li>Электронная почта: <a href="mailto:pargolovo@cbsvib.ru">pargolovo@cbsvib.ru</a></li>
-                    <li>Форма обратной связи: <a href="contacts.html">Контакты</a></li>
-                </ul>
-                <p style="margin-top: 2rem; font-style: italic;">Дата последнего обновления: 10 марта 2026 г.</p>
+            <h2 class="section-title">Что мы предлагаем</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Абонемент</h3>
+                    <p>Выдача книг на дом на 30 дней. Широкий выбор художественной и научной литературы.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Электронные ресурсы</h3>
+                    <p>Доступ к Национальной электронной библиотеке, онлайн-базам данных и бесплатный Wi-Fi.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Мероприятия</h3>
+                    <p>Тематические встречи, праздники, лекции, мастер-классы для всех возрастов.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-child"></i></div>
+                    <h3>Детский отдел</h3>
+                    <p>Книжки для малышей и подростков, интерактивные занятия и игровые программы.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-hands"></i></div>
+                    <h3>Доступная среда</h3>
+                    <p>Видеоролики с сурдопереводом помогут легко ориентироваться в библиотеке.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Спидкубинг</h3>
+                    <p>Занятия по сборке кубика Рубика для детей и взрослых (6+).</p>
+                </div>
+            </div>
+
+            <div class="access-block fade-in">
+                <h3>ДОСТУПНАЯ НАВИГАЦИЯ: БИБЛИОТЕКА ДЛЯ ВСЕХ</h3>
+                <p>Мы заботимся о комфорте каждого посетителя. Специально подготовленные видеоролики наглядно показывают, как легко ориентироваться внутри помещения, пользоваться услугами и находить нужные ресурсы.</p>
+                <p>Видео с сурдопереводом доступно в разделе <a href="contacts.html">Контакты</a>.</p>
             </div>
         </div>
     </section>
@@ -570,6 +508,7 @@
                         <p><a href="faq.html">Вопросы</a></p>
                         <p><a href="partners.html">Партнёры</a></p>
                         <p><a href="district-libraries.html">Библиотеки района</a></p>
+                        <p><a href="kraevedenie.html">Краеведение</a></p>
                         <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
@@ -594,7 +533,7 @@
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/privacy.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/services.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
                         <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
