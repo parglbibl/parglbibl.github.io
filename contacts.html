@@ -3,57 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека - Контакты</title>
-    <meta name="description" content="Контакты Парголовской библиотеки: адрес, телефон, часы работы, карта проезда.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, контакты, адрес, телефон, часы работы">
+    <title>Храмы Верхнего Парголово — Парголовская библиотека</title>
+    <meta name="description" content="Церкви и часовни Верхнего Парголово: история, архитектура, святыни.">
     
-    <!-- Favicon – правильный набор -->
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
-<link rel="manifest" href="/site.webmanifest" />
-    
-    <!-- Schema.org разметка -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Library",
-      "name": "Библиотека «Парголовская»",
-      "description": "Уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Торфяная, 25",
-        "addressLocality": "Парголово",
-        "addressRegion": "Санкт-Петербург",
-        "postalCode": "194362",
-        "addressCountry": "RU"
-      },
-      "telephone": "+7-812-246-93-05",
-      "email": "pargolovo@cbsvib.ru",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "12:00",
-          "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Sunday"],
-          "opens": "",
-          "closes": "",
-          "description": "Выходной"
-        }
-      ],
-      "url": "https://parglbibl.ru",
-      "sameAs": [
-        "https://vk.com/pargolovskaya_library",
-        "https://cbsvib.ru/"
-      ]
-    }
-    </script>
+    <!-- Favicon (как в предыдущих файлах) -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
+    <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Шрифты и стили -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ (унифицированы с главной) ===== */
+        /* Те же стили, что и в shuvalovsky-park.html */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Open Sans', sans-serif;
@@ -76,7 +35,6 @@
         .container { width: 90%; max-width: 1400px; margin: 0 auto; }
         @media (max-width: 768px) { .container { width: 100%; padding: 0 15px; } }
 
-        /* ===== УЛУЧШЕННАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ ===== */
         .fade-in {
             opacity: 0;
             transform: translateY(20px) scale(0.95);
@@ -87,83 +45,19 @@
             transform: translateY(0) scale(1);
         }
 
-        /* ===== АНИМАЦИЯ ДЛЯ КАРТОЧЕК ПРИ НАВЕДЕНИИ ===== */
-        .contact-info, .map-container, .video-block, .form-block {
+        .info-block {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
         }
-        .contact-info:hover, .map-container:hover, .video-block:hover, .form-block:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
-        }
-
-        /* ===== АНИМАЦИЯ ДЛЯ КНОПОК ===== */
-        .btn, .submit-btn {
-            display: inline-block;
-            background-color: #e5989b;
-            color: #fff;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-        }
-        .btn:hover, .submit-btn:hover {
-            background-color: #d68b8e;
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        .info-block:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
-        /* ===== АНИМАЦИЯ ПОДЧЁРКИВАНИЯ ССЫЛОК В МЕНЮ ===== */
-        .nav a {
-            position: relative;
-            text-decoration: none;
-            color: #fff;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: #f4e3d7;
-            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nav a:hover::after,
-        .nav a.active::after {
-            width: 100%;
-        }
-        .nav a:hover, .nav a.active {
-            border-bottom: none;
-        }
-
-        /* ===== АНИМАЦИЯ ДЛЯ ЗАГОЛОВКОВ ===== */
-        .section-title {
-            position: relative;
-            text-align: center !important;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            color: #5e4b3c;
-        }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #e5989b;
-            margin: 0.5rem auto 0;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .section-title:hover::after {
-            width: 100px;
-        }
-
-        /* ===== ШАПКА ===== */
         header {
             background-color: #b5838d;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -193,6 +87,27 @@
             align-items: center;
             flex-wrap: wrap;
         }
+        .nav a {
+            position: relative;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f4e3d7;
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav a:hover::after,
+        .nav a.active::after {
+            width: 100%;
+        }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
         
         @media (min-width: 769px) {
@@ -200,13 +115,11 @@
                 margin-right: 40px;
             }
         }
-
         @media (max-width: 1200px) {
             .nav ul {
                 gap: 1.2rem;
             }
         }
-
         @media (max-width: 768px) {
             .menu-toggle { display: block; }
             .nav { display: none; width: 100%; margin-top: 1rem; }
@@ -215,46 +128,65 @@
             .header-inner { flex-wrap: wrap; }
         }
 
-        /* ===== СЕКЦИИ ===== */
         .section { padding: 4rem 0; }
-        .contacts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .contact-info p { margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
-        .contact-info i { width: 24px; color: #b5838d; }
-        .hours { margin-top: 2rem; background: #fff; padding: 1.5rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .map-container {
-            background: #fff;
-            padding: 1rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            overflow: hidden;
+        .section-title {
+            position: relative;
+            text-align: center !important;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #5e4b3c;
         }
-        .map-container iframe {
-            width: 100%;
-            height: 400px;
-            border: 0;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e5989b;
+            margin: 0.5rem auto 0;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .map-address {
-            text-align: center;
-            color: #4a4a4a;
-            font-size: 0.9rem;
-            margin-top: 0.5rem;
+        .section-title:hover::after {
+            width: 100px;
         }
-        .map-address i {
-            color: #b5838d;
-            margin-right: 0.3rem;
-        }
-        .video-block { margin: 2rem 0; text-align: center; }
-        .video-block iframe { max-width: 100%; border-radius: 16px; aspect-ratio: 16/9; }
-        .form-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 2rem; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .form-group textarea { min-height: 120px; }
-        .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
 
-        /* ===== ПОДВАЛ (единый с index) ===== */
+        .back-link {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .back-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #e5989b;
+            color: #e5989b;
+            padding: 6px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .back-link a:hover {
+            background-color: #e5989b;
+            color: white;
+        }
+
+        .church-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #e5989b;
+        }
+        .church-card h3 {
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+            font-size: 1.4rem;
+        }
+        .church-card p {
+            margin-bottom: 0.8rem;
+        }
+
         .footer-content {
             background: #b5838d;
             color: #fff;
@@ -293,7 +225,6 @@
             color: #fff;
             text-decoration: none;
             transition: color 0.3s;
-            display: inline-block;
         }
         .footer-col a:hover {
             color: #f4e3d7;
@@ -335,10 +266,6 @@
             gap: 2rem;
             margin-bottom: 1rem;
         }
-        .share-buttons {
-            display: flex;
-            gap: 1rem;
-        }
         .share-buttons a, .print-button a {
             display: inline-flex;
             align-items: center;
@@ -350,8 +277,6 @@
             color: #b5838d;
             font-size: 1.2rem;
             transition: all 0.3s;
-            border: 1px solid transparent;
-            text-decoration: none;
         }
         .share-buttons a:hover {
             background-color: #f4e3d7;
@@ -368,14 +293,11 @@
             background-color: #f4e3d7;
             color: #5e4b3c;
         }
-        .print-button a i { font-size: 1.2rem; }
         @media (max-width: 768px) {
             .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .footer-actions { flex-direction: column; align-items: center; gap: 1rem; }
-            .contacts-grid { grid-template-columns: 1fr; }
         }
 
-        /* Аккордеон для карты сайта (только на мобильных) */
         @media (max-width: 768px) {
             .footer-accordion .accordion-content {
                 display: none;
@@ -410,7 +332,6 @@
             }
         }
 
-        /* ===== ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ ===== */
         body.special-mode {
             background-color: #fff !important;
             color: #000 !important;
@@ -422,18 +343,12 @@
         body.special-mode header { background-color: #000 !important; }
         body.special-mode .nav a { color: #fff !important; }
         body.special-mode .nav a:hover { color: #ffff00 !important; }
-        body.special-mode .btn, body.special-mode .submit-btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; box-shadow: none !important; }
-        body.special-mode .btn:hover, body.special-mode .submit-btn:hover { background-color: #333 !important; }
-        body.special-mode .contact-info,
-        body.special-mode .hours,
-        body.special-mode .map-container,
-        body.special-mode .video-block,
-        body.special-mode .form-block,
-        body.special-mode .footer-content,
-        body.special-mode .footer-links a {
+        body.special-mode .btn { background-color: #000 !important; color: #fff !important; border: 2px solid #fff !important; }
+        body.special-mode .info-block,
+        body.special-mode .church-card,
+        body.special-mode .footer-content {
             background-color: #fff !important;
             color: #000 !important;
-            box-shadow: none !important;
             border: 1px solid #000 !important;
         }
         body.special-mode .share-buttons a,
@@ -445,8 +360,30 @@
         body.special-mode footer { background-color: #000 !important; }
         body.special-mode .footer-col a { color: #0000ee !important; }
 
-        .back-to-top { position: fixed; bottom: 2rem; right: 2rem; background: #e5989b; color: #fff; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #e5989b;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
         .back-to-top.show { opacity: 1; visibility: visible; }
+        .back-to-top:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -470,7 +407,7 @@
                     <li><a href="partners.html">Партнёры</a></li>
                     <li><a href="district-libraries.html">Библиотеки района</a></li>
                     <li><a href="kraevedenie.html">Краеведение</a></li>
-                    <li><a href="contacts.html" class="active">Контакты</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
         </div>
@@ -478,70 +415,59 @@
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contacts-grid">
-                <div class="contact-info fade-in">
-                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, пос. Парголово, Санкт-Петербург</p>
-                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05 (отдел обслуживания)</p>
-                    <p><i class="fas fa-user-tie"></i> Ответственный за обслуживание: Черняков Егор Владимирович</p>
-                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
-                    <p><i class="fab fa-vk"></i> <a href="https://vk.com/pargolovskaya_library" target="_blank">vk.com/pargolovskaya_library</a></p>
-                    <p><i class="fas fa-globe"></i> <a href="https://cbsvib.ru/" target="_blank">cbsvib.ru</a></p>
-                    <div class="hours">
-                        <h3>Часы работы</h3>
-                        <p>Пн: выходной</p>
-                        <p>Вт–Сб: 12:00 – 18:00</p>
-                        <p>Вс: выходной</p>
-                        <p><small>Санитарный день: последний четверг месяца</small></p>
-                    </div>
-                </div>
-                <div class="map-container fade-in">
-                    <!-- Новая улучшенная карта с вашими метками -->
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad767df192320f88df6e2d8e2ec81aece84d5dc5621559f11a1281aa195ac46e3&amp;source=constructor" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
-                    <div class="map-address">
-                        <i class="fas fa-map-pin"></i> ул. Торфяная, 25, Парголово (за железной дорогой)
-                    </div>
-                </div>
+            <!-- Кнопка возврата на Верхнее Парголово -->
+            <div class="back-link fade-in">
+                <a href="verkhnee-pargolovo.html">
+                    <i class="fas fa-arrow-left"></i> Назад к Верхнему Парголово
+                </a>
             </div>
 
-            <div class="video-block fade-in">
-                <h3>Видео с сурдопереводом о библиотеке</h3>
-                <iframe src="https://vkvideo.ru/video_ext.php?oid=-132598808&id=456240068&hash=4" allowfullscreen></iframe>
+            <h1 class="section-title">Храмы Верхнего Парголово</h1>
+
+            <div class="info-block fade-in">
+                <p>Верхнее Парголово (историческое Шувалово) всегда было местом, где духовная жизнь играла важную роль. Главной святыней этой части посёлка является церковь Петра и Павла в Шуваловском парке.</p>
             </div>
 
-            <div class="form-block fade-in">
-                <h3>Напишите нам</h3>
-                <p>Заполните форму, и мы ответим вам в ближайшее время.</p>
-                <form action="https://formspree.io/f/xdawoqrg" method="POST">
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Ваш email</label>
-                        <input type="email" id="email" name="_replyto" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Сообщение</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    
-                    <!-- Чек-бокс согласия на обработку персональных данных (исправлен) -->
-                    <div class="form-group" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
-                        <input type="checkbox" id="privacy-check" name="privacy" required style="width: auto; height: auto;">
-                        <label for="privacy-check" style="font-weight: normal; margin-bottom: 0;">Я ознакомлен и согласен с <a href="privacy.html" style="color: #e5989b;">Политикой конфиденциальности</a></label>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Отправить</button>
-                </form>
+            <div class="church-card fade-in">
+                <h3>Церковь Петра и Павла (неоготическая)</h3>
+                <p><strong>Архитектор:</strong> А. П. Брюллов (брат знаменитого художника Карла Брюллова).</p>
+                <p><strong>Годы строительства:</strong> 1831–1840.</p>
+                <p><strong>Освящение:</strong> 27 июня (9 июля) 1846 года.</p>
+                <p><strong>История:</strong> Храм был возведён по заказу графини Варвары Петровны Шуваловой в память о её втором муже — французском графе Адольфе Полье, который скончался в 1830 году. Изначально был построен склеп для его праха, а затем над ним возвели церковь. Здание выполнено в стиле неоготики, что было необычно для православной архитектуры того времени.</p>
+                <p><strong>Венчание Римского-Корсакова:</strong> 30 июня (12 июля) 1872 года в этой церкви венчался композитор Николай Андреевич Римский-Корсаков с пианисткой Надеждой Николаевной Пургольд. Шафером (свидетелем) на свадьбе был Модест Петрович Мусоргский.</p>
+                <p><strong>Советский период:</strong> Храм был закрыт в 1935 году. В здании размещались клуб, затем лаборатория НИИ токов высокой частоты. В 1991 году возвращён Русской Православной Церкви. Реставрация завершилась в 2008 году восстановлением шпиля.</p>
+                <p><strong>Святыни:</strong> В храме находятся частицы мощей апостолов Петра и Павла, частица мощей святителя Николая Чудотворца, икона преподобного Серафима Саровского, освящённая в день его прославления в 1903 году.</p>
+                <p><strong>Адрес:</strong> Шуваловский парк, дом 41.</p>
+            </div>
+
+            <div class="church-card fade-in">
+                <h3>Склеп Адольфа Полье</h3>
+                <p>Расположен рядом с церковью Петра и Павла. Построен архитектором А. П. Брюлловым в 1831 году для захоронения праха графа Адольфа Полье. Склеп выполнен в готическом стиле со стрельчатой чугунной аркой перед входом.</p>
+            </div>
+
+            <div class="church-card fade-in">
+                <h3>Часовня Александра Невского (утрачена)</h3>
+                <p>Находилась при въезде в усадьбу. Была построена в честь императора Александра I, посещавшего эти места. В настоящее время на её фундаменте установлен памятный крест.</p>
+            </div>
+
+            <div class="info-block fade-in">
+                <h2 style="color: #b5838d;">Как добраться</h2>
+                <p>Церковь Петра и Павла находится на территории Шуваловского парка, вход свободный.</p>
+                <p><strong>От станции метро «Озерки»:</strong> трамвай № 58 до остановки «Универсам Перекрёсток»; автобус № 109, маршрутки № 259 и № 673 до остановки «Шуваловский парк».</p>
+                <p><strong>От станции метро «Проспект Просвещения»:</strong> автобусы № 104, № 167 до остановки «Шуваловский парк».</p>
+            </div>
+
+            <div class="info-block fade-in">
+                <h2 style="color: #b5838d;">Примечание</h2>
+                <p>В Нижнем Парголово также есть уникальная деревянная церковь Спаса Нерукотворного Образа (1792 г., арх. Луиджи Руска). Она будет представлена в соответствующем разделе.</p>
             </div>
         </div>
     </section>
 
+    <!-- Обновлённый подвал -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
-                <!-- Контакты -->
                 <div class="footer-col">
                     <h3>Парголовская библиотека</h3>
                     <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
@@ -549,7 +475,6 @@
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
 
-                <!-- Карта сайта (аккордеон) -->
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -563,12 +488,17 @@
                         <p><a href="partners.html">Партнёры</a></p>
                         <p><a href="district-libraries.html">Библиотеки района</a></p>
                         <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
+                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
+                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
+                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
+                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
+                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
                         <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
 
-                <!-- Соцсети, подписка и ссылка на спецверсию -->
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
@@ -583,11 +513,10 @@
                 </div>
             </div>
 
-            <!-- Нижняя часть -->
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/contacts.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
                         <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
@@ -600,7 +529,7 @@
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
-    <!-- Баннер для cookies (исправлен) -->
+    <!-- Баннер для cookies с выбором -->
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px; font-size: 0.95rem;">
             Мы используем файлы cookie для улучшения работы сайта. Пожалуйста, выберите вариант:
@@ -621,14 +550,12 @@
             else backToTop.classList.remove('show');
         });
 
-        // Аккордеон в футере
         document.querySelectorAll('.accordion-header').forEach(header => {
             header.addEventListener('click', function() {
                 this.closest('.footer-accordion').classList.toggle('open');
             });
         });
 
-        // Ссылка на версию для слабовидящих в подвале
         const specialFooterLink = document.getElementById('specialFooterLink');
         if (specialFooterLink) {
             specialFooterLink.addEventListener('click', (e) => {
@@ -654,12 +581,12 @@
             document.getElementById('cookie-banner').style.display = 'block';
         }
 
-        document.getElementById('cookie-accept').addEventListener('click', function() {
+        document.getElementById('cookie-accept').addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'true');
             document.getElementById('cookie-banner').style.display = 'none';
         });
 
-        document.getElementById('cookie-decline').addEventListener('click', function() {
+        document.getElementById('cookie-decline').addEventListener('click', () => {
             localStorage.setItem('cookieConsent', 'false');
             document.getElementById('cookie-banner').style.display = 'none';
         });
