@@ -129,7 +129,6 @@
         /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
         .section { padding: 4rem 0; }
 
-        /* Единые отступы для всех заголовков (как на странице "Спидкубинг") */
         .section-title {
             position: relative;
             text-align: center !important;
@@ -155,7 +154,7 @@
             position: relative;
             max-width: 800px;
             margin: 0 auto;
-            padding-top: 2rem; /* единый верхний отступ */
+            padding-top: 2rem;
         }
         .timeline-item {
             background: #fff;
@@ -175,7 +174,7 @@
         /* Карта */
         .map-container {
             background: #fff;
-            padding: 2rem; /* единый верхний отступ */
+            padding: 2rem;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             overflow: hidden;
@@ -212,7 +211,7 @@
         .map-point {
             background: #fff;
             padding: 1rem;
-            border-radius: 16px; /* исправлено с 12px на 16px */
+            border-radius: 16px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
         .map-point h4 {
@@ -246,7 +245,7 @@
         .empty-gallery {
             grid-column: 1/-1;
             text-align: center;
-            padding: 2rem; /* единый верхний отступ */
+            padding: 2rem;
             background: #fff;
             border-radius: 16px;
             color: #888;
@@ -286,9 +285,6 @@
             font-size: 0.95rem;
             color: #666;
         }
-        .books-grid .book-card:first-child {
-            margin-top: 2rem; /* единый верхний отступ */
-        }
 
         /* Голоса улицы */
         .voices-grid {
@@ -299,17 +295,13 @@
         .voice-intro {
             grid-column: 1/-1;
             text-align: center;
-            padding: 2rem; /* единый верхний отступ */
+            padding: 2rem;
             background: #fff;
             border-radius: 16px;
             color: #666;
         }
         .voice-intro > :first-child {
             margin-top: 0;
-        }
-        .voice-intro .yandex-link {
-            margin-top: 0;
-            margin-bottom: 1rem;
         }
         .voice-card {
             background: #fff;
@@ -330,7 +322,7 @@
         /* Форма */
         .form-block {
             background: #fff;
-            padding: 2rem; /* единый верхний отступ */
+            padding: 2rem;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
@@ -717,15 +709,10 @@
                 </div>
             </div>
 
-            <!-- Голоса улицы -->
+            <!-- Голоса улицы (ссылка "Найти в Яндекс" УДАЛЕНА) -->
             <h2 class="section-title">Голоса улицы</h2>
             <div class="voices-grid fade-in" id="voicesGrid">
                 <div class="voice-intro">
-                    <!-- Ссылка "Найти в Яндекс" (первый элемент) -->
-                    <div class="yandex-link">
-                        <a href="https://yandex.ru/maps/?ll=30.267858%2C60.085975&z=16" target="_blank">Найти в Яндекс</a>
-                    </div>
-                    
                     <i class="fas fa-microphone-alt" style="font-size: 3rem; color: #e5989b; margin-bottom: 1rem;"></i>
                     <p>Что помнят старожилы? Какой была Торфяная улица 30, 40, 50 лет назад? Мы только начинаем собирать эти истории.</p>
                     <div style="text-align: left; margin-top: 1.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
