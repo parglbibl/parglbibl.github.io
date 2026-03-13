@@ -629,3 +629,33 @@
             var noscript = document.createElement('noscript');
             var div = document.createElement('div');
             var img = document.createElement('img');
+            img.src = 'https://mc.yandex.ru/watch/107242178';
+            img.style = 'position:absolute; left:-9999px;';
+            img.alt = '';
+            div.appendChild(img);
+            noscript.appendChild(div);
+            document.body.appendChild(noscript);
+        }
+
+        // Cookie-баннер с выбором
+        if (!localStorage.getItem('cookieConsent')) {
+            document.getElementById('cookie-banner').style.display = 'block';
+        } else {
+            if (localStorage.getItem('cookieConsent') === 'true') {
+                loadYandexMetrica();
+            }
+        }
+
+        document.getElementById('cookie-accept').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'true');
+            document.getElementById('cookie-banner').style.display = 'none';
+            loadYandexMetrica();
+        });
+
+        document.getElementById('cookie-decline').addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'false');
+            document.getElementById('cookie-banner').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
