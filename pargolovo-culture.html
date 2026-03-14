@@ -18,23 +18,84 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        .culture-card, .quote-block { transition: transform 0.4s, box-shadow 0.4s; }
-        .culture-card:hover, .quote-block:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.12); }
+        .culture-card, .quote-block {
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .culture-card:hover, .quote-block:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
 
         .section { padding: 4rem 0; }
-        .back-link { margin-bottom: 2rem; }
-        .back-link a { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
-        .back-link a:hover { background-color: #e5989b; color: white; }
+        .back-link {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .back-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #e5989b;
+            color: #e5989b;
+            padding: 6px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .back-link a:hover {
+            background-color: #e5989b;
+            color: white;
+        }
 
-        .culture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem; }
-        .culture-card { background: #fff; border-radius: 16px; padding: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); height: 100%; display: flex; flex-direction: column; }
-        .culture-card i { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
-        .culture-card h3 { margin-bottom: 1rem; color: #5e4b3c; }
-        .culture-card p { flex-grow: 1; color: #666; }
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        .culture-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .culture-card i {
+            font-size: 2.5rem;
+            color: #b5838d;
+            margin-bottom: 1rem;
+        }
+        .culture-card h3 {
+            margin-bottom: 1rem;
+            color: #5e4b3c;
+        }
+        .culture-card p {
+            flex-grow: 1;
+            color: #666;
+        }
 
-        .quote-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin: 2rem 0; font-style: italic; border-left: 5px solid #e5989b; }
-        .quote-text { font-size: 1.2rem; color: #5e4b3c; margin-bottom: 0.5rem; }
-        .quote-author { text-align: right; font-weight: 600; color: #b5838d; }
+        .quote-block {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin: 2rem 0;
+            font-style: italic;
+            border-left: 5px solid #e5989b;
+        }
+        .quote-text {
+            font-size: 1.2rem;
+            color: #5e4b3c;
+            margin-bottom: 0.5rem;
+        }
+        .quote-author {
+            text-align: right;
+            font-weight: 600;
+            color: #b5838d;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -58,32 +119,86 @@
 
             <h2 class="section-title">Литературное Парголово</h2>
             <div class="culture-grid">
-                <div class="culture-card"><i class="fas fa-feather-alt"></i><h3>Грибоедов и Булгарин</h3><p>В 1825 году Фаддей Булгарин опубликовал очерк «Поездка в Парголово»...</p></div>
-                <div class="culture-card"><i class="fas fa-user-tie"></i><h3>Тургенев, Некрасов, Достоевский</h3><p>Иван Тургенев, Николай Некрасов и Фёдор Достоевский снимали дачи в Парголово...</p></div>
-                <div class="culture-card"><i class="fas fa-users"></i><h3>Петрашевцы в Парголово</h3><p>Летом 1848 года М.В. Петрашевский снимал дачу...</p></div>
-                <div class="culture-card"><i class="fas fa-book"></i><h3>Мамин-Сибиряк и другие</h3><p>Дмитрий Мамин-Сибиряк подолгу жил в Парголово...</p></div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-feather-alt"></i>
+                    <h3>Грибоедов и Булгарин: литературная дуэль</h3>
+                    <p>В 1825 году Фаддей Булгарин опубликовал идиллический очерк «Поездка в Парголово», восторженно описывая местную природу. Александр Грибоедов, живший летом 1826 года на даче Булгарина, ответил очерком «Загородная поездка», где с иронией описал северные пейзажи и высмеял восторги своего оппонента.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Тургенев, Некрасов, Достоевский</h3>
+                    <p>Иван Тургенев (лето 1844), Николай Некрасов (1848) и Фёдор Достоевский (лето 1848, 1861) снимали дачи в Парголово или часто бывали здесь. Они работали над произведениями, встречались с другими литераторами.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-users"></i>
+                    <h3>Петрашевцы в Парголово</h3>
+                    <p>Летом 1848 года М.В. Петрашевский снимал дачу в Парголово. К нему приезжали Ф.М. Достоевский, А.Н. Плещеев, Н.П. Григорьев и другие члены кружка.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-book"></i>
+                    <h3>Мамин-Сибиряк и другие прозаики</h3>
+                    <p>Дмитрий Мамин-Сибиряк подолгу жил в Парголово и отразил местный колорит в своих произведениях. Алексей Писемский в романе «Люди сороковых годов» поместил действие целой главы в Парголово.</p>
+                </div>
             </div>
 
-            <div class="quote-block">
-                <div class="quote-text">«Холмы облечены душистою муравою...»</div>
-                <div class="quote-author">— Фаддей Булгарин</div>
+            <div class="quote-block fade-in">
+                <div class="quote-text">«Холмы облечены душистою муравою и усеяны прекрасными возмужалыми деревьями всех родов. С одной стороны цепь гор, с другой — лесистый берег Финского залива, прямо перед вами белеется обширная столица, блестят золотые куполы».</div>
+                <div class="quote-author">— Фаддей Булгарин, «Поездка в Парголово»</div>
+            </div>
+
+            <div class="quote-block fade-in">
+                <div class="quote-text">«Природа с великим усилием в болоте насадила печальные ели; жители их выжигают. Дымный запах, бледное небо, скрыпучий песок — всё это не располагает странников к приятным впечатлениям... Так рассказывают, но мы ничего не видали. Всё было подернуто сизыми парами; и вот одно ожидание рушилось, как идея поэта часто тускнеет при неудачном исполнении».</div>
+                <div class="quote-author">— Александр Грибоедов, «Загородная поездка»</div>
+            </div>
+
+            <div class="quote-block fade-in">
+                <div class="quote-text">«Кто живал на даче по Финляндской железной дороге, тот, наверно, знает Шувалово. Летом мимо неё, то и дело, шныряют поезда, возящие дачников в город... По берегу озера тянется большая деревня, которую зовут Первое Парголово. Ничего похожего на настоящие русские деревни нет в этом Парголово».</div>
+                <div class="quote-author">— Николай Позняков, «Товарищ. Вахлак и форсило»</div>
             </div>
 
             <h2 class="section-title">Музыкальные страницы</h2>
             <div class="culture-grid">
-                <div class="culture-card"><i class="fas fa-music"></i><h3>Венчание Римского-Корсакова</h3><p>30 июня 1872 года в церкви Петра и Павла...</p></div>
-                <div class="culture-card"><i class="fas fa-user-friends"></i><h3>Дача Стасова</h3><p>Владимир Стасов прожил на даче в Старожиловке 28 лет...</p></div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-music"></i>
+                    <h3>Венчание Римского-Корсакова</h3>
+                    <p>30 июня 1872 года в церкви святых апостолов Петра и Павла в Шуваловском парке состоялось венчание великого композитора Николая Римского-Корсакова с пианисткой Надеждой Пургольд. Этот союз стал одним из самых счастливых в истории русской музыки.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-user-friends"></i>
+                    <h3>Дача Стасова в Старожиловке</h3>
+                    <p>Знаменитый музыкальный и художественный критик Владимир Стасов прожил на даче в деревне Старожиловка 28 лет (1878–1906). Его гостями были Илья Репин, Николай Римский-Корсаков, Фёдор Шаляпин, Максим Горький, Цезарь Кюи.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-music"></i>
+                    <h3>Композиторы в Парголово</h3>
+                    <p>На окрестных дачах отдыхали и работали Модест Мусоргский, Милий Балакирев, Александр Глазунов.</p>
+                </div>
             </div>
 
             <h2 class="section-title">Художественное наследие</h2>
             <div class="culture-grid">
-                <div class="culture-card"><i class="fas fa-paint-brush"></i><h3>Шишкин в Шуваловском парке</h3><p>Иван Шишкин запечатлел здешние места в офорте «Ели в Шуваловском парке».</p></div>
-                <div class="culture-card"><i class="fas fa-palette"></i><h3>Репин в гостях у Стасова</h3><p>Илья Репин подолгу жил и работал в Старожиловке...</p></div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-paint-brush"></i>
+                    <h3>Шишкин в Шуваловском парке</h3>
+                    <p>Иван Шишкин, певец русского леса, запечатлел здешние места в офорте «Ели в Шуваловском парке».</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-palette"></i>
+                    <h3>Репин в гостях у Стасова</h3>
+                    <p>Илья Репин подолгу жил и работал в Старожиловке, гостя у Владимира Стасова.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-image"></i>
+                    <h3>Краски старого Парголово</h3>
+                    <p>Живописные окрестности Парголово и Шувалово привлекали многих художников. Здесь работали Павел Федотов и другие мастера кисти.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="footer-content">...</footer>
-    <script>...</script>
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+    <div id="cookie-banner">...</div>
+    <script src="common.js"></script>
 </body>
 </html>
