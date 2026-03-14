@@ -597,27 +597,34 @@
             setTimeout(updateShareLinks, 100);
         });
     </script>
+
+    <!-- ГАРАНТИРОВАННО РАБОТАЮЩАЯ КНОПКА «НАВЕРХ» -->
     <script>
-(function() {
-    var btn = document.getElementById('backToTop');
-    if (btn) {
-        function toggleBtn() {
-            if (window.scrollY > 300) {
-                btn.style.opacity = '1';
-                btn.style.visibility = 'visible';
-            } else {
-                btn.style.opacity = '0';
-                btn.style.visibility = 'hidden';
+    (function() {
+        function initBackToTop() {
+            var btn = document.getElementById('backToTop');
+            if (!btn) {
+                setTimeout(initBackToTop, 100); // ждём, пока кнопка появится
+                return;
             }
+            function toggleBtn() {
+                if (window.scrollY > 300) {
+                    btn.style.opacity = '1';
+                    btn.style.visibility = 'visible';
+                } else {
+                    btn.style.opacity = '0';
+                    btn.style.visibility = 'hidden';
+                }
+            }
+            window.addEventListener('scroll', toggleBtn);
+            toggleBtn(); // сразу проверяем
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
         }
-        window.addEventListener('scroll', toggleBtn);
-        toggleBtn(); // проверить сразу
-        btn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-})();
-</script>
+        initBackToTop();
+    })();
+    </script>
 </body>
 </html>
