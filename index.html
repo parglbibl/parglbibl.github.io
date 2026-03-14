@@ -277,9 +277,13 @@
             background-color: #d68b8e;
         }
 
+        /* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
         @media (max-width: 768px) {
             .menu-toggle { 
                 display: block; 
+            }
+            .header-inner {
+                padding: 0 10px;        /* небольшие отступы по бокам */
             }
             .nav {
                 display: none;
@@ -293,21 +297,22 @@
             }
             .nav ul {
                 flex-direction: column;
-                gap: 0.5rem;
+                gap: 0.5rem;            /* уменьшаем вертикальные отступы */
                 width: 100%;
                 text-align: center;
                 padding: 0.5rem 0;
             }
             .nav ul li {
                 width: 100%;
-            .nav a{
-                font-size: 0.9rem
-                padding: 0.3rem 0;
+            }
+            .nav a {
+                font-size: 0.9rem;       /* чуть меньше шрифт */
+                padding: 0.3rem 0;       /* добавляем область касания */
                 display: block;
             }
             .search-icon-container {
                 margin: 0.5rem 0 0 0;
-                align-self: center;
+                align-self: center;      /* центрируем иконку поиска */
             }
         }
         
