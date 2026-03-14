@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека - Новые поступления</title>
-    <meta name="description" content="Новые книги в Парголовской библиотеке. Свежие поступления художественной и научно-популярной литературы.">
+    <title>Парголовская библиотека - Библиотеки Выборгского района</title>
+    <meta name="description" content="Список библиотек Централизованной библиотечной системы Выборгского района Санкт-Петербурга с адресами и контактами.">
     
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -16,74 +16,67 @@
     <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
     <style>
-        .book-card {
+        .library-card {
             transition: transform 0.4s, box-shadow 0.4s;
         }
-        .book-card:hover {
+        .library-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
 
         .section { padding: 4rem 0; }
-        .books-grid {
+        .libraries-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            margin-top: 2rem;
         }
-        .book-card {
+        .library-card {
             background: #fff;
-            padding: 1.5rem;
             border-radius: 16px;
+            padding: 1.5rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
         }
-        .book-card a {
-            display: block;
-            text-decoration: none;
-            color: inherit;
-        }
-        .book-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .book-card img:hover {
-            transform: scale(1.02);
-        }
-        .book-card h3 {
-            margin-bottom: 0.5rem;
-            color: #5e4b3c;
-            font-size: 1.2rem;
-        }
-        .book-card .author {
-            font-weight: 600;
+        .library-card h3 {
             color: #b5838d;
             margin-bottom: 0.5rem;
+            font-size: 1.3rem;
         }
-        .book-card .description {
-            font-size: 0.9rem;
+        .library-address {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
             color: #666;
-            margin-bottom: 1rem;
-            flex-grow: 1;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
         }
-        .book-card .details {
-            font-size: 0.9rem;
-            color: #888;
-            margin-bottom: 1rem;
+        .library-address i {
+            color: #b5838d;
+            width: 20px;
         }
-        .rating i {
-            cursor: pointer;
-            font-size: 1.2rem;
-            margin: 0 2px;
+        .library-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .library-phone i {
+            color: #b5838d;
+            width: 20px;
+        }
+        .library-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #e5989b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .library-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -99,11 +92,11 @@
                     <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
-                    <li><a href="newbooks.html" class="active"><i class="fas fa-book-open"></i> Новинки</a></li>
+                    <li><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
                     <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
                     <li><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
                     <li><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
-                    <li><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
+                    <li><a href="district-libraries.html" class="active"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
@@ -129,12 +122,126 @@
         <div class="container">
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
-                <span>Новые поступления</span>
+                <span>Библиотеки района</span>
             </div>
 
-            <h2 class="section-title">Новые поступления книг</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Каждый месяц мы пополняем фонд самыми интересными новинками.</p>
-            <div class="books-grid" id="books-grid"></div>
+            <h2 class="section-title">Библиотеки Выборгского района</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Здесь вы найдёте адреса и контакты всех библиотек ЦБС Выборгского района.</p>
+            
+            <div class="libraries-grid">
+                <!-- 1. Библиотека им. Д.С. Лихачева -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека им. Д.С. Лихачева</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Тореза, д. 32</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-01</div>
+                    <a href="https://vk.ru/toreza32" target="_blank" class="library-link">vk.ru/toreza32</a>
+                </div>
+                <!-- 2. Библиотека «Батенинская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Батенинская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> ул. Харченко, д. 17</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-02</div>
+                    <a href="https://vk.ru/kharchenko_17" target="_blank" class="library-link">vk.ru/kharchenko_17</a>
+                </div>
+                <!-- 3. Библиотека «Удельнинская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Удельнинская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Энгельса, д. 53</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-03</div>
+                    <a href="https://vk.ru/engelsa_53" target="_blank" class="library-link">vk.ru/engelsa_53</a>
+                </div>
+                <!-- 4. Библиотека «Своя» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Своя»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> ул. Руднева, д. 25</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-04</div>
+                    <a href="https://vk.ru/rudneva25" target="_blank" class="library-link">vk.ru/rudneva25</a>
+                </div>
+                <!-- 5. Библиотека «Парголовская» (текущая) -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Парголовская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пос. Парголово, ул. Торфяная, д. 25</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</div>
+                    <a href="https://vk.com/pargolovskaya_library" target="_blank" class="library-link">vk.com/pargolovskaya_library</a>
+                </div>
+                <!-- 6. Библиотека «Левашовская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Левашовская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пос. Левашово, ул. Железнодорожная, д. 46</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-06</div>
+                    <a href="https://vk.ru/zheleznodorozhnyi46" target="_blank" class="library-link">vk.ru/zheleznodorozhnyi46</a>
+                </div>
+                <!-- 7. Библиоцентр детского чтения -->
+                <div class="library-card fade-in">
+                    <h3>Библиоцентр детского чтения</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Скобелевский, д. 4</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-07</div>
+                    <a href="https://vk.ru/skobelev4" target="_blank" class="library-link">vk.ru/skobelev4</a>
+                </div>
+                <!-- 8. Библиотечный центр «СТАРТ» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотечный центр «СТАРТ»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> ул. Елизаветинская, д. 8/1</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-08</div>
+                    <a href="https://vk.ru/bc_start" target="_blank" class="library-link">vk.ru/bc_start</a>
+                </div>
+                <!-- 9. Библиотека «Книга во времени» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Книга во времени»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Пархоменко, д. 18</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-09</div>
+                    <a href="https://vk.ru/parhomenko18" target="_blank" class="library-link">vk.ru/parhomenko18</a>
+                </div>
+                <!-- 10. Библиотека-филиал № 10 (на Художников) -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека-филиал № 10 (на Художников)</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Художников, д. 9, корп. 1</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-10</div>
+                    <a href="https://vk.ru/khudognikov" target="_blank" class="library-link">vk.ru/khudognikov</a>
+                </div>
+                <!-- 11. Центральная районная библиотека «В Озерках» -->
+                <div class="library-card fade-in">
+                    <h3>Центральная районная библиотека «В Озерках»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Энгельса, д. 111, корп. 1</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-11</div>
+                    <a href="https://vk.ru/engelsa111" target="_blank" class="library-link">vk.ru/engelsa111</a>
+                </div>
+                <!-- 12. Центральная детская библиотека им. Н.А. Внукова -->
+                <div class="library-card fade-in">
+                    <h3>Центральная детская библиотека им. Н.А. Внукова</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Просвещения, д. 36/141</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-12</div>
+                    <a href="https://vk.ru/spb_cdb" target="_blank" class="library-link">vk.ru/spb_cdb</a>
+                </div>
+                <!-- 13. Библиотека «АЗАРТ» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «АЗАРТ»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> Б. Сампсониевский пр., д. 77</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-13</div>
+                    <a href="https://vk.ru/azart_book" target="_blank" class="library-link">vk.ru/azart_book</a>
+                </div>
+                <!-- 14. Библиотека «Мастерская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Мастерская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Просвещения, д. 43, ТРК «Парк Молл», 2 этаж</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-27</div>
+                    <a href="https://vk.ru/workshop_book" target="_blank" class="library-link">vk.ru/workshop_book</a>
+                </div>
+                <!-- 15. Библиотека «АВЕНЮ» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «АВЕНЮ» (семейная библиотека)</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Просвещения, д. 87</div>
+                    <a href="https://vk.ru/biblioteka_avenue" target="_blank" class="library-link">vk.ru/biblioteka_avenue</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 1.5rem; background: #fff; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                <p><strong>Централизованная библиотечная система Выборгского района</strong></p>
+                <p><i class="fas fa-map-marker-alt" style="color: #b5838d;"></i> пр. Энгельса, д. 13/2, Санкт-Петербург</p>
+                <p><i class="fas fa-phone-alt" style="color: #b5838d;"></i> +7 (812) 246-93-19</p>
+                <p><i class="fas fa-envelope" style="color: #b5838d;"></i> info@cbsvib.ru</p>
+                <p><a href="http://cbsvib.ru" target="_blank" style="color: #e5989b;">cbsvib.ru</a></p>
+            </div>
         </div>
     </section>
 
@@ -147,7 +254,6 @@
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
-
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -173,31 +279,25 @@
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
                         <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
-                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
-                    <p style="margin-top: 0.5rem;">
-                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-eye"></i> Версия для слабовидящих
-                        </a>
-                    </p>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/newbooks.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/district-libraries.html" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
-                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
                     </div>
                 </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
@@ -211,86 +311,5 @@
     </div>
 
     <script src="common.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        // Массив книг (20 книг) – замените пути на свои
-        const newBooks = [
-            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", webp: "n3.webp", year: "2025" },
-            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", webp: "n5.webp", year: "2024" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n6.jpg", webp: "n6.webp", year: "2025" },
-            { title: "Мир для детей", author: "Андрианова Н. А.", description: "Путеводитель по странам и континентам с яркими иллюстрациями.", image: "n7.jpg", webp: "n7.webp", year: "2022" },
-            { title: "Мигрант", author: "Астахов П. А.", description: "Современный детектив о судьбах людей в большом городе.", image: "n8.JPG", webp: "n8.webp", year: "2025" },
-            { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", webp: "n9.webp", year: "2025" },
-            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", webp: "n10.webp", year: "2025" },
-            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", description: "Классический сборник мифов о богах и героях.", image: "n11.jpg", webp: "n11.webp", year: "2024" },
-            { title: "Гербы России. История отечественной геральдики", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", webp: "n12.webp", year: "2022" },
-            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", description: "Детский путеводитель по миру финансов и предпринимательства.", image: "n13.jpg", webp: "n13.webp", year: "2024" },
-            { title: "Тайны Камчатки", author: "Котова Т. Б.", description: "Захватывающее путешествие по вулканам и дикой природе полуострова.", image: "n14.jpg", webp: "n14.webp", year: "2025" },
-            { title: "Девочка, которая хотела...", author: "Лисова И. А.", description: "Добрая проза для детей о мечтах и их исполнении.", image: "n15.jpg", webp: "n15.webp", year: "2024" },
-            { title: "Двенадцать месяцев", author: "Маршак С. Я.", description: "Знаменитая сказка-пьеса о падчерице и братьях-месяцах.", image: "n16.jpg", webp: "n16.webp", year: "2024" },
-            { title: "Без вести пропавшие", author: "Пичугин Д. В.", description: "Детектив-реконструкция, основанный на реальных событиях.", image: "n17.JPG", webp: "n17.webp", year: "2025" },
-            { title: "На один удар больше", author: "Литвинова А. В.", description: "Авантюрный детектив о тайнах приёмного сына.", image: "n20.jpg", webp: "n20.webp", year: "2025" },
-            { title: "Последний знак", author: "Райт А.", description: "Триллер о серийном убийце, лауреат премии «Русский детектив».", image: "n21.JPG", webp: "n21.webp", year: "2024" },
-            { title: "Маленький принц", author: "Сент-Экзюпери А. де", description: "Философская сказка-притча о дружбе, любви и ответственности.", image: "n23.jpg", webp: "n23.webp", year: "2025" },
-            { title: "Большая история путешествий", author: "Тунич А.", description: "Как люди исследовали мир — для детей от 10 до 12 лет.", image: "n24.jpg", webp: "n24.webp", year: "2025" },
-            { title: "Царский подарок", author: "Асопил Е.", description: "Вечерний детектив из серии «Тайна старинной книги».", image: "n26.JPG", webp: "n26.webp", year: "2025" },
-            { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", webp: "n27.webp", year: "2025" }
-        ];
-
-        function renderBooks() {
-            const container = document.getElementById('books-grid');
-            if (!container) return;
-            let html = '';
-            newBooks.forEach(book => {
-                const savedRating = localStorage.getItem('bookRating_' + book.title) || 0;
-                html += `
-                    <div class="book-card fade-in">
-                        <a href="${book.image}" data-fancybox="gallery" data-caption="${book.title} — ${book.author}">
-                            <picture>
-                                <source srcset="${book.webp}" type="image/webp">
-                                <img src="${book.image}" alt="${book.title}" loading="lazy">
-                            </picture>
-                        </a>
-                        <h3>${book.title}</h3>
-                        <div class="author">${book.author}</div>
-                        <div class="description">${book.description}</div>
-                        <div class="details">${book.year}</div>
-                        <div class="rating" data-book="${book.title}">
-                            ${[1,2,3,4,5].map(star => 
-                                `<i class="fa${star <= savedRating ? 's' : 'r'} fa-star" data-value="${star}"></i>`
-                            ).join('')}
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-
-            // Обработчики для звёзд
-            document.querySelectorAll('.rating').forEach(ratingDiv => {
-                const bookTitle = ratingDiv.dataset.book;
-                ratingDiv.querySelectorAll('i').forEach(star => {
-                    star.addEventListener('click', function() {
-                        const value = parseInt(this.dataset.value);
-                        localStorage.setItem('bookRating_' + bookTitle, value);
-                        // обновляем звёзды в этой карточке
-                        const stars = ratingDiv.querySelectorAll('i');
-                        stars.forEach((s, idx) => {
-                            if (idx < value) {
-                                s.classList.remove('far');
-                                s.classList.add('fas');
-                            } else {
-                                s.classList.remove('fas');
-                                s.classList.add('far');
-                            }
-                        });
-                    });
-                });
-            });
-
-            Fancybox.bind("[data-fancybox]");
-        }
-
-        renderBooks();
-    </script>
 </body>
 </html>
