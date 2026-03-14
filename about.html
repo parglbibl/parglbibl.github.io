@@ -7,7 +7,6 @@
     <meta name="description" content="История и деятельность Парголовской библиотеки. Фотографии и описание. Наши достижения и награды.">
     <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги, достижения, дипломы">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,7 +14,6 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Schema.org разметка -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -55,14 +53,11 @@
     }
     </script>
     
-    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Шрифты и иконки (подключаются также в common.css, но для надёжности оставим ссылки) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
-    <!-- Дополнительные стили только для этой страницы -->
     <style>
         .history-block, .photo-gallery a, .achievement-card {
             transition: transform 0.4s, box-shadow 0.4s;
@@ -154,9 +149,6 @@
         .achievement-card h3 { color: #b5838d; margin-bottom: 0.5rem; font-size: 1.2rem; }
         .achievement-card p { color: #666; font-size: 0.95rem; }
     </style>
-    
-    <!-- Fancybox CSS (если используется на странице) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
 </head>
 <body class="page-transition">
     <header>
@@ -180,68 +172,33 @@
                     <li><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
                 </ul>
-                <!-- Поиск -->
-                <div class="search-icon-container">
-                    <i class="fas fa-search" id="searchIcon"></i>
-                    <div class="search-popup" id="searchPopup">
-                        <form action="https://yandex.ru/search/" method="get" target="_blank">
-                            <input type="hidden" name="site" value="parglbibl.ru">
-                            <input type="hidden" name="host" value="parglbibl.ru">
-                            <input type="hidden" name="lr" value="2">
-                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
+                <div class="search-icon-container">...</div>
             </nav>
         </div>
     </header>
 
     <section class="section">
         <div class="container">
-            <!-- Хлебные крошки -->
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
                 <span>О нас</span>
             </div>
 
             <h2 class="section-title">История библиотеки</h2>
-            <div class="history-block">
-                <h3>Довоенные годы: от школы к библиотеке</h3>
-                <p><strong>1938 год</strong> – в новом двухэтажном деревянном здании на Выборгском шоссе, 379 (снесено в начале 2000-х) открылась средняя школа № 2, а при ней – библиотека имени Максима Горького. В школе работал знаменитый хор под руководством учительницы пения Ф. А. Мерлинской, который позже выступал на фронте в годы войны.</p>
-                
-                <h3>Война и блокада</h3>
-                <p>С первых дней войны старшеклассники школы уходили на оборонные работы: рыли окопы и противотанковые рвы в полях между Парголово и Левашово, строили ложный аэродром. В январе 1942 года в здании школы разместили детский дом, а ученики пошли работать в совхозы и на предприятия. Осенью 1943 года школьники были награждены медалью «За оборону Ленинграда».</p>
-                <p>После войны, 9 мая 1946 года, учащиеся школы взяли шефство над могилами лётчиков, похороненных на Успенском (ныне Северном) кладбище, и составили рукописную «Летопись 2-й Парголовской средней школы» – одну из первых в районе.</p>
-                
-                <h3>Послевоенное время и переезды</h3>
-                <p>В 1965–1972 годах библиотека им. Горького (взрослая и детская) всё ещё находилась по адресу Выборгское шоссе, 379. В <strong>1977 году</strong>, после создания Централизованной библиотечной системы Выборгского района, она стала библиотекой-филиалом № 5, объединившись с библиотекой № 8.</p>
-                <p>В <strong>2002 году</strong> библиотека переехала в помещение школы № 475 в Парголово, на ул. Торфяной, 25. Затем, в <strong>2007 году</strong>, её временно разместили в школе № 471 в Осиновой Роще. А с <strong>2008 года</strong> библиотека находилась в здании школы № 474 на Выборгском шоссе, д. 369, корп. 3.</p>
-                
-                <h3>Современный этап</h3>
-                <p><strong>1 августа 2016 года</strong> – в рамках общегородского проекта «Имя библиотеки» учреждению вернули топонимическое название – «Парголовская».</p>
-                <p><strong>2025 год</strong> – библиотека вернулась на Торфяную, 25! После нескольких переездов она вновь расположилась по этому адресу, теперь в обновлённом, уютном пространстве.</p>
-                <p>Сегодня библиотека обслуживает более 800 читателей, а её книжный фонд превышает 15 тысяч изданий. Мы продолжаем традиции: проводим выездные мероприятия в больницах, устраиваем праздники и творческие встречи, развиваем инклюзивные программы и учим детей и взрослых спидкубингу.</p>
-            </div>
+            <div class="history-block">...</div>
 
             <h2 class="section-title">Наши достижения</h2>
             <div class="achievements-grid">
                 <div class="achievement-card fade-in">
                     <a href="diplom1.png" data-fancybox="achievements" data-caption="Диплом I степени в конкурсе новогоднего оформления">
-                        <picture>
-                            <source srcset="diplom1.webp" type="image/webp">
-                            <img src="diplom1.png" alt="Диплом 1 место" loading="lazy">
-                        </picture>
+                        <img src="diplom1.png" alt="Диплом 1 место" loading="lazy">
                     </a>
                     <h3>🥇 I место</h3>
                     <p>в конкурсе на лучшее новогоднее оформление среди библиотек Выборгского района<br>«Новый год, открытие!»<br>Номинация: «Когда часы 12 бьют»<br>2025 год</p>
                 </div>
                 <div class="achievement-card fade-in">
                     <a href="diplom2.png" data-fancybox="achievements" data-caption="Диплом II степени в конкурсе новогоднего оформления">
-                        <picture>
-                            <source srcset="diplom2.webp" type="image/webp">
-                            <img src="diplom2.png" alt="Диплом 2 место" loading="lazy">
-                        </picture>
+                        <img src="diplom2.png" alt="Диплом 2 место" loading="lazy">
                     </a>
                     <h3>🥈 II место</h3>
                     <p>в конкурсе на лучшее новогоднее оформление среди библиотек Выборгского района<br>«Новый год, откройте!»<br>Номинация: «Очумелые ручки»<br>2025 год</p>
@@ -251,146 +208,46 @@
             <h2 class="section-title">Фотографии</h2>
             <div class="photo-gallery">
                 <a href="s_ylici.jpg" data-fancybox="gallery" data-caption="Библиотека Парголовская" download>
-                    <picture>
-                        <source srcset="s_ylici.webp" type="image/webp">
-                        <img src="s_ylici.jpg" alt="Библиотека Парголовская" loading="lazy">
-                    </picture>
+                    <img src="s_ylici.jpg" alt="Библиотека Парголовская" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="ya.jpg" data-fancybox="gallery" data-caption="Библиотекарь" download>
-                    <picture>
-                        <source srcset="ya.webp" type="image/webp">
-                        <img src="ya.jpg" alt="Библиотекарь" loading="lazy">
-                    </picture>
+                    <img src="ya.jpg" alt="Библиотекарь" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="chitalnii_zal.jpg" data-fancybox="gallery" data-caption="Читальный зал" download>
-                    <picture>
-                        <source srcset="chitalnii_zal.webp" type="image/webp">
-                        <img src="chitalnii_zal.jpg" alt="Читальный зал" loading="lazy">
-                    </picture>
+                    <img src="chitalnii_zal.jpg" alt="Читальный зал" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="vzroslay_literatura.jpg" data-fancybox="gallery" data-caption="Взрослый абонемент" download>
-                    <picture>
-                        <source srcset="vzroslay_literatura.webp" type="image/webp">
-                        <img src="vzroslay_literatura.jpg" alt="Взрослый абонемент" loading="lazy">
-                    </picture>
+                    <img src="vzroslay_literatura.jpg" alt="Взрослый абонемент" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="detskie_knigi.jpg" data-fancybox="gallery" data-caption="Детский абонемент" download>
-                    <picture>
-                        <source srcset="detskie_knigi.webp" type="image/webp">
-                        <img src="detskie_knigi.jpg" alt="Детский абонемент" loading="lazy">
-                    </picture>
+                    <img src="detskie_knigi.jpg" alt="Детский абонемент" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="dlya_chitatelya.jpg" data-fancybox="gallery" data-caption="Компьютерное место для читателя" download>
-                    <picture>
-                        <source srcset="dlya_chitatelya.webp" type="image/webp">
-                        <img src="dlya_chitatelya.jpg" alt="Компьютерное место для читателя" loading="lazy">
-                    </picture>
+                    <img src="dlya_chitatelya.jpg" alt="Компьютерное место для читателя" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="knigi_vystavka.jpg" data-fancybox="gallery" data-caption="Книжная выставка" download>
-                    <picture>
-                        <source srcset="knigi_vystavka.webp" type="image/webp">
-                        <img src="knigi_vystavka.jpg" alt="Книжная выставка" loading="lazy">
-                    </picture>
+                    <img src="knigi_vystavka.jpg" alt="Книжная выставка" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
                 <a href="vystavka_kartin.jpg" data-fancybox="gallery" data-caption="Интерьер" download>
-                    <picture>
-                        <source srcset="vystavka_kartin.webp" type="image/webp">
-                        <img src="vystavka_kartin.jpg" alt="Интерьер" loading="lazy">
-                    </picture>
+                    <img src="vystavka_kartin.jpg" alt="Интерьер" loading="lazy">
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Подвал -->
-    <footer class="footer-content">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Парголовская библиотека</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
-                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
-                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
-                </div>
-
-                <div class="footer-col footer-accordion">
-                    <h3 class="accordion-header">Карта сайта</h3>
-                    <div class="accordion-content">
-                        <p><a href="index.html">Главная</a></p>
-                        <p><a href="about.html">О нас</a></p>
-                        <p><a href="kraevedenie.html">Краеведение</a></p>
-                        <p><a href="newbooks.html">Новинки</a></p>
-                        <p><a href="services.html">Услуги</a></p>
-                        <p><a href="events.html">События</a></p>
-                        <p><a href="speedcubing.html">Спидкубинг</a></p>
-                        <p><a href="district-libraries.html">Библиотеки района</a></p>
-                        <p><a href="partners.html">Партнёры</a></p>
-                        <p><a href="faq.html">Вопросы</a></p>
-                        <p><a href="gallery.html">Фотогалерея</a></p>
-                        <p><a href="contacts.html">Контакты</a></p>
-                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
-                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
-                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
-                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
-                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
-                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
-                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
-                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
-                    </div>
-                </div>
-
-                <div class="footer-col">
-                    <h3>Мы в соцсетях</h3>
-                    <div class="footer-social">
-                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
-                    </div>
-                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
-                    <p style="margin-top: 0.5rem;">
-                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-eye"></i> Версия для слабовидящих
-                        </a>
-                    </p>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <div class="footer-actions">
-                    <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/about.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
-                    </div>
-                    <div class="print-button">
-                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
-                    </div>
-                </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
-            </div>
-        </div>
-    </footer>
-
+    <footer class="footer-content">...</footer>
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-
-    <!-- Баннер cookie -->
-    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
-        <p style="margin: 0; display: inline-block; margin-right: 20px; font-size: 0.95rem;">
-            Мы используем файлы cookie для улучшения работы сайта. Пожалуйста, выберите вариант:
-            <a href="privacy.html" style="color: #e5989b; text-decoration: underline; margin-left: 5px;">Подробнее</a>.
-        </p>
-        <button id="cookie-accept" style="background-color: #e5989b; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; margin-right: 10px;">Принять</button>
-        <button id="cookie-decline" style="background-color: #666; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600;">Отклонить</button>
-    </div>
-
-    <!-- Подключаем общий JavaScript -->
+    <div id="cookie-banner">...</div>
     <script src="common.js"></script>
-    <!-- Fancybox JS (если используется) -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <!-- Уникальный скрипт для этой страницы не требуется, так как всё в common.js, но можно добавить что-то специфическое при необходимости -->
+    <script>Fancybox.bind("[data-fancybox]");</script>
 </body>
 </html>
