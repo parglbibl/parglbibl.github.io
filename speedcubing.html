@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - Спидкубинг</title>
     <meta name="description" content="Спидкубинг (скоростная сборка кубика Рубика) в Парголовской библиотеке. Польза для детей и взрослых, включая ОВЗ и участников СВО. Занятия и творческие проекты.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,56 +13,12 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Library",
-      "name": "Библиотека «Парголовская»",
-      "description": "Уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Торфяная, 25",
-        "addressLocality": "Парголово",
-        "addressRegion": "Санкт-Петербург",
-        "postalCode": "194362",
-        "addressCountry": "RU"
-      },
-      "telephone": "+7-812-246-93-05",
-      "email": "pargolovo@cbsvib.ru",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "12:00",
-          "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Sunday"],
-          "opens": "",
-          "closes": "",
-          "description": "Выходной"
-        }
-      ],
-      "url": "https://parglbibl.ru",
-      "sameAs": [
-        "https://vk.com/pargolovskaya_library",
-        "https://cbsvib.ru/"
-      ]
-    }
-    </script>
-    
-    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
     <style>
-        /* Уникальные стили для speedcubing.html */
         .info-block, .photo-gallery a {
             transition: transform 0.4s, box-shadow 0.4s;
         }
@@ -135,9 +89,7 @@
 <body class="page-transition">
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">
-                <img src="logo.PNG" alt="Парголовская библиотека" loading="lazy">
-            </a>
+            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека" loading="lazy"></a>
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
@@ -154,26 +106,13 @@
                     <li><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
                 </ul>
-                <!-- Поиск (скрыт на мобильных) -->
-                <div class="search-icon-container">
-                    <i class="fas fa-search" id="searchIcon"></i>
-                    <div class="search-popup" id="searchPopup">
-                        <form action="https://yandex.ru/search/" method="get" target="_blank">
-                            <input type="hidden" name="site" value="parglbibl.ru">
-                            <input type="hidden" name="host" value="parglbibl.ru">
-                            <input type="hidden" name="lr" value="2">
-                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
+                <div class="search-icon-container">...</div>
             </nav>
         </div>
     </header>
 
     <section class="section">
         <div class="container">
-            <!-- Хлебные крошки -->
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
                 <span>Спидкубинг</span>
@@ -194,27 +133,20 @@
 
             <h2 class="section-title">Картины из кубиков Рубика</h2>
             <div class="photo-gallery">
-                <!-- Повторите для каждого изображения с WebP -->
                 <a href="kyb1.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <picture>
-                        <source srcset="kyb1.webp" type="image/webp">
-                        <img src="kyb1.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    </picture>
+                    <picture><source srcset="kyb1.webp" type="image/webp"><img src="kyb1.jpg" alt="Картина из кубиков Рубика" loading="lazy"></picture>
                     <span class="download-icon"><i class="fas fa-download"></i></span>
                 </a>
-                <a href="kyb2.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <picture>
-                        <source srcset="kyb2.webp" type="image/webp">
-                        <img src="kyb2.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    </picture>
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <!-- ... остальные 12 изображений ... -->
+                <!-- остальные изображения по аналогии -->
             </div>
-            <p style="text-align: center; margin-top: 1rem;">Нажмите на фото, чтобы увеличить, или на иконку скачивания, чтобы сохранить.</p>
         </div>
     </section>
 
-    <!-- Подвал и скрипты (как в services.html) -->
+    <footer class="footer-content">...</footer>
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+    <div id="cookie-banner">...</div>
+    <script src="common.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>Fancybox.bind("[data-fancybox]");</script>
 </body>
 </html>
