@@ -133,8 +133,8 @@
             color: #fff;
             font-weight: 600;
             transition: color 0.3s;
-            font-size: 1.0rem;
-            white-space: nowrap; /* запрещаем перенос */
+            font-size: 1.0rem;      /* ваш размер */
+            white-space: nowrap;
         }
         .nav a::after {
             content: '';
@@ -190,7 +190,7 @@
             display: flex;
             align-items: center;
             text-decoration: none;
-            margin-right: 20px; /* небольшой отступ после логотипа */
+            margin-right: 20px;
         }
         .logo img {
             height: 80px;
@@ -202,10 +202,9 @@
             font-size: 1.5rem; 
             cursor: pointer; 
             color: #fff; 
-            margin-left: auto; /* на мобильных будет справа */
+            margin-left: auto;
         }
         
-        /* Навигация: занимает всё оставшееся пространство, flex для разделения меню и поиска */
         .nav {
             display: flex;
             align-items: center;
@@ -215,7 +214,7 @@
         .nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2rem;            /* ваш отступ */
             align-items: center;
             margin: 0;
             padding: 0;
@@ -306,14 +305,10 @@
                 align-self: flex-end;
             }
         }
-        /* ===== КОНЕЦ СТИЛЕЙ ПОИСКА ===== */
         
         @media (max-width: 1200px) {
             .nav ul {
-                gap: 0.8rem;
-            }
-            .nav a {
-                font-size: 0.9rem;
+                gap: 1.5rem; /* чуть уменьшаем на средних экранах */
             }
         }
 
