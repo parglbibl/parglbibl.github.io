@@ -35,9 +35,7 @@
         const originalHTML = nav.innerHTML; // сохраняем исходное меню
 
         function buildMobile(items) {
-            // Основные пункты, которые всегда видны
             const main = ['Главная', 'О нас', 'Краеведение', 'Новинки', 'Услуги'];
-            // Остальные уходят в подменю «Ещё»
             const more = ['Спидкубинг', 'События', 'Библиотеки района', 'Партнёры', 'Вопросы', 'Фотогалерея', 'Контакты'];
 
             let html = '<ul>';
@@ -72,7 +70,6 @@
 
         function update() {
             if (window.innerWidth <= 768) {
-                // Строим мобильное меню только если оно ещё не построено или изменилось
                 const temp = document.createElement('div');
                 temp.innerHTML = originalHTML;
                 const items = Array.from(temp.querySelectorAll('ul > li'));
@@ -95,23 +92,21 @@
                     });
                 }
             } else {
-                // Возвращаем исходное меню
                 nav.innerHTML = originalHTML;
             }
         }
 
         const mq = window.matchMedia('(max-width: 768px)');
-        // Используем современный API addEventListener, если он есть, иначе fallback
         if (mq.addEventListener) {
             mq.addEventListener('change', update);
         } else {
-            mq.addListener(update); // для старых браузеров
+            mq.addListener(update);
         }
         window.addEventListener('load', update);
         if (mq.matches) update();
     })();
 
-    // ---- КНОПКА «НАВЕРХ» (исправлено: убран конфликт с инлайн-стилями) ----
+    // ---- КНОПКА «НАВЕРХ» (исправлено) ----
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
         function toggleButton() {
@@ -122,7 +117,7 @@
             }
         }
         window.addEventListener('scroll', toggleButton);
-        toggleButton(); // сразу при загрузке
+        toggleButton();
 
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
@@ -149,9 +144,7 @@
 
     // ---- Cookie-баннер и Яндекс.Метрика (исправлено) ----
     function loadYandexMetrica() {
-        // Проверяем, не загружена ли уже метрика
         if (window.ym && window.yaCounter107242178) return;
-
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -160,15 +153,12 @@
             }
             k=e.createElement(t), a=e.getElementsByTagName(t)[0], k.async=1, k.src=r, a.parentNode.insertBefore(k,a)
         })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
         ym(107242178, "init", {
             clickmap: true,
             trackLinks: true,
             accurateTrackBounce: true,
             webvisor: true
         });
-
-        // Яндекс.Метрика сама добавляет noscript, дублировать не нужно
     }
 
     const banner = document.getElementById('cookie-banner');
