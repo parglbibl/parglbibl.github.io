@@ -13,7 +13,10 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
+    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
+    
+    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -120,7 +123,18 @@
                     <li><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
                 </ul>
-                <div class="search-icon-container">...</div>
+                <div class="search-icon-container">
+                    <i class="fas fa-search" id="searchIcon"></i>
+                    <div class="search-popup" id="searchPopup">
+                        <form action="https://yandex.ru/search/" method="get" target="_blank">
+                            <input type="hidden" name="site" value="parglbibl.ru">
+                            <input type="hidden" name="host" value="parglbibl.ru">
+                            <input type="hidden" name="lr" value="2">
+                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -141,14 +155,7 @@
             <h1 class="section-title">Парголово в литературе, музыке и искусстве</h1>
             <p style="text-align: center; margin-bottom: 3rem;">Парголово издавна привлекало творческих людей.</p>
 
-            <!-- Вставка к Году единства народов -->
-            <div style="background: #f9f0e7; padding: 1.5rem; border-radius: 16px; margin-bottom: 2rem;">
-                <p style="margin: 0; font-style: italic;">
-                    <i class="fas fa-quote-left" style="color: #b5838d; margin-right: 0.5rem;"></i>
-                    Парголово – место, где веками жили рядом русские, финны, ижоры, немцы. Их совместный труд и творчество создали неповторимый облик нашего края. Этот год напоминает нам о важности единства и взаимного уважения.
-                </p>
-            </div>
-
+            <!-- Литературное Парголово -->
             <h2 class="section-title">Литературное Парголово</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
@@ -169,7 +176,7 @@
                 <div class="culture-card fade-in">
                     <i class="fas fa-book"></i>
                     <h3>Мамин-Сибиряк и другие прозаики</h3>
-                    <p>Дмитрий Мамин-Сибиряк подолгу жил в Парголово и отразил местный колорит в своих произведениях. Алексей Писемский в романе «Люди сороковых годов» поместил действие целой главы в Парголово.</p>
+                    <p>Дмитрий Мамин-Сибиряк подолгу жил в Парголово и отразил местный колорит в своих произведениях. Алексей Писемский в романе «Люди сороковых годов» поместил действие целой главы в Парголово. Николай Позняков в повести «Товарищ. Вахлак и форсило» подробно описал дачную жизнь в Шувалово и Первом Парголово.</p>
                 </div>
             </div>
 
@@ -188,44 +195,67 @@
                 <div class="quote-author">— Николай Позняков, «Товарищ. Вахлак и форсило»</div>
             </div>
 
+            <!-- Музыкальные страницы -->
             <h2 class="section-title">Музыкальные страницы</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-music"></i>
                     <h3>Венчание Римского-Корсакова</h3>
-                    <p>30 июня 1872 года в церкви святых апостолов Петра и Павла в Шуваловском парке состоялось венчание великого композитора Николая Римского-Корсакова с пианисткой Надеждой Пургольд. Этот союз стал одним из самых счастливых в истории русской музыки. Шафером был Мусоргский.</p>
+                    <p>30 июня 1872 года в церкви святых апостолов Петра и Павла в Шуваловском парке состоялось венчание великого композитора Николая Римского-Корсакова с пианисткой Надеждой Пургольд. Этот союз стал одним из самых счастливых в истории русской музыки. Шафером на свадьбе был Модест Мусоргский.</p>
                 </div>
                 <div class="culture-card fade-in">
                     <i class="fas fa-user-friends"></i>
                     <h3>Дача Стасова в Старожиловке</h3>
-                    <p>Знаменитый музыкальный и художественный критик Владимир Стасов прожил на даче в деревне Старожиловка 28 лет (1878–1906). Его гостями были Илья Репин, Николай Римский-Корсаков, Фёдор Шаляпин, Максим Горький, Цезарь Кюи.</p>
+                    <p>Знаменитый музыкальный и художественный критик Владимир Стасов прожил на даче в деревне Старожиловка 28 лет (1878–1906). Его гостями были Илья Репин, Николай Римский-Корсаков, Фёдор Шаляпин, Максим Горький, Цезарь Кюи. Эти встречи становились событиями культурной жизни.</p>
                 </div>
                 <div class="culture-card fade-in">
                     <i class="fas fa-music"></i>
                     <h3>Композиторы в Парголово</h3>
-                    <p>На окрестных дачах отдыхали и работали Модест Мусоргский, Милий Балакирев, Александр Глазунов.</p>
+                    <p>На окрестных дачах отдыхали и работали Модест Мусоргский, Милий Балакирев, Александр Глазунов. Живописные окрестности вдохновляли их на создание бессмертных произведений.</p>
                 </div>
             </div>
 
+            <!-- Художественное наследие -->
             <h2 class="section-title">Художественное наследие</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-paint-brush"></i>
                     <h3>Шишкин в Шуваловском парке</h3>
-                    <p>Иван Шишкин, певец русского леса, запечатлел здешние места в офорте «Ели в Шуваловском парке».</p>
+                    <p>Иван Шишкин, певец русского леса, запечатлел здешние места в офорте «Ели в Шуваловском парке». Его работы отражают величественную красоту северной природы.</p>
                 </div>
                 <div class="culture-card fade-in">
                     <i class="fas fa-palette"></i>
                     <h3>Репин в гостях у Стасова</h3>
-                    <p>Илья Репин подолгу жил и работал в Старожиловке, гостя у Владимира Стасова.</p>
+                    <p>Илья Репин подолгу жил и работал в Старожиловке, гостя у Владимира Стасова. Сосновый бор, озера и холмы могли находить отражение в его этюдах.</p>
                 </div>
                 <div class="culture-card fade-in">
                     <i class="fas fa-image"></i>
                     <h3>Краски старого Парголово</h3>
-                    <p>Живописные окрестности Парголово и Шувалово привлекали многих художников. Здесь работали Павел Федотов и другие мастера кисти.</p>
+                    <p>Живописные окрестности Парголово и Шувалово привлекали многих художников. Здесь работали Павел Федотов, автор знаменитой «Свахи», и другие мастера кисти.</p>
                 </div>
             </div>
 
+            <!-- Новый раздел: Народы Парголово -->
+            <h2 class="section-title">Народы Парголово</h2>
+            <div class="culture-grid" style="margin-bottom: 2rem;">
+                <div class="culture-card fade-in">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Финно-угры</h3>
+                    <p>Само название «Парголово» происходит от финского Parkala и впервые упоминается в Писцовой книге Водской пятины в 1500 году как селение Паркола. В XVII веке, когда эти земли входили в состав Швеции, сюда переселились финны-земледельцы. В деревне Старожиловка до середины XIX века проживало финское население, там находился лютеранский храм.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-church"></i>
+                    <h3>Русские переселенцы</h3>
+                    <p>В 1746 году императрица Елизавета Петровна подарила «Парголовскую мызу» графу Петру Шувалову. Он заселил эти земли крестьянами из Суздальского уезда и Вологодской губернии, которые основали Суздальскую, Малую и Большую Вологодскую слободы (позже 1-е, 2-е и 3-е Парголово). В память об этом остались названия Суздальские озёра и Суздальский проспект. Привезённая суздальцами икона Успения XVI века ныне хранится в Русском музее.</p>
+                </div>
+                <div class="culture-card fade-in">
+                    <i class="fas fa-hard-hat"></i>
+                    <h3>Немцы и другие</h3>
+                    <p>В формировании облика усадьбы участвовали архитекторы разных национальностей. Например, «Жёлтую дачу» в Шуваловском парке построил в 1902 году архитектор Максимилиан Месмахер (немецкого происхождения) для своего брата. В XIX веке Парголово стало дачным местом, куда приезжали люди со всей России, создавая уникальную среду культурного обмена.</p>
+                </div>
+            </div>
+
+            <!-- Заключительная цитата -->
             <div class="quote-block fade-in" style="margin-top: 3rem;">
                 <div class="quote-text">Парголово — не просто посёлок под Петербургом. Это место, где переплетаются судьбы великих творцов, где рождались произведения, ставшие гордостью русской культуры. Мы продолжаем собирать и сохранять эту историю. Приглашаем вас в библиотеку знакомиться с книгами о нашем крае!</div>
                 <div class="quote-author">— Библиотека «Парголовская»</div>
@@ -233,11 +263,77 @@
         </div>
     </section>
 
+    <!-- Подвал -->
     <footer class="footer-content">
-        <!-- подвал (скопировать из index.html) -->
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
+                </div>
+                <div class="footer-col footer-accordion">
+                    <h3 class="accordion-header">Карта сайта</h3>
+                    <div class="accordion-content">
+                        <p><a href="index.html">Главная</a></p>
+                        <p><a href="about.html">О нас</a></p>
+                        <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="newbooks.html">Новинки</a></p>
+                        <p><a href="services.html">Услуги</a></p>
+                        <p><a href="events.html">События</a></p>
+                        <p><a href="speedcubing.html">Спидкубинг</a></p>
+                        <p><a href="district-libraries.html">Библиотеки района</a></p>
+                        <p><a href="partners.html">Партнёры</a></p>
+                        <p><a href="faq.html">Вопросы</a></p>
+                        <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="contacts.html">Контакты</a></p>
+                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
+                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
+                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
+                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
+                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
+                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
+                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
+                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social">
+                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
+                    <p style="margin-top: 0.5rem;">
+                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-eye"></i> Версия для слабовидящих
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <div class="print-button">
+                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                    </div>
+                </div>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
     </footer>
+
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-    <div id="cookie-banner">...</div>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
+
     <script src="common.js"></script>
 </body>
 </html>
