@@ -62,19 +62,13 @@
             margin-top: auto;
         }
 
-        .map-container {
-            background: #fff;
-            padding: 2rem;
+        /* Стили для интерактивной карты */
+        #map {
+            width: 100%;
+            height: 450px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             margin-top: 2rem;
-            overflow: hidden;
-        }
-        .map-container iframe {
-            width: 100%;
-            height: 450px;
-            border: 0;
-            border-radius: 8px;
         }
 
         /* Викторина */
@@ -204,7 +198,7 @@
                     <p>Шувалово, усадьба и парк, гора Парнас, литературные и музыкальные страницы, известные люди.</p>
                     <a href="verkhnee-pargolovo.html" class="btn">Перейти к разделу</a>
                 </div>
-                <!-- Карточка интерактивной карты (новая) -->
+                <!-- Карточка интерактивной карты -->
                 <div class="project-card fade-in">
                     <i class="fas fa-map-marked-alt"></i>
                     <h3>Интерактивная карта</h3>
@@ -219,14 +213,12 @@
                 </div>
             </div>
 
-            <!-- Интерактивная карта (iframe) – можно оставить как дополнительный элемент, но если хотите, можете удалить -->
+            <!-- Интерактивная карта достопримечательностей (вместо iframe) -->
             <h2 class="section-title">Карта достопримечательностей</h2>
-            <div class="map-container fade-in">
-                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A00d8c7a5b4e4b5a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4g5h6i7j8k9l0m1n2o3p4q5r6s7t8u9v0w1x2y3z4" loading="lazy"></iframe>
-                <p style="text-align: center; margin-top: 1rem; color: #666;">
-                    <i class="fas fa-map-pin" style="color: #e5989b;"></i> Основные исторические места Парголово
-                </p>
-            </div>
+            <div id="map"></div>
+            <p style="text-align: center; margin-top: 1rem; color: #666;">
+                <i class="fas fa-map-pin" style="color: #e5989b;"></i> Кликните по метке, чтобы узнать подробности.
+            </p>
 
             <!-- Викторина по краеведению -->
             <h2 class="section-title">Викторина «Знаешь ли ты Парголово?»</h2>
@@ -317,9 +309,83 @@
         <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
     </div>
 
+    <!-- Общий скрипт -->
     <script src="common.js"></script>
+    <!-- Яндекс.Карты API с вашим ключом -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=0c586c14-20f3-4be5-b7f7-a618b25ccfa8&lang=ru_RU" type="text/javascript"></script>
     <script>
-        // Викторина
+        // Инициализация карты
+        ymaps.ready(init);
+
+        function init() {
+            var map = new ymaps.Map('map', {
+                center: [60.080, 30.270], // центр Парголово
+                zoom: 13,
+                controls: ['zoomControl', 'fullscreenControl']
+            });
+
+            // Массив достопримечательностей (координаты можно уточнить)
+            var places = [
+                {
+                    coords: [60.079512, 30.258150],
+                    title: 'Церковь Петра и Павла',
+                    description: 'Неоготическая церковь, построена А.П. Брюлловым. Место венчания Римского-Корсакова.',
+                    link: 'khramy-verkhnee-pargolovo.html',
+                    icon: 'islands#blueChurchIcon'
+                },
+                {
+                    coords: [60.080012, 30.256473],
+                    title: 'Шуваловский парк',
+                    description: 'Памятник садово-паркового искусства, объект Всемирного наследия ЮНЕСКО.',
+                    link: 'shuvalovsky-park.html',
+                    icon: 'islands#greenParkIcon'
+                },
+                {
+                    coords: [60.085975, 30.267858],
+                    title: 'Библиотека «Парголовская»',
+                    description: 'ул. Торфяная, 25. Здесь находится наша библиотека.',
+                    link: 'torfyanaya.html',
+                    icon: 'islands#blueLibraryIcon'
+                },
+                {
+                    coords: [60.0835, 30.2720], // уточните
+                    title: 'Станция Парголово',
+                    description: 'Железнодорожный вокзал 1906 года в стиле финского национального романтизма.',
+                    link: 'nizhnee-pargolovo.html',
+                    icon: 'islands#blueRailwayIcon'
+                },
+                {
+                    coords: [60.0872, 30.2625], // уточните
+                    title: 'Церковь Спаса Нерукотворного Образа',
+                    description: 'Деревянная церковь 1792 года (арх. Луиджи Руска) и каменная 1880 года.',
+                    link: 'nizhnee-pargolovo.html',
+                    icon: 'islands#blueChurchIcon'
+                },
+                {
+                    coords: [60.0770, 30.2630], // уточните
+                    title: 'Гора Парнас',
+                    description: 'Искусственный холм высотой 61 м, созданный в XVIII веке.',
+                    link: 'shuvalovsky-park.html',
+                    icon: 'islands#greenMountainIcon'
+                }
+            ];
+
+            places.forEach(function(item) {
+                var placemark = new ymaps.Placemark(item.coords, {
+                    hintContent: item.title,
+                    balloonContentBody: `
+                        <strong>${item.title}</strong><br>
+                        ${item.description}<br>
+                        <a href="${item.link}" target="_blank">Подробнее на сайте</a>
+                    `
+                }, {
+                    preset: item.icon
+                });
+                map.geoObjects.add(placemark);
+            });
+        }
+
+        // Викторина (оставляем как есть)
         (function() {
             const questions = [
                 {
