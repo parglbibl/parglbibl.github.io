@@ -536,9 +536,14 @@
                 <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
                 <!-- Поиск -->
                 <div class="search-container">
-                    <script async src="https://cse.google.com/cse.js?cx=f572b2cfd95394cbd"></script>
-                    <div class="gcse-search"></div>
-                </div>
+    <form action="https://yandex.ru/search/" method="get" target="_blank">
+        <input type="hidden" name="site" value="parglbibl.ru">
+        <input type="hidden" name="host" value="parglbibl.ru">
+        <input type="hidden" name="lr" value="2"> <!-- 2 – код региона для Санкт-Петербурга и области, можно убрать, если не нужно -->
+        <input type="text" name="text" placeholder="Поиск по сайту..." required>
+        <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+</div>
             </div>
             <nav class="nav" id="nav">
                 <ul>
