@@ -109,7 +109,7 @@ header {
     white-space: nowrap;
     display: flex;
     align-items: center;
-    gap: 6px; /* для иконок */
+    gap: 6px;
 }
 
 .nav a::after {
@@ -414,7 +414,6 @@ header {
         justify-content: center;
         gap: 8px;
     }
-    /* Поиск на мобильных скрыт */
     .search-icon-container {
         display: none;
     }
@@ -499,7 +498,6 @@ body.special-mode .footer-content {
 body.special-mode .footer-col a {
     color: #0000ee !important;
 }
-/* Аналогично для остальных элементов */
 
 /* ===== ХЛЕБНЫЕ КРОШКИ ===== */
 .breadcrumbs {
