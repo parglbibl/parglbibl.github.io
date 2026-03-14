@@ -58,14 +58,13 @@
     <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
     
-    <!-- Шрифты и иконки (подключаются также в common.css, но для надёжности оставим ссылки) -->
+    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <!-- Open API ВК -->
     <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
     
-    <!-- Уникальные стили для главной страницы -->
     <style>
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('logo2.png') center/cover no-repeat;
@@ -269,7 +268,6 @@
                     <li><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
                 </ul>
-                <!-- Поиск -->
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
                     <div class="search-popup" id="searchPopup">
@@ -299,30 +297,12 @@
             <h2 class="section-title">Фотогалерея</h2>
             <div class="slider-container">
                 <div class="slider" id="slider">
-                    <picture>
-                        <source srcset="s_ylici.webp" type="image/webp">
-                        <img src="s_ylici.jpg" alt="Библиотека с улицы" loading="lazy" width="1000" height="400">
-                    </picture>
-                    <picture>
-                        <source srcset="chitalnii_zal.webp" type="image/webp">
-                        <img src="chitalnii_zal.jpg" alt="Читальный зал" loading="lazy" width="1000" height="400">
-                    </picture>
-                    <picture>
-                        <source srcset="vzroslay_literatura.webp" type="image/webp">
-                        <img src="vzroslay_literatura.jpg" alt="Взрослый абонемент" loading="lazy" width="1000" height="400">
-                    </picture>
-                    <picture>
-                        <source srcset="detskie_knigi.webp" type="image/webp">
-                        <img src="detskie_knigi.jpg" alt="Детский абонемент" loading="lazy" width="1000" height="400">
-                    </picture>
-                    <picture>
-                        <source srcset="knigi_vystavka.webp" type="image/webp">
-                        <img src="knigi_vystavka.jpg" alt="Книжная выставка" loading="lazy" width="1000" height="400">
-                    </picture>
-                    <picture>
-                        <source srcset="vystavka_kartin.webp" type="image/webp">
-                        <img src="vystavka_kartin.jpg" alt="Интерьер" loading="lazy" width="1000" height="400">
-                    </picture>
+                    <img src="s_ylici.jpg" alt="Библиотека с улицы" loading="lazy" width="1000" height="400">
+                    <img src="chitalnii_zal.jpg" alt="Читальный зал" loading="lazy" width="1000" height="400">
+                    <img src="vzroslay_literatura.jpg" alt="Взрослый абонемент" loading="lazy" width="1000" height="400">
+                    <img src="detskie_knigi.jpg" alt="Детский абонемент" loading="lazy" width="1000" height="400">
+                    <img src="knigi_vystavka.jpg" alt="Книжная выставка" loading="lazy" width="1000" height="400">
+                    <img src="vystavka_kartin.jpg" alt="Интерьер" loading="lazy" width="1000" height="400">
                 </div>
             </div>
             <div class="slider-dots" id="sliderDots"></div>
@@ -377,7 +357,7 @@
         </div>
     </section>
 
-    <!-- Блок о конкурсе (пример) -->
+    <!-- Блок о конкурсе -->
     <section class="section">
         <div class="container">
             <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b; text-align: center; padding: 2.5rem;">
@@ -408,12 +388,10 @@
         </div>
     </section>
 
-    <!-- Инициализация виджета ВК -->
     <script type="text/javascript">
         VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
     </script>
 
-    <!-- Подвал (как в about.html) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -480,24 +458,20 @@
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
-    <!-- Баннер cookie -->
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
-        <p style="margin: 0; display: inline-block; margin-right: 20px; font-size: 0.95rem;">
-            Мы используем файлы cookie для улучшения работы сайта. Пожалуйста, выберите вариант:
-            <a href="privacy.html" style="color: #e5989b; text-decoration: underline; margin-left: 5px;">Подробнее</a>.
-        </p>
-        <button id="cookie-accept" style="background-color: #e5989b; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; margin-right: 10px;">Принять</button>
-        <button id="cookie-decline" style="background-color: #666; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600;">Отклонить</button>
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
     </div>
 
     <script src="common.js"></script>
     <script>
-        // Массив книг (пример, можно дополнить)
+        // Массив книг (сокращённый для примера, замените на полный)
         const newBooks = [
-            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", webp: "n3.webp", year: "2025" },
-            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", webp: "n5.webp", year: "2024" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n6.jpg", webp: "n6.webp", year: "2025" },
-            // ... остальные 17 книг
+            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина...", image: "n3.jpg", year: "2025" },
+            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях...", image: "n5.JPG", year: "2024" },
+            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих...", image: "n6.jpg", year: "2025" },
+            // ... остальные книги
         ];
 
         function displayRandomBook() {
@@ -505,10 +479,7 @@
             const book = newBooks[randomIndex];
             let rating = localStorage.getItem('bookRating_' + book.title) || 0;
             const html = `
-                <picture>
-                    <source srcset="${book.webp}" type="image/webp">
-                    <img src="${book.image}" alt="${book.title}" loading="lazy" width="250" height="350">
-                </picture>
+                <img src="${book.image}" alt="${book.title}" loading="lazy" width="250" height="350">
                 <h3>${book.title}</h3>
                 <div class="author">${book.author}</div>
                 <div class="description">${book.description}</div>
@@ -533,7 +504,6 @@
 
         displayRandomBook();
 
-        // Цитаты
         const quotes = [
             { text: "Все дело в мыслях. Мысль – начало всего.", author: "Л. Толстой" },
             { text: "Следовать за мыслями великого человека есть наука самая занимательная.", author: "А. Пушкин" },
@@ -547,7 +517,6 @@
         }
         displayRandomQuote();
 
-        // Слайдер
         const slider = document.getElementById('slider');
         const dotsContainer = document.getElementById('sliderDots');
         const images = slider.children;
