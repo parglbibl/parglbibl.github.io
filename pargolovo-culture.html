@@ -6,7 +6,7 @@
     <title>Парголово в литературе, музыке и искусстве — Парголовская библиотека</title>
     <meta name="description" content="Парголово в русской культуре: литературные и музыкальные страницы, известные гости и творческие истории.">
     
-    <!-- Favicon – правильный набор (как на всём сайте) -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* ===== ОСНОВНЫЕ СТИЛИ (унифицированы со всем сайтом) ===== */
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Open Sans', sans-serif;
@@ -53,36 +53,25 @@
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
 
-        /* ===== ШАПКА ===== */
-        header {
-            background-color: #b5838d;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0;
-        }
-        .logo {
-            display: flex;
-            align-items: center;
+        .btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
         }
-        .logo img {
-            height: 80px;
-            width: auto;
+        .btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
-        .nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+
         .nav a {
             position: relative;
             text-decoration: none;
@@ -104,7 +93,102 @@
         .nav a.active::after {
             width: 100%;
         }
+        .nav a:hover, .nav a.active {
+            border-bottom: none;
+        }
+
+        .section-title {
+            position: relative;
+            text-align: center !important;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+            color: #5e4b3c;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #e5989b;
+            margin: 0.5rem auto 0;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .section-title:hover::after {
+            width: 100px;
+        }
+
+        header {
+            background-color: #b5838d;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+        .nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
         .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; color: #fff; padding-right: 15px; }
+        
+        /* Поиск */
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .search-container form {
+            display: flex;
+        }
+        .search-container input[type="text"] {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px 0 0 20px;
+            outline: none;
+            width: 200px;
+            font-size: 0.9rem;
+        }
+        .search-container button {
+            background-color: #e5989b;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 0 20px 20px 0;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #d68b8e;
+        }
+        @media (max-width: 768px) {
+            .search-container {
+                margin: 10px 0;
+                width: 100%;
+            }
+            .search-container form {
+                width: 100%;
+            }
+            .search-container input[type="text"] {
+                flex-grow: 1;
+            }
+        }
         
         @media (min-width: 769px) {
             .logo {
@@ -124,26 +208,27 @@
             .header-inner { flex-wrap: wrap; }
         }
 
-        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
         .section { padding: 4rem 0; }
-        .section-title {
-            position: relative;
-            text-align: center !important;
-            margin-bottom: 3rem;
-            font-size: 2.2rem;
-            color: #5e4b3c;
+        .back-link {
+            margin-bottom: 2rem;
+            text-align: left;
         }
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background: #e5989b;
-            margin: 0.5rem auto 0;
-            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .back-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 2px solid #e5989b;
+            color: #e5989b;
+            padding: 6px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
         }
-        .section-title:hover::after {
-            width: 100px;
+        .back-link a:hover {
+            background-color: #e5989b;
+            color: white;
         }
 
         .culture-grid {
@@ -195,7 +280,7 @@
             color: #b5838d;
         }
 
-        /* ===== ПОДВАЛ ===== */
+        /* Подвал */
         .footer-content {
             background: #b5838d;
             color: #fff;
@@ -234,6 +319,7 @@
             color: #fff;
             text-decoration: none;
             transition: color 0.3s;
+            display: inline-block;
         }
         .footer-col a:hover {
             color: #f4e3d7;
@@ -275,6 +361,10 @@
             gap: 2rem;
             margin-bottom: 1rem;
         }
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
         .share-buttons a, .print-button a {
             display: inline-flex;
             align-items: center;
@@ -286,6 +376,8 @@
             color: #b5838d;
             font-size: 1.2rem;
             transition: all 0.3s;
+            border: 1px solid transparent;
+            text-decoration: none;
         }
         .share-buttons a:hover {
             background-color: #f4e3d7;
@@ -307,6 +399,7 @@
             .footer-actions { flex-direction: column; align-items: center; gap: 1rem; }
         }
 
+        /* Аккордеон */
         @media (max-width: 768px) {
             .footer-accordion .accordion-content {
                 display: none;
@@ -341,6 +434,7 @@
             }
         }
 
+        /* Версия для слабовидящих */
         body.special-mode {
             background-color: #fff !important;
             color: #000 !important;
@@ -389,9 +483,19 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
         .back-to-top.show { opacity: 1; visibility: visible; }
-        .back-to-top:hover {
-            background-color: #d68b8e;
-            transform: scale(1.05);
+        
+        /* Хлебные крошки */
+        .breadcrumbs {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .breadcrumbs a {
+            color: #e5989b;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -401,21 +505,27 @@
             <a href="index.html" class="logo">
                 <img src="logo.PNG" alt="Парголовская библиотека">
             </a>
-            <div style="display: flex; align-items: center; gap: 10px;">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
                 <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+                <!-- Поиск -->
+                <div class="search-container">
+                    <script async src="https://cse.google.com/cse.js?cx=f572b2cfd95394cbd"></script>
+                    <div class="gcse-search"></div>
+                </div>
             </div>
             <nav class="nav" id="nav">
                 <ul>
                     <li><a href="index.html">Главная</a></li>
                     <li><a href="about.html">О нас</a></li>
+                    <li><a href="kraevedenie.html">Краеведение</a></li>
+                    <li><a href="newbooks.html">Новинки</a></li>
                     <li><a href="services.html">Услуги</a></li>
                     <li><a href="events.html">События</a></li>
                     <li><a href="speedcubing.html">Спидкубинг</a></li>
-                    <li><a href="newbooks.html">Новинки</a></li>
-                    <li><a href="faq.html">Вопросы</a></li>
-                    <li><a href="partners.html">Партнёры</a></li>
                     <li><a href="district-libraries.html">Библиотеки района</a></li>
-                    <li><a href="kraevedenie.html">Краеведение</a></li>
+                    <li><a href="partners.html">Партнёры</a></li>
+                    <li><a href="faq.html">Вопросы</a></li>
+                    <li><a href="gallery.html">Фотогалерея</a></li>
                     <li><a href="contacts.html">Контакты</a></li>
                 </ul>
             </nav>
@@ -423,19 +533,28 @@
     </header>
 
     <section class="section">
-        <!-- Кнопка возврата на страницу Верхнего Парголово -->
-        <div style="margin-bottom: 2rem; text-align: left;">
-            <a href="verkhnee-pargolovo.html" style="display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s;" onmouseover="this.style.backgroundColor='#e5989b'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='#e5989b'">
-                <i class="fas fa-arrow-left"></i> Назад к Верхнему Парголово
-            </a>
-        </div>
         <div class="container">
+            <!-- Хлебные крошки -->
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> &raquo;
+                <a href="kraevedenie.html">Краеведение</a> &raquo;
+                <a href="verkhnee-pargolovo.html">Верхнее Парголово</a> &raquo;
+                <span>Парголово в культуре</span>
+            </div>
+
+            <!-- Кнопка возврата на страницу Верхнего Парголово -->
+            <div class="back-link fade-in">
+                <a href="verkhnee-pargolovo.html">
+                    <i class="fas fa-arrow-left"></i> Назад к Верхнему Парголово
+                </a>
+            </div>
+
             <h1 class="section-title">Парголово в литературе, музыке и искусстве</h1>
             <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem;">
                 Парголово издавна привлекало творческих людей. Живописная природа, дачная атмосфера и близость к столице вдохновляли писателей, композиторов и художников. Приглашаем вас в литературно-музыкальное путешествие.
             </p>
 
-            <!-- Литературное Парголово (только подтверждённые авторы) -->
+            <!-- Литературное Парголово -->
             <h2 class="section-title">Литературное Парголово</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
@@ -524,7 +643,7 @@
         </div>
     </section>
 
-    <!-- Обновлённый подвал -->
+    <!-- Подвал -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -540,21 +659,23 @@
                     <div class="accordion-content">
                         <p><a href="index.html">Главная</a></p>
                         <p><a href="about.html">О нас</a></p>
+                        <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="newbooks.html">Новинки</a></p>
                         <p><a href="services.html">Услуги</a></p>
                         <p><a href="events.html">События</a></p>
                         <p><a href="speedcubing.html">Спидкубинг</a></p>
-                        <p><a href="newbooks.html">Новинки</a></p>
-                        <p><a href="faq.html">Вопросы</a></p>
-                        <p><a href="partners.html">Партнёры</a></p>
                         <p><a href="district-libraries.html">Библиотеки района</a></p>
-                        <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="partners.html">Партнёры</a></p>
+                        <p><a href="faq.html">Вопросы</a></p>
+                        <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
                         <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
                         <p><a href="torfyanaya.html">Улица Торфяная</a></p>
                         <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
                         <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
                         <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
-                        <p><a href="contacts.html">Контакты</a></p>
+                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
@@ -589,14 +710,14 @@
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
-    <!-- Баннер для cookies с выбором -->
+    <!-- Баннер cookie -->
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px; font-size: 0.95rem;">
             Мы используем файлы cookie для улучшения работы сайта. Пожалуйста, выберите вариант:
             <a href="privacy.html" style="color: #e5989b; text-decoration: underline; margin-left: 5px;">Подробнее</a>.
         </p>
-        <button id="cookie-accept" style="background-color: #e5989b; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: background-color 0.3s; margin-right: 10px;">Принять</button>
-        <button id="cookie-decline" style="background-color: #666; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: background-color 0.3s;">Отклонить</button>
+        <button id="cookie-accept" style="background-color: #e5989b; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600; margin-right: 10px;">Принять</button>
+        <button id="cookie-decline" style="background-color: #666; color: #fff; border: none; padding: 8px 20px; border-radius: 50px; cursor: pointer; font-weight: 600;">Отклонить</button>
     </div>
 
     <script>
@@ -636,23 +757,15 @@
         }, appearOptions);
         faders.forEach(fader => appearOnScroll.observe(fader));
 
-        // Функция загрузки Яндекс.Метрики
+        // Яндекс.Метрика
         function loadYandexMetrica() {
             if (window.ym && window.ym(107242178)) return;
-
             (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
             for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
             k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
             (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-            ym(107242178, "init", {
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: true
-            });
-
+            ym(107242178, "init", { clickmap: true, trackLinks: true, accurateTrackBounce: true, webvisor: true });
             var noscript = document.createElement('noscript');
             var div = document.createElement('div');
             var img = document.createElement('img');
@@ -664,13 +777,10 @@
             document.body.appendChild(noscript);
         }
 
-        // Cookie-баннер с выбором
         if (!localStorage.getItem('cookieConsent')) {
             document.getElementById('cookie-banner').style.display = 'block';
         } else {
-            if (localStorage.getItem('cookieConsent') === 'true') {
-                loadYandexMetrica();
-            }
+            if (localStorage.getItem('cookieConsent') === 'true') loadYandexMetrica();
         }
 
         document.getElementById('cookie-accept').addEventListener('click', () => {
