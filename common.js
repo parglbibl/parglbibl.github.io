@@ -57,7 +57,7 @@
             buildDesktopMenu();
         }
 
-        // ---- Построение мобильного меню (как было) ----
+        // ---- Построение мобильного меню ----
         function buildMobileMenu() {
             const items = getMenuItems();
             const mainItems = [];
@@ -137,10 +137,8 @@
                 }
             });
 
-            // Начинаем со стандартного меню (все пункты подряд)
             let html = '<ul class="desktop-menu">';
 
-            // Сначала добавляем все mainItems (они всегда видны)
             mainItems.forEach(li => {
                 const a = li.querySelector('a');
                 if (a) {
@@ -152,7 +150,6 @@
                 }
             });
 
-            // Если есть пункты для подменю, добавляем выпадающий список "Ещё"
             if (moreItems.length > 0) {
                 html += `<li class="desktop-more">
                     <a href="#" id="desktopMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a>
@@ -173,17 +170,14 @@
             html += '</ul>';
             nav.innerHTML = html;
 
-            // Добавляем обработчик для выпадающего списка (по наведению или клику)
             const desktopMore = document.getElementById('desktopMoreToggle');
             if (desktopMore) {
-                // По клику (для сенсорных экранов)
                 desktopMore.addEventListener('click', function(e) {
                     e.preventDefault();
                     const sub = this.nextElementSibling;
                     sub.classList.toggle('show');
                 });
 
-                // По наведению (для мыши)
                 const parentLi = desktopMore.closest('.desktop-more');
                 parentLi.addEventListener('mouseenter', function() {
                     const sub = this.querySelector('.desktop-submenu');
@@ -199,60 +193,8 @@
         // Запускаем при загрузке и изменении размера окна
         window.addEventListener('resize', updateMenu);
         updateMenu();
-
-        // Также обновляем меню после полной загрузки страницы (на случай шрифтов и т.п.)
         window.addEventListener('load', updateMenu);
     })();
-
-    // ---- КНОПКА «НАВЕРХ» (без изменений) ----
-    function setupBackToTop() {
-        const backToTop = document.getElementById('backToTop');
-        if (!backToTop) {
-            setTimeout(setupBackToTop, 300);
-            return;
-        }
-
-        backToTop.style.position = 'fixed';
-        backToTop.style.bottom = '2rem';
-        backToTop.style.right = '2rem';
-        backToTop.style.zIndex = '99';
-        backToTop.style.transition = 'opacity 0.3s, visibility 0.3s';
-        backToTop.style.display = 'flex';
-        backToTop.style.alignItems = 'center';
-        backToTop.style.justifyContent = 'center';
-        backToTop.style.width = '50px';
-        backToTop.style.height = '50px';
-        backToTop.style.borderRadius = '50%';
-        backToTop.style.background = '#e5989b';
-        backToTop.style.color = '#fff';
-        backToTop.style.textDecoration = 'none';
-        backToTop.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-
-        function toggleButton() {
-            if (window.scrollY > 300 || document.documentElement.scrollTop > 300) {
-                backToTop.style.opacity = '1';
-                backToTop.style.visibility = 'visible';
-            } else {
-                backToTop.style.opacity = '0';
-                backToTop.style.visibility = 'hidden';
-            }
-        }
-
-        window.addEventListener('scroll', toggleButton);
-        window.addEventListener('touchmove', toggleButton);
-        toggleButton();
-
-        backToTop.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', setupBackToTop);
-    } else {
-        setupBackToTop();
-    }
 
     // ---- Аккордеон в подвале ----
     document.querySelectorAll('.accordion-header').forEach(header => {
