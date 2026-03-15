@@ -13,10 +13,7 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
@@ -99,6 +96,21 @@
             font-weight: 600;
             color: #b5838d;
         }
+        .share-block {
+            text-align: center;
+            margin: 1rem 0 2rem;
+        }
+        .share-block .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -110,7 +122,6 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <!-- Основные пункты (всегда видны на десктопе) -->
                     <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
@@ -120,7 +131,6 @@
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе, в мобильном меню тоже под кат) -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
@@ -159,7 +169,14 @@
             <p style="text-align: center; margin-bottom: 3rem;">Парголово издавна привлекало творческих людей.</p>
 
             <!-- Литературное Парголово -->
-            <h2 class="section-title">Литературное Парголово</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin-bottom: 0;">Литературное Парголово</h2>
+                <div class="share-block" style="margin: 0;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Литературное%20Парголово&description=Грибоедов%20и%20Булгарин,%20Тургенев,%20Некрасов,%20Достоевский,%20Петрашевцы,%20Мамин-Сибиряк%20и%20другие%20писатели%20в%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться разделом
+                    </a>
+                </div>
+            </div>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-feather-alt"></i>
@@ -183,23 +200,46 @@
                 </div>
             </div>
 
+            <!-- Цитаты -->
             <div class="quote-block fade-in">
                 <div class="quote-text">«Холмы облечены душистою муравою и усеяны прекрасными возмужалыми деревьями всех родов. С одной стороны цепь гор, с другой — лесистый берег Финского залива, прямо перед вами белеется обширная столица, блестят золотые куполы».</div>
                 <div class="quote-author">— Фаддей Булгарин, «Поездка в Парголово»</div>
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Цитата%20Фаддея%20Булгарина&description=«Холмы%20облечены%20душистою%20муравою...»%20—%20Фаддей%20Булгарин,%20«Поездка%20в%20Парголово»&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться цитатой
+                    </a>
+                </div>
             </div>
 
             <div class="quote-block fade-in">
                 <div class="quote-text">«Природа с великим усилием в болоте насадила печальные ели; жители их выжигают. Дымный запах, бледное небо, скрыпучий песок — всё это не располагает странников к приятным впечатлениям... Так рассказывают, но мы ничего не видали. Всё было подернуто сизыми парами; и вот одно ожидание рушилось, как идея поэта часто тускнеет при неудачном исполнении».</div>
                 <div class="quote-author">— Александр Грибоедов, «Загородная поездка»</div>
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Цитата%20Грибоедова&description=«Природа%20с%20великим%20усилием%20в%20болоте%20насадила%20печальные%20ели...»%20—%20Александр%20Грибоедов,%20«Загородная%20поездка»&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться цитатой
+                    </a>
+                </div>
             </div>
 
             <div class="quote-block fade-in">
                 <div class="quote-text">«Кто живал на даче по Финляндской железной дороге, тот, наверно, знает Шувалово. Летом мимо неё, то и дело, шныряют поезда, возящие дачников в город... По берегу озера тянется большая деревня, которую зовут Первое Парголово. Ничего похожего на настоящие русские деревни нет в этом Парголово. Крестьянские избы почти теряются во множестве дач, которые крестьяне понастроили вдоль шоссе».</div>
                 <div class="quote-author">— Николай Позняков, «Товарищ. Вахлак и форсило»</div>
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Цитата%20Познякова&description=«Кто%20живал%20на%20даче%20по%20Финляндской%20железной%20дороге...»%20—%20Николай%20Позняков,%20«Товарищ.%20Вахлак%20и%20форсило»&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться цитатой
+                    </a>
+                </div>
             </div>
 
             <!-- Музыкальные страницы -->
-            <h2 class="section-title">Музыкальные страницы</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin-bottom: 0;">Музыкальные страницы</h2>
+                <div class="share-block" style="margin: 0;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Музыкальные%20страницы%20Парголово&description=Венчание%20Римского-Корсакова,%20дача%20Стасова%20в%20Старожиловке,%20композиторы%20в%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться разделом
+                    </a>
+                </div>
+            </div>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-music"></i>
@@ -219,7 +259,14 @@
             </div>
 
             <!-- Художественное наследие -->
-            <h2 class="section-title">Художественное наследие</h2>
+            <div class="section-header">
+                <h2 class="section-title" style="margin-bottom: 0;">Художественное наследие</h2>
+                <div class="share-block" style="margin: 0;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Художественное%20наследие%20Парголово&description=Шишкин%20в%20Шуваловском%20парке,%20Репин%20в%20гостях%20у%20Стасова,%20краски%20старого%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться разделом
+                    </a>
+                </div>
+            </div>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-paint-brush"></i>
@@ -237,7 +284,6 @@
                     <p>Живописные окрестности Парголово и Шувалово привлекали многих художников. Здесь работали Павел Федотов, автор знаменитой «Свахи», и другие мастера кисти.</p>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -304,7 +350,8 @@
         </div>
     </footer>
 
-    <!-- Баннер cookie -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
