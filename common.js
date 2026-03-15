@@ -106,25 +106,43 @@
         if (mq.matches) update();
     })();
 
-    // ---- КНОПКА «НАВЕРХ» (УСИЛЕННАЯ ВЕРСИЯ) ----
+    // ---- КНОПКА «НАВЕРХ» (УПРАВЛЕНИЕ ЧЕРЕЗ ИНЛАЙН-СТИЛИ) ----
     function setupBackToTop() {
         const backToTop = document.getElementById('backToTop');
         if (!backToTop) {
-            // Если кнопка ещё не появилась в DOM, пробуем позже
             setTimeout(setupBackToTop, 300);
             return;
         }
 
+        // Убедимся, что у кнопки есть базовые стили (можно и в CSS, но для надёжности пропишем)
+        backToTop.style.position = 'fixed';
+        backToTop.style.bottom = '2rem';
+        backToTop.style.right = '2rem';
+        backToTop.style.zIndex = '99';
+        backToTop.style.transition = 'opacity 0.3s, visibility 0.3s';
+        backToTop.style.display = 'flex';
+        backToTop.style.alignItems = 'center';
+        backToTop.style.justifyContent = 'center';
+        backToTop.style.width = '50px';
+        backToTop.style.height = '50px';
+        backToTop.style.borderRadius = '50%';
+        backToTop.style.background = '#e5989b';
+        backToTop.style.color = '#fff';
+        backToTop.style.textDecoration = 'none';
+        backToTop.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+
         function toggleButton() {
             if (window.scrollY > 300 || document.documentElement.scrollTop > 300) {
-                backToTop.classList.add('show');
+                backToTop.style.opacity = '1';
+                backToTop.style.visibility = 'visible';
             } else {
-                backToTop.classList.remove('show');
+                backToTop.style.opacity = '0';
+                backToTop.style.visibility = 'hidden';
             }
         }
 
         window.addEventListener('scroll', toggleButton);
-        window.addEventListener('touchmove', toggleButton); // для мобильных
+        window.addEventListener('touchmove', toggleButton);
         toggleButton(); // проверяем сразу
 
         backToTop.addEventListener('click', function(e) {
@@ -157,7 +175,7 @@
         });
     }
 
-    // ---- Cookie-баннер и Яндекс.Метрика (исправлено) ----
+    // ---- Cookie-баннер и Яндекс.Метрика ----
     function loadYandexMetrica() {
         if (window.ym && window.yaCounter107242178) return;
         (function(m,e,t,r,i,k,a){
