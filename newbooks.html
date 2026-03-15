@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - Новые поступления</title>
     <meta name="description" content="Новые книги в Парголовской библиотеке. Свежие поступления художественной и научно-популярной литературы.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, новые книги, новинки, чтение">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,54 +13,21 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Library",
-      "name": "Библиотека «Парголовская»",
-      "description": "Уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Торфяная, 25",
-        "addressLocality": "Парголово",
-        "addressRegion": "Санкт-Петербург",
-        "postalCode": "194362",
-        "addressCountry": "RU"
-      },
-      "telephone": "+7-812-246-93-05",
-      "email": "pargolovo@cbsvib.ru",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "12:00",
-          "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Sunday"],
-          "opens": "",
-          "closes": "",
-          "description": "Выходной"
-        }
-      ],
-      "url": "https://parglbibl.ru",
-      "sameAs": [
-        "https://vk.com/pargolovskaya_library",
-        "https://cbsvib.ru/"
-      ]
-    }
-    </script>
-    
-    <!-- Общие стили всего сайта -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Fancybox CSS (для галереи) -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
-    <!-- Специфические стили только для сетки книг -->
     <style>
+        .book-card {
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+
+        .section { padding: 4rem 0; }
         .books-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -76,11 +41,6 @@
             text-align: center;
             display: flex;
             flex-direction: column;
-            transition: transform 0.4s, box-shadow 0.4s;
-        }
-        .book-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
         .book-card a {
             display: block;
@@ -118,21 +78,16 @@
         .book-card .details {
             font-size: 0.9rem;
             color: #888;
+            margin-bottom: 1rem;
         }
-        /* fade-in уже есть в common, но для уверенности */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            transition: opacity 0.7s, transform 0.7s;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+        .rating i {
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin: 0 2px;
         }
     </style>
 </head>
 <body class="page-transition">
-    <!-- Шапка (полностью из common) -->
     <header>
         <div class="container header-inner">
             <a href="index.html" class="logo">
@@ -151,13 +106,12 @@
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё") -->
+                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе, в мобильном меню тоже под кат) -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                 </ul>
-                <!-- Поиск (стандартный попап) -->
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
                     <div class="search-popup" id="searchPopup">
@@ -174,7 +128,6 @@
         </div>
     </header>
 
-    <!-- Основной контент -->
     <section class="section">
         <div class="container">
             <div class="breadcrumbs">
@@ -183,12 +136,11 @@
             </div>
 
             <h2 class="section-title">Новые поступления книг</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Каждый месяц мы пополняем фонд самыми интересными новинками художественной и научно-популярной литературы.</p>
-            <div class="books-grid" id="all-books-grid"></div>
+            <p style="text-align: center; margin-bottom: 2rem;">Каждый месяц мы пополняем фонд самыми интересными новинками.</p>
+            <div class="books-grid" id="books-grid"></div>
         </div>
     </section>
 
-    <!-- Подвал (стандартный из common) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -198,7 +150,6 @@
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
-
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -224,51 +175,40 @@
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
                         <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
-                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
-                    <p style="margin-top: 0.5rem;">
-                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-eye"></i> Версия для слабовидящих
-                        </a>
-                    </p>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/newbooks.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/newbooks.html" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
-                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
                     </div>
                 </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-
+    <!-- Баннер cookie -->
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
         <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
     </div>
 
-    <!-- Общий скрипт сайта (бургер, поиск, аккордеон, версия для слабовидящих, cookie, метрика) -->
     <script src="common.js"></script>
-
-    <!-- Fancybox JS -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-
     <script>
-        // Массив книг (20 книг)
+        // Массив книг (20 книг) – замените пути на свои
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
             { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
@@ -292,46 +232,55 @@
             { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", year: "2025" }
         ];
 
-        function displayAllBooks() {
-            const container = document.getElementById('all-books-grid');
+        function renderBooks() {
+            const container = document.getElementById('books-grid');
+            if (!container) return;
             let html = '';
             newBooks.forEach(book => {
+                const savedRating = localStorage.getItem('bookRating_' + book.title) || 0;
                 html += `
                     <div class="book-card fade-in">
                         <a href="${book.image}" data-fancybox="gallery" data-caption="${book.title} — ${book.author}">
-                            <img src="${book.image}" alt="${book.title}">
+                            <img src="${book.image}" alt="${book.title}" loading="lazy">
                         </a>
                         <h3>${book.title}</h3>
                         <div class="author">${book.author}</div>
                         <div class="description">${book.description}</div>
                         <div class="details">${book.year}</div>
+                        <div class="rating" data-book="${book.title}">
+                            ${[1,2,3,4,5].map(star => 
+                                `<i class="fa${star <= savedRating ? 's' : 'r'} fa-star" data-value="${star}"></i>`
+                            ).join('')}
+                        </div>
                     </div>
                 `;
             });
             container.innerHTML = html;
 
-            // Небольшая задержка для гарантии, что DOM полностью обновлён
-            setTimeout(() => {
-                if (typeof Fancybox !== 'undefined') {
-                    Fancybox.bind("[data-fancybox]", {});
-                }
-            }, 100);
+            document.querySelectorAll('.rating').forEach(ratingDiv => {
+                const bookTitle = ratingDiv.dataset.book;
+                ratingDiv.querySelectorAll('i').forEach(star => {
+                    star.addEventListener('click', function() {
+                        const value = parseInt(this.dataset.value);
+                        localStorage.setItem('bookRating_' + bookTitle, value);
+                        const stars = ratingDiv.querySelectorAll('i');
+                        stars.forEach((s, idx) => {
+                            if (idx < value) {
+                                s.classList.remove('far');
+                                s.classList.add('fas');
+                            } else {
+                                s.classList.remove('fas');
+                                s.classList.add('far');
+                            }
+                        });
+                    });
+                });
+            });
+
+            Fancybox.bind("[data-fancybox]");
         }
 
-        displayAllBooks();
-
-        // Анимация появления при скролле (fade-in)
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
-        const appearOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader));
+        renderBooks();
     </script>
 </body>
 </html>
