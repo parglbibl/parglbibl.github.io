@@ -85,6 +85,14 @@
             font-size: 1.2rem;
             margin: 0 2px;
         }
+        /* Стили для блока кнопки поделиться */
+        .share-block {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .vk-share-button {
+            display: inline-block;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -106,7 +114,7 @@
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе, в мобильном меню тоже под кат) -->
+                    <!-- Второстепенные пункты (уходят в "Ещё") -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
@@ -138,6 +146,18 @@
             <h2 class="section-title">Новые поступления книг</h2>
             <p style="text-align: center; margin-bottom: 2rem;">Каждый месяц мы пополняем фонд самыми интересными новинками.</p>
             <div class="books-grid" id="books-grid"></div>
+
+            <!-- Блок кнопки "Поделиться ВКонтакте" -->
+            <div class="share-block">
+                <script>
+                    document.write(VK.Share.button({
+                        url: 'https://parglbibl.ru/newbooks.html',
+                        title: 'Новые поступления книг',
+                        description: 'Новые книги в Парголовской библиотеке. Свежие поступления художественной и научно-популярной литературы.',
+                        image: 'https://parglbibl.ru/logo.PNG'
+                    }, {type: 'round', text: 'Поделиться'}));
+                </script>
+            </div>
         </div>
     </section>
 
