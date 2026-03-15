@@ -220,6 +220,14 @@
             font-weight: 600;
             color: green;
         }
+        .share-block {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+        .share-block .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -231,7 +239,6 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <!-- Основные пункты (всегда видны на десктопе) -->
                     <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
@@ -241,7 +248,6 @@
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе, в мобильном меню тоже под кат) -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
@@ -282,6 +288,12 @@
                 <p>Наша библиотека участвует в городском конкурсе краеведческих выставок. Приглашаем вас присоединиться и поделиться своими историями и фотографиями Торфяной улицы.</p>
                 <p><strong>Подробности конкурса, галерея народных фото и голоса участников — на отдельной странице.</strong></p>
                 <div style="text-align:center; margin-top:1rem;"><a href="konkurs.html" class="btn">Перейти на страницу конкурса</a></div>
+                <!-- Кнопка поделиться для блока о конкурсе -->
+                <div class="share-block">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=Конкурс%20«История%20одной%20улицы»&description=Наша%20библиотека%20участвует%20в%20городском%20конкурсе%20краеведческих%20выставок,%20посвящённом%20улице%20Торфяной.%20Присоединяйтесь!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться конкурсом
+                    </a>
+                </div>
             </div>
 
             <h1 class="section-title" style="font-size:2.5rem;">Улица Торфяная: перекрёсток историй</h1>
@@ -290,11 +302,51 @@
             <!-- Лента времени -->
             <h2 class="section-title">Лента времени</h2>
             <div class="timeline fade-in">
-                <div class="timeline-item"><div class="timeline-year">1940-е годы</div><p>Первые упоминания в архивных документах. Известно, что в доме №4 по Торфяной улице в годы блокады жили люди (сохранились записи в домовой книге). Кто были эти люди? Какая судьба их ждала? Мы ищем информацию. Сейчас на этом месте стоит современное здание, но память о тех людях остаётся.</p></div>
-                <div class="timeline-item"><div class="timeline-year">1969 год</div><p>По адресу Торфяная, 25 открывается школа №475. Здание построено по типовому проекту.</p></div>
-                <div class="timeline-item"><div class="timeline-year">2002 год</div><p>Библиотека №5 переезжает в помещение школы №475 по адресу Торфяная, 25. Здесь она работает до 2007 года.</p></div>
-                <div class="timeline-item"><div class="timeline-year">1 августа 2016 года</div><p>В рамках городского проекта «Имя библиотеки» учреждению присвоено топонимическое название «Парголовская». В этот момент библиотека находится по другому адресу.</p></div>
-                <div class="timeline-item"><div class="timeline-year">2025 год</div><p>Библиотека «Парголовская» возвращается на Торфяную улицу, 25. После долгих лет скитаний она вновь обосновывается в стенах, где когда-то начиналась её история на этой улице.</p></div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1940-е годы</div>
+                    <p>Первые упоминания в архивных документах. Известно, что в доме №4 по Торфяной улице в годы блокады жили люди (сохранились записи в домовой книге). Кто были эти люди? Какая судьба их ждала? Мы ищем информацию. Сейчас на этом месте стоит современное здание, но память о тех людях остаётся.</p>
+                    <div class="share-block">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=1940-е%20годы%20на%20Торфяной&description=Первые%20упоминания%20в%20архивных%20документах.%20Дом%20№4%20в%20годы%20блокады.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                            <i class="fab fa-vk"></i> Поделиться
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1969 год</div>
+                    <p>По адресу Торфяная, 25 открывается школа №475. Здание построено по типовому проекту.</p>
+                    <div class="share-block">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=1969%20год%20на%20Торфяной&description=По%20адресу%20Торфяная,%2025%20открывается%20школа%20№475.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                            <i class="fab fa-vk"></i> Поделиться
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2002 год</div>
+                    <p>Библиотека №5 переезжает в помещение школы №475 по адресу Торфяная, 25. Здесь она работает до 2007 года.</p>
+                    <div class="share-block">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=2002%20год%20на%20Торфяной&description=Библиотека%20№5%20переезжает%20в%20помещение%20школы%20№475%20по%20адресу%20Торфяная,%2025.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                            <i class="fab fa-vk"></i> Поделиться
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">1 августа 2016 года</div>
+                    <p>В рамках городского проекта «Имя библиотеки» учреждению присвоено топонимическое название «Парголовская». В этот момент библиотека находится по другому адресу.</p>
+                    <div class="share-block">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=1%20августа%202016%20года&description=Библиотеке%20присвоено%20название%20«Парголовская».&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                            <i class="fab fa-vk"></i> Поделиться
+                        </a>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-year">2025 год</div>
+                    <p>Библиотека «Парголовская» возвращается на Торфяную улицу, 25. После долгих лет скитаний она вновь обосновывается в стенах, где когда-то начиналась её история на этой улице.</p>
+                    <div class="share-block">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=2025%20год%20на%20Торфяной&description=Библиотека%20«Парголовская»%20возвращается%20на%20Торфяную%20улицу,%2025.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                            <i class="fab fa-vk"></i> Поделиться
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <!-- Карта -->
@@ -303,9 +355,33 @@
                 <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad767df192320f88df6e2d8e2ec81aece84d5dc5621559f11a1281aa195ac46e3&amp;source=constructor" loading="lazy"></iframe>
                 <div class="yandex-link"><a href="https://yandex.ru/maps/?ll=30.267858%2C60.085975&z=16" target="_blank">Найти в Яндекс</a></div>
                 <div class="map-points">
-                    <div class="map-point"><h4><i class="fas fa-map-pin" style="color:#e5989b;"></i> Дом 25 – Библиотека</h4><p>Здание 1969 года постройки. Изначально – школа №475. С 2002 по 2007 год здесь работала библиотека (тогда ещё №5). В 2025 году библиотека вернулась в эти стены после долгого перерыва.</p></div>
-                    <div class="map-point"><h4><i class="fas fa-map-pin" style="color:#e5989b;"></i> Дом 4 (современное здание)</h4><p>В блокадных архивах есть записи о доме №4, стоявшем здесь в 1940‑х годах. Сейчас на этом месте находится современное здание. Если у вас есть старые фотографии или информация о том, как выглядел прежний дом, поделитесь с нами!</p></div>
-                    <div class="map-point"><h4><i class="fas fa-map-pin" style="color:#e5989b;"></i> Железная дорога</h4><p>Граница нашего микрорайона. Для многих парголовцев «за железкой» начинается своя, особая жизнь. Именно здесь, за железной дорогой, и находится наша улица – тихая, уютная, с особой атмосферой.</p></div>
+                    <div class="map-point">
+                        <h4><i class="fas fa-map-pin" style="color:#e5989b;"></i> Дом 25 – Библиотека</h4>
+                        <p>Здание 1969 года постройки. Изначально – школа №475. С 2002 по 2007 год здесь работала библиотека (тогда ещё №5). В 2025 году библиотека вернулась в эти стены после долгого перерыва.</p>
+                        <div class="share-block">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=Дом%2025%20–%20Библиотека&description=Здание%201969%20года%20постройки.%20Изначально%20–%20школа%20№475.%20С%202002%20по%202007%20год%20здесь%20работала%20библиотека.%20В%202025%20году%20библиотека%20вернулась.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
+                    </div>
+                    <div class="map-point">
+                        <h4><i class="fas fa-map-pin" style="color:#e5989b;"></i> Дом 4 (современное здание)</h4>
+                        <p>В блокадных архивах есть записи о доме №4, стоявшем здесь в 1940‑х годах. Сейчас на этом месте находится современное здание. Если у вас есть старые фотографии или информация о том, как выглядел прежний дом, поделитесь с нами!</p>
+                        <div class="share-block">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=Дом%204%20(современное%20здание)&description=В%20блокадных%20архивах%20есть%20записи%20о%20доме%20№4,%20стоявшем%20здесь%20в%201940‑х%20годах.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
+                    </div>
+                    <div class="map-point">
+                        <h4><i class="fas fa-map-pin" style="color:#e5989b;"></i> Железная дорога</h4>
+                        <p>Граница нашего микрорайона. Для многих парголовцев «за железкой» начинается своя, особая жизнь. Именно здесь, за железной дорогой, и находится наша улица – тихая, уютная, с особой атмосферой.</p>
+                        <div class="share-block">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=Железная%20дорога&description=Граница%20нашего%20микрорайона.%20Для%20многих%20парголовцев%20«за%20железкой»%20начинается%20своя,%20особая%20жизнь.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -315,7 +391,7 @@
                 <div class="empty-gallery"><i class="fas fa-images" style="font-size:3rem; color:#e5989b;"></i><p>Здесь появятся ваши фотографии!</p></div>
             </div>
 
-            <!-- Голоса улицы -->
+            <!-- Голоса улицы (пустые) -->
             <h2 class="section-title" style="margin-top:2rem;">Голоса улицы</h2>
             <div class="voices-grid fade-in">
                 <div class="voice-intro"><i class="fas fa-microphone-alt" style="font-size:3rem; color:#e5989b;"></i><p>Что помнят старожилы? Мы только начинаем собирать истории.</p></div>
@@ -426,7 +502,8 @@
         </div>
     </footer>
 
-    <!-- Баннер cookie -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
