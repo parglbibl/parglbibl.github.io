@@ -89,14 +89,14 @@ header {
     justify-content: space-between;
 }
 
-.nav ul {
+/* Десктопное меню (генерируется скриптом) */
+.desktop-menu {
     display: flex;
     list-style: none;
     gap: 2rem;
     align-items: center;
     margin: 0;
     padding: 0;
-    flex-wrap: wrap;
 }
 
 .nav a {
@@ -131,6 +131,61 @@ header {
 .nav a:hover,
 .nav a.active {
     border-bottom: none;
+}
+
+/* ===== ВЫПАДАЮЩЕЕ МЕНЮ "ЕЩЁ" НА ДЕСКТОПЕ ===== */
+.desktop-more {
+    position: relative;
+}
+
+.desktop-more > a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.desktop-submenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #b5838d;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 0.5rem 0;
+    min-width: 200px;
+    display: none;
+    z-index: 1000;
+    list-style: none;
+}
+
+.desktop-submenu.show {
+    display: block;
+}
+
+.desktop-submenu li {
+    width: 100%;
+}
+
+.desktop-submenu a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background-color 0.3s;
+}
+
+.desktop-submenu a:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Стрелка вниз для "Ещё" */
+.desktop-more .fa-chevron-down {
+    transition: transform 0.3s;
+}
+
+.desktop-more:hover .fa-chevron-down {
+    transform: rotate(180deg);
 }
 
 /* ===== ПОИСК (ИКОНКА) ===== */
@@ -418,7 +473,7 @@ header {
         display: none;
     }
 
-    /* Стили для подменю «Ещё» */
+    /* Стили для подменю «Ещё» в мобильной версии */
     .mobile-more {
         position: relative;
     }
