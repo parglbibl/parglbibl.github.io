@@ -2,6 +2,16 @@
 (function() {
     "use strict";
 
+    // ---- Загрузка скрипта VK.Share (для кнопок "Поделиться") ----
+    (function() {
+        if (!document.querySelector('script[src*="vk.com/js/api/share.js"]')) {
+            var script = document.createElement('script');
+            script.src = 'https://vk.com/js/api/share.js?95';
+            script.charset = 'windows-1251';
+            document.head.appendChild(script);
+        }
+    })();
+
     // ---- Бургер-меню (мобильное) ----
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
