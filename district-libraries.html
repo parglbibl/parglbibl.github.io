@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека - События</title>
-    <meta name="description" content="Календарь событий и расписание мероприятий в Парголовской библиотеке.">
+    <title>Парголовская библиотека - Библиотеки Выборгского района</title>
+    <meta name="description" content="Список библиотек Централизованной библиотечной системы Выборгского района Санкт-Петербурга с адресами и контактами.">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -14,92 +13,70 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Микроразметка событий (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "itemListElement": [
-        {
-          "@type": "Event",
-          "name": "Занятие по спидкубингу в библиотеке «В Озерках»",
-          "startDate": "2026-03-04T17:00",
-          "endDate": "2026-03-04T18:00",
-          "location": {
-            "@type": "Place",
-            "name": "Центральная районная библиотека «В Озерках»",
-            "address": "пр. Энгельса, 111, Санкт-Петербург"
-          },
-          "url": "https://parglbibl.ru/events.html",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "RUB",
-            "availability": "https://schema.org/InStock"
-          }
-        },
-        {
-          "@type": "Event",
-          "name": "Занятие по спидкубингу в библиотеке «Авеню»",
-          "startDate": "2026-03-13T18:00",
-          "endDate": "2026-03-13T19:00",
-          "location": {
-            "@type": "Place",
-            "name": "Библиотека «Авеню»",
-            "address": "пр. Просвещения, 87, Санкт-Петербург"
-          },
-          "url": "https://parglbibl.ru/events.html",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "RUB",
-            "availability": "https://schema.org/InStock"
-          }
-        }
-      ]
-    }
-    </script>
-    
-    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Уникальные стили -->
     <style>
-        .calendar-container, .schedule-item {
+        .library-card {
             transition: transform 0.4s, box-shadow 0.4s;
         }
-        .calendar-container:hover, .schedule-item:hover {
+        .library-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
 
         .section { padding: 4rem 0; }
-        .calendar-container {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        .libraries-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
-        .calendar-container iframe {
-            width: 100%;
-            min-height: 600px;
-            border: 0;
-            border-radius: 8px;
+        .library-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
         }
-        .schedule-section { margin-top: 3rem; }
-        .schedule-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .schedule-item { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .schedule-item h3 { margin-bottom: 1rem; color: #b5838d; }
-        .schedule-list { list-style: none; }
-        .schedule-list li { padding: 0.5rem 0; border-bottom: 1px solid #eee; }
-        .schedule-list li:last-child { border-bottom: none; }
-        @media (max-width: 768px) {
-            .schedule-grid { grid-template-columns: 1fr; }
+        .library-card h3 {
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        .library-address {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .library-address i {
+            color: #b5838d;
+            width: 20px;
+        }
+        .library-phone {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .library-phone i {
+            color: #b5838d;
+            width: 20px;
+        }
+        .library-link {
+            display: inline-block;
+            margin-top: 0.5rem;
+            color: #e5989b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .library-link:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -117,27 +94,15 @@
                     <li><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
                     <li><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
                     <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
-                    <li><a href="events.html" class="active"><i class="fas fa-calendar-alt"></i> События</a></li>
+                    <li><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
                     <li><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
-                    <li><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
+                    <li><a href="district-libraries.html" class="active"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
                 </ul>
-                <!-- Поиск -->
-                <div class="search-icon-container">
-                    <i class="fas fa-search" id="searchIcon"></i>
-                    <div class="search-popup" id="searchPopup">
-                        <form action="https://yandex.ru/search/" method="get" target="_blank">
-                            <input type="hidden" name="site" value="parglbibl.ru">
-                            <input type="hidden" name="host" value="parglbibl.ru">
-                            <input type="hidden" name="lr" value="2">
-                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                </div>
+                <div class="search-icon-container">...</div>
             </nav>
         </div>
     </header>
@@ -146,50 +111,129 @@
         <div class="container">
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
-                <span>События</span>
+                <span>Библиотеки района</span>
             </div>
 
-            <h2 class="section-title">Календарь событий</h2>
-            <div class="calendar-container fade-in">
-                <iframe src="https://calendar.google.com/calendar/embed?src=bibliotekapargolovskaa@gmail.com&ctz=Europe%2FMoscow&showPrint=0&showTabs=0&showCalendars=0&showTz=0&mode=MONTH" loading="lazy"></iframe>
-            </div>
-
-            <div class="schedule-section">
-                <h3 style="text-align: center; margin-bottom: 2rem;">Регулярные занятия по спидкубингу</h3>
-                <p style="text-align: center; margin-bottom: 2rem;">Подробнее о спидкубинге читайте на <a href="speedcubing.html">отдельной странице</a>.</p>
-                <div class="schedule-grid">
-                    <div class="schedule-item fade-in">
-                        <h3><i class="fas fa-calendar-alt" style="color: #e5989b;"></i> Центральная районная библиотека «В Озерках»</h3>
-                        <p>Адрес: пр. Энгельса, 111</p>
-                        <p><strong>Расписание на март 2026:</strong></p>
-                        <ul class="schedule-list">
-                            <li>4 марта (среда) 17:00 – 18:00</li>
-                            <li>6 марта (пятница) 16:00 – 17:00</li>
-                            <li>11 марта (среда) 16:00 – 17:00</li>
-                            <li>20 марта (пятница) 17:00 – 18:00</li>
-                            <li>25 марта (среда) 17:00 – 18:00</li>
-                            <li>27 марта (пятница) 17:00 – 18:00</li>
-                        </ul>
-                    </div>
-                    <div class="schedule-item fade-in">
-                        <h3><i class="fas fa-calendar-alt" style="color: #e5989b;"></i> Библиотека «Авеню»</h3>
-                        <p>Адрес: пр. Просвещения, 87</p>
-                        <p><strong>Расписание на март 2026:</strong></p>
-                        <ul class="schedule-list">
-                            <li>13 марта (пятница) 18:00 – 19:00</li>
-                            <li>18 марта (среда) 18:00 – 19:00</li>
-                            <li>20 марта (пятница) 15:00 – 16:00</li>
-                            <li>25 марта (среда) 15:00 – 16:00</li>
-                            <li>27 марта (пятница) 15:00 – 16:00</li>
-                        </ul>
-                    </div>
+            <h2 class="section-title">Библиотеки Выборгского района</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">Здесь вы найдёте адреса и контакты всех библиотек ЦБС Выборгского района.</p>
+            
+            <div class="libraries-grid">
+                <!-- 1. Библиотека им. Д.С. Лихачева -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека им. Д.С. Лихачева</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Тореза, д. 32</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-01</div>
+                    <a href="https://vk.ru/toreza32" target="_blank" class="library-link">vk.ru/toreza32</a>
                 </div>
-                <p style="text-align: center; margin-top: 2rem;">Вход свободный, по предварительной записи. Запись по телефону <strong>+7 (812) 246-93-05</strong> или в <a href="https://vk.com/pargolovskaya_library" target="_blank">группе ВКонтакте</a>.</p>
+                <!-- 2. Библиотека «Батенинская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Батенинская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> ул. Харченко, д. 17</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-02</div>
+                    <a href="https://vk.ru/kharchenko_17" target="_blank" class="library-link">vk.ru/kharchenko_17</a>
+                </div>
+                <!-- 3. Библиотека «Удельнинская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Удельнинская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Энгельса, д. 53</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-03</div>
+                    <a href="https://vk.ru/engelsa_53" target="_blank" class="library-link">vk.ru/engelsa_53</a>
+                </div>
+                <!-- 4. Библиотека «Своя» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Своя»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> ул. Руднева, д. 25</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-04</div>
+                    <a href="https://vk.ru/rudneva25" target="_blank" class="library-link">vk.ru/rudneva25</a>
+                </div>
+                <!-- 5. Библиотека «Парголовская» (текущая) -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Парголовская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пос. Парголово, ул. Торфяная, д. 25</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</div>
+                    <a href="https://vk.com/pargolovskaya_library" target="_blank" class="library-link">vk.com/pargolovskaya_library</a>
+                </div>
+                <!-- 6. Библиотека «Левашовская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Левашовская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пос. Левашово, ул. Железнодорожная, д. 46</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-06</div>
+                    <a href="https://vk.ru/zheleznodorozhnyi46" target="_blank" class="library-link">vk.ru/zheleznodorozhnyi46</a>
+                </div>
+                <!-- 7. Библиоцентр детского чтения -->
+                <div class="library-card fade-in">
+                    <h3>Библиоцентр детского чтения</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Скобелевский, д. 4</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-07</div>
+                    <a href="https://vk.ru/skobelev4" target="_blank" class="library-link">vk.ru/skobelev4</a>
+                </div>
+                <!-- 8. Библиотечный центр «СТАРТ» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотечный центр «СТАРТ»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> ул. Елизаветинская, д. 8/1</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-08</div>
+                    <a href="https://vk.ru/bc_start" target="_blank" class="library-link">vk.ru/bc_start</a>
+                </div>
+                <!-- 9. Библиотека «Книга во времени» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Книга во времени»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Пархоменко, д. 18</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-09</div>
+                    <a href="https://vk.ru/parhomenko18" target="_blank" class="library-link">vk.ru/parhomenko18</a>
+                </div>
+                <!-- 10. Библиотека-филиал № 10 (на Художников) -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека-филиал № 10 (на Художников)</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Художников, д. 9, корп. 1</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-10</div>
+                    <a href="https://vk.ru/khudognikov" target="_blank" class="library-link">vk.ru/khudognikov</a>
+                </div>
+                <!-- 11. Центральная районная библиотека «В Озерках» -->
+                <div class="library-card fade-in">
+                    <h3>Центральная районная библиотека «В Озерках»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Энгельса, д. 111, корп. 1</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-11</div>
+                    <a href="https://vk.ru/engelsa111" target="_blank" class="library-link">vk.ru/engelsa111</a>
+                </div>
+                <!-- 12. Центральная детская библиотека им. Н.А. Внукова -->
+                <div class="library-card fade-in">
+                    <h3>Центральная детская библиотека им. Н.А. Внукова</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Просвещения, д. 36/141</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-12</div>
+                    <a href="https://vk.ru/spb_cdb" target="_blank" class="library-link">vk.ru/spb_cdb</a>
+                </div>
+                <!-- 13. Библиотека «АЗАРТ» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «АЗАРТ»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> Б. Сампсониевский пр., д. 77</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-13</div>
+                    <a href="https://vk.ru/azart_book" target="_blank" class="library-link">vk.ru/azart_book</a>
+                </div>
+                <!-- 14. Библиотека «Мастерская» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «Мастерская»</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Просвещения, д. 43, ТРК «Парк Молл», 2 этаж</div>
+                    <div class="library-phone"><i class="fas fa-phone-alt"></i> +7 (812) 246-93-27</div>
+                    <a href="https://vk.ru/workshop_book" target="_blank" class="library-link">vk.ru/workshop_book</a>
+                </div>
+                <!-- 15. Библиотека «АВЕНЮ» -->
+                <div class="library-card fade-in">
+                    <h3>Библиотека «АВЕНЮ» (семейная библиотека)</h3>
+                    <div class="library-address"><i class="fas fa-map-marker-alt"></i> пр. Просвещения, д. 87</div>
+                    <a href="https://vk.ru/biblioteka_avenue" target="_blank" class="library-link">vk.ru/biblioteka_avenue</a>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 1.5rem; background: #fff; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05);">
+                <p><strong>Централизованная библиотечная система Выборгского района</strong></p>
+                <p><i class="fas fa-map-marker-alt" style="color: #b5838d;"></i> пр. Энгельса, д. 13/2, Санкт-Петербург</p>
+                <p><i class="fas fa-phone-alt" style="color: #b5838d;"></i> +7 (812) 246-93-19</p>
+                <p><i class="fas fa-envelope" style="color: #b5838d;"></i> info@cbsvib.ru</p>
+                <p><a href="http://cbsvib.ru" target="_blank" style="color: #e5989b;">cbsvib.ru</a></p>
             </div>
         </div>
     </section>
 
-    <!-- Подвал (как в about.html) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -199,7 +243,6 @@
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
-
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -225,31 +268,25 @@
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
                         <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
-                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
-                    <p style="margin-top: 0.5rem;">
-                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-eye"></i> Версия для слабовидящих
-                        </a>
-                    </p>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/events.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/district-libraries.html" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
-                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
                     </div>
                 </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
@@ -263,6 +300,5 @@
     </div>
 
     <script src="common.js"></script>
-    <!-- На этой странице нет уникальных скриптов, кроме общих -->
 </body>
 </html>
