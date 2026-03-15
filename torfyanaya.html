@@ -326,19 +326,34 @@
                 <p>Больше книг о Парголово и окрестностях вы найдёте в разделе <a href="kraevedenie.html#knizhnaya-polka" style="color: #e5989b; font-weight: 600;">«Краеведение»</a>.</p>
             </div>
 
-            <!-- Форма сбора материалов -->
+            <!-- Форма сбора материалов (без загрузки файлов) -->
             <h2 class="section-title" style="margin-top:2rem;">Поделиться историей</h2>
             <div class="form-block fade-in" id="form">
+                <p>Заполните форму, чтобы отправить текстовое описание. Если у вас есть фотографии или документы, пришлите их на почту <a href="mailto:pargolovo@cbsvib.ru">pargolovo@cbsvib.ru</a>.</p>
                 <form id="torf-form">
-                    <div class="form-group"><label for="name">Ваше имя</label><input type="text" id="name" name="name" required></div>
-                    <div class="form-group"><label for="contact">Телефон или email</label><input type="text" id="contact" name="contact" required></div>
-                    <div class="form-group"><label for="material-type">Тип материала</label>
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact">Телефон или email</label>
+                        <input type="text" id="contact" name="contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="material-type">Тип материала</label>
                         <select id="material-type" name="material-type">
-                            <option value="photo">Фотография</option><option value="document">Документ</option><option value="audio">Аудио</option><option value="video">Видео</option><option value="text">Текст</option>
+                            <option value="photo">Фотография</option>
+                            <option value="document">Документ</option>
+                            <option value="audio">Аудио</option>
+                            <option value="video">Видео</option>
+                            <option value="text">Текст</option>
                         </select>
                     </div>
-                    <div class="form-group"><label for="description">Описание</label><textarea id="description" name="description" required></textarea></div>
-                    <div class="form-group"><label for="file">Прикрепить файл</label><input type="file" id="file" name="file"></div>
+                    <div class="form-group">
+                        <label for="description">Описание</label>
+                        <textarea id="description" name="description" required></textarea>
+                    </div>
+                    <!-- Поле для загрузки файлов удалено -->
                     <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
                         <input type="checkbox" id="privacy-check" name="privacy" required style="width: auto;">
                         <label for="privacy-check">Я согласен с <a href="privacy.html">Политикой конфиденциальности</a></label>
@@ -436,7 +451,7 @@
                     headers: { 'Accept': 'application/json' }
                 });
                 if (response.ok) {
-                    statusDiv.textContent = 'Спасибо! Материалы отправлены.';
+                    statusDiv.textContent = 'Спасибо! Сообщение отправлено.';
                     form.reset();
                     if (window.ym) ym(107242178, 'reachGoal', 'FORM_SENT');
                 } else {
