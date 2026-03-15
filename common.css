@@ -265,6 +265,30 @@ header {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
+/* ===== КОМПАКТНЫЕ КНОПКИ ДЛЯ "ПОДЕЛИТЬСЯ" ===== */
+.share-btn {
+    display: inline-block;
+    background-color: #e5989b;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8rem;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+.share-btn:hover {
+    background-color: #d68b8e;
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+.share-btn i {
+    margin-right: 4px;
+}
+
 /* ===== ЗАГОЛОВКИ РАЗДЕЛОВ ===== */
 .section-title {
     position: relative;
@@ -591,11 +615,4 @@ body.special-mode .footer-col a {
 .back-to-top.show {
     opacity: 1;
     visibility: visible;
-}
-
-/* ===== КОМПАКТНЫЕ КНОПКИ ДЛЯ "ПОДЕЛИТЬСЯ" ===== */
-.share-block .btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-    margin-top: 0.5rem;
 }
