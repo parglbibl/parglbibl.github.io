@@ -28,52 +28,66 @@
         });
     }
 
-    // ---- Адаптивное меню (исправленная версия) ----
+    // ---- Адаптивное меню (новая версия с data-атрибутами) ----
     (function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
         const originalHTML = nav.innerHTML;
 
-        function buildMobile(items) {
-            const main = ['Главная', 'О нас', 'Краеведение', 'Новинки', 'Услуги'];
-            const more = ['Спидкубинг', 'События', 'Библиотеки района', 'Партнёры', 'Вопросы', 'Фотогалерея', 'Контакты'];
+        function buildMobile() {
+            // Получаем все пункты меню из оригинального HTML
+            const temp = document.createElement('div');
+            temp.innerHTML = originalHTML;
+            const items = Array.from(temp.querySelectorAll('ul > li'));
+
+            const mainItems = [];
+            const moreItems = [];
+
+            // Разделяем пункты по data-атрибуту
+            items.forEach(li => {
+                if (li.dataset.mobile === 'main') {
+                    mainItems.push(li);
+                } else if (li.dataset.mobile === 'more') {
+                    moreItems.push(li);
+                } else {
+                    // Если атрибут не указан, по умолчанию считаем основным
+                    mainItems.push(li);
+                }
+            });
 
             let html = '<ul>';
-            main.forEach(text => {
-                const li = items.find(li => li.textContent.trim() === text);
-                if (li) {
+            mainItems.forEach(li => {
+                const a = li.querySelector('a');
+                if (a) {
+                    const href = a.getAttribute('href');
+                    const active = a.classList.contains('active') ? 'active' : '';
+                    const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                    const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
+                    html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                }
+            });
+
+            if (moreItems.length > 0) {
+                html += `<li class="mobile-more"><a href="#" id="mobileMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a><ul class="mobile-submenu" style="display: none;">`;
+                moreItems.forEach(li => {
                     const a = li.querySelector('a');
                     if (a) {
                         const href = a.getAttribute('href');
                         const active = a.classList.contains('active') ? 'active' : '';
                         const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                        const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
                         html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
                     }
-                }
-            });
-            html += `<li class="mobile-more"><a href="#" id="mobileMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a><ul class="mobile-submenu" style="display: none;">`;
-            more.forEach(text => {
-                const li = items.find(li => li.textContent.trim() === text);
-                if (li) {
-                    const a = li.querySelector('a');
-                    if (a) {
-                        const href = a.getAttribute('href');
-                        const active = a.classList.contains('active') ? 'active' : '';
-                        const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
-                        html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
-                    }
-                }
-            });
-            html += '</ul></li></ul>';
+                });
+                html += '</ul></li>';
+            }
+            html += '</ul>';
             return html;
         }
 
-        function update() {
+        function updateMobileMenu() {
             if (window.innerWidth <= 768) {
-                const temp = document.createElement('div');
-                temp.innerHTML = originalHTML;
-                const items = Array.from(temp.querySelectorAll('ul > li'));
-                nav.innerHTML = buildMobile(items);
+                nav.innerHTML = buildMobile();
                 const moreToggle = document.getElementById('mobileMoreToggle');
                 if (moreToggle) {
                     moreToggle.addEventListener('click', function(e) {
@@ -98,12 +112,12 @@
 
         const mq = window.matchMedia('(max-width: 768px)');
         if (mq.addEventListener) {
-            mq.addEventListener('change', update);
+            mq.addEventListener('change', updateMobileMenu);
         } else {
-            mq.addListener(update);
+            mq.addListener(updateMobileMenu);
         }
-        window.addEventListener('load', update);
-        if (mq.matches) update();
+        window.addEventListener('load', updateMobileMenu);
+        if (mq.matches) updateMobileMenu();
     })();
 
     // ---- КНОПКА «НАВЕРХ» (УПРАВЛЕНИЕ ЧЕРЕЗ ИНЛАЙН-СТИЛИ) ----
@@ -114,7 +128,7 @@
             return;
         }
 
-        // Убедимся, что у кнопки есть базовые стили (можно и в CSS, но для надёжности пропишем)
+        // Убедимся, что у кнопки есть базовые стили
         backToTop.style.position = 'fixed';
         backToTop.style.bottom = '2rem';
         backToTop.style.right = '2rem';
@@ -143,7 +157,7 @@
 
         window.addEventListener('scroll', toggleButton);
         window.addEventListener('touchmove', toggleButton);
-        toggleButton(); // проверяем сразу
+        toggleButton();
 
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
