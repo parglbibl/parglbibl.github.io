@@ -484,6 +484,48 @@
 
     <script src="common.js"></script>
     <script>
+(function() {
+    var btn = document.getElementById('backToTop');
+    if (!btn) return;
+
+    // Принудительно задаём стили (перебиваем любые CSS)
+    btn.style.position = 'fixed';
+    btn.style.bottom = '20px';
+    btn.style.right = '20px';
+    btn.style.zIndex = '9999';
+    btn.style.backgroundColor = '#e5989b';
+    btn.style.color = '#fff';
+    btn.style.width = '50px';
+    btn.style.height = '50px';
+    btn.style.borderRadius = '50%';
+    btn.style.display = 'flex';
+    btn.style.alignItems = 'center';
+    btn.style.justifyContent = 'center';
+    btn.style.textDecoration = 'none';
+    btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    btn.style.transition = 'opacity 0.3s, visibility 0.3s';
+
+    function toggle() {
+        if (window.scrollY > 300) {
+            btn.style.opacity = '1';
+            btn.style.visibility = 'visible';
+        } else {
+            btn.style.opacity = '0';
+            btn.style.visibility = 'hidden';
+        }
+    }
+
+    window.addEventListener('scroll', toggle);
+    window.addEventListener('touchmove', toggle); // для мобильных
+    toggle();
+
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+})();
+</script>
+    <script>
         // Массив книг (20 книг) – замените пути на свои
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
