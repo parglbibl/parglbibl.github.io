@@ -263,9 +263,4 @@
             banner.style.display = 'none';
         });
     }
-
-    // ---- Fancybox (если есть) ----
-    if (typeof Fancybox !== 'undefined') {
-        Fancybox.bind("[data-fancybox]");
-    }
 })();
