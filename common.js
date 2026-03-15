@@ -2,7 +2,7 @@
 (function() {
     "use strict";
 
-    // ---- Бургер-меню ----
+    // ---- Бургер-меню (мобильное) ----
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
     if (menuToggle && nav) {
@@ -28,30 +28,48 @@
         });
     }
 
-    // ---- Адаптивное меню (новая версия с data-атрибутами) ----
+    // ---- Адаптивное меню (универсальное) ----
     (function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
+
+        // Сохраняем оригинальный HTML меню (один раз)
         const originalHTML = nav.innerHTML;
 
-        function buildMobile() {
-            // Получаем все пункты меню из оригинального HTML
+        // Функция для получения списка пунктов с атрибутами
+        function getMenuItems() {
             const temp = document.createElement('div');
             temp.innerHTML = originalHTML;
-            const items = Array.from(temp.querySelectorAll('ul > li'));
+            return Array.from(temp.querySelectorAll('ul > li'));
+        }
 
+        // Функция для обновления меню в зависимости от ширины
+        function updateMenu() {
+            const width = window.innerWidth;
+
+            // Мобильная версия (до 768px)
+            if (width <= 768) {
+                buildMobileMenu();
+                return;
+            }
+
+            // Десктопная версия (с выпадающим "Ещё")
+            buildDesktopMenu();
+        }
+
+        // ---- Построение мобильного меню (как было) ----
+        function buildMobileMenu() {
+            const items = getMenuItems();
             const mainItems = [];
             const moreItems = [];
 
-            // Разделяем пункты по data-атрибуту
             items.forEach(li => {
                 if (li.dataset.mobile === 'main') {
                     mainItems.push(li);
                 } else if (li.dataset.mobile === 'more') {
                     moreItems.push(li);
                 } else {
-                    // Если атрибут не указан, по умолчанию считаем основным
-                    mainItems.push(li);
+                    mainItems.push(li); // по умолчанию
                 }
             });
 
@@ -82,45 +100,111 @@
                 html += '</ul></li>';
             }
             html += '</ul>';
-            return html;
-        }
+            nav.innerHTML = html;
 
-        function updateMobileMenu() {
-            if (window.innerWidth <= 768) {
-                nav.innerHTML = buildMobile();
-                const moreToggle = document.getElementById('mobileMoreToggle');
-                if (moreToggle) {
-                    moreToggle.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const sub = this.nextElementSibling;
-                        const icon = this.querySelector('i');
-                        if (sub.style.display === 'none' || sub.style.display === '') {
-                            sub.style.display = 'block';
-                            icon.classList.remove('fa-chevron-down');
-                            icon.classList.add('fa-chevron-up');
-                        } else {
-                            sub.style.display = 'none';
-                            icon.classList.remove('fa-chevron-up');
-                            icon.classList.add('fa-chevron-down');
-                        }
-                    });
-                }
-            } else {
-                nav.innerHTML = originalHTML;
+            const moreToggle = document.getElementById('mobileMoreToggle');
+            if (moreToggle) {
+                moreToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sub = this.nextElementSibling;
+                    const icon = this.querySelector('i');
+                    if (sub.style.display === 'none' || sub.style.display === '') {
+                        sub.style.display = 'block';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        sub.style.display = 'none';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
             }
         }
 
-        const mq = window.matchMedia('(max-width: 768px)');
-        if (mq.addEventListener) {
-            mq.addEventListener('change', updateMobileMenu);
-        } else {
-            mq.addListener(updateMobileMenu);
+        // ---- Построение десктопного меню с выпадающим "Ещё" ----
+        function buildDesktopMenu() {
+            const items = getMenuItems();
+            const mainItems = [];
+            const moreItems = [];
+
+            items.forEach(li => {
+                if (li.dataset.mobile === 'main') {
+                    mainItems.push(li);
+                } else if (li.dataset.mobile === 'more') {
+                    moreItems.push(li);
+                } else {
+                    mainItems.push(li);
+                }
+            });
+
+            // Начинаем со стандартного меню (все пункты подряд)
+            let html = '<ul class="desktop-menu">';
+
+            // Сначала добавляем все mainItems (они всегда видны)
+            mainItems.forEach(li => {
+                const a = li.querySelector('a');
+                if (a) {
+                    const href = a.getAttribute('href');
+                    const active = a.classList.contains('active') ? 'active' : '';
+                    const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                    const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
+                    html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                }
+            });
+
+            // Если есть пункты для подменю, добавляем выпадающий список "Ещё"
+            if (moreItems.length > 0) {
+                html += `<li class="desktop-more">
+                    <a href="#" id="desktopMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a>
+                    <ul class="desktop-submenu">`;
+                moreItems.forEach(li => {
+                    const a = li.querySelector('a');
+                    if (a) {
+                        const href = a.getAttribute('href');
+                        const active = a.classList.contains('active') ? 'active' : '';
+                        const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                        const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
+                        html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                    }
+                });
+                html += `</ul></li>`;
+            }
+
+            html += '</ul>';
+            nav.innerHTML = html;
+
+            // Добавляем обработчик для выпадающего списка (по наведению или клику)
+            const desktopMore = document.getElementById('desktopMoreToggle');
+            if (desktopMore) {
+                // По клику (для сенсорных экранов)
+                desktopMore.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sub = this.nextElementSibling;
+                    sub.classList.toggle('show');
+                });
+
+                // По наведению (для мыши)
+                const parentLi = desktopMore.closest('.desktop-more');
+                parentLi.addEventListener('mouseenter', function() {
+                    const sub = this.querySelector('.desktop-submenu');
+                    if (sub) sub.classList.add('show');
+                });
+                parentLi.addEventListener('mouseleave', function() {
+                    const sub = this.querySelector('.desktop-submenu');
+                    if (sub) sub.classList.remove('show');
+                });
+            }
         }
-        window.addEventListener('load', updateMobileMenu);
-        if (mq.matches) updateMobileMenu();
+
+        // Запускаем при загрузке и изменении размера окна
+        window.addEventListener('resize', updateMenu);
+        updateMenu();
+
+        // Также обновляем меню после полной загрузки страницы (на случай шрифтов и т.п.)
+        window.addEventListener('load', updateMenu);
     })();
 
-    // ---- КНОПКА «НАВЕРХ» (УПРАВЛЕНИЕ ЧЕРЕЗ ИНЛАЙН-СТИЛИ) ----
+    // ---- КНОПКА «НАВЕРХ» (без изменений) ----
     function setupBackToTop() {
         const backToTop = document.getElementById('backToTop');
         if (!backToTop) {
@@ -128,7 +212,6 @@
             return;
         }
 
-        // Убедимся, что у кнопки есть базовые стили
         backToTop.style.position = 'fixed';
         backToTop.style.bottom = '2rem';
         backToTop.style.right = '2rem';
@@ -165,7 +248,6 @@
         });
     }
 
-    // Запускаем после загрузки DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', setupBackToTop);
     } else {
