@@ -15,7 +15,7 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Schema.org разметка -->
+    <!-- Schema.org -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -58,14 +58,14 @@
     <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
     
-    <!-- Шрифты и иконки (подключаются через common.css, но для надёжности оставим) -->
+    <!-- Дополнительные шрифты (дублируются, но для надёжности) -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Fancybox CSS (для галереи книг) -->
+    <!-- Fancybox CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
-    <!-- Уникальные стили для страницы новинок -->
+    <!-- Специфические стили для сетки книг -->
     <style>
         .books-grid {
             display: grid;
@@ -150,7 +150,7 @@
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                 </ul>
-                <!-- Поиск (как на других страницах) -->
+                <!-- Поиск (стандартный для сайта) -->
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
                     <div class="search-popup" id="searchPopup">
@@ -246,10 +246,8 @@
         </div>
     </footer>
 
-    <!-- Кнопка "Наверх" (управляется через common.js, но элемент оставляем) -->
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
-    <!-- Баннер cookie (управляется common.js) -->
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
@@ -259,7 +257,7 @@
     <!-- Подключаем общий скрипт (бургер, поиск, аккордеон, версия для слабовидящих, cookie) -->
     <script src="common.js"></script>
 
-    <!-- Fancybox JS (для галереи) -->
+    <!-- Fancybox JS -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
     <script>
@@ -315,7 +313,7 @@
 
         displayAllBooks();
 
-        // Инициализация fade-in элементов (если нужна)
+        // Анимация появления при скролле (fade-in)
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
         const appearOnScroll = new IntersectionObserver((entries, observer) => {
