@@ -32,7 +32,7 @@
     (function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
-        const originalHTML = nav.innerHTML; // сохраняем исходное меню
+        const originalHTML = nav.innerHTML;
 
         function buildMobile(items) {
             const main = ['Главная', 'О нас', 'Краеведение', 'Новинки', 'Услуги'];
@@ -106,9 +106,15 @@
         if (mq.matches) update();
     })();
 
-    // ---- КНОПКА «НАВЕРХ» (исправлено) ----
-    const backToTop = document.getElementById('backToTop');
-    if (backToTop) {
+    // ---- КНОПКА «НАВЕРХ» (УСИЛЕННАЯ ВЕРСИЯ) ----
+    function setupBackToTop() {
+        const backToTop = document.getElementById('backToTop');
+        if (!backToTop) {
+            // Если кнопка ещё не появилась в DOM, пробуем позже
+            setTimeout(setupBackToTop, 300);
+            return;
+        }
+
         function toggleButton() {
             if (window.scrollY > 300 || document.documentElement.scrollTop > 300) {
                 backToTop.classList.add('show');
@@ -116,13 +122,22 @@
                 backToTop.classList.remove('show');
             }
         }
+
         window.addEventListener('scroll', toggleButton);
-        toggleButton();
+        window.addEventListener('touchmove', toggleButton); // для мобильных
+        toggleButton(); // проверяем сразу
 
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+    }
+
+    // Запускаем после загрузки DOM
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupBackToTop);
+    } else {
+        setupBackToTop();
     }
 
     // ---- Аккордеон в подвале ----
