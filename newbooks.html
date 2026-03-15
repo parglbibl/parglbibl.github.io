@@ -55,17 +55,13 @@
     }
     </script>
     
-    <!-- Общие стили -->
+    <!-- Общие стили всего сайта -->
     <link rel="stylesheet" href="common.css">
     
-    <!-- Дополнительные шрифты (дублируются, но для надёжности) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <!-- Fancybox CSS -->
+    <!-- Fancybox CSS (для галереи) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
-    <!-- Специфические стили для сетки книг -->
+    <!-- Специфические стили только для сетки книг -->
     <style>
         .books-grid {
             display: grid;
@@ -123,9 +119,20 @@
             font-size: 0.9rem;
             color: #888;
         }
+        /* fade-in уже есть в common, но для уверенности */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.7s, transform 0.7s;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
     </style>
 </head>
 <body class="page-transition">
+    <!-- Шапка (полностью из common) -->
     <header>
         <div class="container header-inner">
             <a href="index.html" class="logo">
@@ -150,7 +157,7 @@
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                 </ul>
-                <!-- Поиск (стандартный для сайта) -->
+                <!-- Поиск (стандартный попап) -->
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
                     <div class="search-popup" id="searchPopup">
@@ -167,9 +174,9 @@
         </div>
     </header>
 
+    <!-- Основной контент -->
     <section class="section">
         <div class="container">
-            <!-- Хлебные крошки -->
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
                 <span>Новые поступления</span>
@@ -181,7 +188,7 @@
         </div>
     </section>
 
-    <!-- Подвал (стандартный) -->
+    <!-- Подвал (стандартный из common) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -254,14 +261,14 @@
         <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
     </div>
 
-    <!-- Подключаем общий скрипт (бургер, поиск, аккордеон, версия для слабовидящих, cookie) -->
+    <!-- Общий скрипт сайта (бургер, поиск, аккордеон, версия для слабовидящих, cookie, метрика) -->
     <script src="common.js"></script>
 
     <!-- Fancybox JS -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
     <script>
-        // Массив книг (20 книг) – имена файлов должны точно совпадать с реальными (с учётом регистра!)
+        // Массив книг (20 книг)
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
             { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
