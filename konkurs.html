@@ -122,6 +122,14 @@
             font-weight: 600;
             margin: 1rem 0;
         }
+        .share-block {
+            text-align: center;
+            margin: 1rem 0 0;
+        }
+        .share-block .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -133,7 +141,6 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <!-- Основные пункты (всегда видны на десктопе) -->
                     <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
@@ -143,7 +150,6 @@
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе, в мобильном меню тоже под кат) -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
@@ -180,6 +186,7 @@
 
             <h1 class="section-title">Конкурс «История одной улицы»</h1>
 
+            <!-- Блок о конкурсе -->
             <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b;">
                 <h3><i class="fas fa-trophy" style="color: #e5989b;"></i> О конкурсе</h3>
                 <p>Мы участвуем в городском конкурсе краеведческих выставок <strong>«История одной улицы»</strong>, посвящённом улице Торфяной. Главное условие конкурса — <strong>сотворчество</strong>: вы можете стать соавторами нашей инсталляции, поделившись старыми фотографиями, документами, воспоминаниями.</p>
@@ -191,6 +198,12 @@
                 <div style="text-align: center; margin-top: 2rem;">
                     <a href="torfyanaya.html#form" class="btn btn-large">📤 Поделиться историей</a>
                 </div>
+                <!-- Кнопка поделиться для этого блока -->
+                <div class="share-block">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/konkurs.html&title=Конкурс%20«История%20одной%20улицы»&description=Мы%20участвуем%20в%20городском%20конкурсе%20краеведческих%20выставок,%20посвящённом%20улице%20Торфяной.%20Приглашаем%20поделиться%20старыми%20фотографиями%20и%20воспоминаниями!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                        <i class="fab fa-vk"></i> Поделиться конкурсом
+                    </a>
+                </div>
             </div>
 
             <h2 class="section-title">Народный альбом</h2>
@@ -199,6 +212,7 @@
                     <i class="fas fa-images" style="font-size: 3rem; color: #e5989b; margin-bottom: 1rem;"></i>
                     <p>Здесь появятся фотографии, присланные вами. Присылайте свои снимки Торфяной улицы разных лет — и они попадут в этот альбом!</p>
                 </div>
+                <!-- Для каждой будущей фотографии можно будет добавить кнопку поделиться -->
             </div>
 
             <h2 class="section-title">Голоса улицы</h2>
@@ -206,6 +220,12 @@
                 <div class="voice-card" style="background: #f8f8f8; border: 2px dashed #ccc; text-align: center; color: #aaa;">
                     <i class="fas fa-microphone-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
                     <p>Здесь будут ваши воспоминания. Делитесь историями о Торфяной улице!</p>
+                    <!-- Заглушка для кнопки поделиться (для будущих записей) -->
+                    <div class="share-block">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/konkurs.html&title=Голос%20улицы&description=Здесь%20будут%20ваши%20воспоминания.%20Делитесь%20историями%20о%20Торфяной%20улице!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
+                            <i class="fab fa-vk"></i> Поделиться
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -279,7 +299,7 @@
         </div>
     </footer>
 
-    <!-- Баннер cookie -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
     <div id="cookie-banner">...</div>
 
     <script src="common.js"></script>
