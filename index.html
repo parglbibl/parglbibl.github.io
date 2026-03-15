@@ -367,7 +367,8 @@
                     <div style="flex: 1;">
                         <h3 style="color: #5e4b3c; margin-bottom: 0.5rem;">2026 – Год единства народов</h3>
                         <p style="margin-bottom: 1rem; color: #4a4a4a;">Парголово всегда было местом встречи разных культур. В истории нашего края переплелись судьбы русских, финнов, ижор и многих других народов. Приглашаем вас познакомиться с материалами, которые раскрывают это многообразие.</p>
-                        <a href="pargolovo-culture.html" class="btn">Подробнее</a>
+                        <!-- ИСПРАВЛЕННАЯ ССЫЛКА -->
+                        <a href="kraevedenie.html#narody" class="btn">Подробнее</a>
                     </div>
                 </div>
             </div>
@@ -483,48 +484,6 @@
     </div>
 
     <script src="common.js"></script>
-    <script>
-(function() {
-    var btn = document.getElementById('backToTop');
-    if (!btn) return;
-
-    // Принудительно задаём стили (перебиваем любые CSS)
-    btn.style.position = 'fixed';
-    btn.style.bottom = '20px';
-    btn.style.right = '20px';
-    btn.style.zIndex = '9999';
-    btn.style.backgroundColor = '#e5989b';
-    btn.style.color = '#fff';
-    btn.style.width = '50px';
-    btn.style.height = '50px';
-    btn.style.borderRadius = '50%';
-    btn.style.display = 'flex';
-    btn.style.alignItems = 'center';
-    btn.style.justifyContent = 'center';
-    btn.style.textDecoration = 'none';
-    btn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
-    btn.style.transition = 'opacity 0.3s, visibility 0.3s';
-
-    function toggle() {
-        if (window.scrollY > 300) {
-            btn.style.opacity = '1';
-            btn.style.visibility = 'visible';
-        } else {
-            btn.style.opacity = '0';
-            btn.style.visibility = 'hidden';
-        }
-    }
-
-    window.addEventListener('scroll', toggle);
-    window.addEventListener('touchmove', toggle); // для мобильных
-    toggle();
-
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})();
-</script>
     <script>
         // Массив книг (20 книг) – замените пути на свои
         const newBooks = [
