@@ -6,6 +6,7 @@
     <title>Парголовская библиотека - Спидкубинг</title>
     <meta name="description" content="Спидкубинг (скоростная сборка кубика Рубика) в Парголовской библиотеке. Польза для детей и взрослых, включая ОВЗ и участников СВО. Занятия и творческие проекты.">
     
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -13,10 +14,14 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
+    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
+    
+    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+    
+    <!-- Fancybox убран -->
     
     <style>
         .info-block, .photo-gallery a {
@@ -59,31 +64,15 @@
             height: 200px;
             object-fit: cover;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.5s, filter 0.3s;
+            transition: transform 0.5s;
         }
-        .photo-gallery img:hover {
-            transform: scale(1.05) rotate(1deg);
-            filter: brightness(1.02);
+        .photo-gallery a:hover img {
+            transform: scale(1.05);
         }
-        .download-icon {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgba(255,255,255,0.8);
-            color: #b5838d;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 2;
+        .share-block {
+            text-align: center;
+            margin: 2rem 0;
         }
-        .photo-gallery a:hover .download-icon { opacity: 1; }
     </style>
 </head>
 <body class="page-transition">
@@ -105,7 +94,7 @@
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе, в мобильном меню тоже под кат) -->
+                    <!-- Второстепенные пункты (уходят в "Ещё") -->
                     <li data-mobile="more"><a href="speedcubing.html" class="active"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
@@ -149,67 +138,38 @@
 
             <h2 class="section-title">Картины из кубиков Рубика</h2>
             <div class="photo-gallery">
-                <a href="kyb1.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb1.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb2.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb2.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb3.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb3.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb4.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb4.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb5.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb5.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb6.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb6.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb7.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb7.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb8.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb8.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb9.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb9.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb10.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb10.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb11.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb11.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb12.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb12.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb13.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb13.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="kyb14.jpg" data-fancybox="cubing-gallery" data-caption="Картина из кубиков Рубика" download>
-                    <img src="kyb14.jpg" alt="Картина из кубиков Рубика" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
+                <a href="kyb1.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb1.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb2.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb2.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb3.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb3.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb4.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb4.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb5.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb5.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb6.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb6.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb7.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb7.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb8.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb8.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb9.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb9.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb10.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb10.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb11.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb11.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb12.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb12.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb13.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb13.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
+                <a href="kyb14.jpg" target="_blank" rel="noopener noreferrer"><img src="kyb14.jpg" alt="Картина из кубиков Рубика" loading="lazy"></a>
             </div>
-            <p style="text-align: center; margin-top: 1rem;">Нажмите на фото, чтобы увеличить, или на иконку скачивания, чтобы сохранить.</p>
+            <p style="text-align: center; margin-top: 1rem;">Нажмите на фото, чтобы открыть в полном размере.</p>
+
+            <!-- Кнопка "Поделиться ВКонтакте" -->
+            <div class="share-block">
+                <script>
+                    document.write(VK.Share.button({
+                        url: 'https://parglbibl.ru/speedcubing.html',
+                        title: 'Спидкубинг в Парголовской библиотеке',
+                        description: 'Скоростная сборка кубика Рубика для детей и взрослых. Занятия бесплатные, польза для ОВЗ и участников СВО.',
+                        image: 'https://parglbibl.ru/logo.PNG'
+                    }, {type: 'round', text: 'Поделиться'}));
+                </script>
+            </div>
         </div>
     </section>
 
+    <!-- Подвал (стандартный) -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -219,6 +179,7 @@
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
+
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -244,30 +205,37 @@
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
+
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
                         <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
-                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
-                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
+                    <p style="margin-top: 0.5rem;">
+                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-eye"></i> Версия для слабовидящих
+                        </a>
+                    </p>
                 </div>
             </div>
+
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/speedcubing.html" target="_blank"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/speedcubing.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
-                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
+                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
                     </div>
                 </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
 
-    <!-- Баннер cookie -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
@@ -275,9 +243,5 @@
     </div>
 
     <script src="common.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        Fancybox.bind("[data-fancybox]");
-    </script>
 </body>
 </html>
