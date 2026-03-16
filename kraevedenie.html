@@ -64,15 +64,6 @@
             margin-top: auto;
         }
 
-        /* Стили для интерактивной карты */
-        #map {
-            width: 100%;
-            height: 450px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-top: 2rem;
-        }
-
         /* Стили для книжной полки */
         .books-grid {
             display: grid;
@@ -275,13 +266,6 @@
                 </div>
             </div>
 
-            <!-- Интерактивная карта достопримечательностей -->
-            <h2 class="section-title">Карта достопримечательностей</h2>
-            <div id="map"></div>
-            <p style="text-align: center; margin-top: 1rem; color: #666;">
-                <i class="fas fa-map-pin" style="color: #e5989b;"></i> Кликните по метке, чтобы узнать подробности.
-            </p>
-
             <!-- НАРОДЫ ПАРГОЛОВО (без кнопок поделиться) -->
             <h2 class="section-title" id="narody">Народы Парголово</h2>
             <div class="projects-grid" style="margin-bottom: 2rem;">
@@ -289,19 +273,16 @@
                     <i class="fas fa-mountain"></i>
                     <h3>Ижора и финны-ингерманландцы</h3>
                     <p>Само название «Парголово» происходит от финского Parkala и впервые упоминается в Писцовой книге Водской пятины в 1500 году как селение Паркола. В XVII веке, когда эти земли входили в состав Швеции, сюда переселились финны-ингерманландцы. В деревне Старожиловка до середины XIX века проживало финское население, там находился лютеранский храм. Ещё более древнее население этих мест — ижора, чьё присутствие зафиксировано в документах XII века.</p>
-                    <!-- Кнопка поделиться удалена -->
                 </div>
                 <div class="project-card fade-in" style="text-align: left;">
                     <i class="fas fa-church"></i>
                     <h3>Русские переселенцы</h3>
                     <p>В 1746 году императрица Елизавета Петровна подарила «Парголовскую мызу» графу Петру Шувалову. Он заселил эти земли крестьянами из Суздальского уезда и Вологодской губернии, которые основали Суздальскую, Малую и Большую Вологодскую слободы (позже 1-е, 2-е и 3-е Парголово). В память об этом остались названия Суздальские озёра и Суздальский проспект. Привезённая суздальцами икона Успения XVI века ныне хранится в Русском музее.</p>
-                    <!-- Кнопка поделиться удалена -->
                 </div>
                 <div class="project-card fade-in" style="text-align: left;">
                     <i class="fas fa-hard-hat"></i>
                     <h3>Немцы и другие европейцы</h3>
                     <p>В формировании облика усадьбы участвовали архитекторы разных национальностей. Например, «Жёлтую дачу» в Шуваловском парке построил в 1902 году архитектор Максимилиан Месмахер (немецкого происхождения) для своего брата. В XIX веке Парголово стало дачным местом, куда приезжали люди со всей Европы, создавая уникальную среду культурного обмена.</p>
-                    <!-- Кнопка поделиться удалена -->
                 </div>
             </div>
 
@@ -576,79 +557,8 @@
     </div>
 
     <script src="common.js"></script>
-    <script src="https://api-maps.yandex.ru/2.1/?apikey=0c586c14-20f3-4be5-b7f7-a618b25ccfa8&lang=ru_RU" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
-        // Инициализация карты
-        ymaps.ready(init);
-
-        function init() {
-            var map = new ymaps.Map('map', {
-                center: [60.075, 30.28],
-                zoom: 13,
-                controls: ['zoomControl', 'fullscreenControl']
-            });
-
-            var places = [
-                {
-                    coords: [60.078611, 30.297500],
-                    title: 'Церковь Петра и Павла',
-                    description: 'Неоготическая церковь, построена А.П. Брюлловым (1831-1840). Место венчания Римского-Корсакова.',
-                    link: 'khramy-verkhnee-pargolovo.html',
-                    icon: 'islands#blueChurchIcon'
-                },
-                {
-                    coords: [60.075278, 30.305000],
-                    title: 'Шуваловский парк',
-                    description: 'Памятник садово-паркового искусства, объект Всемирного наследия ЮНЕСКО. Площадь 142 га.',
-                    link: 'shuvalovsky-park.html',
-                    icon: 'islands#greenParkIcon'
-                },
-                {
-                    coords: [60.080833, 30.259167],
-                    title: 'Станция Парголово',
-                    description: 'Железнодорожный вокзал 1906 года в стиле финского национального романтизма (арх. Бруно Гранхольм).',
-                    link: 'nizhnee-pargolovo.html',
-                    icon: 'islands#blueRailwayIcon'
-                },
-                {
-                    coords: [60.053333, 30.306667],
-                    title: 'Церковь Спаса Нерукотворного Образа',
-                    description: 'Православный храм (1876-1880). Деревянная церковь 1792 года (арх. Луиджи Руска) не сохранилась, но каменная действует.',
-                    link: 'nizhnee-pargolovo.html',
-                    icon: 'islands#blueChurchIcon'
-                },
-                {
-                    coords: [60.081444, 30.241326],
-                    title: 'Библиотека «Парголовская»',
-                    description: 'ул. Торфяная, 25. Здесь находится наша библиотека.',
-                    link: 'torfyanaya.html',
-                    icon: 'islands#blueLibraryIcon'
-                },
-                {
-                    coords: [60.075805, 30.301699],
-                    title: 'Гора Парнас',
-                    description: 'Искусственный холм высотой 61 м, созданный в XVIII веке. С вершины виден купол Исаакиевского собора.',
-                    link: 'shuvalovsky-park.html',
-                    icon: 'islands#greenMountainIcon'
-                }
-            ];
-
-            places.forEach(function(item) {
-                var placemark = new ymaps.Placemark(item.coords, {
-                    hintContent: item.title,
-                    balloonContentBody: `
-                        <strong>${item.title}</strong><br>
-                        ${item.description}<br>
-                        <a href="${item.link}" target="_blank">Подробнее на сайте</a>
-                    `
-                }, {
-                    preset: item.icon
-                });
-                map.geoObjects.add(placemark);
-            });
-        }
-
         // Викторина
         (function() {
             const allQuestions = [
