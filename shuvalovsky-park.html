@@ -70,6 +70,32 @@
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
         }
+        .share-block {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .share-btn i {
+            margin-right: 4px;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -126,73 +152,112 @@
 
             <h1 class="section-title">Шуваловский парк и усадьба</h1>
 
-            <!-- Исторический очерк -->
-            <div class="info-block fade-in">
+            <!-- Исторический очерк с кнопкой -->
+            <div class="info-block fade-in" id="history">
                 <h2 style="color: #b5838d; margin-bottom: 1rem;">Исторический очерк</h2>
                 <p>Шуваловский парк — памятник садово-паркового искусства, объект Всемирного наследия ЮНЕСКО. Он расположен на территории бывшей усадьбы графов Шуваловых в Верхнем Парголово. Земли были пожалованы графу Петру Ивановичу Шувалову императрицей Елизаветой Петровной в 1746 году.</p>
                 <p>В 1820-х годах по воле графини Варвары Петровны Шуваловой садовый мастер Пётр Эрлер произвёл перепланировку парка, сохранившуюся до наших дней. Парк занимает площадь 142 га, из которых 136 га находятся в границах охраняемого объекта культурного наследия.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#history&title=Шуваловский%20парк%20-%20исторический%20очерк&description=Памятник%20садово-паркового%20искусства%20(142%20га)%2C%20объект%20Всемирного%20наследия%20ЮНЕСКО.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Архитектурные сооружения -->
-            <div class="info-block fade-in">
+            <!-- Архитектурные сооружения с отдельными кнопками -->
+            <div class="info-block fade-in" id="architecture">
                 <h2 style="color: #b5838d; margin-bottom: 1rem;">Архитектурные сооружения</h2>
                 <div class="sights-grid">
-                    <div class="sight-item">
+                    <div class="sight-item" id="bolshoy-dvorec">
                         <h3>Большой дворец (дача Воронцова-Дашкова)</h3>
                         <p>Построен в 1912–1915 годах архитектором С. С. Кричинским в стиле неоклассицизма для графа И. И. Воронцова-Дашкова. С 1947 года здесь располагается Институт токов высокой частоты имени В. П. Вологдина (ВНИИТВЧ).</p>
+                        <div class="share-block" style="margin-top: 0.5rem;">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#bolshoy-dvorec&title=Большой%20дворец%20(дача%20Воронцова-Дашкова)&description=Построен%20в%201912–1915%20гг.%20арх.%20С.%20С.%20Кричинский%20в%20стиле%20неоклассицизма.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
                     </div>
-                    <div class="sight-item">
+                    <div class="sight-item" id="malyy-dvorec">
                         <h3>Малый дворец</h3>
                         <p>Возведён в 1850-х годах по проекту архитектора Г. А. Боссе. Представляет собой образец эклектики.</p>
+                        <div class="share-block" style="margin-top: 0.5rem;">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#malyy-dvorec&title=Малый%20дворец%20в%20Шуваловском%20парке&description=Возведён%20в%201850-х%20гг.%20по%20проекту%20архитектора%20Г.%20А.%20Боссе.%20Образец%20эклектики.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
                     </div>
-                    <div class="sight-item">
+                    <div class="sight-item" id="zheltaya-dacha">
                         <h3>«Жёлтая дача»</h3>
                         <p>Деревянный особняк, построенный архитектором Максимилианом Месмахером. Один из немногих сохранившихся деревянных дачных домов XIX века. В 2020 году выкуплена частным лицом.</p>
+                        <div class="share-block" style="margin-top: 0.5rem;">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#zheltaya-dacha&title=Жёлтая%20дача%20в%20Шуваловском%20парке&description=Деревянный%20особняк%20арх.%20Максимилиана%20Месмахера.%20Один%20из%20немногих%20деревянных%20дачных%20домов%20XIX%20века.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
                     </div>
-                    <div class="sight-item">
+                    <div class="sight-item" id="konnyy-dvor">
                         <h3>Конный двор</h3>
                         <p>Постройка 1907 года в скандинавском стиле из «дикого камня» (валунов).</p>
+                        <div class="share-block" style="margin-top: 0.5rem;">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#konnyy-dvor&title=Конный%20двор%20в%20Шуваловском%20парке&description=Постройка%201907%20года%20в%20скандинавском%20стиле%20из%20«дикого%20камня»%20(валунов).&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Гора Парнас -->
-            <div class="info-block fade-in">
+            <!-- Гора Парнас с кнопкой -->
+            <div class="info-block fade-in" id="gora-parnas">
                 <h2 style="color: #b5838d; margin-bottom: 1rem;">Гора Парнас</h2>
                 <p>В юго-восточной части парка находится насыпной холм высотой 61 метр, получивший название «Парнас». Этот холм был создан руками крепостных графа П. И. Шувалова в середине XVIII века из грунта, добытого при рытье двух прудов у подножия холма.</p>
                 <p>Существует две версии происхождения названия: по одной, оно связано с древнегреческой мифологией (обитель Аполлона и муз); по другой — это аббревиатура «Парголовская насыпь». С вершины холма в ясную погоду виден купол Исаакиевского собора.</p>
                 <p>Во время Великой Отечественной войны в холме был вырыт командный пункт связи Ленинградского фронта. В октябре 1991 года здесь произошёл обвал, в результате которого часть горы (около 15 метров высоты) была срыта при спасательных работах.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#gora-parnas&title=Гора%20Парнас%20в%20Шуваловском%20парке&description=Искусственный%20холм%20высотой%2061%20м%2C%20созданный%20в%20середине%20XVIII%20века.%20С%20вершины%20виден%20купол%20Исаакиевского%20собора.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Пруды Наполеона -->
-            <div class="info-block fade-in">
+            <!-- Пруды Наполеона с кнопкой -->
+            <div class="info-block fade-in" id="prudy-napoleona">
                 <h2 style="color: #b5838d; margin-bottom: 1rem;">Пруды «Шляпа Наполеона» и «Рубаха Наполеона»</h2>
                 <p>У южного подножия Парнаса в XVIII веке были вырыты два пруда. За свои очертания они получили названия «Шляпа Наполеона» и «Рубаха Наполеона». Названия связаны с эпизодом военной карьеры графа Павла Андреевича Шувалова, который в 1814 году сопровождал Наполеона на остров Эльба. Узнав о готовящемся покушении, граф обменялся с императором шинелью, чтобы принять удар на себя.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#prudy-napoleona&title=Пруды%20«Шляпа%20Наполеона»%20и%20«Рубаха%20Наполеона»&description=Пруды%20в%20Шуваловском%20парке%2C%20названные%20в%20честь%20истории%20с%20графом%20Павлом%20Шуваловым%20и%20Наполеоном.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Современное состояние -->
-            <div class="info-block fade-in">
+            <!-- Современное состояние с кнопкой -->
+            <div class="info-block fade-in" id="modern">
                 <h2 style="color: #b5838d; margin-bottom: 1rem;">Современное состояние</h2>
                 <p>С 1947 года территорию парка занимает Институт токов высокой частоты имени В. П. Вологдина (ВНИИТВЧ). В 2015–2016 годах институт отказался от обслуживания парка, и с 2016 года Шуваловский парк перешёл в ведение города.</p>
                 <p>С 2019 года исторические постройки начали распродавать в частные руки. В мае 2020 года «Жёлтую дачу» выкупило частное лицо, однако по состоянию на 2021 год работы по восстановлению не начались.</p>
                 <p>В настоящее время за состоянием парка следят волонтёры из Общественного совета по сохранению Шуваловского парка. Два раза в год (весной и осенью) проводятся субботники, а также бесплатные экскурсии для всех желающих. В 2023 году обсуждался проект восстановления 60-метровой высоты горы Парнас и включение расходов на реставрацию в городской бюджет.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#modern&title=Современное%20состояние%20Шуваловского%20парка&description=Волонтёры%2C%20субботники%2C%20проблемы%20восстановления%20и%20перспективы.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Как добраться -->
-            <div class="info-block fade-in">
+            <!-- Как добраться с кнопкой -->
+            <div class="info-block fade-in" id="how-to-get">
                 <h2 style="color: #b5838d; margin-bottom: 1rem;">Как добраться</h2>
                 <p>Шуваловский парк расположен в Верхнем Парголово, к востоку от Выборгского шоссе. Ближайшая железнодорожная станция — «Шувалово» (Выборгское направление). Вход в парк свободный.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/shuvalovsky-park.html#how-to-get&title=Как%20добраться%20до%20Шуваловского%20парка&description=Ближайшая%20станция%20–%20«Шувалово»%20(Выборгское%20направление).%20Вход%20свободный.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="footer-content">
-        <!-- подвал аналогичный предыдущим страницам -->
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -251,7 +316,11 @@
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
 
-    <div id="cookie-banner">...</div>
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
 
     <script src="common.js"></script>
 </body>
