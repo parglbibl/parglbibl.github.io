@@ -186,7 +186,7 @@
 
             <h1 class="section-title">Конкурс «История одной улицы»</h1>
 
-            <!-- Блок о конкурсе -->
+            <!-- Блок о конкурсе с одной кнопкой "Поделиться историей" -->
             <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b;">
                 <h3><i class="fas fa-trophy" style="color: #e5989b;"></i> О конкурсе</h3>
                 <p>Мы участвуем в городском конкурсе краеведческих выставок <strong>«История одной улицы»</strong>, посвящённом улице Торфяной. Главное условие конкурса — <strong>сотворчество</strong>: вы можете стать соавторами нашей инсталляции, поделившись старыми фотографиями, документами, воспоминаниями.</p>
@@ -198,7 +198,7 @@
                 <div style="text-align: center; margin-top: 2rem;">
                     <a href="torfyanaya.html#form" class="btn btn-large">📤 Поделиться историей</a>
                 </div>
-                <!-- Кнопка поделиться для этого блока -->
+                <!-- Кнопка поделиться для этого блока (ВКонтакте) -->
                 <div class="share-block">
                     <a href="https://vk.com/share.php?url=https://parglbibl.ru/konkurs.html&title=Конкурс%20«История%20одной%20улицы»&description=Мы%20участвуем%20в%20городском%20конкурсе%20краеведческих%20выставок,%20посвящённом%20улице%20Торфяной.%20Приглашаем%20поделиться%20старыми%20фотографиями%20и%20воспоминаниями!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
                         <i class="fab fa-vk"></i> Поделиться конкурсом
@@ -212,7 +212,6 @@
                     <i class="fas fa-images" style="font-size: 3rem; color: #e5989b; margin-bottom: 1rem;"></i>
                     <p>Здесь появятся фотографии, присланные вами. Присылайте свои снимки Торфяной улицы разных лет — и они попадут в этот альбом!</p>
                 </div>
-                <!-- Для каждой будущей фотографии можно будет добавить кнопку поделиться -->
             </div>
 
             <h2 class="section-title">Голоса улицы</h2>
@@ -220,18 +219,11 @@
                 <div class="voice-card" style="background: #f8f8f8; border: 2px dashed #ccc; text-align: center; color: #aaa;">
                     <i class="fas fa-microphone-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
                     <p>Здесь будут ваши воспоминания. Делитесь историями о Торфяной улице!</p>
-                    <!-- Заглушка для кнопки поделиться (для будущих записей) -->
-                    <div class="share-block">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/konkurs.html&title=Голос%20улицы&description=Здесь%20будут%20ваши%20воспоминания.%20Делитесь%20историями%20о%20Торфяной%20улице!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                            <i class="fab fa-vk"></i> Поделиться
-                        </a>
-                    </div>
+                    <!-- Кнопка поделиться для будущих записей (можно добавить позже) -->
                 </div>
             </div>
 
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="torfyanaya.html#form" class="btn btn-large">📤 Поделиться историей</a>
-            </div>
+            <!-- Дублирующая кнопка внизу УДАЛЕНА -->
         </div>
     </section>
 
@@ -300,7 +292,11 @@
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-    <div id="cookie-banner">...</div>
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
 
     <script src="common.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
