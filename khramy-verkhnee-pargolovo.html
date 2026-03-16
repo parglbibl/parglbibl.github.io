@@ -68,6 +68,32 @@
         .church-card p {
             margin-bottom: 0.8rem;
         }
+        .share-block {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .share-btn i {
+            margin-right: 4px;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -124,14 +150,18 @@
 
             <h1 class="section-title">Храмы Верхнего Парголово</h1>
 
-            <!-- Введение -->
-            <div class="info-block fade-in">
+            <!-- Введение с кнопкой -->
+            <div class="info-block fade-in" id="intro">
                 <p>Верхнее Парголово (историческое Шувалово) всегда было местом, где духовная жизнь играла важную роль. Главной святыней этой части посёлка является церковь Петра и Павла в Шуваловском парке.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html#intro&title=Храмы%20Верхнего%20Парголово%20–%20введение&description=Верхнее%20Парголово%20(Шувалово)%20–%20центр%20духовной%20жизни.%20Главная%20святыня%20–%20церковь%20Петра%20и%20Павла.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Церковь Петра и Павла -->
-            <div class="church-card fade-in">
+            <!-- Церковь Петра и Павла с кнопкой -->
+            <div class="church-card fade-in" id="cerkov-petra-pavla">
                 <h3>Церковь Петра и Павла (неоготическая)</h3>
                 <p><strong>Архитектор:</strong> А. П. Брюллов (брат знаменитого художника Карла Брюллова).</p>
                 <p><strong>Годы строительства:</strong> 1831–1840.</p>
@@ -141,43 +171,62 @@
                 <p><strong>Советский период:</strong> Храм был закрыт в 1935 году. В здании размещались клуб, затем лаборатория НИИ токов высокой частоты. В 1991 году возвращён Русской Православной Церкви. Реставрация завершилась в 2008 году восстановлением шпиля.</p>
                 <p><strong>Святыни:</strong> В храме находятся частицы мощей апостолов Петра и Павла, частица мощей святителя Николая Чудотворца, икона преподобного Серафима Саровского, освящённая в день его прославления в 1903 году.</p>
                 <p><strong>Адрес:</strong> Шуваловский парк, дом 41.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html#cerkov-petra-pavla&title=Церковь%20Петра%20и%20Павла%20в%20Шуваловском%20парке&description=Неоготическая%20церковь%2C%20построена%20А.П.%20Брюлловым%20в%201831–1840%20гг.%20Место%20венчания%20Римского-Корсакова.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Склеп Адольфа Полье -->
-            <div class="church-card fade-in">
+            <!-- Склеп Адольфа Полье с кнопкой -->
+            <div class="church-card fade-in" id="sklep-polie">
                 <h3>Склеп Адольфа Полье</h3>
                 <p>Расположен рядом с церковью Петра и Павла. Построен архитектором А. П. Брюлловым в 1831 году для захоронения праха графа Адольфа Полье. Склеп выполнен в готическом стиле со стрельчатой чугунной аркой перед входом.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html#sklep-polie&title=Склеп%20Адольфа%20Полье&description=Построен%20архитектором%20А.П.%20Брюлловым%20в%201831%20году%20в%20готическом%20стиле.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Часовня Александра Невского (утрачена) -->
-            <div class="church-card fade-in">
+            <!-- Часовня Александра Невского (утрачена) с кнопкой -->
+            <div class="church-card fade-in" id="chasovnya">
                 <h3>Часовня Александра Невского (утрачена)</h3>
                 <p>Находилась при въезде в усадьбу. Была построена в честь императора Александра I, посещавшего эти места. В настоящее время на её фундаменте установлен памятный крест.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html#chasovnya&title=Часовня%20Александра%20Невского%20(утрачена)&description=Находилась%20при%20въезде%20в%20усадьбу%20в%20честь%20императора%20Александра%20I.%20Ныне%20–%20памятный%20крест.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Как добраться -->
-            <div class="info-block fade-in">
+            <!-- Как добраться с кнопкой -->
+            <div class="info-block fade-in" id="how-to-get">
                 <h2 style="color: #b5838d;">Как добраться</h2>
                 <p>Церковь Петра и Павла находится на территории Шуваловского парка, вход свободный.</p>
                 <p><strong>От станции метро «Озерки»:</strong> трамвай № 58 до остановки «Универсам Перекрёсток»; автобус № 109, маршрутки № 259 и № 673 до остановки «Шуваловский парк».</p>
                 <p><strong>От станции метро «Проспект Просвещения»:</strong> автобусы № 104, № 167 до остановки «Шуваловский парк».</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html#how-to-get&title=Как%20добраться%20до%20храмов%20Верхнего%20Парголово&description=Церковь%20Петра%20и%20Павла%20в%20Шуваловском%20парке.%20Маршруты%20от%20метро%20«Озерки»%20и%20«Проспект%20Просвещения».&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
 
-            <!-- Примечание -->
-            <div class="info-block fade-in">
+            <!-- Примечание с кнопкой -->
+            <div class="info-block fade-in" id="note">
                 <h2 style="color: #b5838d;">Примечание</h2>
                 <p>В Нижнем Парголово также есть уникальная деревянная церковь Спаса Нерукотворного Образа (1792 г., арх. Луиджи Руска). Она будет представлена в соответствующем разделе.</p>
-                <!-- Кнопка поделиться удалена -->
+                <div class="share-block" style="margin-top: 1rem;">
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html#note&title=Примечание%20о%20храмах%20Нижнего%20Парголово&description=Деревянная%20церковь%20Спаса%20Нерукотворного%20Образа%20(1792%20г.%2C%20арх.%20Луиджи%20Руска)%20находится%20в%20Нижнем%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                        <i class="fab fa-vk"></i> Поделиться
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <footer class="footer-content">
-        <!-- подвал аналогичный предыдущим -->
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
@@ -235,7 +284,12 @@
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-    <div id="cookie-banner">...</div>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
 
     <script src="common.js"></script>
 </body>
