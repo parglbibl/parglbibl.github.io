@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парголовская библиотека - Электронные ресурсы</title>
+    <meta name="description" content="Бесплатный доступ к электронным библиотекам по читательскому билету: Global F5, ibooks.ru, БиблиоРоссика, Grebennikon, ИВИС, Университетская библиотека онлайн, Литрес.">
+    
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <link rel="stylesheet" href="common.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        .resource-card {
+            transition: transform 0.4s, box-shadow 0.4s;
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+        .resource-icon {
+            font-size: 2.5rem;
+            color: #b5838d;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .resource-card h3 {
+            margin-bottom: 0.5rem;
+            color: #5e4b3c;
+            font-size: 1.3rem;
+            text-align: center;
+        }
+        .resource-card .description {
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .resource-card .audience {
+            background-color: #f9f0e7;
+            padding: 0.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #5e4b3c;
+            margin-bottom: 1rem;
+        }
+        .resource-card .audience i {
+            color: #b5838d;
+            margin-right: 5px;
+        }
+        .resource-card .access {
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            border-top: 1px solid #eee;
+            padding-top: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .resource-card .access i {
+            color: #e5989b;
+            margin-right: 5px;
+        }
+        .resource-card .btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+        .resource-card .btn:hover {
+            background-color: #d68b8e;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .share-block {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+        }
+        .share-btn i {
+            margin-right: 8px;
+        }
+        .section { padding: 4rem 0; }
+        .breadcrumbs { margin-bottom: 2rem; }
+    </style>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <img src="logo.PNG" alt="Парголовская библиотека" loading="lazy">
+            </a>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <!-- Основные пункты (всегда видны на десктопе) -->
+                    <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
+                    <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
+                    <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
+                    <li data-mobile="main"><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
+                    <li data-mobile="main"><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
+                    <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
+                    <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+
+                    <!-- Второстепенные пункты (уходят в "Ещё" на десктопе) -->
+                    <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
+                    <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
+                    <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
+                    <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
+                    <!-- Новый пункт: Электронные ресурсы -->
+                    <li data-mobile="more"><a href="digital-resources.html" class="active"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
+                </ul>
+                <div class="search-icon-container">
+                    <i class="fas fa-search" id="searchIcon"></i>
+                    <div class="search-popup" id="searchPopup">
+                        <form action="https://yandex.ru/search/" method="get" target="_blank">
+                            <input type="hidden" name="site" value="parglbibl.ru">
+                            <input type="hidden" name="host" value="parglbibl.ru">
+                            <input type="hidden" name="lr" value="2">
+                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> &raquo;
+                <a href="services.html">Услуги</a> &raquo;
+                <span>Электронные ресурсы</span>
+            </div>
+
+            <h2 class="section-title">Электронные ресурсы</h2>
+            <p style="text-align: center; margin-bottom: 2rem;">По читательскому билету Парголовской библиотеки вы получаете бесплатный доступ к ведущим электронным библиотекам. Читайте книги, научные статьи, журналы и архивы онлайн с любого устройства!</p>
+
+            <div class="resources-grid">
+                <!-- 1. Global F5 -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Global F5</h3>
+                    <div class="description">Огромная онлайн-библиотека: учебники, научная литература, детские книги, деловая литература, психология, IT, искусство, кулинария и многое другое. Также содержит научные журналы по медицине, биологии, химии, технике, экономике, праву и др.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Студентам, школьникам, специалистам, любителям чтения</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету</div>
+                    <a href="https://globalf5.com" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+
+                <!-- 2. ibooks.ru (Айбукс) -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>ibooks.ru (Айбукс)</h3>
+                    <div class="description">Электронно-библиотечная система издательств «Питер» и «БХВ-Петербург». Учебная, научная и деловая литература с сохранением оригинальной вёрстки. Удобный поиск по тексту, аннотации, содержание.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Студентам, преподавателям, специалистам</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету</div>
+                    <a href="https://ibooks.ru" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+
+                <!-- 3. БиблиоРоссика -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-university"></i></div>
+                    <h3>БиблиоРоссика</h3>
+                    <div class="description">Более 30 000 изданий научной и учебной литературы по гуманитарным, техническим и естественным наукам. Книги ведущих российских и зарубежных издательств. Расширенный поиск, выгрузка в Excel, чтение в формате e-book-pdf.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Преподавателям, студентам, исследователям, библиотекарям</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету</div>
+                    <a href="https://ru.bibliorossica.com" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+
+                <!-- 4. Grebennikon -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Grebennikon</h3>
+                    <div class="description">Электронная библиотека Издательского дома «Гребенников». Коллекция профессиональных периодических изданий по маркетингу, менеджменту, финансам, управлению персоналом. Статьи ВАК, удобный рубрикатор.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Руководителям, маркетологам, финансистам, HR-специалистам, студентам, преподавателям</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету</div>
+                    <a href="https://grebennikon.ru" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+
+                <!-- 5. ИВИС -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-newspaper"></i></div>
+                    <h3>ИВИС</h3>
+                    <div class="description">Универсальная база данных с архивами газет и журналов: исторические архивы («Правда», «Новое русское слово»), издания по искусству («Огонёк», «Искусство кино»), научные журналы («Вопросы истории»), библиографические указатели.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Историкам, краеведам, студентам, журналистам, библиотекарям</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету</div>
+                    <a href="https://eivis.ru" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+
+                <!-- 6. Университетская библиотека онлайн -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <h3>Университетская библиотека онлайн</h3>
+                    <div class="description">Более 100 000 изданий учебной, научной и классической литературы. Удобный поиск, закладки, заметки, цитаты. Охватывает гуманитарные, социальные, естественные, технические науки, педагогику, психологию, художественную литературу.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Студентам, преподавателям, исследователям, школьникам, любителям чтения</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету</div>
+                    <a href="https://biblioclub.ru" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+
+                <!-- 7. Литрес -->
+                <div class="resource-card fade-in">
+                    <div class="resource-icon"><i class="fas fa-book-reader"></i></div>
+                    <h3>Литрес</h3>
+                    <div class="description">Крупнейший сервис электронных и аудиокниг. Огромный выбор современной и классической литературы, бестселлеров, новинок. Удобное мобильное приложение для чтения и прослушивания.</div>
+                    <div class="audience"><i class="fas fa-users"></i> Всем любителям чтения: от школьников до пенсионеров</div>
+                    <div class="access"><i class="fas fa-key"></i> Бесплатный доступ по читательскому билету (количество выдач ограничено)</div>
+                    <a href="https://litres.ru" target="_blank" class="btn">Перейти на сайт</a>
+                </div>
+            </div>
+
+            <!-- Кнопка поделиться страницей -->
+            <div class="share-block">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/digital-resources.html&title=Электронные%20ресурсы%20Парголовской%20библиотеки&description=Бесплатный%20доступ%20по%20читательскому%20билету%20к%20Global%20F5,%20ibooks.ru,%20БиблиоРоссике,%20Grebennikon,%20ИВИС,%20Университетской%20библиотеке%20онлайн%20и%20Литрес.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться страницей
+                </a>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem; color: #666;">
+                <i class="fas fa-info-circle" style="color: #e5989b;"></i> Для получения доступа обратитесь к сотрудникам библиотеки с читательским билетом.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer-content">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
+                </div>
+                <div class="footer-col footer-accordion">
+                    <h3 class="accordion-header">Карта сайта</h3>
+                    <div class="accordion-content">
+                        <p><a href="index.html">Главная</a></p>
+                        <p><a href="about.html">О нас</a></p>
+                        <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="newbooks.html">Новинки</a></p>
+                        <p><a href="services.html">Услуги</a></p>
+                        <p><a href="events.html">События</a></p>
+                        <p><a href="speedcubing.html">Спидкубинг</a></p>
+                        <p><a href="district-libraries.html">Библиотеки района</a></p>
+                        <p><a href="partners.html">Партнёры</a></p>
+                        <p><a href="faq.html">Вопросы</a></p>
+                        <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="contacts.html">Контакты</a></p>
+                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
+                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
+                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
+                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
+                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
+                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
+                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
+                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
+                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social">
+                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/digital-resources.html" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <div class="print-button">
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
+                    </div>
+                </div>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+</html>
