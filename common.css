@@ -618,3 +618,23 @@ body.special-mode .footer-col a {
     opacity: 1;
     visibility: visible;
 }
+
+/* ===== УБИРАЕМ ЧЁРНЫЕ ТОЧКИ В МЕНЮ ===== */
+.nav ul,
+.nav ul li,
+.nav .desktop-submenu,
+.nav .mobile-submenu,
+.desktop-submenu,
+.mobile-submenu {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+.mobile-submenu {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+
+.nav ul ul {
+    list-style: none !important;
+}
