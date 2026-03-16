@@ -103,6 +103,32 @@
             margin-bottom: 0.5rem;
             font-size: 1.3rem;
         }
+        .share-block {
+            margin: 1rem 0 0;
+            text-align: center;
+        }
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .share-btn i {
+            margin-right: 4px;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -158,7 +184,7 @@
 
             <h1 class="section-title">Верхнее Парголово (Шувалово)</h1>
             
-            <!-- Основной информационный блок -->
+            <!-- Основной информационный блок (без кнопки поделиться) -->
             <div class="info-block fade-in">
                 <p><strong>Верхнее Парголово</strong> (историческое название — Шувалово) — часть посёлка Парголово, расположенная к востоку от Выборгского шоссе. Эта местность получила развитие в 1746 году, когда императрица Елизавета Петровна подарила эти земли графу Петру Ивановичу Шувалову. Здесь сложился уникальный дворцово-парковый ансамбль.</p>
                 <p>Шуваловский парк занимает площадь 142 га, из которых 136 га находятся в границах охраняемого объекта культурного наследия. В парке насчитывается 12 прудов.</p>
@@ -191,8 +217,8 @@
                 </div>
             </div>
 
-            <!-- Достопримечательности -->
-            <h2 class="section-title">Достопримечательности Верхнего Парголово</h2>
+            <!-- Достопримечательности (добавлен id для якоря) -->
+            <h2 class="section-title" id="sights">Достопримечательности Верхнего Парголово</h2>
             <div class="sight-item">
                 <h3>Шуваловский парк</h3>
                 <p>Памятник садово-паркового искусства (142 га), объект Всемирного наследия ЮНЕСКО.</p>
@@ -208,6 +234,13 @@
             <div class="sight-item">
                 <h3>Церковь Петра и Павла</h3>
                 <p>Неоготическая церковь, построенная А. П. Брюлловым в 1831–1840 гг.</p>
+            </div>
+
+            <!-- Единая кнопка для всего раздела достопримечательностей -->
+            <div class="share-block" style="text-align: center; margin: 2rem 0;">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/verkhnee-pargolovo.html#sights&title=Достопримечательности%20Верхнего%20Парголово&description=Шуваловский%20парк%2C%20гора%20Парнас%2C%20пруды%20«Шляпа%20Наполеона»%20и%20«Рубаха%20Наполеона»%2C%20церковь%20Петра%20и%20Павла.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться достопримечательностями
+                </a>
             </div>
         </div>
     </section>
