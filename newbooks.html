@@ -251,4 +251,47 @@
                         <a href="${book.image}" target="_blank" rel="noopener noreferrer" class="book-image">
                             <img src="${book.image}" alt="${book.title}" loading="lazy">
                         </a>
-                        <h3>${book.title}</h
+                        <h3>${book.title}</h3>
+                        <div class="author">${book.author}</div>
+                        <div class="description">${book.description}</div>
+                        <div class="details">${book.year}</div>
+                        <div class="rating" data-book="${book.title}">
+                            ${[1,2,3,4,5].map(star => 
+                                `<i class="fa${star <= savedRating ? 's' : 'r'} fa-star" data-value="${star}"></i>`
+                            ).join('')}
+                        </div>
+                        <div class="share-block">
+                            <a href="${shareUrl}" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
+                                <i class="fab fa-vk"></i> Поделиться
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+
+            document.querySelectorAll('.rating').forEach(ratingDiv => {
+                const bookTitle = ratingDiv.dataset.book;
+                ratingDiv.querySelectorAll('i').forEach(star => {
+                    star.addEventListener('click', function() {
+                        const value = parseInt(this.dataset.value);
+                        localStorage.setItem('bookRating_' + bookTitle, value);
+                        const stars = ratingDiv.querySelectorAll('i');
+                        stars.forEach((s, idx) => {
+                            if (idx < value) {
+                                s.classList.remove('far');
+                                s.classList.add('fas');
+                            } else {
+                                s.classList.remove('fas');
+                                s.classList.add('far');
+                            }
+                        });
+                    });
+                });
+            });
+        }
+
+        renderBooks();
+    </script>
+</body>
+</html>
