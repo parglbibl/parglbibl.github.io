@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека - Новые поступления</title>
-    <meta name="description" content="Новые книги в Парголовской библиотеке. Свежие поступления художественной и научно-популярной литературы.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, новые книги, новинки, чтение">
+    <title>Парголовская библиотека - События</title>
+    <meta name="description" content="Афиша мероприятий Парголовской библиотеки: встречи, мастер-классы, праздники, спидкубинг.">
+    <meta name="keywords" content="Парголовская библиотека, события, афиша, мероприятия, спидкубинг">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -15,113 +14,56 @@
     <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
-    <!-- Schema.org разметка -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Library",
-      "name": "Библиотека «Парголовская»",
-      "description": "Уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Торфяная, 25",
-        "addressLocality": "Парголово",
-        "addressRegion": "Санкт-Петербург",
-        "postalCode": "194362",
-        "addressCountry": "RU"
-      },
-      "telephone": "+7-812-246-93-05",
-      "email": "pargolovo@cbsvib.ru",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "12:00",
-          "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Sunday"],
-          "opens": "",
-          "closes": "",
-          "description": "Выходной"
-        }
-      ],
-      "url": "https://parglbibl.ru",
-      "sameAs": [
-        "https://vk.com/pargolovskaya_library",
-        "https://cbsvib.ru/"
-      ]
-    }
-    </script>
-    
-    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
-    
-    <!-- Уникальные стили для страницы новинок -->
     <style>
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .book-card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            text-align: center;
-            display: flex;
-            flex-direction: column;
+        .event-card {
             transition: transform 0.4s, box-shadow 0.4s;
         }
-        .book-card:hover {
+        .event-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
-        .book-card a {
-            display: block;
-            text-decoration: none;
-            color: inherit;
+
+        .section { padding: 4rem 0; }
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .book-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
+        .event-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+        .event-date {
+            background-color: #b5838d;
+            color: #fff;
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            display: inline-block;
+            align-self: flex-start;
             margin-bottom: 1rem;
-            cursor: pointer;
-            transition: transform 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
-        .book-card img:hover {
-            transform: scale(1.02);
-        }
-        .book-card h3 {
+        .event-card h3 {
             margin-bottom: 0.5rem;
             color: #5e4b3c;
-            font-size: 1.2rem;
         }
-        .book-card .author {
-            font-weight: 600;
-            color: #b5838d;
-            margin-bottom: 0.5rem;
-        }
-        .book-card .description {
-            font-size: 0.9rem;
+        .event-card p {
             color: #666;
             margin-bottom: 1rem;
             flex-grow: 1;
         }
-        .book-card .details {
-            font-size: 0.9rem;
-            color: #888;
+        .event-card .btn {
+            align-self: center;
         }
     </style>
 </head>
@@ -134,23 +76,21 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <!-- Основные пункты (всегда видны на десктопе) -->
                     <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
-                    <li data-mobile="main"><a href="newbooks.html" class="active"><i class="fas fa-book-open"></i> Новинки</a></li>
+                    <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
                     <li data-mobile="main"><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
-                    <li data-mobile="main"><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
+                    <li data-mobile="main"><a href="events.html" class="active"><i class="fas fa-calendar-alt"></i> События</a></li>
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё") -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
+                    <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
                 </ul>
-                <!-- Поиск (как на других страницах) -->
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
                     <div class="search-popup" id="searchPopup">
@@ -169,19 +109,36 @@
 
     <section class="section">
         <div class="container">
-            <!-- Хлебные крошки -->
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
-                <span>Новые поступления</span>
+                <span>События</span>
             </div>
 
-            <h2 class="section-title">Новые поступления книг</h2>
-            <p style="text-align: center; margin-bottom: 2rem;">Каждый месяц мы пополняем фонд самыми интересными новинками художественной и научно-популярной литературы.</p>
-            <div class="books-grid" id="all-books-grid"></div>
+            <h2 class="section-title">Ближайшие события</h2>
+            <div class="events-grid">
+                <div class="event-card fade-in">
+                    <div class="event-date">15 марта 2026, 15:00</div>
+                    <h3>Мастер-класс по спидкубингу</h3>
+                    <p>Научитесь собирать кубик Рубика быстро и легко. Занятие для начинающих и продолжающих. Все материалы предоставляются.</p>
+                    <a href="contacts.html" class="btn">Записаться</a>
+                </div>
+                <div class="event-card fade-in">
+                    <div class="event-date">22 марта 2026, 14:00</div>
+                    <h3>Встреча с писателем</h3>
+                    <p>Презентация новой книги и автограф-сессия. Подробности скоро в группе ВК.</p>
+                    <a href="https://vk.com/pargolovskaya_library" target="_blank" class="btn">Следить в ВК</a>
+                </div>
+                <div class="event-card fade-in">
+                    <div class="event-date">29 марта 2026, 12:00</div>
+                    <h3>День открытых дверей</h3>
+                    <p>Экскурсии по библиотеке, викторины, подарки читателям. Приходите всей семьёй!</p>
+                    <a href="about.html" class="btn">Подробнее</a>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #888;">Следите за обновлениями в нашей группе ВКонтакте.</p>
         </div>
     </section>
 
-    <!-- Подвал -->
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -191,7 +148,6 @@
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
-
                 <div class="footer-col footer-accordion">
                     <h3 class="accordion-header">Карта сайта</h3>
                     <div class="accordion-content">
@@ -206,6 +162,7 @@
                         <p><a href="partners.html">Партнёры</a></p>
                         <p><a href="faq.html">Вопросы</a></p>
                         <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
                         <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
                         <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
@@ -217,113 +174,30 @@
                         <p><a href="privacy.html">Политика конфиденциальности</a></p>
                     </div>
                 </div>
-
                 <div class="footer-col">
                     <h3>Мы в соцсетях</h3>
                     <div class="footer-social">
                         <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
-                    <p style="margin-top: 1.5rem;">Подпишитесь на новости!</p>
-                    <p style="margin-top: 0.5rem;">
-                        <a href="#" id="specialFooterLink" style="color: #fff; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;">
-                            <i class="fas fa-eye"></i> Версия для слабовидящих
-                        </a>
-                    </p>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/newbooks.html" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/events.html" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
-                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
                     </div>
                 </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
     </footer>
 
-    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-
-    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
-        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
-        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
-        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
-    </div>
-
+    <div id="cookie-banner">...</div>
     <script src="common.js"></script>
-    <!-- Fancybox JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        const newBooks = [
-            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
-            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n6.jpg", year: "2025" },
-            { title: "Мир для детей", author: "Андрианова Н. А.", description: "Путеводитель по странам и континентам с яркими иллюстрациями.", image: "n7.jpg", year: "2022" },
-            { title: "Мигрант", author: "Астахов П. А.", description: "Современный детектив о судьбах людей в большом городе.", image: "n8.JPG", year: "2025" },
-            { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", year: "2025" },
-            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", year: "2025" },
-            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", description: "Классический сборник мифов о богах и героях.", image: "n11.jpg", year: "2024" },
-            { title: "Гербы России. История отечественной геральдики", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", year: "2022" },
-            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", description: "Детский путеводитель по миру финансов и предпринимательства.", image: "n13.jpg", year: "2024" },
-            { title: "Тайны Камчатки", author: "Котова Т. Б.", description: "Захватывающее путешествие по вулканам и дикой природе полуострова.", image: "n14.jpg", year: "2025" },
-            { title: "Девочка, которая хотела...", author: "Лисова И. А.", description: "Добрая проза для детей о мечтах и их исполнении.", image: "n15.jpg", year: "2024" },
-            { title: "Двенадцать месяцев", author: "Маршак С. Я.", description: "Знаменитая сказка-пьеса о падчерице и братьях-месяцах.", image: "n16.jpg", year: "2024" },
-            { title: "Без вести пропавшие", author: "Пичугин Д. В.", description: "Детектив-реконструкция, основанный на реальных событиях.", image: "n17.JPG", year: "2025" },
-            { title: "На один удар больше", author: "Литвинова А. В.", description: "Авантюрный детектив о тайнах приёмного сына.", image: "n20.jpg", year: "2025" },
-            { title: "Последний знак", author: "Райт А.", description: "Триллер о серийном убийце, лауреат премии «Русский детектив».", image: "n21.JPG", year: "2024" },
-            { title: "Маленький принц", author: "Сент-Экзюпери А. де", description: "Философская сказка-притча о дружбе, любви и ответственности.", image: "n23.jpg", year: "2025" },
-            { title: "Большая история путешествий", author: "Тунич А.", description: "Как люди исследовали мир — для детей от 10 до 12 лет.", image: "n24.jpg", year: "2025" },
-            { title: "Царский подарок", author: "Асопил Е.", description: "Вечерний детектив из серии «Тайна старинной книги».", image: "n26.JPG", year: "2025" },
-            { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", year: "2025" }
-        ];
-
-        function displayAllBooks() {
-            const container = document.getElementById('all-books-grid');
-            let html = '';
-            newBooks.forEach(book => {
-                html += `
-                    <div class="book-card fade-in">
-                        <a href="${book.image}" data-fancybox="gallery" data-caption="${book.title} — ${book.author}">
-                            <img src="${book.image}" alt="${book.title}">
-                        </a>
-                        <h3>${book.title}</h3>
-                        <div class="author">${book.author}</div>
-                        <div class="description">${book.description}</div>
-                        <div class="details">${book.year}</div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-
-            // Небольшая задержка для гарантии, что DOM полностью обновлён
-            setTimeout(() => {
-                if (typeof Fancybox !== 'undefined') {
-                    Fancybox.bind("[data-fancybox]", {});
-                    console.log('Fancybox инициализирован, ссылок:', document.querySelectorAll('[data-fancybox]').length);
-                } else {
-                    console.error('Fancybox не загружен');
-                }
-            }, 100);
-        }
-
-        displayAllBooks();
-
-        // Анимация появления при скролле (fade-in)
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.2, rootMargin: '0px 0px -50px 0px' };
-        const appearOnScroll = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, appearOptions);
-        faders.forEach(fader => appearOnScroll.observe(fader));
-    </script>
 </body>
 </html>
