@@ -1,129 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>https://parglbibl.ru/index.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>weekly</changefreq>
+        <loc>https://parglbibl.ru/</loc>
+        <lastmod>2026-03-17</lastmod>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://parglbibl.ru/about.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/contacts.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/district-libraries.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/events.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/faq.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/gallery.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/khramy-verkhnee-pargolovo.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/konkurs.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/kraevedenie.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/map.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/newbooks.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/nizhnee-pargolovo.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/pargolovo-culture.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/partners.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/privacy.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>2026-03-17</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://parglbibl.ru/services.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>2026-03-17</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://parglbibl.ru/events.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/faq.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/contacts.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/newbooks.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/kraevedenie.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/nizhnee-pargolovo.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/verkhnee-pargolovo.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/torfyanaya.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/pargolovo-culture.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://parglbibl.ru/shuvalovsky-park.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/khramy-verkhnee-pargolovo.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/map.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/konkurs.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/digital-resources.html</loc>
+        <lastmod>2026-03-17</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://parglbibl.ru/speedcubing.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
+        <lastmod>2026-03-17</lastmod>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://parglbibl.ru/torfyanaya.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <loc>https://parglbibl.ru/district-libraries.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
     </url>
     <url>
-        <loc>https://parglbibl.ru/verkhnee-pargolovo.html</loc>
-        <lastmod>2026-03-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
+        <loc>https://parglbibl.ru/partners.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/gallery.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://parglbibl.ru/privacy.html</loc>
+        <lastmod>2026-03-17</lastmod>
+        <priority>0.4</priority>
     </url>
 </urlset>
