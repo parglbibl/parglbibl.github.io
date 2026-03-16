@@ -93,6 +93,84 @@
             gap: 2rem;
             margin-top: 2rem;
         }
+        /* Стили для блока рекомендуемых книг */
+        .recommended-books {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px dashed #e5989b;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .book-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.4s, box-shadow 0.4s;
+            display: flex;
+            flex-direction: column;
+        }
+        .book-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+        .book-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        .book-card h4 {
+            margin-bottom: 0.5rem;
+            color: #5e4b3c;
+            font-size: 1.1rem;
+        }
+        .book-card .author {
+            font-weight: 600;
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        .book-card .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .book-card .resource-label {
+            background-color: #f0e6e0;
+            padding: 0.3rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #5e4b3c;
+            margin-bottom: 1rem;
+            display: inline-block;
+            align-self: center;
+        }
+        .book-card .resource-label i {
+            color: #b5838d;
+            margin-right: 4px;
+        }
+        .book-card .btn-small {
+            background-color: #b5838d;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+            display: inline-block;
+        }
+        .book-card .btn-small:hover {
+            background-color: #9f6e7a;
+        }
         .share-block {
             text-align: center;
             margin: 3rem 0;
@@ -146,7 +224,6 @@
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
-                    <!-- Новый пункт: Электронные ресурсы -->
                     <li data-mobile="more"><a href="digital-resources.html" class="active"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
                 </ul>
                 <div class="search-icon-container">
@@ -248,6 +325,53 @@
                 </div>
             </div>
 
+            <!-- НОВЫЙ БЛОК: Рекомендуем прочитать -->
+            <div class="recommended-books">
+                <h2 class="section-title">Рекомендуем прочитать</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Эти книги доступны в наших электронных библиотеках. Просто выберите ресурс и читайте!</p>
+                <div class="books-grid">
+                    <!-- Книга 1: Маленький принц (Литрес) -->
+                    <div class="book-card">
+                        <img src="n23.jpg" alt="Маленький принц" loading="lazy" onerror="this.src='https://via.placeholder.com/150x200?text=Нет+обложки'">
+                        <h4>Маленький принц</h4>
+                        <div class="author">Антуан де Сент-Экзюпери</div>
+                        <div class="description">Философская сказка-притча о дружбе, любви и ответственности.</div>
+                        <span class="resource-label"><i class="fas fa-book-reader"></i> Литрес</span>
+                        <a href="https://litres.ru" target="_blank" class="btn-small">Читать</a>
+                    </div>
+                    <!-- Книга 2: Легенды и мифы Древней Греции (Университетская библиотека онлайн) -->
+                    <div class="book-card">
+                        <img src="n11.jpg" alt="Легенды и мифы Древней Греции" loading="lazy" onerror="this.src='https://via.placeholder.com/150x200?text=Нет+обложки'">
+                        <h4>Легенды и мифы Древней Греции</h4>
+                        <div class="author">Н.А. Кун</div>
+                        <div class="description">Классический сборник мифов о богах и героях.</div>
+                        <span class="resource-label"><i class="fas fa-university"></i> БиблиоРоссика</span>
+                        <a href="https://ru.bibliorossica.com" target="_blank" class="btn-small">Читать</a>
+                    </div>
+                    <!-- Книга 3: Двенадцать месяцев (Global F5) -->
+                    <div class="book-card">
+                        <img src="n16.jpg" alt="Двенадцать месяцев" loading="lazy" onerror="this.src='https://via.placeholder.com/150x200?text=Нет+обложки'">
+                        <h4>Двенадцать месяцев</h4>
+                        <div class="author">С.Я. Маршак</div>
+                        <div class="description">Знаменитая сказка-пьеса о падчерице и братьях-месяцах.</div>
+                        <span class="resource-label"><i class="fas fa-globe"></i> Global F5</span>
+                        <a href="https://globalf5.com" target="_blank" class="btn-small">Читать</a>
+                    </div>
+                    <!-- Книга 4: Тайны Камчатки (ibooks.ru) -->
+                    <div class="book-card">
+                        <img src="n14.jpg" alt="Тайны Камчатки" loading="lazy" onerror="this.src='https://via.placeholder.com/150x200?text=Нет+обложки'">
+                        <h4>Тайны Камчатки</h4>
+                        <div class="author">Т.Б. Котова</div>
+                        <div class="description">Захватывающее путешествие по вулканам и дикой природе полуострова.</div>
+                        <span class="resource-label"><i class="fas fa-book-open"></i> ibooks.ru</span>
+                        <a href="https://ibooks.ru" target="_blank" class="btn-small">Читать</a>
+                    </div>
+                </div>
+                <p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: #666;">
+                    <i class="fas fa-info-circle" style="color: #e5989b;"></i> Наличие книг в конкретных ресурсах уточняйте у библиотекаря.
+                </p>
+            </div>
+
             <!-- Кнопка поделиться страницей -->
             <div class="share-block">
                 <a href="https://vk.com/share.php?url=https://parglbibl.ru/digital-resources.html&title=Электронные%20ресурсы%20Парголовской%20библиотеки&description=Бесплатный%20доступ%20по%20читательскому%20билету%20к%20Global%20F5,%20ibooks.ru,%20БиблиоРоссике,%20Grebennikon,%20ИВИС,%20Университетской%20библиотеке%20онлайн%20и%20Литрес.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
@@ -284,8 +408,8 @@
                         <p><a href="partners.html">Партнёры</a></p>
                         <p><a href="faq.html">Вопросы</a></p>
                         <p><a href="gallery.html">Фотогалерея</a></p>
-                        <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="digital-resources.html">Электронные ресурсы</a></p>
+                        <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
                         <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
                         <p><a href="torfyanaya.html">Улица Торфяная</a></p>
