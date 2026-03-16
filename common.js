@@ -223,7 +223,7 @@
         });
     }
 
-    // ---- Cookie-баннер и Яндекс.Метрика ----
+    // ---- Cookie-баннер и Яндекс.Метрика (обновлённая версия с дополнительными параметрами) ----
     function loadYandexMetrica() {
         if (window.ym && window.yaCounter107242178) return;
         (function(m,e,t,r,i,k,a){
@@ -235,11 +235,26 @@
             k=e.createElement(t), a=e.getElementsByTagName(t)[0], k.async=1, k.src=r, a.parentNode.insertBefore(k,a)
         })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
         ym(107242178, "init", {
+            ssr: true,
+            webvisor: true,
             clickmap: true,
-            trackLinks: true,
+            ecommerce: "dataLayer",
+            referrer: document.referrer,
+            url: location.href,
             accurateTrackBounce: true,
-            webvisor: true
+            trackLinks: true
         });
+
+        // Добавляем noscript-пиксель для старых браузеров
+        var noscript = document.createElement('noscript');
+        var div = document.createElement('div');
+        var img = document.createElement('img');
+        img.src = 'https://mc.yandex.ru/watch/107242178';
+        img.style = 'position:absolute; left:-9999px;';
+        img.alt = '';
+        div.appendChild(img);
+        noscript.appendChild(div);
+        document.body.appendChild(noscript);
     }
 
     const banner = document.getElementById('cookie-banner');
