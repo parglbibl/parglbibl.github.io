@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека</title>
-    <meta name="description" content="Парголовская библиотека - уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги">
+    <title>Парголовская библиотека - Литературный календарь</title>
+    <meta name="description" content="Литературный календарь: дни рождения писателей, юбилеи книг, памятные даты. Узнайте, какие события отмечаются в мире литературы.">
     
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -27,278 +25,159 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/107242178" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Library",
-      "name": "Библиотека «Парголовская»",
-      "description": "Уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Торфяная, 25",
-        "addressLocality": "Парголово",
-        "addressRegion": "Санкт-Петербург",
-        "postalCode": "194362",
-        "addressCountry": "RU"
-      },
-      "telephone": "+7-812-246-93-05",
-      "email": "pargolovo@cbsvib.ru",
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          "opens": "12:00",
-          "closes": "18:00"
-        },
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Monday", "Sunday"],
-          "opens": "",
-          "closes": "",
-          "description": "Выходной"
-        }
-      ],
-      "url": "https://parglbibl.ru",
-      "sameAs": [
-        "https://vk.com/pargolovskaya_library",
-        "https://cbsvib.ru/"
-      ]
-    }
-    </script>
-    
-    <!-- Общие стили -->
     <link rel="stylesheet" href="common.css">
-    
-    <!-- Шрифты и иконки -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    <!-- Open API ВК -->
-    <script type="text/javascript" src="https://vk.com/js/api/openapi.js?169"></script>
-    
     <style>
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('logo2.png') center/cover no-repeat;
-            color: #fff;
-            padding: 6rem 0;
-            text-align: center;
-        }
-        @media (min-width: 769px) {
-            .hero {
-                background-attachment: fixed;
-            }
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-                line-height: 1.3;
-                padding: 0 10px;
-                word-break: break-word;
-            }
-        }
-
-        .section { padding: 4rem 0; }
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; transition: transform 0.4s, box-shadow 0.4s; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.12); }
-        .card i { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
-
-        .slider-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .slider {
+        /* Дополнительные стили для литературного календаря */
+        .calendar-nav {
             display: flex;
-            transition: transform 0.5s ease;
-        }
-        .slider img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
-        .slider-dots {
-            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
-            margin-top: 20px;
+            gap: 0.8rem;
+            margin: 2rem 0 3rem;
         }
-        .slider-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background-color: #ccc;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .slider-dot.active {
-            background-color: #b5838d;
-        }
-
-        .quote-block {
-            background: #fff;
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .quote-text {
-            font-size: 1.4rem;
-            font-style: italic;
+        .month-link {
+            background-color: #fff;
+            border: 1px solid #e5989b;
             color: #5e4b3c;
-            margin-bottom: 1rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .quote-author {
-            font-size: 1.1rem;
-            color: #b5838d;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
             font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
         }
-        .quote-share {
-            margin-top: 1.5rem;
+        .month-link:hover {
+            background-color: #e5989b;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .month-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 2rem;
+        }
+        .month-title {
+            font-size: 2rem;
+            color: #b5838d;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e5989b;
+            padding-bottom: 0.5rem;
             display: flex;
-            justify-content: center;
+            align-items: center;
             gap: 1rem;
         }
-        .quote-share a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #b5838d;
-            color: #fff;
-            font-size: 1.2rem;
-            transition: all 0.3s;
-            text-decoration: none;
+        .month-title i {
+            font-size: 2rem;
+            color: #e5989b;
         }
-        .quote-share a:hover {
-            background-color: #9f6e7a;
-            transform: scale(1.1);
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-
-        .random-book {
+        .event-card {
             background: #fff;
             border-radius: 16px;
+            padding: 1.8rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            padding: 2rem;
-            text-align: center;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .random-book img {
-            width: 100%;
-            max-width: 250px;
-            height: auto;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .random-book h3 { margin-bottom: 0.5rem; }
-        .random-book .author { font-weight: 600; color: #b5838d; margin-bottom: 0.5rem; }
-        .random-book .description { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
-
-        /* Исправленный блок для виджета ВК */
-        #vk_groups {
-            width: 100%;
+            transition: transform 0.4s, box-shadow 0.4s;
             display: flex;
-            justify-content: center;
-            margin: 0 auto;
+            flex-direction: column;
+            border-left: 5px solid #e5989b;
         }
-        #vk_groups iframe {
-            width: 100% !important;
-            max-width: 900px;
-            height: 600px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
-        @media (max-width: 768px) {
-            #vk_groups iframe {
-                height: 700px;
-                max-width: 100%;
-            }
+        .event-date {
+            font-weight: 700;
+            color: #b5838d;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
-
-        .vk-more-btn {
+        .event-title {
+            font-size: 1.4rem;
+            color: #5e4b3c;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .event-desc {
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .local-history {
+            background-color: #f9f0e7;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+            border-left: 3px solid #b5838d;
+        }
+        .local-history i {
+            color: #b5838d;
+            margin-right: 5px;
+        }
+        .event-share {
+            margin-top: 1rem;
+            text-align: right;
+        }
+        .share-btn-small {
             display: inline-block;
-            background-color: #b5838d;
+            background-color: #e5989b;
             color: #fff;
-            padding: 0.8rem 2rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            transition: background 0.3s;
-            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
         }
-        .vk-more-btn:hover {
-            background-color: #9f6e7a;
+        .share-btn-small:hover {
+            background-color: #d68b8e;
         }
-
-        /* Стиль для баннера книгообмена */
-        .bookswap-banner {
-            background: #fff9f0;
-            border: 2px solid #e5989b;
-            border-radius: 16px;
-            padding: 2rem;
+        .share-btn-small i {
+            margin-right: 4px;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #e5989b;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .bookswap-banner img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .bookswap-content {
-            flex: 1;
-            min-width: 250px;
-        }
-        .bookswap-content h3 {
-            color: #b5838d;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            font-weight: 700;
-        }
-        .bookswap-content p {
-            font-size: 1.2rem;
-            color: #5e4b3c;
-            margin-bottom: 1rem;
-        }
-        .bookswap-content .btn {
-            font-size: 1.2rem;
-            padding: 0.8rem 3rem;
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
         }
         @media (max-width: 768px) {
-            .bookswap-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .bookswap-content h3 {
+            .month-title {
                 font-size: 1.8rem;
+            }
+            .calendar-nav {
+                gap: 0.5rem;
+            }
+            .month-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -312,7 +191,7 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <li data-mobile="main"><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
+                    <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
                     <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
@@ -326,7 +205,7 @@
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
-                    <li data-mobile="more"><a href="literary-calendar.html"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="literary-calendar.html" class="active"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -344,152 +223,340 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Библиотека «Парголовская»</h1>
-            <p>Уютное пространство для чтения, творчества и встреч. Добро пожаловать!</p>
-            <a href="about.html" class="btn">Узнать больше</a>
-        </div>
-    </section>
-
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Фотогалерея</h2>
-            <div class="slider-container">
-                <div class="slider" id="slider">
-                    <img src="s_ylici.jpg" alt="Библиотека с улицы" loading="lazy" width="1000" height="400">
-                    <img src="chitalnii_zal.jpg" alt="Читальный зал" loading="lazy" width="1000" height="400">
-                    <img src="vzroslay_literatura.jpg" alt="Взрослый абонемент" loading="lazy" width="1000" height="400">
-                    <img src="detskie_knigi.jpg" alt="Детский абонемент" loading="lazy" width="1000" height="400">
-                    <img src="knigi_vystavka.jpg" alt="Книжная выставка" loading="lazy" width="1000" height="400">
-                    <img src="vystavka_kartin.jpg" alt="Интерьер" loading="lazy" width="1000" height="400">
-                </div>
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> &raquo;
+                <span>Литературный календарь</span>
             </div>
-            <div class="slider-dots" id="sliderDots"></div>
-        </div>
-    </section>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Книжная цитата дня</h2>
-            <div class="quote-block fade-in" id="quoteBlock">
-                <div class="quote-text"></div>
-                <div class="quote-author"></div>
-                <div class="quote-share">
-                    <a href="#" id="share-vk" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
-                </div>
+            <h1 class="section-title">Литературный календарь</h1>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Дни рождения писателей, юбилеи книг и памятные литературные даты. Каждый месяц мы рассказываем о классиках и их связи с нашим краем.</p>
+
+            <!-- Навигация по месяцам -->
+            <div class="calendar-nav">
+                <a href="#january" class="month-link">Январь</a>
+                <a href="#february" class="month-link">Февраль</a>
+                <a href="#march" class="month-link">Март</a>
+                <a href="#april" class="month-link">Апрель</a>
+                <a href="#may" class="month-link">Май</a>
+                <a href="#june" class="month-link">Июнь</a>
+                <a href="#july" class="month-link">Июль</a>
+                <a href="#august" class="month-link">Август</a>
+                <a href="#september" class="month-link">Сентябрь</a>
+                <a href="#october" class="month-link">Октябрь</a>
+                <a href="#november" class="month-link">Ноябрь</a>
+                <a href="#december" class="month-link">Декабрь</a>
             </div>
-        </div>
-    </section>
 
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">О нас в двух словах</h2>
-            <div class="cards-grid">
-                <div class="card fade-in">
-                    <i class="fas fa-history"></i>
-                    <h3>С 1938 года</h3>
-                    <p>Библиотека им. М. Горького, с 2016 – «Парголовская».</p>
-                </div>
-                <div class="card fade-in">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Активная жизнь</h3>
-                    <p>Встречи, праздники, выездные мероприятия в больницах района.</p>
-                </div>
-                <div class="card fade-in">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <h3>ул. Торфяная, 25</h3>
-                    <p>Парголово, СПб. Ждём вас!</p>
-                </div>
-                <div class="card fade-in">
-                    <i class="fas fa-puzzle-piece"></i>
-                    <h3>Спидкубинг</h3>
-                    <p>Обучаем сборке кубика Рубика и других головоломок. 6+</p>
-                    <a href="speedcubing.html" class="btn" style="margin-top: 1rem;">Подробнее</a>
-                </div>
-                <div class="card fade-in">
-                    <i class="fas fa-book-open"></i>
-                    <h3>Новые поступления</h3>
-                    <p>Самые свежие книги уже в нашей библиотеке. Заходите посмотреть!</p>
-                    <a href="newbooks.html" class="btn" style="margin-top: 1rem;">Все новинки</a>
-                </div>
-                <div class="card fade-in">
-                    <i class="fas fa-laptop"></i>
-                    <h3>Электронные ресурсы</h3>
-                    <p>Бесплатный доступ к электронным библиотекам по читательскому билету: Global F5, Литрес, ibooks.ru и другие.</p>
-                    <a href="digital-resources.html" class="btn" style="margin-top: 1rem;">Все ресурсы</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Баннер к Году единства народов -->
-    <section class="section">
-        <div class="container">
-            <div class="info-block fade-in" style="background: #f0f7ff; border-left: 5px solid #b5838d; border-radius: 16px; padding: 2rem;">
-                <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-                    <div style="flex: 0 0 80px; text-align: center;">
-                        <i class="fas fa-hand-holding-heart" style="font-size: 3rem; color: #b5838d;"></i>
+            <!-- Январь -->
+            <section id="january" class="month-section">
+                <h2 class="month-title"><i class="fas fa-snowflake"></i> Январь</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">15 января</div>
+                        <div class="event-title">230 лет со дня рождения А.С. Грибоедова</div>
+                        <div class="event-desc">Русский дипломат, поэт, драматург, автор бессмертной комедии «Горе от ума».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> В 1826 году Грибоедов гостил в Парголово на даче Фаддея Булгарина, где написал очерк «Загородная поездка».</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#january&title=230%20лет%20Грибоедову&description=15%20января%20–%20230%20лет%20со%20дня%20рождения%20А.С.%20Грибоедова.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
                     </div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #5e4b3c; margin-bottom: 0.5rem;">2026 – Год единства народов</h3>
-                        <p style="margin-bottom: 1rem; color: #4a4a4a;">Парголово всегда было местом встречи разных культур. В истории нашего края переплелись судьбы русских, финнов, ижор и многих других народов. Приглашаем вас познакомиться с материалами, которые раскрывают это многообразие.</p>
-                        <a href="kraevedenie.html#narody" class="btn">Подробнее</a>
+                    <div class="event-card">
+                        <div class="event-date">29 января</div>
+                        <div class="event-title">165 лет со дня рождения А.П. Чехова</div>
+                        <div class="event-desc">Великий русский писатель, драматург, классик мировой литературы.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Чехов не раз проезжал через станцию Парголово по пути в усадьбу Суворина под Петербургом.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#january&title=165%20лет%20Чехову&description=29%20января%20–%20165%20лет%20со%20дня%20рождения%20А.П.%20Чехова.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Блок о конкурсе -->
-    <section class="section">
-        <div class="container">
-            <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b; text-align: center; padding: 2.5rem;">
-                <i class="fas fa-trophy" style="font-size: 3rem; color: #e5989b; margin-bottom: 1rem;"></i>
-                <h2 style="color: #b5838d; margin-bottom: 1rem;">Конкурс «История одной улицы»</h2>
-                <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.5rem;">Мы участвуем в городском конкурсе краеведческих выставок. Приглашаем вас поделиться фотографиями и воспоминаниями о Торфяной улице. Ваши истории станут частью нашей инсталляции!</p>
-                <a href="konkurs.html" class="btn" style="font-size: 1.2rem; padding: 0.8rem 3rem;">Узнать подробнее и участвовать</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- НОВЫЙ БЛОК: Книгообмен -->
-    <section class="section">
-        <div class="container">
-            <div class="bookswap-banner fade-in">
-                <img src="knigoobmen.webp" alt="Акция книгообмена">
-                <div class="bookswap-content">
-                    <h3>«ЧИТАТЕЛИ ДАРЯТ ЧИТАТЕЛЯМ»</h3>
-                    <p>Принеси свою книгу — возьми любую другую.<br>Поделись радостью чтения!</p>
-                    <a href="services.html#bookcrossing" class="btn">Подробнее об акции</a>
+            <!-- Февраль -->
+            <section id="february" class="month-section">
+                <h2 class="month-title"><i class="fas fa-heart"></i> Февраль</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">10 февраля</div>
+                        <div class="event-title">День памяти А.С. Пушкина</div>
+                        <div class="event-desc">10 февраля 1837 года не стало великого поэта. Его бессмертные строки живут в веках.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Пушкин бывал в этих краях, направляясь в имение Осиповых в Тригорском через Петербург.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#february&title=День%20памяти%20Пушкина&description=10%20февраля%20–%20день%20памяти%20А.С.%20Пушкина.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">13 февраля</div>
+                        <div class="event-title">255 лет со дня рождения И.А. Крылова</div>
+                        <div class="event-desc">Великий баснописец, чьи строки стали пословицами.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Крылов часто бывал в Петербурге, и его басни любили читатели всех сословий, в том числе и в Парголово.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#february&title=255%20лет%20Крылову&description=13%20февраля%20–%20255%20лет%20И.А.%20Крылову.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
                 </div>
+            </section>
+
+            <!-- Март -->
+            <section id="march" class="month-section">
+                <h2 class="month-title"><i class="fas fa-feather-alt"></i> Март</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">20 марта</div>
+                        <div class="event-title">170 лет со дня рождения Н.Г. Гарина-Михайловского</div>
+                        <div class="event-desc">Писатель, инженер, путешественник. Автор автобиографической тетралогии «Детство Тёмы».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Бывал в Петербурге, возможно, посещал дачные окрестности Выборгской стороны.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#march&title=170%20лет%20Гарину-Михайловскому&description=20%20марта%20–%20170%20лет%20писателю.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">28 марта</div>
+                        <div class="event-title">160 лет со дня рождения М.А. Врубеля (художник, иллюстратор)</div>
+                        <div class="event-desc">Врубель создал удивительные иллюстрации к произведениям Лермонтова и Пушкина.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Работал в Петербурге, его творчество неразрывно связано с русской литературой.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#march&title=160%20лет%20Врубелю&description=28%20марта%20–%20160%20лет%20М.А.%20Врубелю.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Апрель -->
+            <section id="april" class="month-section">
+                <h2 class="month-title"><i class="fas fa-cloud-sun"></i> Апрель</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">1 апреля</div>
+                        <div class="event-title">215 лет со дня рождения Н.В. Гоголя</div>
+                        <div class="event-desc">Великий прозаик, драматург, сатирик. «Мёртвые души», «Ревизор», «Вечера на хуторе близ Диканьки».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Гоголь жил в Петербурге, его герои ходили по тем же улицам, что и мы.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#april&title=215%20лет%20Гоголю&description=1%20апреля%20–%20215%20лет%20Н.В.%20Гоголю.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">23 апреля</div>
+                        <div class="event-title">Всемирный день книги и авторского права</div>
+                        <div class="event-desc">Праздник, учреждённый ЮНЕСКО, напоминает о ценности чтения.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> В нашей библиотеке в этот день проходят встречи и викторины.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#april&title=Всемирный%20день%20книги&description=23%20апреля%20–%20Всемирный%20день%20книги%20и%20авторского%20права.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Май -->
+            <section id="may" class="month-section">
+                <h2 class="month-title"><i class="fas fa-leaf"></i> Май</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">7 мая</div>
+                        <div class="event-title">160 лет со дня рождения Рабиндраната Тагора</div>
+                        <div class="event-desc">Индийский поэт, писатель, нобелевский лауреат, чьи стихи любят во всём мире.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Переводы Тагора издавались в России и были в каждой библиотеке.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#may&title=160%20лет%20Тагору&description=7%20мая%20–%20160%20лет%20Р.%20Тагору.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">24 мая</div>
+                        <div class="event-title">День славянской письменности и культуры</div>
+                        <div class="event-desc">Память святых Кирилла и Мефодия, создателей славянской азбуки.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> В библиотеке проходят уроки, посвящённые истории письменности.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#may&title=День%20славянской%20письменности&description=24%20мая%20–%20День%20славянской%20письменности%20и%20культуры.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Июнь -->
+            <section id="june" class="month-section">
+                <h2 class="month-title"><i class="fas fa-sun"></i> Июнь</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">6 июня</div>
+                        <div class="event-title">Пушкинский день России. 225 лет со дня рождения А.С. Пушкина (юбилей 2024)</div>
+                        <div class="event-desc">День рождения великого поэта – главный литературный праздник страны.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> В парках Парголово звучат стихи Пушкина на открытых микрофонах.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#june&title=Пушкинский%20день&description=6%20июня%20–%20Пушкинский%20день%20России.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">21 июня</div>
+                        <div class="event-title">110 лет со дня рождения В.А. Солоухина</div>
+                        <div class="event-desc">Писатель, поэт, представитель «деревенской прозы».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Его книги о природе и русской деревне есть в нашем фонде.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#june&title=110%20лет%20Солоухину&description=21%20июня%20–%20110%20лет%20В.А.%20Солоухину.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Июль -->
+            <section id="july" class="month-section">
+                <h2 class="month-title"><i class="fas fa-umbrella-beach"></i> Июль</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">10 июля</div>
+                        <div class="event-title">День воинской славы России – Полтавская битва (в литературе)</div>
+                        <div class="event-desc">Пушкин описал это событие в поэме «Полтава».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> В библиотеке можно взять книгу и прочитать знаменитые строки.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#july&title=День%20Полтавской%20битвы&description=10%20июля%20–%20Полтавская%20битва%20в%20литературе.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">20 июля</div>
+                        <div class="event-title">130 лет со дня рождения Е.Л. Шварца</div>
+                        <div class="event-desc">Сказочник, драматург, автор «Снежной королевы», «Обыкновенного чуда».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Его пьесы ставили в театрах Ленинграда, их любили зрители всех возрастов.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#july&title=130%20лет%20Шварцу&description=20%20июля%20–%20130%20лет%20Е.Л.%20Шварцу.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Август -->
+            <section id="august" class="month-section">
+                <h2 class="month-title"><i class="fas fa-tree"></i> Август</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">9 августа</div>
+                        <div class="event-title">125 лет со дня рождения М.М. Зощенко</div>
+                        <div class="event-desc">Сатирик, автор знаменитых рассказов, любимых читателями.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Зощенко жил в Ленинграде, его герои – обычные ленинградцы.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#august&title=125%20лет%20Зощенко&description=9%20августа%20–%20125%20лет%20М.М.%20Зощенко.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">28 августа</div>
+                        <div class="event-title">100 лет со дня рождения Ю.В. Бондарева</div>
+                        <div class="event-desc">Писатель-фронтовик, автор романов «Горячий снег», «Батальоны просят огня».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Книги Бондарева о войне есть в нашей библиотеке, их читают и старшеклассники, и взрослые.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#august&title=100%20лет%20Бондареву&description=28%20августа%20–%20100%20лет%20Ю.В.%20Бондареву.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Сентябрь -->
+            <section id="september" class="month-section">
+                <h2 class="month-title"><i class="fas fa-apple-alt"></i> Сентябрь</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">1 сентября</div>
+                        <div class="event-title">День знаний. 155 лет со дня рождения А.И. Куприна</div>
+                        <div class="event-desc">Автор «Гранатового браслета», «Поединка», «Олеси».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Куприн жил в Петербурге, любил дачную жизнь.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#september&title=155%20лет%20Куприну&description=1%20сентября%20–%20155%20лет%20А.И.%20Куприну.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">9 сентября</div>
+                        <div class="event-title">200 лет со дня рождения Л.Н. Толстого</div>
+                        <div class="event-desc">Величайший романист, мыслитель, автор «Войны и мира» и «Анны Карениной».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Толстой бывал в Петербурге, его посещали местные почитатели.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#september&title=200%20лет%20Толстому&description=9%20сентября%20–%20200%20лет%20Л.Н.%20Толстому.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Октябрь -->
+            <section id="october" class="month-section">
+                <h2 class="month-title"><i class="fas fa-leaf"></i> Октябрь</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">3 октября</div>
+                        <div class="event-title">130 лет со дня рождения С.А. Есенина</div>
+                        <div class="event-desc">Великий русский поэт, чьи стихи о любви и природе знает каждый.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Есенин не раз бывал в Петербурге, его стихи читали и в дачных посёлках.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#october&title=130%20лет%20Есенину&description=3%20октября%20–%20130%20лет%20С.А.%20Есенину.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">15 октября</div>
+                        <div class="event-title">210 лет со дня рождения М.Ю. Лермонтова</div>
+                        <div class="event-desc">Поэт, прозаик, драматург, автор «Героя нашего времени».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Лермонтов бывал в Петербурге, его стихи о природе созвучны нашим местам.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#october&title=210%20лет%20Лермонтову&description=15%20октября%20–%20210%20лет%20М.Ю.%20Лермонтову.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Ноябрь -->
+            <section id="november" class="month-section">
+                <h2 class="month-title"><i class="fas fa-cloud-rain"></i> Ноябрь</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">11 ноября</div>
+                        <div class="event-title">200 лет со дня рождения Ф.М. Достоевского</div>
+                        <div class="event-desc">Великий писатель, мыслитель, автор «Преступления и наказания», «Идиота».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Достоевский снимал дачу в Парголово летом 1848 и 1861 годов. Здесь он работал над своими романами.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#november&title=200%20лет%20Достоевскому&description=11%20ноября%20–%20200%20лет%20Ф.М.%20Достоевскому.%20Писатель%20жил%20в%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">20 ноября</div>
+                        <div class="event-title">105 лет со дня рождения К.М. Симонова</div>
+                        <div class="event-desc">Поэт, прозаик, военный корреспондент, автор стихотворения «Жди меня».</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Его книги о войне есть в фонде нашей библиотеки.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#november&title=105%20лет%20Симонову&description=20%20ноября%20–%20105%20лет%20К.М.%20Симонову.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Декабрь -->
+            <section id="december" class="month-section">
+                <h2 class="month-title"><i class="fas fa-gift"></i> Декабрь</h2>
+                <div class="events-grid">
+                    <div class="event-card">
+                        <div class="event-date">5 декабря</div>
+                        <div class="event-title">220 лет со дня рождения Ф.И. Тютчева</div>
+                        <div class="event-desc">Поэт-философ, мастер пейзажной и любовной лирики.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> Тютчев подолгу жил в Петербурге, его стихи знали и любили.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#december&title=220%20лет%20Тютчеву&description=5%20декабря%20–%20220%20лет%20Ф.И.%20Тютчеву.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <div class="event-date">30 декабря</div>
+                        <div class="event-title">110 лет со дня рождения А.И. Солженицына</div>
+                        <div class="event-desc">Писатель, публицист, лауреат Нобелевской премии.</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> В 1970-х его книги были под запретом, но сегодня они доступны в нашей библиотеке.</div>
+                        <div class="event-share">
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html#december&title=110%20лет%20Солженицыну&description=30%20декабря%20–%20110%20лет%20А.И.%20Солженицыну.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Кнопка "Поделиться всей страницей" -->
+            <div class="share-block" style="text-align: center; margin: 3rem 0;">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=Литературный%20календарь%20Парголовской%20библиотеки&description=Дни%20рождения%20писателей,%20юбилеи%20книг,%20памятные%20даты.%20Каждый%20месяц%20–%20новые%20события.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться календарём
+                </a>
             </div>
         </div>
     </section>
-
-    <!-- Случайная книга из новинок -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Случайная книга из новинок</h2>
-            <div id="random-book" class="random-book fade-in"></div>
-        </div>
-    </section>
-
-    <!-- Блок новостей ВКонтакте -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Последние новости из нашей группы</h2>
-            <div id="vk_groups"></div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="https://vk.com/pargolovskaya_library" target="_blank" class="vk-more-btn">Все новости в группе ВК</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Инициализация виджета ВК -->
-    <script type="text/javascript">
-        VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
-    </script>
 
     <footer class="footer-content">
         <div class="container">
@@ -546,10 +613,10 @@
             <div class="footer-bottom">
                 <div class="footer-actions">
                     <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru" target="_blank" title="Поделиться ВКонтакте"><i class="fab fa-vk"></i></a>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html" target="_blank"><i class="fab fa-vk"></i></a>
                     </div>
                     <div class="print-button">
-                        <a href="javascript:window.print()" title="Распечатать страницу"><i class="fas fa-print"></i> <span>Печать</span></a>
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
                     </div>
                 </div>
                 <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color: #fff; text-decoration: underline;">Политика конфиденциальности</a></p>
@@ -557,119 +624,15 @@
         </div>
     </footer>
 
+    <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
+
     <script src="common.js"></script>
     <script>
-        // Массив книг (20 книг)
-        const newBooks = [
-            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
-            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n6.jpg", year: "2025" },
-            { title: "Мир для детей", author: "Андрианова Н. А.", description: "Путеводитель по странам и континентам с яркими иллюстрациями.", image: "n7.jpg", year: "2022" },
-            { title: "Мигрант", author: "Астахов П. А.", description: "Современный детектив о судьбах людей в большом городе.", image: "n8.JPG", year: "2025" },
-            { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", year: "2025" },
-            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", year: "2025" },
-            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", description: "Классический сборник мифов о богах и героях.", image: "n11.jpg", year: "2024" },
-            { title: "Гербы России. История отечественной геральдики", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", year: "2022" },
-            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", description: "Детский путеводитель по миру финансов и предпринимательства.", image: "n13.jpg", year: "2024" },
-            { title: "Тайны Камчатки", author: "Котова Т. Б.", description: "Захватывающее путешествие по вулканам и дикой природе полуострова.", image: "n14.jpg", year: "2025" },
-            { title: "Девочка, которая хотела...", author: "Лисова И. А.", description: "Добрая проза для детей о мечтах и их исполнении.", image: "n15.jpg", year: "2024" },
-            { title: "Двенадцать месяцев", author: "Маршак С. Я.", description: "Знаменитая сказка-пьеса о падчерице и братьях-месяцах.", image: "n16.jpg", year: "2024" },
-            { title: "Без вести пропавшие", author: "Пичугин Д. В.", description: "Детектив-реконструкция, основанный на реальных событиях.", image: "n17.JPG", year: "2025" },
-            { title: "На один удар больше", author: "Литвинова А. В.", description: "Авантюрный детектив о тайнах приёмного сына.", image: "n20.jpg", year: "2025" },
-            { title: "Последний знак", author: "Райт А.", description: "Триллер о серийном убийце, лауреат премии «Русский детектив».", image: "n21.JPG", year: "2024" },
-            { title: "Маленький принц", author: "Сент-Экзюпери А. де", description: "Философская сказка-притча о дружбе, любви и ответственности.", image: "n23.jpg", year: "2025" },
-            { title: "Большая история путешествий", author: "Тунич А.", description: "Как люди исследовали мир — для детей от 10 до 12 лет.", image: "n24.jpg", year: "2025" },
-            { title: "Царский подарок", author: "Асопил Е.", description: "Вечерний детектив из серии «Тайна старинной книги».", image: "n26.JPG", year: "2025" },
-            { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", year: "2025" }
-        ];
-
-        function displayRandomBook() {
-            const randomIndex = Math.floor(Math.random() * newBooks.length);
-            const book = newBooks[randomIndex];
-            let rating = localStorage.getItem('bookRating_' + book.title) || 0;
-            const html = `
-                <img src="${book.image}" alt="${book.title}" loading="lazy" width="250" height="350">
-                <h3>${book.title}</h3>
-                <div class="author">${book.author}</div>
-                <div class="description">${book.description}</div>
-                <div class="rating">
-                    <span>Оценка: </span>
-                    ${[1,2,3,4,5].map(star => 
-                        `<i class="fa${star <= rating ? 's' : 'r'} fa-star" data-value="${star}" style="cursor:pointer; color:${star <= rating ? '#ffc107' : '#ccc'}"></i>`
-                    ).join('')}
-                </div>
-                <a href="newbooks.html" class="btn" style="margin-top: 1rem;">Все новинки</a>
-            `;
-            document.getElementById('random-book').innerHTML = html;
-
-            document.querySelectorAll('.rating i').forEach(star => {
-                star.addEventListener('click', function(e) {
-                    const value = parseInt(this.dataset.value);
-                    localStorage.setItem('bookRating_' + book.title, value);
-                    displayRandomBook();
-                });
-            });
-        }
-
-        displayRandomBook();
-
-        const quotes = [
-            { text: "Все дело в мыслях. Мысль – начало всего.", author: "Л. Толстой" },
-            { text: "Следовать за мыслями великого человека есть наука самая занимательная.", author: "А. Пушкин" },
-            { text: "Глубокие мысли – это железные гвозди.", author: "Д. Дидро" }
-        ];
-        function displayRandomQuote() {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            const quote = quotes[randomIndex];
-            document.querySelector('.quote-text').textContent = `«${quote.text}»`;
-            document.querySelector('.quote-author').textContent = quote.author;
-        }
-        displayRandomQuote();
-
-        const slider = document.getElementById('slider');
-        const dotsContainer = document.getElementById('sliderDots');
-        const images = slider.children;
-        const totalImages = images.length;
-        let currentIndex = 0;
-        let autoSlideInterval;
-        for (let i = 0; i < totalImages; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('slider-dot');
-            dot.addEventListener('click', () => {
-                goToSlide(i);
-                resetAutoSlide();
-            });
-            dotsContainer.appendChild(dot);
-        }
-        const dots = document.querySelectorAll('.slider-dot');
-        dots[0].classList.add('active');
-        function goToSlide(index) {
-            currentIndex = index;
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
-        }
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % totalImages;
-            goToSlide(currentIndex);
-        }
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, 5000);
-        }
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
-        startAutoSlide();
-
-        function updateShareLinks() {
-            const quoteText = document.querySelector('.quote-text').textContent;
-            const quoteAuthor = document.querySelector('.quote-author').textContent;
-            const fullQuote = `${quoteText} — ${quoteAuthor}`;
-            const currentUrl = encodeURIComponent(window.location.href);
-            document.getElementById('share-vk').href = `https://vk.com/share.php?url=${currentUrl}&title=${encodeURIComponent(fullQuote)}`;
-        }
-        window.addEventListener('load', () => {
-            setTimeout(updateShareLinks, 100);
+        // Кнопка "Наверх"
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) backToTop.classList.add('show');
+            else backToTop.classList.remove('show');
         });
     </script>
 </body>
