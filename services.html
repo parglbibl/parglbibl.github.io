@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - Услуги</title>
-    <meta name="description" content="Услуги Парголовской библиотеки: абонемент, электронные ресурсы, мероприятия, доступная среда, спидкубинг.">
+    <meta name="description" content="Услуги Парголовской библиотеки: абонемент, электронные ресурсы, мероприятия, доступная среда, спидкубинг, МБА.">
     
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -28,8 +28,10 @@
 
         .section { padding: 4rem 0; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .service-card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; }
+        .service-card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
         .service-icon { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
+        .service-card p { flex-grow: 1; margin-bottom: 1rem; }
+        .service-card .btn { margin-top: auto; align-self: center; }
         .access-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 3rem; text-align: center; }
     </style>
 </head>
@@ -90,7 +92,7 @@
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-laptop"></i></div>
                     <h3>Электронные ресурсы</h3>
-                    <p>Бесплатный доступ к электронным библиотекам по читательскому билету: Литрес, ibooks.ru, БиблиоРоссика и другие. Подробности — на отдельной странице.</p>
+                    <p>Бесплатный доступ к электронным библиотекам по читательскому билету: Литрес, ibooks.ru, БиблиоРоссика и другие.</p>
                     <a href="digital-resources.html" class="btn" style="margin-top: 1rem;">Все ресурсы</a>
                 </div>
                 <div class="service-card fade-in">
@@ -112,6 +114,13 @@
                     <div class="service-icon"><i class="fas fa-puzzle-piece"></i></div>
                     <h3>Спидкубинг</h3>
                     <p>Занятия по сборке кубика Рубика для детей и взрослых (6+).</p>
+                </div>
+                <!-- Новая карточка: МБА и ВСО -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Межбиблиотечный абонемент (МБА) и ВСО</h3>
+                    <p>Если нужной книги нет в нашей библиотеке, мы закажем её из другой библиотеки по системе МБА или внутрисистемного обмена (ВСО). Услуга бесплатна для читателей.</p>
+                    <a href="faq.html#mba" class="btn" style="margin-top: 1rem;">Подробнее</a>
                 </div>
             </div>
 
