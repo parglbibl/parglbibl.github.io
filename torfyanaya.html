@@ -224,9 +224,27 @@
             margin: 1rem 0 0;
             text-align: center;
         }
-        .share-block .btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .share-btn i {
+            margin-right: 4px;
         }
     </style>
 </head>
@@ -252,6 +270,7 @@
                     <li data-mobile="more"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="more"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
+                    <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -282,13 +301,11 @@
                 <a href="nizhnee-pargolovo.html"><i class="fas fa-arrow-left"></i> Назад к Нижнему Парголово</a>
             </div>
 
-            <!-- Блок о конкурсе (оставляем одну кнопку) -->
             <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b; margin-bottom:2rem;">
                 <h3 style="color:#b5838d;"><i class="fas fa-trophy"></i> Конкурс «История одной улицы»</h3>
                 <p>Наша библиотека участвует в городском конкурсе краеведческих выставок. Приглашаем вас присоединиться и поделиться своими историями и фотографиями Торфяной улицы.</p>
                 <p><strong>Подробности конкурса, галерея народных фото и голоса участников — на отдельной странице.</strong></p>
                 <div style="text-align:center; margin-top:1rem;"><a href="konkurs.html" class="btn">Перейти на страницу конкурса</a></div>
-                <!-- Кнопка поделиться для блока о конкурсе -->
                 <div class="share-block">
                     <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html&title=Конкурс%20«История%20одной%20улицы»&description=Наша%20библиотека%20участвует%20в%20городском%20конкурсе%20краеведческих%20выставок,%20посвящённом%20улице%20Торфяной.%20Присоединяйтесь!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
                         <i class="fab fa-vk"></i> Поделиться конкурсом
@@ -299,7 +316,6 @@
             <h1 class="section-title" style="font-size:2.5rem;">Улица Торфяная: перекрёсток историй</h1>
             <p style="text-align:center; margin-bottom:3rem;">Краеведческий проект Парголовской библиотеки об улице, на которой мы живём.</p>
 
-            <!-- Лента времени (без кнопок под каждым элементом, добавлена общая кнопка в конце) -->
             <h2 class="section-title">Лента времени</h2>
             <div class="timeline fade-in">
                 <div class="timeline-item">
@@ -323,14 +339,12 @@
                     <p>Библиотека «Парголовская» возвращается на Торфяную улицу, 25. После долгих лет скитаний она вновь обосновывается в стенах, где когда-то начиналась её история на этой улице.</p>
                 </div>
             </div>
-            <!-- Общая кнопка для раздела "Лента времени" -->
             <div class="share-block" style="text-align: center; margin: 1rem 0 2rem;">
                 <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html#timeline&title=Лента%20времени%20улицы%20Торфяной&description=Ключевые%20даты%20в%20истории%20улицы:%201940-е,%201969,%202002,%202016,%202025.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
                     <i class="fab fa-vk"></i> Поделиться лентой времени
                 </a>
             </div>
 
-            <!-- Карта (без кнопок под точками, добавлена общая кнопка) -->
             <h2 class="section-title">Карта улицы</h2>
             <div class="map-container fade-in">
                 <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad767df192320f88df6e2d8e2ec81aece84d5dc5621559f11a1281aa195ac46e3&amp;source=constructor" loading="lazy"></iframe>
@@ -350,31 +364,26 @@
                     </div>
                 </div>
             </div>
-            <!-- Общая кнопка для раздела "Карта улицы" -->
             <div class="share-block" style="text-align: center; margin: 2rem 0;">
                 <a href="https://vk.com/share.php?url=https://parglbibl.ru/torfyanaya.html#map&title=Карта%20улицы%20Торфяной&description=Дом%2025%20(библиотека),%20дом%204%20(история),%20железная%20дорога.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
                     <i class="fab fa-vk"></i> Поделиться картой
                 </a>
             </div>
 
-            <!-- Народный альбом (пустой) -->
             <h2 class="section-title">Народный альбом</h2>
             <div class="photo-gallery fade-in">
                 <div class="empty-gallery"><i class="fas fa-images" style="font-size:3rem; color:#e5989b;"></i><p>Здесь появятся ваши фотографии!</p></div>
             </div>
 
-            <!-- Голоса улицы (пустые) -->
             <h2 class="section-title" style="margin-top:2rem;">Голоса улицы</h2>
             <div class="voices-grid fade-in">
                 <div class="voice-intro"><i class="fas fa-microphone-alt" style="font-size:3rem; color:#e5989b;"></i><p>Что помнят старожилы? Мы только начинаем собирать истории.</p></div>
             </div>
 
-            <!-- Ссылка на книжную полку в краеведении -->
             <div style="text-align: center; margin: 2rem 0;">
                 <p>Больше книг о Парголово и окрестностях вы найдёте в разделе <a href="kraevedenie.html#knizhnaya-polka" style="color: #e5989b; font-weight: 600;">«Краеведение»</a>.</p>
             </div>
 
-            <!-- Форма сбора материалов (без изменений) -->
             <h2 class="section-title" style="margin-top:2rem;">Поделиться историей</h2>
             <div class="form-block fade-in" id="form">
                 <p>Заполните форму, чтобы отправить текстовое описание. Если у вас есть фотографии или документы, пришлите их на почту <a href="mailto:pargolovo@cbsvib.ru">pargolovo@cbsvib.ru</a>.</p>
@@ -401,7 +410,6 @@
                         <label for="description">Описание</label>
                         <textarea id="description" name="description" required></textarea>
                     </div>
-                    <!-- Поле для загрузки файлов удалено -->
                     <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
                         <input type="checkbox" id="privacy-check" name="privacy" required style="width: auto;">
                         <label for="privacy-check">Я согласен с <a href="privacy.html">Политикой конфиденциальности</a></label>
@@ -440,6 +448,7 @@
                         <p><a href="partners.html">Партнёры</a></p>
                         <p><a href="faq.html">Вопросы</a></p>
                         <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
                         <p><a href="contacts.html">Контакты</a></p>
                         <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
                         <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
@@ -475,7 +484,6 @@
     </footer>
 
     <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>
-
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
