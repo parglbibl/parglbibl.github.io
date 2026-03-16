@@ -100,9 +100,27 @@
             text-align: center;
             margin: 1rem 0 2rem;
         }
-        .share-block .btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .share-btn i {
+            margin-right: 4px;
         }
         .section-header {
             display: flex;
@@ -168,15 +186,8 @@
             <h1 class="section-title">Парголово в литературе, музыке и искусстве</h1>
             <p style="text-align: center; margin-bottom: 3rem;">Парголово издавна привлекало творческих людей.</p>
 
-            <!-- Литературное Парголово -->
-            <div class="section-header">
-                <h2 class="section-title" style="margin-bottom: 0;">Литературное Парголово</h2>
-                <div class="share-block" style="margin: 0;">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Литературное%20Парголово&description=Грибоедов%20и%20Булгарин,%20Тургенев,%20Некрасов,%20Достоевский,%20Петрашевцы,%20Мамин-Сибиряк%20и%20другие%20писатели%20в%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-vk"></i> Поделиться разделом
-                    </a>
-                </div>
-            </div>
+            <!-- Литературное Парголово (добавлен id) -->
+            <h2 class="section-title" id="literature">Литературное Парголово</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-feather-alt"></i>
@@ -200,46 +211,31 @@
                 </div>
             </div>
 
-            <!-- Цитаты -->
+            <!-- Цитаты (без кнопок) -->
             <div class="quote-block fade-in">
                 <div class="quote-text">«Холмы облечены душистою муравою и усеяны прекрасными возмужалыми деревьями всех родов. С одной стороны цепь гор, с другой — лесистый берег Финского залива, прямо перед вами белеется обширная столица, блестят золотые куполы».</div>
                 <div class="quote-author">— Фаддей Булгарин, «Поездка в Парголово»</div>
-                <div class="share-block" style="margin-top: 1rem;">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Цитата%20Фаддея%20Булгарина&description=«Холмы%20облечены%20душистою%20муравою...»%20—%20Фаддей%20Булгарин,%20«Поездка%20в%20Парголово»&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-vk"></i> Поделиться цитатой
-                    </a>
-                </div>
             </div>
 
             <div class="quote-block fade-in">
                 <div class="quote-text">«Природа с великим усилием в болоте насадила печальные ели; жители их выжигают. Дымный запах, бледное небо, скрыпучий песок — всё это не располагает странников к приятным впечатлениям... Так рассказывают, но мы ничего не видали. Всё было подернуто сизыми парами; и вот одно ожидание рушилось, как идея поэта часто тускнеет при неудачном исполнении».</div>
                 <div class="quote-author">— Александр Грибоедов, «Загородная поездка»</div>
-                <div class="share-block" style="margin-top: 1rem;">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Цитата%20Грибоедова&description=«Природа%20с%20великим%20усилием%20в%20болоте%20насадила%20печальные%20ели...»%20—%20Александр%20Грибоедов,%20«Загородная%20поездка»&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-vk"></i> Поделиться цитатой
-                    </a>
-                </div>
             </div>
 
             <div class="quote-block fade-in">
                 <div class="quote-text">«Кто живал на даче по Финляндской железной дороге, тот, наверно, знает Шувалово. Летом мимо неё, то и дело, шныряют поезда, возящие дачников в город... По берегу озера тянется большая деревня, которую зовут Первое Парголово. Ничего похожего на настоящие русские деревни нет в этом Парголово. Крестьянские избы почти теряются во множестве дач, которые крестьяне понастроили вдоль шоссе».</div>
                 <div class="quote-author">— Николай Позняков, «Товарищ. Вахлак и форсило»</div>
-                <div class="share-block" style="margin-top: 1rem;">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Цитата%20Познякова&description=«Кто%20живал%20на%20даче%20по%20Финляндской%20железной%20дороге...»%20—%20Николай%20Позняков,%20«Товарищ.%20Вахлак%20и%20форсило»&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-vk"></i> Поделиться цитатой
-                    </a>
-                </div>
             </div>
 
-            <!-- Музыкальные страницы -->
-            <div class="section-header">
-                <h2 class="section-title" style="margin-bottom: 0;">Музыкальные страницы</h2>
-                <div class="share-block" style="margin: 0;">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Музыкальные%20страницы%20Парголово&description=Венчание%20Римского-Корсакова,%20дача%20Стасова%20в%20Старожиловке,%20композиторы%20в%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-vk"></i> Поделиться разделом
-                    </a>
-                </div>
+            <!-- Общая кнопка для раздела "Литературное Парголово" -->
+            <div class="share-block">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html#literature&title=Литературное%20Парголово&description=Грибоедов%20и%20Булгарин,%20Тургенев,%20Некрасов,%20Достоевский,%20Петрашевцы,%20Мамин-Сибиряк%20и%20другие%20писатели%20в%20Парголово.%20Цитаты%20из%20произведений.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться литературным разделом
+                </a>
             </div>
+
+            <!-- Музыкальные страницы (добавлен id) -->
+            <h2 class="section-title" id="music">Музыкальные страницы</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-music"></i>
@@ -257,16 +253,15 @@
                     <p>На окрестных дачах отдыхали и работали Модест Мусоргский, Милий Балакирев, Александр Глазунов. Живописные окрестности вдохновляли их на создание бессмертных произведений.</p>
                 </div>
             </div>
-
-            <!-- Художественное наследие -->
-            <div class="section-header">
-                <h2 class="section-title" style="margin-bottom: 0;">Художественное наследие</h2>
-                <div class="share-block" style="margin: 0;">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html&title=Художественное%20наследие%20Парголово&description=Шишкин%20в%20Шуваловском%20парке,%20Репин%20в%20гостях%20у%20Стасова,%20краски%20старого%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-                        <i class="fab fa-vk"></i> Поделиться разделом
-                    </a>
-                </div>
+            <!-- Общая кнопка для раздела "Музыкальные страницы" -->
+            <div class="share-block">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html#music&title=Музыкальные%20страницы%20Парголово&description=Венчание%20Римского-Корсакова,%20дача%20Стасова%20в%20Старожиловке,%20композиторы%20в%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться музыкальным разделом
+                </a>
             </div>
+
+            <!-- Художественное наследие (добавлен id) -->
+            <h2 class="section-title" id="art">Художественное наследие</h2>
             <div class="culture-grid">
                 <div class="culture-card fade-in">
                     <i class="fas fa-paint-brush"></i>
@@ -283,6 +278,12 @@
                     <h3>Краски старого Парголово</h3>
                     <p>Живописные окрестности Парголово и Шувалово привлекали многих художников. Здесь работали Павел Федотов, автор знаменитой «Свахи», и другие мастера кисти.</p>
                 </div>
+            </div>
+            <!-- Общая кнопка для раздела "Художественное наследие" -->
+            <div class="share-block">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/pargolovo-culture.html#art&title=Художественное%20наследие%20Парголово&description=Шишкин%20в%20Шуваловском%20парке,%20Репин%20в%20гостях%20у%20Стасова,%20краски%20старого%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться художественным разделом
+                </a>
             </div>
         </div>
     </section>
