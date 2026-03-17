@@ -2,7 +2,7 @@
 (function() {
     "use strict";
 
-    // Загрузка VK.Share
+    // ---- Загрузка скрипта VK.Share (для кнопок "Поделиться") ----
     (function() {
         if (!document.querySelector('script[src*="vk.com/js/api/share.js"]')) {
             var script = document.createElement('script');
@@ -12,14 +12,14 @@
         }
     })();
 
-    // Бургер-меню
+    // ---- Бургер-меню (мобильное) ----
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
     if (menuToggle && nav) {
         menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
     }
 
-    // Поиск
+    // ---- Поиск ----
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     if (searchIcon && searchPopup) {
@@ -38,41 +38,19 @@
         });
     }
 
-    // Адаптивное меню
+    // ---- Адаптивное меню (универсальное) ----
     (function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
 
         const originalHTML = nav.innerHTML;
 
-        // Функция получения пунктов с атрибутами
         function getMenuItems() {
             const temp = document.createElement('div');
             temp.innerHTML = originalHTML;
             return Array.from(temp.querySelectorAll('ul > li'));
         }
 
-        // Функция для измерения ширины элемента
-        function measureItemWidth(htmlString) {
-            const div = document.createElement('div');
-            div.innerHTML = htmlString;
-            const li = div.firstChild;
-            li.style.position = 'absolute';
-            li.style.visibility = 'hidden';
-            li.style.whiteSpace = 'nowrap';
-            li.style.display = 'inline-block';
-            document.body.appendChild(li);
-            const width = li.offsetWidth;
-            document.body.removeChild(li);
-            return width;
-        }
-
-        // Получаем ширину контейнера (учитывая padding, но упростим)
-        function getNavWidth() {
-            return nav.offsetWidth;
-        }
-
-        // Функция обновления меню
         function updateMenu() {
             const width = window.innerWidth;
 
@@ -82,11 +60,10 @@
                 return;
             }
 
-            // Десктоп – строим гибкое меню
-            buildDesktopMenu();
+            // Десктопная версия – показываем все основные, кроме "Партнёры", который уходит в "Ещё"
+            buildDesktopMenuFixed();
         }
 
-        // Мобильное меню (вертикальное)
         function buildMobileMenu() {
             const items = getMenuItems();
             const mainItems = [];
@@ -150,66 +127,70 @@
             }
         }
 
-        // Десктопное меню с динамическим "Ещё"
-        function buildDesktopMenu() {
+        function buildDesktopMenuFixed() {
             const items = getMenuItems();
-            // Превращаем каждый пункт в объект с данными и измеряем его ширину
-            const itemsData = items.map(li => {
-                const a = li.querySelector('a');
-                if (!a) return null;
-                const href = a.getAttribute('href');
-                const active = a.classList.contains('active') ? 'active' : '';
-                const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
-                const text = a.textContent.trim();
-                // Создаём HTML для измерения
-                const tempHTML = `<li style="display:inline-block; white-space:nowrap;"><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
-                const width = measureItemWidth(tempHTML);
-                return { href, active, icon, text, width };
-            }).filter(item => item !== null);
-
-            const navWidth = getNavWidth();
-
-            // Ширина кнопки "Ещё" (с иконкой)
-            const moreButtonHTML = `<li class="desktop-more" style="display:inline-block; white-space:nowrap;"><a href="#">Ещё <i class="fas fa-chevron-down"></i></a></li>`;
-            const moreButtonWidth = measureItemWidth(moreButtonHTML);
-
-            // Расчёт отступа между пунктами (gap) – возьмём из CSS, но для простоты зададим 2rem = 32px
-            const gap = 32; // пикселей
-
-            // Определяем, сколько пунктов можно показать
-            let totalWidth = 0;
-            let visibleCount = 0;
-            for (let i = 0; i < itemsData.length; i++) {
-                if (i > 0) totalWidth += gap;
-                totalWidth += itemsData[i].width;
-                if (totalWidth + (visibleCount < itemsData.length ? moreButtonWidth : 0) <= navWidth) {
-                    visibleCount++;
+            // Разделяем пункты
+            const mainItems = [];
+            const moreItems = [];
+            items.forEach(li => {
+                if (li.dataset.mobile === 'main') {
+                    mainItems.push(li);
+                } else if (li.dataset.mobile === 'more') {
+                    moreItems.push(li);
                 } else {
-                    break;
+                    mainItems.push(li);
                 }
-            }
+            });
 
-            // Собираем HTML
+            // Список названий, которые мы хотим видеть в основном меню (все, кроме "Партнёры")
+            const visibleNames = [
+                'Главная', 'О нас', 'Краеведение', 'Новинки',
+                'Услуги', 'События', 'Вопросы',
+                'Библиотеки района', 'Контакты'
+            ];
+
+            // Формируем видимую часть
             let html = '<ul class="desktop-menu">';
-            for (let i = 0; i < visibleCount; i++) {
-                const item = itemsData[i];
-                html += `<li><a href="${item.href}" class="${item.active}">${item.icon} ${item.text}</a></li>`;
-            }
+            mainItems.forEach(li => {
+                const a = li.querySelector('a');
+                if (!a) return;
+                const text = a.textContent.trim();
+                // Если этот пункт должен быть виден
+                if (visibleNames.some(name => text.includes(name))) {
+                    const href = a.getAttribute('href');
+                    const active = a.classList.contains('active') ? 'active' : '';
+                    const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                    html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                }
+            });
 
-            const moreItems = itemsData.slice(visibleCount);
-            if (moreItems.length > 0) {
+            // Все остальные основные (включая "Партнёры") и все второстепенные уходят в "Ещё"
+            const allHidden = mainItems.filter(li => {
+                const a = li.querySelector('a');
+                if (!a) return false;
+                const text = a.textContent.trim();
+                return !visibleNames.some(name => text.includes(name));
+            }).concat(moreItems);
+
+            if (allHidden.length > 0) {
                 html += `<li class="desktop-more">
                     <a href="#" id="desktopMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a>
                     <ul class="desktop-submenu">`;
-                moreItems.forEach(item => {
-                    html += `<li><a href="${item.href}" class="${item.active}">${item.icon} ${item.text}</a></li>`;
+                allHidden.forEach(li => {
+                    const a = li.querySelector('a');
+                    if (a) {
+                        const href = a.getAttribute('href');
+                        const active = a.classList.contains('active') ? 'active' : '';
+                        const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                        const text = a.textContent.trim();
+                        html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                    }
                 });
                 html += `</ul></li>`;
             }
             html += '</ul>';
             nav.innerHTML = html;
 
-            // Обработчики для "Ещё"
             const desktopMore = document.getElementById('desktopMoreToggle');
             if (desktopMore) {
                 desktopMore.addEventListener('click', function(e) {
@@ -232,7 +213,6 @@
             }
         }
 
-        // Запускаем и подписываемся на ресайз с debounce
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
@@ -242,7 +222,7 @@
         window.addEventListener('load', updateMenu);
     })();
 
-    // Аккордеон в подвале
+    // ---- Аккордеон в подвале ----
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', function() {
             const accordion = this.closest('.footer-accordion');
@@ -250,7 +230,7 @@
         });
     });
 
-    // Версия для слабовидящих
+    // ---- Версия для слабовидящих ----
     const specialLink = document.getElementById('specialFooterLink');
     if (specialLink) {
         specialLink.addEventListener('click', function(e) {
@@ -259,7 +239,7 @@
         });
     }
 
-    // Кнопка "Наверх"
+    // ---- Кнопка "Наверх" ----
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
         window.addEventListener('scroll', function() {
