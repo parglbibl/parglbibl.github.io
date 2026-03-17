@@ -87,12 +87,16 @@
             const moreItems = [];
 
             items.forEach(li => {
-                if (li.dataset.mobile === 'main') {
+                const a = li.querySelector('a');
+                if (!a) return;
+                const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
+                // На мобильной версии считаем основными только те пункты, которые не являются "Библиотеки района" и "Партнёры"
+                const isMainOnMobile = !(text.includes('Библиотеки района') || text.includes('Партнёры'));
+                if (li.dataset.mobile === 'main' && isMainOnMobile) {
                     mainItems.push(li);
-                } else if (li.dataset.mobile === 'more') {
-                    moreItems.push(li);
                 } else {
-                    mainItems.push(li); // на всякий случай
+                    // Все остальные (включая библиотеки района, партнёры, контакты и второстепенные) уходят в "Ещё"
+                    moreItems.push(li);
                 }
             });
 
