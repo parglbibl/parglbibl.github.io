@@ -280,4 +280,19 @@
             document.body.classList.toggle('special-mode');
         });
     }
+
+    // ---- Кнопка "Наверх" ----
+    const backToTop = document.getElementById('backToTop');
+    if (backToTop) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+    }
+
+    // ---- (Опционально) можно добавить обработку клика на кнопку "Наверх" ----
+    // если нужно плавное прокручивание, оно уже есть благодаря href="#"
 })();
