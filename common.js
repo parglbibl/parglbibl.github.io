@@ -2,7 +2,7 @@
 (function() {
     "use strict";
 
-    // ---- Загрузка скрипта VK.Share (для кнопок "Поделиться") ----
+    // ---- Загрузка скрипта VK.Share ----
     (function() {
         if (!document.querySelector('script[src*="vk.com/js/api/share.js"]')) {
             var script = document.createElement('script');
@@ -38,7 +38,7 @@
         });
     }
 
-    // ---- Адаптивное меню (универсальное) ----
+    // ---- Адаптивное меню ----
     (function() {
         const nav = document.getElementById('nav');
         if (!nav) return;
@@ -60,7 +60,7 @@
                 return;
             }
 
-            // Десктопная версия – показываем все основные, кроме "Партнёры", который уходит в "Ещё"
+            // Десктопная версия – фиксированный набор
             buildDesktopMenuFixed();
         }
 
@@ -70,12 +70,18 @@
             const moreItems = [];
 
             items.forEach(li => {
-                if (li.dataset.mobile === 'main') {
+                const a = li.querySelector('a');
+                if (!a) return;
+                const text = a.textContent.trim();
+                // На мобильных показываем все основные (Главная...Контакты), остальные под "Ещё"
+                const isMain = text.includes('Главная') || text.includes('О нас') || text.includes('Краеведение') ||
+                               text.includes('Новинки') || text.includes('Услуги') || text.includes('События') ||
+                               text.includes('Вопросы') || text.includes('Библиотеки района') || text.includes('Партнёры') ||
+                               text.includes('Контакты');
+                if (isMain) {
                     mainItems.push(li);
-                } else if (li.dataset.mobile === 'more') {
-                    moreItems.push(li);
                 } else {
-                    mainItems.push(li);
+                    moreItems.push(li);
                 }
             });
 
@@ -129,67 +135,41 @@
 
         function buildDesktopMenuFixed() {
             const items = getMenuItems();
-            // Разделяем пункты
-            const mainItems = [];
-            const moreItems = [];
-            items.forEach(li => {
-                if (li.dataset.mobile === 'main') {
-                    mainItems.push(li);
-                } else if (li.dataset.mobile === 'more') {
-                    moreItems.push(li);
-                } else {
-                    mainItems.push(li);
-                }
-            });
 
-            // Список названий, которые мы хотим видеть в основном меню (все, кроме "Партнёры")
+            // Список названий, которые всегда видны
             const visibleNames = [
                 'Главная', 'О нас', 'Краеведение', 'Новинки',
                 'Услуги', 'События', 'Вопросы',
                 'Библиотеки района', 'Контакты'
             ];
 
-            // Формируем видимую часть
-            let html = '<ul class="desktop-menu">';
-            mainItems.forEach(li => {
+            let visibleHtml = '';
+            let hiddenHtml = '';
+
+            items.forEach(li => {
                 const a = li.querySelector('a');
                 if (!a) return;
+                const href = a.getAttribute('href');
+                const active = a.classList.contains('active') ? 'active' : '';
+                const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
                 const text = a.textContent.trim();
-                // Если этот пункт должен быть виден
-                if (visibleNames.some(name => text.includes(name))) {
-                    const href = a.getAttribute('href');
-                    const active = a.classList.contains('active') ? 'active' : '';
-                    const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
-                    html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+
+                if (visibleNames.includes(text)) {
+                    visibleHtml += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                } else {
+                    // Второстепенные (Партнёры, Спидкубинг, Фотогалерея, Электронные ресурсы, Литературный календарь)
+                    hiddenHtml += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
                 }
             });
 
-            // Все остальные основные (включая "Партнёры") и все второстепенные уходят в "Ещё"
-            const allHidden = mainItems.filter(li => {
-                const a = li.querySelector('a');
-                if (!a) return false;
-                const text = a.textContent.trim();
-                return !visibleNames.some(name => text.includes(name));
-            }).concat(moreItems);
-
-            if (allHidden.length > 0) {
-                html += `<li class="desktop-more">
+            let finalHtml = '<ul class="desktop-menu">' + visibleHtml;
+            if (hiddenHtml) {
+                finalHtml += `<li class="desktop-more">
                     <a href="#" id="desktopMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a>
-                    <ul class="desktop-submenu">`;
-                allHidden.forEach(li => {
-                    const a = li.querySelector('a');
-                    if (a) {
-                        const href = a.getAttribute('href');
-                        const active = a.classList.contains('active') ? 'active' : '';
-                        const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
-                        const text = a.textContent.trim();
-                        html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
-                    }
-                });
-                html += `</ul></li>`;
+                    <ul class="desktop-submenu">` + hiddenHtml + `</ul></li>`;
             }
-            html += '</ul>';
-            nav.innerHTML = html;
+            finalHtml += '</ul>';
+            nav.innerHTML = finalHtml;
 
             const desktopMore = document.getElementById('desktopMoreToggle');
             if (desktopMore) {
@@ -213,6 +193,7 @@
             }
         }
 
+        // Запускаем при загрузке и изменении размера окна
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
