@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - Контакты</title>
     <meta name="description" content="Контакты Парголовской библиотеки: адрес, телефон, часы работы, карта проезда.">
+    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, контакты, адрес, телефон, часы работы">
     
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -61,9 +62,10 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             overflow: hidden;
         }
+        /* Стиль для iframe, который создаёт конструктор карт */
         .map-container iframe {
-            width: 100%;
-            height: 400px;
+            width: 100% !important;
+            height: 400px !important;
             border: 0;
             border-radius: 8px;
             margin-bottom: 0.5rem;
@@ -88,7 +90,7 @@
         .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
         #form-status { margin: 10px 0; font-weight: 600; }
         
-        /* Компактная плашка для сотрудника */
+        /* Компактная плашка для сотрудника (как в последнем варианте) */
         .staff-card {
             background: #fff;
             padding: 1rem 1.5rem;
@@ -200,7 +202,8 @@
                     </div>
                 </div>
                 <div class="map-container fade-in">
-                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad767df192320f88df6e2d8e2ec81aece84d5dc5621559f11a1281aa195ac46e3&amp;source=constructor" loading="lazy"></iframe>
+                    <!-- Новый код карты (скрипт конструктора) -->
+                    <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A91dcdeb6fcfe996532e68259f9cd85b9fcee8685439672cc1b605267709e0b48&amp;width=500&amp;height=400&amp;lang=ru_RU&amp;scroll=true"></script>
                     <div class="map-address">
                         <i class="fas fa-map-pin"></i> ул. Торфяная, 25, Парголово (за железной дорогой)
                     </div>
