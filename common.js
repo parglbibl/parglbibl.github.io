@@ -45,6 +45,8 @@
 
         // Сохраняем оригинальный HTML меню (один раз)
         const originalHTML = nav.innerHTML;
+        // Порог для очень широких экранов (моноблоки)
+        const wideDesktopWidth = 1400; // можно изменить при необходимости
 
         // Функция для получения списка пунктов с атрибутами
         function getMenuItems() {
@@ -63,7 +65,13 @@
                 return;
             }
 
-            // Десктопная версия (с выпадающим "Ещё")
+            // Очень широкий десктоп (моноблоки) – все пункты в строку
+            if (width >= wideDesktopWidth) {
+                buildWideDesktopMenu();
+                return;
+            }
+
+            // Обычный десктоп (с выпадающим "Ещё")
             buildDesktopMenu();
         }
 
@@ -131,7 +139,7 @@
             }
         }
 
-        // ---- Построение десктопного меню с выпадающим "Ещё" ----
+        // ---- Построение десктопного меню с выпадающим "Ещё" (обычный десктоп) ----
         function buildDesktopMenu() {
             const items = getMenuItems();
             const mainItems = [];
@@ -189,15 +197,36 @@
                 });
 
                 const parentLi = desktopMore.closest('.desktop-more');
-                parentLi.addEventListener('mouseenter', function() {
-                    const sub = this.querySelector('.desktop-submenu');
-                    if (sub) sub.classList.add('show');
-                });
-                parentLi.addEventListener('mouseleave', function() {
-                    const sub = this.querySelector('.desktop-submenu');
-                    if (sub) sub.classList.remove('show');
-                });
+                if (parentLi) {
+                    parentLi.addEventListener('mouseenter', function() {
+                        const sub = this.querySelector('.desktop-submenu');
+                        if (sub) sub.classList.add('show');
+                    });
+                    parentLi.addEventListener('mouseleave', function() {
+                        const sub = this.querySelector('.desktop-submenu');
+                        if (sub) sub.classList.remove('show');
+                    });
+                }
             }
+        }
+
+        // ---- Построение меню для очень широких экранов (все пункты в строку) ----
+        function buildWideDesktopMenu() {
+            const items = getMenuItems();
+            // На очень широких экранах все пункты (и main, и more) идут в основной строке
+            let html = '<ul class="desktop-menu wide">';
+            items.forEach(li => {
+                const a = li.querySelector('a');
+                if (a) {
+                    const href = a.getAttribute('href');
+                    const active = a.classList.contains('active') ? 'active' : '';
+                    const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                    const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
+                    html += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
+                }
+            });
+            html += '</ul>';
+            nav.innerHTML = html;
         }
 
         // Запускаем при загрузке и изменении размера окна
