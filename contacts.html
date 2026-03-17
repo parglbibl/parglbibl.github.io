@@ -46,7 +46,6 @@
             display: flex; 
             align-items: center; 
             gap: 1rem; 
-            /* размер текста стандартный (наследуется от common.css) */
         }
         .contact-info i { width: 24px; color: #b5838d; }
         .hours { 
@@ -55,9 +54,6 @@
             padding: 1.5rem; 
             border-radius: 16px; 
             box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
-        }
-        .hours p { 
-            margin-bottom: 0.8rem; 
         }
         .map-container {
             background: #fff;
@@ -93,37 +89,28 @@
         .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
         #form-status { margin: 10px 0; font-weight: 600; }
         
-        /* Стили для фото сотрудника (увеличено фото, текст обычный) */
-        .staff-photo {
+        /* Стиль для строки с фото сотрудника – без фона, без лишних отступов */
+        .staff-row {
             display: flex;
             align-items: center;
-            gap: 2rem;
-            margin: 1.5rem 0;
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            gap: 1rem;
+            margin-bottom: 1rem;
         }
-        .staff-photo img {
-            width: 150px;
-            height: 150px;
+        .staff-photo {
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #e5989b;
+            border: 3px solid #e5989b;
         }
-        .staff-info {
-            flex: 1;
+        .staff-name {
+            font-weight: 600;
+            color: #5e4b3c;
         }
-        .staff-info p {
-            margin: 0.2rem 0;
-            /* размер текста стандартный */
-        }
-        .staff-info strong {
-            color: #b5838d;
-        }
+        /* Для мобильных фото сверху */
         @media (max-width: 768px) {
             .contacts-grid { grid-template-columns: 1fr; }
-            .staff-photo { flex-direction: column; text-align: center; }
+            .staff-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -181,12 +168,12 @@
                     <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, пос. Парголово, Санкт-Петербург</p>
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05 (отдел обслуживания)</p>
                     
-                    <!-- Блок с фото (увеличенное) и ответственным (текст стандартный) -->
-                    <div class="staff-photo">
-                        <img src="ya.jpg" alt="Черняков Егор Владимирович">
-                        <div class="staff-info">
-                            <p><strong>Ответственный за обслуживание:</strong></p>
-                            <p>Черняков Егор Владимирович</p>
+                    <!-- Строка с фото и именем (без фона, без плашки) -->
+                    <div class="staff-row">
+                        <img src="ya.jpg" alt="Черняков Егор Владимирович" class="staff-photo">
+                        <div>
+                            <p><strong>Ответственный за обслуживание:</strong><br>
+                            <span class="staff-name">Черняков Егор Владимирович</span></p>
                         </div>
                     </div>
                     
