@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Парголовская библиотека - Контакты</title>
     <meta name="description" content="Контакты Парголовской библиотеки: адрес, телефон, часы работы, карта проезда.">
-    <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, контакты, адрес, телефон, часы работы">
     
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -89,28 +88,38 @@
         .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; }
         #form-status { margin: 10px 0; font-weight: 600; }
         
-        /* Стиль для строки с фото сотрудника – без фона, без лишних отступов */
-        .staff-row {
+        /* Компактная плашка для сотрудника */
+        .staff-card {
+            background: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin: 1.5rem 0;
             display: flex;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.5rem;
         }
-        .staff-photo {
-            width: 100px;
-            height: 100px;
+        .staff-card img {
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid #e5989b;
+            cursor: pointer;
+            transition: transform 0.2s;
         }
-        .staff-name {
-            font-weight: 600;
-            color: #5e4b3c;
+        .staff-card img:hover {
+            transform: scale(1.05);
         }
-        /* Для мобильных фото сверху */
+        .staff-card p {
+            margin: 0.2rem 0;
+        }
+        .staff-card strong {
+            color: #b5838d;
+        }
         @media (max-width: 768px) {
             .contacts-grid { grid-template-columns: 1fr; }
-            .staff-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+            .staff-card { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -168,12 +177,14 @@
                     <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, пос. Парголово, Санкт-Петербург</p>
                     <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05 (отдел обслуживания)</p>
                     
-                    <!-- Строка с фото и именем (без фона, без плашки) -->
-                    <div class="staff-row">
-                        <img src="ya.jpg" alt="Черняков Егор Владимирович" class="staff-photo">
+                    <!-- Компактная плашка с кликабельным фото -->
+                    <div class="staff-card">
+                        <a href="ya.jpg" target="_blank" title="Увеличить фото">
+                            <img src="ya.jpg" alt="Черняков Егор Владимирович">
+                        </a>
                         <div>
-                            <p><strong>Ответственный за обслуживание:</strong><br>
-                            <span class="staff-name">Черняков Егор Владимирович</span></p>
+                            <p><strong>Ответственный за обслуживание:</strong></p>
+                            <p>Черняков Егор Владимирович</p>
                         </div>
                     </div>
                     
