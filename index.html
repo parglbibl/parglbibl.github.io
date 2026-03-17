@@ -301,6 +301,43 @@
                 font-size: 1.8rem;
             }
         }
+
+        /* Стиль для баннера литературного календаря */
+        .literary-banner {
+            background: #f0f7ff;
+            border: 2px solid #b5838d;
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .literary-banner i {
+            font-size: 3rem;
+            color: #b5838d;
+            flex: 0 0 80px;
+            text-align: center;
+        }
+        .literary-content {
+            flex: 1;
+        }
+        .literary-content h3 {
+            color: #5e4b3c;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+        .literary-content p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+        }
+        @media (max-width: 768px) {
+            .literary-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -453,7 +490,7 @@
         </div>
     </section>
 
-    <!-- НОВЫЙ БЛОК: Книгообмен -->
+    <!-- Блок: Книгообмен -->
     <section class="section">
         <div class="container">
             <div class="bookswap-banner fade-in">
@@ -462,6 +499,20 @@
                     <h3>«ЧИТАТЕЛИ ДАРЯТ ЧИТАТЕЛЯМ»</h3>
                     <p>Принеси свою книгу — возьми любую другую.<br>Поделись радостью чтения!</p>
                     <a href="services.html#bookcrossing" class="btn">Подробнее об акции</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- НОВЫЙ БЛОК: Литературный календарь -->
+    <section class="section">
+        <div class="container">
+            <div class="literary-banner fade-in">
+                <i class="fas fa-calendar-alt"></i>
+                <div class="literary-content">
+                    <h3>Литературный календарь 2026</h3>
+                    <p>Дни рождения писателей, юбилеи книг и памятные даты. Каждый месяц мы рассказываем о классиках и их связи с нашим краем.</p>
+                    <a href="literary-calendar.html" class="btn">Перейти к календарю</a>
                 </div>
             </div>
         </div>
