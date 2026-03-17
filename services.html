@@ -30,10 +30,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        .service-card, .access-block {
+        .service-card {
             transition: transform 0.4s, box-shadow 0.4s;
         }
-        .service-card:hover, .access-block:hover {
+        .service-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
@@ -44,7 +44,6 @@
         .service-icon { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
         .service-card p { flex-grow: 1; margin-bottom: 1rem; }
         .service-card .btn { margin-top: auto; align-self: center; }
-        .access-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 3rem; text-align: center; }
     </style>
 </head>
 <body class="page-transition">
@@ -118,6 +117,7 @@
                     <h3>Детский отдел</h3>
                     <p>Книжки для малышей и подростков, интерактивные занятия и игровые программы.</p>
                 </div>
+                <!-- Карточка доступной среды (оставлена) -->
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-hands"></i></div>
                     <h3>Доступная среда</h3>
@@ -137,7 +137,7 @@
                     <p>Если нужной книги нет в нашей библиотеке, мы закажем её из другой библиотеки по системе МБА или внутрисистемного обмена (ВСО). Услуга бесплатна для читателей.</p>
                     <a href="faq.html#mba" class="btn" style="margin-top: 1rem;">Подробнее</a>
                 </div>
-                <!-- Карточка книгообмена (иконка fa-book-open) -->
+                <!-- Карточка книгообмена -->
                 <div class="service-card fade-in" id="bookcrossing">
                     <div class="service-icon"><i class="fas fa-book-open"></i></div>
                     <h3>Книгообмен</h3>
@@ -146,11 +146,7 @@
                 </div>
             </div>
 
-            <div class="access-block fade-in">
-                <h3>ДОСТУПНАЯ НАВИГАЦИЯ: БИБЛИОТЕКА ДЛЯ ВСЕХ</h3>
-                <p>Мы заботимся о комфорте каждого посетителя. Специально подготовленные видеоролики наглядно показывают, как легко ориентироваться внутри помещения, пользоваться услугами и находить нужные ресурсы.</p>
-                <!-- Убрано упоминание о разделе "Контакты", так как видео теперь на странице "О нас" -->
-            </div>
+            <!-- Блок с доступной навигацией полностью удалён, так как информация уже есть в карточке "Доступная среда" -->
         </div>
     </section>
 
