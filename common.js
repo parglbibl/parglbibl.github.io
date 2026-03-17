@@ -43,14 +43,17 @@
         const nav = document.getElementById('nav');
         if (!nav) return;
 
+        // Сохраняем оригинальный HTML меню (один раз)
         const originalHTML = nav.innerHTML;
 
+        // Функция для получения списка пунктов с атрибутами
         function getMenuItems() {
             const temp = document.createElement('div');
             temp.innerHTML = originalHTML;
             return Array.from(temp.querySelectorAll('ul > li'));
         }
 
+        // Функция для обновления меню в зависимости от ширины
         function updateMenu() {
             const width = window.innerWidth;
 
@@ -64,24 +67,19 @@
             buildDesktopMenuFixed();
         }
 
+        // ---- Построение мобильного меню (вертикальное с подменю) ----
         function buildMobileMenu() {
             const items = getMenuItems();
             const mainItems = [];
             const moreItems = [];
 
             items.forEach(li => {
-                const a = li.querySelector('a');
-                if (!a) return;
-                const text = a.textContent.trim();
-                // На мобильных показываем все основные (Главная...Контакты), остальные под "Ещё"
-                const isMain = text.includes('Главная') || text.includes('О нас') || text.includes('Краеведение') ||
-                               text.includes('Новинки') || text.includes('Услуги') || text.includes('События') ||
-                               text.includes('Вопросы') || text.includes('Библиотеки района') || text.includes('Партнёры') ||
-                               text.includes('Контакты');
-                if (isMain) {
+                if (li.dataset.mobile === 'main') {
                     mainItems.push(li);
-                } else {
+                } else if (li.dataset.mobile === 'more') {
                     moreItems.push(li);
+                } else {
+                    mainItems.push(li);
                 }
             });
 
@@ -133,6 +131,7 @@
             }
         }
 
+        // ---- Построение десктопного меню с фиксированным набором ----
         function buildDesktopMenuFixed() {
             const items = getMenuItems();
 
@@ -156,7 +155,7 @@
                 if (visibleNames.includes(text)) {
                     visibleHtml += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
                 } else {
-                    // Все остальные (включая Библиотеки района, Партнёры и второстепенные) уходят в "Ещё"
+                    // Все остальные (Библиотеки района, Партнёры, Спидкубинг, Фотогалерея, Электронные ресурсы, Литературный календарь) уходят в "Ещё"
                     hiddenHtml += `<li><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
                 }
             });
@@ -170,6 +169,7 @@
             finalHtml += '</ul>';
             nav.innerHTML = finalHtml;
 
+            // Обработчики для "Ещё"
             const desktopMore = document.getElementById('desktopMoreToggle');
             if (desktopMore) {
                 desktopMore.addEventListener('click', function(e) {
