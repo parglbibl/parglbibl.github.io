@@ -46,7 +46,7 @@ h1, h2, h3, h4 {
     }
 }
 
-/* Шапка */
+/* ===== ШАПКА ===== */
 header {
     background-color: #b5838d;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -58,14 +58,16 @@ header {
 .header-inner {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-wrap: nowrap;      /* запрещаем перенос */
+    gap: 1rem;
 }
 
 .logo {
     display: flex;
     align-items: center;
     text-decoration: none;
-    margin-right: 20px;
+    flex-shrink: 0;          /* логотип не сжимается */
 }
 
 .logo img {
@@ -82,10 +84,10 @@ header {
 }
 
 .nav {
+    flex: 1;                  /* занимает всё оставшееся место */
     display: flex;
     align-items: center;
-    flex: 1;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 /* Десктопное меню (генерируется скриптом) */
@@ -96,6 +98,8 @@ header {
     align-items: center;
     margin: 0;
     padding: 0;
+    justify-content: flex-end;
+    flex-wrap: wrap;           /* если скрипт не сработает, пункты могут переноситься, но мы полагаемся на скрипт */
 }
 
 .nav a {
@@ -459,15 +463,19 @@ header {
 
 /* Мобильное меню */
 @media (max-width: 768px) {
+    .header-inner {
+        flex-wrap: wrap;           /* на мобильных разрешаем перенос */
+    }
+    .logo {
+        margin-right: auto;
+    }
     .menu-toggle {
         display: block;
     }
-    .header-inner {
-        padding: 0 10px;
-    }
     .nav {
-        display: none;
+        flex: none;
         width: 100%;
+        display: none;
         flex-direction: column;
         align-items: stretch;
         margin-top: 0.5rem;
