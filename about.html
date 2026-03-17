@@ -11,7 +11,6 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="Парголовская библиотека" />
     <link rel="manifest" href="/site.webmanifest" />
     
     <!-- Yandex.Metrika counter -->
@@ -73,10 +72,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
     <style>
-        .history-block, .photo-gallery a, .achievement-card {
+        .history-block, .achievement-card {
             transition: transform 0.4s, box-shadow 0.4s;
         }
-        .history-block:hover, .photo-gallery a:hover, .achievement-card:hover {
+        .history-block:hover, .achievement-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
@@ -96,48 +95,6 @@
             font-size: 1.3rem;
         }
         .history-block h3:first-of-type { margin-top: 0; }
-
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-            max-width: 1000px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .photo-gallery a {
-            display: block;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        .photo-gallery img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .download-icon {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background-color: rgba(255,255,255,0.8);
-            color: #b5838d;
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 2;
-        }
-        .photo-gallery a:hover .download-icon { opacity: 1; }
 
         .achievements-grid {
             display: grid;
@@ -173,7 +130,6 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <!-- Основные пункты -->
                     <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html" class="active"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
@@ -185,7 +141,6 @@
                     <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
@@ -251,41 +206,7 @@
                 </div>
             </div>
 
-            <h2 class="section-title">Фотографии</h2>
-            <div class="photo-gallery">
-                <a href="s_ylici.jpg" data-fancybox="gallery" data-caption="Библиотека Парголовская" download>
-                    <img src="s_ylici.jpg" alt="Библиотека Парголовская" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="ya.jpg" data-fancybox="gallery" data-caption="Библиотекарь" download>
-                    <img src="ya.jpg" alt="Библиотекарь" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="chitalnii_zal.jpg" data-fancybox="gallery" data-caption="Читальный зал" download>
-                    <img src="chitalnii_zal.jpg" alt="Читальный зал" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="vzroslay_literatura.jpg" data-fancybox="gallery" data-caption="Взрослый абонемент" download>
-                    <img src="vzroslay_literatura.jpg" alt="Взрослый абонемент" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="detskie_knigi.jpg" data-fancybox="gallery" data-caption="Детский абонемент" download>
-                    <img src="detskie_knigi.jpg" alt="Детский абонемент" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="dlya_chitatelya.jpg" data-fancybox="gallery" data-caption="Компьютерное место для читателя" download>
-                    <img src="dlya_chitatelya.jpg" alt="Компьютерное место для читателя" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="knigi_vystavka.jpg" data-fancybox="gallery" data-caption="Книжная выставка" download>
-                    <img src="knigi_vystavka.jpg" alt="Книжная выставка" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-                <a href="vystavka_kartin.jpg" data-fancybox="gallery" data-caption="Интерьер" download>
-                    <img src="vystavka_kartin.jpg" alt="Интерьер" loading="lazy">
-                    <span class="download-icon"><i class="fas fa-download"></i></span>
-                </a>
-            </div>
+            <!-- Раздел с фотографиями удалён, так как они дублируются с главной -->
         </div>
     </section>
 
