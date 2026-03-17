@@ -46,7 +46,7 @@
         // Сохраняем оригинальный HTML меню (один раз)
         const originalHTML = nav.innerHTML;
 
-        // Функция для получения списка пунктов с атрибутами и их шириной
+        // Функция для получения списка пунктов с атрибутами
         function getMenuItems() {
             const temp = document.createElement('div');
             temp.innerHTML = originalHTML;
@@ -76,8 +76,8 @@
                 return;
             }
 
-            // Десктопная версия – строим горизонтальное меню с возможным "Ещё"
-            buildFlexibleDesktopMenu();
+            // Десктопная версия – строим горизонтальное меню
+            buildDesktopMenu(width);
         }
 
         // ---- Построение мобильного меню (вертикальное с подменю) ----
@@ -92,7 +92,7 @@
                 } else if (li.dataset.mobile === 'more') {
                     moreItems.push(li);
                 } else {
-                    mainItems.push(li);
+                    mainItems.push(li); // на всякий случай
                 }
             });
 
@@ -144,63 +144,82 @@
             }
         }
 
-        // ---- Построение гибкого десктопного меню с вычислением "Ещё" ----
-        function buildFlexibleDesktopMenu() {
+        // ---- Построение десктопного меню с динамическим "Ещё" ----
+        function buildDesktopMenu(containerWidth) {
             const items = getMenuItems();
-            // Получаем ширину контейнера nav (минус отступы, но упростим – берем ширину самого nav)
-            const navWidth = nav.offsetWidth;
+            // Разделяем пункты на основные и второстепенные по data-mobile
+            const mainItems = [];
+            const moreItems = [];
+            items.forEach(li => {
+                if (li.dataset.mobile === 'main') {
+                    mainItems.push(li);
+                } else if (li.dataset.mobile === 'more') {
+                    moreItems.push(li);
+                } else {
+                    mainItems.push(li); // fallback
+                }
+            });
 
-            // Измеряем ширину каждого пункта (включая иконки и текст)
-            const itemsWithWidth = items.map(item => {
-                const a = item.querySelector('a');
+            // Измеряем ширину всех основных пунктов
+            const mainItemsData = mainItems.map(li => {
+                const a = li.querySelector('a');
                 if (!a) return null;
                 const href = a.getAttribute('href');
                 const active = a.classList.contains('active') ? 'active' : '';
                 const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
                 const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
-                // Создаем HTML для измерения
-                const tempHTML = `<li style="display:inline-block; white-space:nowrap;"><a href="${href}" class="${active}">${icon} ${text}</a></li>`;
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = tempHTML;
-                const tempLi = tempDiv.firstChild;
-                document.body.appendChild(tempLi);
-                const w = tempLi.offsetWidth;
-                document.body.removeChild(tempLi);
-                return {
-                    href, active, icon, text,
-                    width: w
-                };
+                const width = measureItemWidth(li);
+                return { href, active, icon, text, width };
             }).filter(item => item !== null);
 
-            // Считаем суммарную ширину всех пунктов + запас на разделители (gap)
-            // В CSS у .desktop-menu gap: 2rem, переведем в пиксели (приблизительно)
-            const gap = parseFloat(getComputedStyle(document.querySelector('.desktop-menu')?.style?.gap || '2rem')) * parseFloat(getComputedStyle(document.documentElement).fontSize) || 32;
+            // Измеряем ширину второстепенных пунктов (для "Ещё")
+            const moreItemsData = moreItems.map(li => {
+                const a = li.querySelector('a');
+                if (!a) return null;
+                const href = a.getAttribute('href');
+                const active = a.classList.contains('active') ? 'active' : '';
+                const icon = a.querySelector('i') ? a.querySelector('i').outerHTML : '';
+                const text = a.textContent.trim().replace(/^\s*|\s*$/g, '');
+                const width = measureItemWidth(li);
+                return { href, active, icon, text, width };
+            }).filter(item => item !== null);
+
+            // Рассчитываем ширину самого "Ещё" (с иконкой)
+            const moreButtonWidth = measureItemWidth(document.createElement('li')) + 32; // примерная ширина кнопки "Ещё"
+
+            // Доступная ширина для основных пунктов (вычитаем ширину кнопки "Ещё", если есть второстепенные)
+            const gap = 32; // примерно 2rem gap (как в CSS)
+            let availableWidth = containerWidth - (moreItemsData.length > 0 ? moreButtonWidth : 0);
+
+            // Определяем, сколько основных пунктов поместится
             let totalWidth = 0;
-            let visibleCount = 0;
-            for (let i = 0; i < itemsWithWidth.length; i++) {
-                totalWidth += itemsWithWidth[i].width;
+            let visibleMainCount = 0;
+            for (let i = 0; i < mainItemsData.length; i++) {
+                totalWidth += mainItemsData[i].width;
                 if (i > 0) totalWidth += gap;
-                if (totalWidth <= navWidth) {
-                    visibleCount++;
+                if (totalWidth <= availableWidth) {
+                    visibleMainCount++;
                 } else {
                     break;
                 }
             }
 
-            // Если все помещаются, visibleCount = itemsWithWidth.length
-            const visibleItems = itemsWithWidth.slice(0, visibleCount);
-            const moreItems = itemsWithWidth.slice(visibleCount);
-
+            // Собираем HTML
             let html = '<ul class="desktop-menu">';
-            visibleItems.forEach(item => {
+            for (let i = 0; i < visibleMainCount; i++) {
+                const item = mainItemsData[i];
                 html += `<li><a href="${item.href}" class="${item.active}">${item.icon} ${item.text}</a></li>`;
-            });
+            }
 
-            if (moreItems.length > 0) {
+            // Если остались не поместившиеся основные, их нужно добавить к второстепенным
+            const remainingMain = mainItemsData.slice(visibleMainCount);
+            const allMore = [...remainingMain, ...moreItemsData];
+
+            if (allMore.length > 0) {
                 html += `<li class="desktop-more">
                     <a href="#" id="desktopMoreToggle">Ещё <i class="fas fa-chevron-down"></i></a>
                     <ul class="desktop-submenu">`;
-                moreItems.forEach(item => {
+                allMore.forEach(item => {
                     html += `<li><a href="${item.href}" class="${item.active}">${item.icon} ${item.text}</a></li>`;
                 });
                 html += `</ul></li>`;
@@ -208,7 +227,7 @@
             html += '</ul>';
             nav.innerHTML = html;
 
-            // Добавляем обработчики для "Ещё"
+            // Обработчики для "Ещё"
             const desktopMore = document.getElementById('desktopMoreToggle');
             if (desktopMore) {
                 desktopMore.addEventListener('click', function(e) {
@@ -231,7 +250,7 @@
             }
         }
 
-        // Запускаем при загрузке и изменении размера окна с debounce для оптимизации
+        // Запускаем при загрузке и изменении размера окна
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
