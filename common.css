@@ -59,7 +59,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: nowrap;      /* запрещаем перенос */
     gap: 1rem;
 }
 
@@ -67,7 +67,7 @@ header {
     display: flex;
     align-items: center;
     text-decoration: none;
-    flex-shrink: 0;
+    flex-shrink: 0;          /* логотип не сжимается */
 }
 
 .logo img {
@@ -84,7 +84,7 @@ header {
 }
 
 .nav {
-    flex: 1;
+    flex: 1;                  /* занимает всё оставшееся место */
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -178,7 +178,7 @@ header {
     transform: rotate(180deg);
 }
 
-/* Поиск */
+/* Поиск (иконка) */
 .search-icon-container {
     position: relative;
     margin-left: 20px;
@@ -452,7 +452,7 @@ header {
 /* Мобильное меню */
 @media (max-width: 768px) {
     .header-inner {
-        flex-wrap: wrap;
+        flex-wrap: wrap;           /* на мобильных разрешаем перенос */
     }
     .logo {
         margin-right: auto;
@@ -585,25 +585,38 @@ body.special-mode .footer-col a {
     text-decoration: underline;
 }
 
-/* Кнопка наверх (вариант 1 – в потоке, не фиксированная) */
-.back-to-top {
-    display: inline-block;        /* или block, если нужно на всю ширину */
-    background: #e5989b;
-    color: #fff;
-    width: 50px;
-    height: 50px;
+/* НОВАЯ КНОПКА "НАВЕРХ" */
+.scroll-top-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007BFF;
+    color: white;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     text-align: center;
-    line-height: 50px;
+    line-height: 40px;
+    font-size: 20px;
     text-decoration: none;
-    margin: 2rem auto 0;          /* отцентрируем, если нужно */
-    transition: background-color 0.2s, transform 0.2s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    font-size: 1.2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    z-index: 9999;
 }
-.back-to-top:hover {
-    background: #d68b8e;
-    transform: scale(1.1);
+.scroll-top-button:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .scroll-top-button {
+        bottom: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 18px;
+    }
 }
 
 /* Убираем чёрные точки в меню */
