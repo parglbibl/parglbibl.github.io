@@ -628,6 +628,19 @@ body.special-mode .footer-col a {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
+/* Фикс для кнопки "наверх" на мобильных устройствах */
+@media (max-width: 768px) {
+    .back-to-top {
+        position: fixed !important;  /* принудительно фиксируем */
+        bottom: 1rem;                /* уменьшаем отступ для удобства */
+        right: 1rem;
+        width: 45px;                 /* немного уменьшаем размер */
+        height: 45px;
+        font-size: 1rem;
+        z-index: 9999;               /* высокий z-index, чтобы быть над всеми элементами */
+    }
+}
+
 /* Убираем чёрные точки в меню */
 .nav ul,
 .nav ul li,
