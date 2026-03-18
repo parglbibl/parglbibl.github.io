@@ -585,48 +585,25 @@ body.special-mode .footer-col a {
     text-decoration: underline;
 }
 
-/* Кнопка наверх (вариант 2 – фиксированная) */
+/* Кнопка наверх (вариант 1 – в потоке, не фиксированная) */
 .back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    display: inline-block;        /* или block, если нужно на всю ширину */
     background: #e5989b;
     color: #fff;
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+    line-height: 50px;
     text-decoration: none;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, background-color 0.2s, transform 0.2s, box-shadow 0.2s;
-    z-index: 99;
+    margin: 2rem auto 0;          /* отцентрируем, если нужно */
+    transition: background-color 0.2s, transform 0.2s;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     font-size: 1.2rem;
-}
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
 }
 .back-to-top:hover {
     background: #d68b8e;
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-/* Фикс для кнопки на мобильных устройствах */
-@media (max-width: 768px) {
-    .back-to-top {
-        position: fixed !important;
-        bottom: 1rem;
-        right: 1rem;
-        width: 45px;
-        height: 45px;
-        font-size: 1rem;
-        z-index: 9999;
-    }
 }
 
 /* Убираем чёрные точки в меню */
