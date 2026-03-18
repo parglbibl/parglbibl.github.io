@@ -1,4 +1,4 @@
-/* common.css – полная версия со всеми стилями */
+/* common.css – полная версия со всеми стилями (без кнопки) */
 * {
     margin: 0;
     padding: 0;
@@ -59,7 +59,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;      /* запрещаем перенос */
+    flex-wrap: nowrap;
     gap: 1rem;
 }
 
@@ -67,7 +67,7 @@ header {
     display: flex;
     align-items: center;
     text-decoration: none;
-    flex-shrink: 0;          /* логотип не сжимается */
+    flex-shrink: 0;
 }
 
 .logo img {
@@ -84,7 +84,7 @@ header {
 }
 
 .nav {
-    flex: 1;                  /* занимает всё оставшееся место */
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -452,7 +452,7 @@ header {
 /* Мобильное меню */
 @media (max-width: 768px) {
     .header-inner {
-        flex-wrap: wrap;           /* на мобильных разрешаем перенос */
+        flex-wrap: wrap;
     }
     .logo {
         margin-right: auto;
@@ -583,40 +583,6 @@ body.special-mode .footer-col a {
 }
 .breadcrumbs a:hover {
     text-decoration: underline;
-}
-
-/* НОВАЯ КНОПКА "НАВЕРХ" */
-.scroll-top-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #007BFF;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 40px;
-    font-size: 20px;
-    text-decoration: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    opacity: 0.7;
-    transition: opacity 0.3s;
-    z-index: 9999;
-}
-.scroll-top-button:hover {
-    opacity: 1;
-}
-
-@media (max-width: 768px) {
-    .scroll-top-button {
-        bottom: 15px;
-        right: 15px;
-        width: 35px;
-        height: 35px;
-        line-height: 35px;
-        font-size: 18px;
-    }
 }
 
 /* Убираем чёрные точки в меню */
