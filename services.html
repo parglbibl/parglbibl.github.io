@@ -44,6 +44,43 @@
         .service-icon { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
         .service-card p { flex-grow: 1; margin-bottom: 1rem; }
         .service-card .btn { margin-top: auto; align-self: center; }
+
+        /* Стили для раздела периодических изданий */
+        .magazines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .magazine-item {
+            background: #fff;
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
+            color: #4a4a4a;
+        }
+        .magazine-item i {
+            color: #b5838d;
+            font-size: 1.3rem;
+            min-width: 24px;
+            text-align: center;
+        }
+        .magazine-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .magazine-item {
+                border-radius: 16px;
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -117,7 +154,7 @@
                     <h3>Детский отдел</h3>
                     <p>Книжки для малышей и подростков, интерактивные занятия и игровые программы.</p>
                 </div>
-                <!-- Карточка доступной среды (оставлена) -->
+                <!-- Карточка доступной среды -->
                 <div class="service-card fade-in">
                     <div class="service-icon"><i class="fas fa-hands"></i></div>
                     <h3>Доступная среда</h3>
@@ -146,7 +183,33 @@
                 </div>
             </div>
 
-            <!-- Блок с доступной навигацией полностью удалён, так как информация уже есть в карточке "Доступная среда" -->
+            <!-- Периодические издания – 2026 -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Периодические издания – 2026</h2>
+                    <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">
+                        Мы выписываем для вас самые интересные журналы! Все они доступны в читальном зале, а также выдаются на дом.
+                    </p>
+                    <div class="magazines-grid">
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Будь здоров! — 100 страниц о самом главном»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Ёжик»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Классный журнал»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Мир техники для детей»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Сваты на даче»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Сваты. Заготовки»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Свирелька. Детям о природе»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Смешарики»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Тошка и компания»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Шишкин лес»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Юный эрудит»</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 2rem; color: #666;">
+                        <i class="fas fa-info-circle" style="color: #e5989b;"></i> 
+                        Журналы выдаются на тех же условиях, что и книги: до 10 экземпляров на 30 дней. 
+                        Подробнее об этом — в разделе <a href="faq.html" style="color: #e5989b;">«Часто задаваемые вопросы»</a>.
+                    </p>
+                </div>
+            </section>
         </div>
     </section>
 
