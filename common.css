@@ -625,3 +625,14 @@ body.special-mode .footer-col a {
 .upbtn:hover {
     transform: scale(1.2) !important;
 }
+
+/* Фикс для мобильной кнопки "наверх" */
+@media (max-width: 768px) {
+    .upbtn {
+        position: fixed !important;
+        bottom: 20px !important;
+        right: 20px !important;
+        width: 60px; /* можно чуть уменьшить для мобильных */
+        height: 60px;
+    }
+}
