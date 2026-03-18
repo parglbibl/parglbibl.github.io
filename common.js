@@ -16,31 +16,25 @@ document.addEventListener('DOMContentLoaded', function() {
         const mainItems = document.querySelectorAll('li[data-mobile="main"]');
         const moreItems = document.querySelectorAll('li[data-mobile="more"]');
 
-        // Если есть пункты для "Ещё"
         if (moreItems.length > 0) {
-            // Создаём пункт "Ещё" с подменю
             const moreLi = document.createElement('li');
             moreLi.className = 'desktop-more';
             moreLi.innerHTML = '<a href="#"><i class="fas fa-ellipsis-h"></i> Ещё <i class="fas fa-chevron-down"></i></a><ul class="desktop-submenu"></ul>';
 
-            // Вставляем "Ещё" после основных пунктов
             navContainer.appendChild(moreLi);
 
-            // Переносим второстепенные пункты в подменю
             const submenu = moreLi.querySelector('.desktop-submenu');
             moreItems.forEach(item => {
                 submenu.appendChild(item.cloneNode(true));
-                item.remove(); // удаляем оригиналы
+                item.remove();
             });
 
-            // Управление показом подменю при клике
             const moreLink = moreLi.querySelector('a');
             moreLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 submenu.classList.toggle('show');
             });
 
-            // Закрыть при клике вне
             document.addEventListener('click', function(event) {
                 if (!moreLi.contains(event.target)) {
                     submenu.classList.remove('show');
@@ -49,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Поиск: иконка открывает/закрывает попап
+    // Поиск
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     if (searchIcon && searchPopup) {
@@ -58,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
             searchPopup.classList.toggle('active');
         });
 
-        // Закрыть при клике вне
         document.addEventListener('click', function(event) {
             if (!searchIcon.contains(event.target) && !searchPopup.contains(event.target)) {
                 searchPopup.classList.remove('active');
@@ -75,13 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('specialMode', document.body.classList.contains('special-mode'));
         });
 
-        // Восстановить режим при загрузке
         if (localStorage.getItem('specialMode') === 'true') {
             document.body.classList.add('special-mode');
         }
     }
 
-    // Кнопка "наверх": показывать/скрывать при прокрутке
+    // Кнопка "наверх" – показывать при прокрутке
     const backToTop = document.getElementById('backToTop');
     if (backToTop) {
         window.addEventListener('scroll', function() {
@@ -92,7 +84,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Плавный скролл наверх при клике
         backToTop.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
