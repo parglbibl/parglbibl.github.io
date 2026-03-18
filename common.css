@@ -59,7 +59,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;      /* запрещаем перенос */
+    flex-wrap: nowrap;
     gap: 1rem;
 }
 
@@ -67,7 +67,7 @@ header {
     display: flex;
     align-items: center;
     text-decoration: none;
-    flex-shrink: 0;          /* логотип не сжимается */
+    flex-shrink: 0;
 }
 
 .logo img {
@@ -84,22 +84,10 @@ header {
 }
 
 .nav {
-    flex: 1;                  /* занимает всё оставшееся место */
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: flex-end;
-}
-
-/* Десктопное меню (генерируется скриптом) */
-.desktop-menu {
-    display: flex;
-    list-style: none;
-    gap: 2rem;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    justify-content: flex-end;
-    flex-wrap: wrap;           /* если скрипт не сработает, пункты могут переноситься, но мы полагаемся на скрипт */
 }
 
 .nav a {
@@ -190,7 +178,7 @@ header {
     transform: rotate(180deg);
 }
 
-/* Поиск (иконка) */
+/* Поиск */
 .search-icon-container {
     position: relative;
     margin-left: 20px;
@@ -464,7 +452,7 @@ header {
 /* Мобильное меню */
 @media (max-width: 768px) {
     .header-inner {
-        flex-wrap: wrap;           /* на мобильных разрешаем перенос */
+        flex-wrap: wrap;
     }
     .logo {
         margin-right: auto;
@@ -597,7 +585,7 @@ body.special-mode .footer-col a {
     text-decoration: underline;
 }
 
-/* Кнопка наверх */
+/* Кнопка наверх (вариант 2 – фиксированная) */
 .back-to-top {
     position: fixed;
     bottom: 2rem;
@@ -628,16 +616,16 @@ body.special-mode .footer-col a {
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
-/* Фикс для кнопки "наверх" на мобильных устройствах */
+/* Фикс для кнопки на мобильных устройствах */
 @media (max-width: 768px) {
     .back-to-top {
-        position: fixed !important;  /* принудительно фиксируем */
-        bottom: 1rem;                /* уменьшаем отступ для удобства */
+        position: fixed !important;
+        bottom: 1rem;
         right: 1rem;
-        width: 45px;                 /* немного уменьшаем размер */
+        width: 45px;
         height: 45px;
         font-size: 1rem;
-        z-index: 9999;               /* высокий z-index, чтобы быть над всеми элементами */
+        z-index: 9999;
     }
 }
 
