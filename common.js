@@ -100,22 +100,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (typeof Fancybox !== 'undefined') {
         Fancybox.bind('[data-fancybox]');
     }
+
+    // ===== НОВАЯ КНОПКА "НАВЕРХ" (вариант 2) =====
+    // Добавляем элемент кнопки в body
     $('body').append('<div class="upbtn"></div>');
-$(window).scroll(function() {
-    if ($(this).scrollTop() > 100) {
-        $('.upbtn').css({
-            transform: 'scale(1)'
-        });
+
+    // Показываем/скрываем при прокрутке
+    $(window).scroll(function() {
+        if ($(this).scrollTop() > 100) {
+            $('.upbtn').css({
+                transform: 'scale(1)'
+            });
         } else {
-        $('.upbtn').css({
-            transform: 'scale(0)'
-        });
-    }
-});
-$('.upbtn').on('click',function() {
-    $('html, body').animate({
-        scrollTop: 0
-    }, 500);
-    return false;
-});
+            $('.upbtn').css({
+                transform: 'scale(0)'
+            });
+        }
+    });
+
+    // Обработчик клика – плавный скролл наверх
+    $('.upbtn').on('click', function() {
+        $('html, body').animate({
+            scrollTop: 0
+        }, 500);
+        return false;
+    });
 });
