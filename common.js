@@ -104,9 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===== НОВАЯ КНОПКА "НАВЕРХ" (чистый JS) =====
     const btn = document.getElementById('scrollUp');
     if (btn) {
-        // Показываем/скрываем при прокрутке
+        // Показываем/скрываем при прокрутке (порог 100px)
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 50) {
+            if (window.pageYOffset > 100) {
                 btn.style.display = 'block';
             } else {
                 btn.style.display = 'none';
