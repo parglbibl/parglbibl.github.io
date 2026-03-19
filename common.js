@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const submenu = moreLi.querySelector('.desktop-submenu');
             moreItems.forEach(item => {
                 submenu.appendChild(item.cloneNode(true));
-                item.remove();
+                item.remove(); // удаляем оригинальные пункты из основного списка
             });
 
             const moreLink = moreLi.querySelector('a');
