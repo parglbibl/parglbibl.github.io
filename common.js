@@ -1,7 +1,9 @@
 // common.js – общие скрипты для всего сайта
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Мобильное меню
+    console.log('common.js загружен и выполняется');
+
+    // ===== МОБИЛЬНОЕ МЕНЮ =====
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
     if (menuToggle && nav) {
@@ -10,39 +12,58 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Десктопное меню с "Ещё" – исправленная версия (перемещение, а не клонирование)
+    // ===== МЕНЮ "ЕЩЁ" НА ДЕСКТОПЕ =====
+    // Находим контейнер меню (ul внутри .nav)
     const navContainer = document.querySelector('.nav ul');
-    if (navContainer && window.innerWidth > 768) {
+    if (navContainer) {
+        console.log('Контейнер меню найден');
+
+        // Находим все пункты, которые должны быть в подменю "Ещё"
         const moreItems = document.querySelectorAll('li[data-mobile="more"]');
+        console.log('Найдено пунктов для "Ещё":', moreItems.length);
+
         if (moreItems.length > 0) {
-            // Создаём пункт "Ещё"
+            // Создаём новый пункт "Ещё" с выпадающим списком
             const moreLi = document.createElement('li');
             moreLi.className = 'desktop-more';
             moreLi.innerHTML = '<a href="#"><i class="fas fa-ellipsis-h"></i> Ещё <i class="fas fa-chevron-down"></i></a><ul class="desktop-submenu"></ul>';
+
+            // Добавляем его в конец основного меню
             navContainer.appendChild(moreLi);
+            console.log('Пункт "Ещё" добавлен в меню');
+
+            // Получаем ссылку на подменю
             const submenu = moreLi.querySelector('.desktop-submenu');
 
-            // Перемещаем каждый пункт в подменю (они автоматически исчезнут из старого места)
+            // Перемещаем все пункты с data-mobile="more" в подменю
             moreItems.forEach(item => {
                 submenu.appendChild(item);
+                console.log('Перемещён пункт:', item.querySelector('a')?.innerText || item.innerText);
             });
 
-            // Обработчики для показа/скрытия подменю
+            // Обработчик клика по ссылке "Ещё" – показать/скрыть подменю
             const moreLink = moreLi.querySelector('a');
             moreLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 submenu.classList.toggle('show');
             });
 
+            // Закрыть подменю при клике вне его
             document.addEventListener('click', function(event) {
                 if (!moreLi.contains(event.target)) {
                     submenu.classList.remove('show');
                 }
             });
+
+            console.log('Обработчики для "Ещё" добавлены');
+        } else {
+            console.log('Нет пунктов для "Ещё"');
         }
+    } else {
+        console.log('Контейнер меню НЕ найден');
     }
 
-    // Поиск
+    // ===== ПОИСК =====
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     if (searchIcon && searchPopup) {
@@ -58,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Версия для слабовидящих
+    // ===== ВЕРСИЯ ДЛЯ СЛАБОВИДЯЩИХ =====
     const specialLink = document.getElementById('specialFooterLink');
     if (specialLink) {
         specialLink.addEventListener('click', function(e) {
@@ -72,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Баннер cookie
+    // ===== БАННЕР COOKIE =====
     const cookieBanner = document.getElementById('cookie-banner');
     if (cookieBanner) {
         if (!localStorage.getItem('cookieAccepted') && !localStorage.getItem('cookieDeclined')) {
@@ -95,15 +116,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Fancybox (если используется)
+    // ===== FANCYBOX (если используется) =====
     if (typeof Fancybox !== 'undefined') {
         Fancybox.bind('[data-fancybox]');
     }
 
-    // ===== НОВАЯ КНОПКА "НАВЕРХ" (чистый JS) =====
+    // ===== КНОПКА "НАВЕРХ" =====
     const btn = document.getElementById('scrollUp');
     if (btn) {
-        // Показываем/скрываем при прокрутке (порог 100px)
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 100) {
                 btn.style.display = 'block';
@@ -112,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Плавная прокрутка вверх при клике
         btn.addEventListener('click', function() {
             window.scrollTo({
                 top: 0,
