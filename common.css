@@ -132,6 +132,7 @@ header {
     margin: 0;
     padding: 0;
     list-style:none;
+}
     
 /* Выпадающее меню "Ещё" на десктопе */
 .desktop-more {
