@@ -123,7 +123,16 @@ header {
 .nav a.active {
     border-bottom: none;
 }
-
+/* Горизонтальное меню на десктопе*/
+.nav ul{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+    list-style:none;
+    
 /* Выпадающее меню "Ещё" на десктопе */
 .desktop-more {
     position: relative;
