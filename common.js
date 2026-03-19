@@ -10,25 +10,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Десктопное меню с "Ещё"
+    // Десктопное меню с "Ещё" – исправленная версия (перемещение, а не клонирование)
     const navContainer = document.querySelector('.nav ul');
     if (navContainer && window.innerWidth > 768) {
-        const mainItems = document.querySelectorAll('li[data-mobile="main"]');
         const moreItems = document.querySelectorAll('li[data-mobile="more"]');
-
         if (moreItems.length > 0) {
+            // Создаём пункт "Ещё"
             const moreLi = document.createElement('li');
             moreLi.className = 'desktop-more';
             moreLi.innerHTML = '<a href="#"><i class="fas fa-ellipsis-h"></i> Ещё <i class="fas fa-chevron-down"></i></a><ul class="desktop-submenu"></ul>';
-
             navContainer.appendChild(moreLi);
-
             const submenu = moreLi.querySelector('.desktop-submenu');
+
+            // Перемещаем каждый пункт в подменю (они автоматически исчезнут из старого места)
             moreItems.forEach(item => {
-                submenu.appendChild(item.cloneNode(true));
-                item.remove(); // удаляем оригинальные пункты из основного списка
+                submenu.appendChild(item);
             });
 
+            // Обработчики для показа/скрытия подменю
             const moreLink = moreLi.querySelector('a');
             moreLink.addEventListener('click', function(e) {
                 e.preventDefault();
