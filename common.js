@@ -1,4 +1,4 @@
-// common.js – общие скрипты для всего сайта
+// common.js – окончательная версия с исправленным меню
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('common.js загружен и выполняется');
@@ -12,27 +12,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== МЕНЮ "ЕЩЁ" НА ДЕСКТОПЕ =====
-    // Находим контейнер меню (ul внутри .nav)
+    // ===== МЕНЮ "ЕЩЁ" =====
+    // Находим контейнер основного меню
     const navContainer = document.querySelector('.nav ul');
-    if (navContainer) {
-        console.log('Контейнер меню найден');
+    if (!navContainer) {
+        console.log('Контейнер меню не найден');
+        return;
+    }
 
-        // Находим все пункты, которые должны быть в подменю "Ещё"
+    // Проверяем, не создан ли уже пункт "Ещё" (чтобы не дублировать при повторных вызовах)
+    if (document.querySelector('.desktop-more')) {
+        console.log('Пункт "Ещё" уже существует');
+    } else {
+        // Находим все пункты, которые должны уйти в подменю
         const moreItems = document.querySelectorAll('li[data-mobile="more"]');
         console.log('Найдено пунктов для "Ещё":', moreItems.length);
 
         if (moreItems.length > 0) {
-            // Создаём новый пункт "Ещё" с выпадающим списком
+            // Создаём пункт "Ещё"
             const moreLi = document.createElement('li');
             moreLi.className = 'desktop-more';
             moreLi.innerHTML = '<a href="#"><i class="fas fa-ellipsis-h"></i> Ещё <i class="fas fa-chevron-down"></i></a><ul class="desktop-submenu"></ul>';
-
-            // Добавляем его в конец основного меню
             navContainer.appendChild(moreLi);
-            console.log('Пункт "Ещё" добавлен в меню');
+            console.log('Пункт "Ещё" добавлен в конец меню');
 
-            // Получаем ссылку на подменю
             const submenu = moreLi.querySelector('.desktop-submenu');
 
             // Перемещаем все пункты с data-mobile="more" в подменю
@@ -41,14 +44,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Перемещён пункт:', item.querySelector('a')?.innerText || item.innerText);
             });
 
-            // Обработчик клика по ссылке "Ещё" – показать/скрыть подменю
+            // Обработчики для показа/скрытия подменю
             const moreLink = moreLi.querySelector('a');
             moreLink.addEventListener('click', function(e) {
                 e.preventDefault();
                 submenu.classList.toggle('show');
             });
 
-            // Закрыть подменю при клике вне его
+            // Закрытие при клике вне меню
             document.addEventListener('click', function(event) {
                 if (!moreLi.contains(event.target)) {
                     submenu.classList.remove('show');
@@ -59,8 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.log('Нет пунктов для "Ещё"');
         }
-    } else {
-        console.log('Контейнер меню НЕ найден');
     }
 
     // ===== ПОИСК =====
