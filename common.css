@@ -124,7 +124,7 @@ header {
     border-bottom: none;
 }
 /* Горизонтальное меню на десктопе*/
-.nav ul{
+.nav ul {
     display: flex;
     flex-direction: row;
     align-items: center;
