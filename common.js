@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (btn) {
         // Показываем/скрываем при прокрутке
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
+            if (window.pageYOffset > 50) {
                 btn.style.display = 'block';
             } else {
                 btn.style.display = 'none';
