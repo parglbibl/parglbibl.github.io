@@ -603,11 +603,12 @@ body.special-mode .footer-col a {
     list-style: none !important;
 }
 
+/* ===== НОВАЯ КНОПКА "НАВЕРХ" ===== */
 #scrollUp {
     display: none; /* Скрыта по умолчанию */
     position: fixed;
-    bottom: 20px; /* Отступ от нижнего края */
-    right: 20px; /* Отступ от правого края */
+    bottom: 20px;
+    right: 20px;
     z-index: 9999;
     width: 50px;
     height: 50px;
@@ -620,10 +621,10 @@ body.special-mode .footer-col a {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     opacity: 0.8;
+    transition: background-color 0.3s, opacity 0.3s;
 }
 
 #scrollUp:hover {
     background-color: #555;
     opacity: 1;
-}
 }
