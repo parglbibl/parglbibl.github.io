@@ -101,23 +101,24 @@ document.addEventListener('DOMContentLoaded', function() {
         Fancybox.bind('[data-fancybox]');
     }
 
-    window.addEventListener('DOMContentLoaded', function() {
-    var btn = document.getElementById('scrollUp');
-
-    // Показываем/скрываем кнопку
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            btn.style.display = 'block';
-        } else {
-            btn.style.display = 'none';
-        }
-    });
-
-    // Плавная прокрутка вверх
-    btn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    // ===== НОВАЯ КНОПКА "НАВЕРХ" (чистый JS) =====
+    const btn = document.getElementById('scrollUp');
+    if (btn) {
+        // Показываем/скрываем при прокрутке
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
         });
-    });
+
+        // Плавная прокрутка вверх при клике
+        btn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
