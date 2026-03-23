@@ -30,7 +30,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Общие стили */
         .calendar-nav {
             display: flex;
             flex-wrap: wrap;
@@ -462,245 +461,48 @@
     <script src="common.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?apikey=0c586c14-20f3-4be5-b7f7-a618b25ccfa8&lang=ru_RU"></script>
     <script>
-        // ==================== БАЗА ДАННЫХ СОБЫТИЙ ====================
-        // Формат: для каждого месяца массив объектов
-        // Для книг-юбиляров и краеведческих дат добавим поле type ("birth", "book", "local")
-        // Для карты добавим координаты для тех событий, которые имеют привязку к Парголово/Петербургу
-
+        // ==================== ПОЛНЫЙ МАССИВ СОБЫТИЙ НА 2026 ГОД ====================
+        // Каждый объект имеет поля:
+        // date, title, author, desc, local, wiki, litres (если есть), type, coords (для карты)
         const eventsData = {
+            // Январь
             january: [
-                { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", coords: [60.075, 30.270] },
-                { date: "4 января", title: "195 лет со дня рождения В.Ф. Одоевского (1804–1869)", author: "Владимир Одоевский", desc: "Русский писатель, философ, музыковед. Сказки «Городок в табакерке», роман «Русские ночи».", local: "Одоевский бывал в Петербурге, его произведения есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Одоевский,_Владимир_Фёдорович", type: "birth" },
+                { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", coords: null },
+                { date: "4 января", title: "195 лет со дня рождения В.Ф. Одоевского (1804–1869)", author: "Владимир Одоевский", desc: "Русский писатель, философ, музыковед. Сказки «Городок в табакерке», роман «Русские ночи».", local: "Одоевский бывал в Петербурге, его произведения есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Одоевский,_Владимир_Фёдорович", litres: "", type: "birth", coords: null },
                 { date: "6 января", title: "145 лет со дня рождения А.Н. Толстого (1883–1945)", author: "Алексей Толстой", desc: "Русский писатель. «Пётр I», «Аэлита», «Золотой ключик».", local: "Толстой не раз бывал в Петербурге и Ленинграде.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Николаевич", litres: "https://www.litres.ru/aleksey-tolstoy/", type: "birth", coords: [59.934, 30.335] },
-                { date: "12 января", title: "150 лет со дня рождения Дж. Лондона (1876–1916)", author: "Джек Лондон", desc: "Американский писатель. «Белый Клык», «Мартин Иден», «Морской волк».", local: "Книги Лондона о сильных духом людях всегда популярны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Лондон,_Джек", litres: "https://www.litres.ru/dzhek-london/", type: "birth" },
+                { date: "12 января", title: "150 лет со дня рождения Дж. Лондона (1876–1916)", author: "Джек Лондон", desc: "Американский писатель. «Белый Клык», «Мартин Иден», «Морской волк».", local: "Книги Лондона о сильных духом людях всегда популярны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Лондон,_Джек", litres: "https://www.litres.ru/dzhek-london/", type: "birth", coords: null },
                 { date: "15 января", title: "231 год со дня рождения А.С. Грибоедова (1795–1829)", author: "Александр Грибоедов", desc: "Русский дипломат, поэт, драматург, автор комедии «Горе от ума».", local: "В 1826 году Грибоедов гостил в Парголово на даче Фаддея Булгарина, где написал очерк «Загородная поездка».", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", litres: "https://www.litres.ru/aleksandr-griboedov/", type: "birth", coords: [60.075, 30.270] },
-                { date: "22 января", title: "205 лет со дня рождения Д.В. Григоровича (1822–1899)", author: "Дмитрий Григорович", desc: "Русский писатель. «Антон-Горемыка», «Гуттаперчевый мальчик».", local: "Его повести о крестьянской жизни были популярны в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Григорович,_Дмитрий_Васильевич", type: "birth" },
-                { date: "24 января", title: "250 лет со дня рождения Э.Т.А. Гофмана (1776–1822)", author: "Эрнст Теодор Амадей Гофман", desc: "Немецкий писатель-романтик, композитор. «Щелкунчик», «Крошка Цахес».", local: "Сказки Гофмана любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Гофман,_Эрнст_Теодор_Амадей", litres: "https://www.litres.ru/ernst-gofman/", type: "birth" },
+                { date: "22 января", title: "205 лет со дня рождения Д.В. Григоровича (1822–1899)", author: "Дмитрий Григорович", desc: "Русский писатель. «Антон-Горемыка», «Гуттаперчевый мальчик».", local: "Его повести о крестьянской жизни были популярны в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Григорович,_Дмитрий_Васильевич", litres: "", type: "birth", coords: null },
+                { date: "24 января", title: "250 лет со дня рождения Э.Т.А. Гофмана (1776–1822)", author: "Эрнст Теодор Амадей Гофман", desc: "Немецкий писатель-романтик, композитор. «Щелкунчик», «Крошка Цахес».", local: "Сказки Гофмана любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Гофман,_Эрнст_Теодор_Амадей", litres: "https://www.litres.ru/ernst-gofman/", type: "birth", coords: null },
                 { date: "27 января", title: "200 лет со дня рождения М.Е. Салтыкова-Щедрина (1826–1889)", author: "Михаил Салтыков-Щедрин", desc: "Русский писатель-сатирик, журналист.", local: "Его сказки и сатирические романы актуальны по сей день.", wiki: "https://ru.wikipedia.org/wiki/Салтыков-Щедрин,_Михаил_Евграфович", litres: "https://www.litres.ru/mihail-saltykov-schedrin/", type: "birth", coords: [59.934, 30.335] },
-                { date: "29 января", title: "160 лет со дня рождения Р. Роллана (1866–1944)", author: "Ромен Роллан", desc: "Французский писатель, общественный деятель. «Жан-Кристоф», «Кола Брюньон».", local: "Его книги о музыке и творчестве вдохновляют читателей уже больше века.", wiki: "https://ru.wikipedia.org/wiki/Роллан,_Ромен", litres: "https://www.litres.ru/romen-rollan/", type: "birth" },
+                { date: "29 января", title: "160 лет со дня рождения Р. Роллана (1866–1944)", author: "Ромен Роллан", desc: "Французский писатель, общественный деятель. «Жан-Кристоф», «Кола Брюньон».", local: "Его книги о музыке и творчестве вдохновляют читателей уже больше века.", wiki: "https://ru.wikipedia.org/wiki/Роллан,_Ромен", litres: "https://www.litres.ru/romen-rollan/", type: "birth", coords: null },
                 { date: "29 января", title: "166 лет со дня рождения А.П. Чехова (1860–1904)", author: "Антон Чехов", desc: "Великий русский писатель, драматург. «Вишнёвый сад», «Чайка», «Палата №6».", local: "Чехов не раз проезжал через станцию Парголово по пути в усадьбу Суворина под Петербургом.", wiki: "https://ru.wikipedia.org/wiki/Чехов,_Антон_Павлович", litres: "https://www.litres.ru/anton-chehov/", type: "birth", coords: [60.075, 30.270] }
             ],
+            // Февраль
             february: [
-                { date: "5 февраля", title: "190 лет со дня рождения Н.А. Добролюбова (1836–1861)", author: "Николай Добролюбов", desc: "Русский литературный критик, публицист. «Что такое обломовщина?», «Луч света в тёмном царстве».", local: "Статьи Добролюбова помогают школьникам лучше понять классику.", wiki: "https://ru.wikipedia.org/wiki/Добролюбов,_Николай_Александрович", type: "birth" },
-                { date: "9 февраля", title: "585 лет со дня рождения Алишера Навои (1441–1501)", author: "Алишер Навои", desc: "Тюркский поэт, философ, основоположник узбекской литературы. «Лейли и Меджнун», «Фархад и Ширин».", local: "Его газели — шедевры восточной поэзии.", wiki: "https://ru.wikipedia.org/wiki/Алишер_Навои", type: "birth" },
+                { date: "5 февраля", title: "190 лет со дня рождения Н.А. Добролюбова (1836–1861)", author: "Николай Добролюбов", desc: "Русский литературный критик, публицист. «Что такое обломовщина?», «Луч света в тёмном царстве».", local: "Статьи Добролюбова помогают школьникам лучше понять классику.", wiki: "https://ru.wikipedia.org/wiki/Добролюбов,_Николай_Александрович", litres: "", type: "birth", coords: null },
+                { date: "9 февраля", title: "585 лет со дня рождения Алишера Навои (1441–1501)", author: "Алишер Навои", desc: "Тюркский поэт, философ, основоположник узбекской литературы. «Лейли и Меджнун», «Фархад и Ширин».", local: "Его газели — шедевры восточной поэзии.", wiki: "https://ru.wikipedia.org/wiki/Алишер_Навои", litres: "", type: "birth", coords: null },
                 { date: "13 февраля", title: "257 лет со дня рождения И.А. Крылова (1769–1844)", author: "Иван Крылов", desc: "Великий русский баснописец.", local: "Басни Крылова любили читатели всех сословий, в том числе и в Парголово.", wiki: "https://ru.wikipedia.org/wiki/Крылов,_Иван_Андреевич", litres: "https://www.litres.ru/ivan-krylov/", type: "birth", coords: [59.934, 30.335] },
-                { date: "16 февраля", title: "195 лет со дня рождения Н.С. Лескова (1831–1895)", author: "Николай Лесков", desc: "Русский писатель. «Левша», «Леди Макбет Мценского уезда», «Очарованный странник».", local: "Удивительный язык Лескова — настоящий подарок для ценителей русской словесности.", wiki: "https://ru.wikipedia.org/wiki/Лесков,_Николай_Семёнович", litres: "https://www.litres.ru/nikolay-leskov/", type: "birth" },
-                { date: "17 февраля", title: "120 лет со дня рождения А.Л. Барто (1906–1981)", author: "Агния Барто", desc: "Советская поэтесса, детский писатель. «Игрушки», «Было у бабушки сорок внучат».", local: "Стихи Барто знает наизусть каждый ребёнок в нашей стране.", wiki: "https://ru.wikipedia.org/wiki/Барто,_Агния_Львовна", litres: "https://www.litres.ru/agniya-barto/", type: "birth" },
-                { date: "20 февраля", title: "174 года со дня рождения Н.Г. Гарина-Михайловского (1852–1906)", author: "Николай Гарин-Михайловский", desc: "Писатель, инженер. «Детство Тёмы», «Гимназисты».", local: "Бывал в Петербурге, его книги о взрослении до сих пор актуальны.", wiki: "https://ru.wikipedia.org/wiki/Гарин-Михайловский,_Николай_Георгиевич", type: "birth" },
-                { date: "24 февраля", title: "240 лет со дня рождения В. Гримма (1786–1859)", author: "Вильгельм Гримм", desc: "Немецкий филолог, сказочник. «Бременские музыканты», «Золотой гусь».", local: "Сказки братьев Гримм любят и взрослые, и дети.", wiki: "https://ru.wikipedia.org/wiki/Гримм,_Вильгельм", litres: "https://www.litres.ru/bratya-grimm/", type: "birth" },
-                { date: "28 февраля", title: "200 лет со дня рождения Ж. Верна (1828–1905)", author: "Жюль Верн", desc: "Французский писатель-фантаст. «Двадцать тысяч лье под водой», «Дети капитана Гранта».", local: "Его приключенческие романы — одни из самых читаемых в мире.", wiki: "https://ru.wikipedia.org/wiki/Верн,_Жюль", litres: "https://www.litres.ru/zhul-vern/", type: "birth" }
+                { date: "16 февраля", title: "195 лет со дня рождения Н.С. Лескова (1831–1895)", author: "Николай Лесков", desc: "Русский писатель. «Левша», «Леди Макбет Мценского уезда», «Очарованный странник».", local: "Удивительный язык Лескова — настоящий подарок для ценителей русской словесности.", wiki: "https://ru.wikipedia.org/wiki/Лесков,_Николай_Семёнович", litres: "https://www.litres.ru/nikolay-leskov/", type: "birth", coords: null },
+                { date: "17 февраля", title: "120 лет со дня рождения А.Л. Барто (1906–1981)", author: "Агния Барто", desc: "Советская поэтесса, детский писатель. «Игрушки», «Было у бабушки сорок внучат».", local: "Стихи Барто знает наизусть каждый ребёнок в нашей стране.", wiki: "https://ru.wikipedia.org/wiki/Барто,_Агния_Львовна", litres: "https://www.litres.ru/agniya-barto/", type: "birth", coords: null },
+                { date: "20 февраля", title: "174 года со дня рождения Н.Г. Гарина-Михайловского (1852–1906)", author: "Николай Гарин-Михайловский", desc: "Писатель, инженер. «Детство Тёмы», «Гимназисты».", local: "Бывал в Петербурге, его книги о взрослении до сих пор актуальны.", wiki: "https://ru.wikipedia.org/wiki/Гарин-Михайловский,_Николай_Георгиевич", litres: "", type: "birth", coords: null },
+                { date: "24 февраля", title: "240 лет со дня рождения В. Гримма (1786–1859)", author: "Вильгельм Гримм", desc: "Немецкий филолог, сказочник. «Бременские музыканты», «Золотой гусь».", local: "Сказки братьев Гримм любят и взрослые, и дети.", wiki: "https://ru.wikipedia.org/wiki/Гримм,_Вильгельм", litres: "https://www.litres.ru/bratya-grimm/", type: "birth", coords: null },
+                { date: "28 февраля", title: "200 лет со дня рождения Ж. Верна (1828–1905)", author: "Жюль Верн", desc: "Французский писатель-фантаст. «Двадцать тысяч лье под водой», «Дети капитана Гранта».", local: "Его приключенческие романы — одни из самых читаемых в мире.", wiki: "https://ru.wikipedia.org/wiki/Верн,_Жюль", litres: "https://www.litres.ru/zhul-vern/", type: "birth", coords: null }
             ],
-            // Добавьте остальные месяцы по аналогии (март, апрель и т.д.) – для краткости здесь приведу только книги-юбиляры и краеведческие даты.
-            // Полный массив можно взять из предыдущей версии, но для этой демонстрации я сфокусируюсь на ключевых.
-        };
-
-        // Добавим книги-юбиляры как отдельный массив
-        const bookAnniversaries = [
-            { date: "100 лет", title: "Э. Хемингуэй — «Фиеста (И восходит солнце)»", author: "Эрнест Хемингуэй", desc: "Роман, отражающий настроения «потерянного поколения».", local: "Книга есть в фонде нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Фиеста_(роман)", litres: "https://www.litres.ru/ernest-heminguey/fiesta/", type: "book" },
-            { date: "100 лет", title: "Ф. Кафка — «Замок»", author: "Франц Кафка", desc: "Неоконченный роман, изданный после смерти писателя.", local: "Одно из самых загадочных произведений XX века.", wiki: "https://ru.wikipedia.org/wiki/Замок_(роман)", litres: "https://www.litres.ru/franc-kafka/zamok/", type: "book" },
-            { date: "100 лет", title: "А. Кристи — «Убийство Роджера Экройда»", author: "Агата Кристи", desc: "Детективный роман с Эркюлем Пуаро.", local: "Книги Кристи — самые читаемые детективы в мире.", wiki: "https://ru.wikipedia.org/wiki/Убийство_Роджера_Экройда", litres: "https://www.litres.ru/agata-kristi/ubiystvo-rodzhera-ekroyda/", type: "book" },
-            { date: "100 лет", title: "М. Булгаков — «Записки юного врача»", author: "Михаил Булгаков", desc: "Цикл рассказов, опубликованных в 1925–1926 годах.", local: "Автобиографические рассказы о работе земским врачом.", wiki: "https://ru.wikipedia.org/wiki/Записки_юного_врача", litres: "https://www.litres.ru/mihail-bulgakov/zapiski-unogo-vracha/", type: "book" },
-            { date: "100 лет", title: "Я. Кавабата — «Танцовщица из Идзу»", author: "Ясунари Кавабата", desc: "Повесть, принёсшая известность японскому писателю.", local: "Лиричная история первой любви.", wiki: "https://ru.wikipedia.org/wiki/Танцовщица_из_Идзу", litres: "https://www.litres.ru/yasunari-kavabata/tancovschica-iz-idzu/", type: "book" }
-        ];
-
-        // Краеведческие даты (дополнительные события, не входящие в основные месяцы)
-        const localEvents = [
-            { date: "15 января", title: "Грибоедов в Парголово", desc: "Александр Грибоедов гостил в Парголово у Фаддея Булгарина и написал очерк «Загородная поездка».", local: "Это событие произошло летом 1826 года.", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", type: "local", coords: [60.075, 30.270] },
-            { date: "30 июня", title: "Венчание Римского-Корсакова в Шуваловском парке", desc: "В церкви Петра и Павла венчались композитор Николай Римский-Корсаков и пианистка Надежда Пургольд. Шафером был Мусоргский.", local: "Это одно из самых известных культурных событий в истории Парголово.", wiki: "https://ru.wikipedia.org/wiki/Римский-Корсаков,_Николай_Андреевич", type: "local", coords: [60.078611, 30.297500] }
-        ];
-
-        // Функция для экспорта события в ICS
-        function downloadICS(event) {
-            const startDate = new Date(2026, getMonthIndex(event.date), parseInt(event.date.split(" ")[0]));
-            const endDate = new Date(startDate);
-            endDate.setDate(startDate.getDate() + 1);
-            const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-PRODID:-//Парголовская библиотека//Литературный календарь//RU
-BEGIN:VEVENT
-UID:${Date.now()}@parglbibl.ru
-DTSTAMP:${formatDateForICS(new Date())}
-DTSTART:${formatDateForICS(startDate)}
-DTEND:${formatDateForICS(endDate)}
-SUMMARY:${event.title}
-DESCRIPTION:${event.desc} ${event.local}
-URL:${event.wiki || ''}
-END:VEVENT
-END:VCALENDAR`;
-            const blob = new Blob([icsContent], { type: "text/calendar" });
-            const link = document.createElement("a");
-            link.href = URL.createObjectURL(blob);
-            link.download = `${event.title}.ics`;
-            link.click();
-            URL.revokeObjectURL(link.href);
-        }
-
-        function formatDateForICS(date) {
-            return date.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-        }
-
-        function getMonthIndex(dateStr) {
-            const months = { "января":0, "февраля":1, "марта":2, "апреля":3, "мая":4, "июня":5, "июля":6, "августа":7, "сентября":8, "октября":9, "ноября":10, "декабря":11 };
-            const monthName = dateStr.split(" ")[1];
-            return months[monthName];
-        }
-
-        // Рендеринг карты
-        function initMap() {
-            ymaps.ready(() => {
-                const map = new ymaps.Map("map", {
-                    center: [60.075, 30.270],
-                    zoom: 12,
-                    controls: ["zoomControl", "fullscreenControl"]
-                });
-                const allEvents = [];
-                for (let month in eventsData) {
-                    allEvents.push(...eventsData[month]);
-                }
-                allEvents.push(...bookAnniversaries);
-                allEvents.push(...localEvents);
-                allEvents.forEach(event => {
-                    if (event.coords) {
-                        const placemark = new ymaps.Placemark(event.coords, {
-                            balloonContent: `<strong>${event.title}</strong><br>${event.desc}<br><a href="${event.wiki || '#'}" target="_blank">Подробнее</a>`
-                        });
-                        map.geoObjects.add(placemark);
-                    }
-                });
-            });
-        }
-
-        // Динамический рендеринг всех событий с учётом поиска и фильтра
-        let currentFilter = "all";
-        let currentSearch = "";
-
-        function renderAllEvents() {
-            const allEvents = [];
-            for (let month in eventsData) {
-                allEvents.push(...eventsData[month].map(e => ({ ...e, month })));
-            }
-            const allBookEvents = bookAnniversaries.map(e => ({ ...e, month: "book-anniversaries" }));
-            const allLocalEvents = localEvents.map(e => ({ ...e, month: "local" }));
-            const combined = [...allEvents, ...allBookEvents, ...allLocalEvents];
-
-            let filtered = combined;
-            if (currentSearch) {
-                const searchLower = currentSearch.toLowerCase();
-                filtered = filtered.filter(e =>
-                    e.title.toLowerCase().includes(searchLower) ||
-                    e.author?.toLowerCase().includes(searchLower) ||
-                    e.desc.toLowerCase().includes(searchLower)
-                );
-            }
-            if (currentFilter !== "all") {
-                filtered = filtered.filter(e => e.type === currentFilter);
-            }
-
-            // Группируем по месяцам
-            const grouped = {};
-            filtered.forEach(e => {
-                const key = e.month || "local";
-                if (!grouped[key]) grouped[key] = [];
-                grouped[key].push(e);
-            });
-
-            // Отрисовываем каждый месяц
-            for (let month in eventsData) {
-                const container = document.getElementById(month + "-events");
-                if (container) {
-                    const monthEvents = grouped[month] || [];
-                    renderEventList(container, monthEvents);
-                }
-            }
-            // Книги-юбиляры
-            const bookContainer = document.getElementById("book-anniversaries-events");
-            if (bookContainer) {
-                const bookEvents = grouped["book-anniversaries"] || [];
-                renderEventList(bookContainer, bookEvents);
-            }
-        }
-
-        function renderEventList(container, events) {
-            if (events.length === 0) {
-                container.innerHTML = "<p>Нет событий, соответствующих фильтру.</p>";
-                return;
-            }
-            let html = "";
-            events.forEach(event => {
-                const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
-                const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
-                html += `
-                    <div class="event-card fade-in">
-                        <div class="event-date">${event.date}</div>
-                        <div class="event-title">${event.title}</div>
-                        <div class="event-author">${event.author || ''}</div>
-                        <div class="event-desc">${event.desc}</div>
-                        <div class="local-history"><i class="fas fa-map-pin"></i> ${event.local}</div>
-                        <div class="event-links">
-                            ${wikiLink}
-                            ${litresLink}
-                        </div>
-                        <div class="event-share">
-                            <button class="export-btn" onclick='downloadICS(${JSON.stringify(event)})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
-                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // Блок "Сегодня в календаре"
-        function renderTodayEvents() {
-            const today = new Date();
-            const currentMonth = today.getMonth();
-            const currentDay = today.getDate();
-            const monthNames = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
-            const monthKey = monthNames[currentMonth];
-            const monthEvents = eventsData[monthKey] || [];
-            const allEvents = [...monthEvents, ...bookAnniversaries, ...localEvents];
-            const todayEvents = allEvents.filter(event => {
-                const eventDay = parseInt(event.date.split(" ")[0]);
-                return eventDay === currentDay && event.date.includes(monthNames[currentMonth].slice(0,3));
-            });
-            const container = document.getElementById("today-events-list");
-            if (todayEvents.length === 0) {
-                container.innerHTML = "<p>На сегодня литературных событий нет.</p>";
-                return;
-            }
-            let html = "";
-            todayEvents.forEach(event => {
-                html += `<div class="today-event-item">
-                            <strong>${event.date}</strong> – 
-                            <a href="#${event.month || monthKey}">${event.title}</a>
-                            <br><small>${event.author || ''}</small>
-                         </div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        // Инициализация фильтров и поиска
-        document.addEventListener("DOMContentLoaded", () => {
-            renderAllEvents();
-            renderTodayEvents();
-            initMap();
-
-            const searchInput = document.getElementById("search-input");
-            searchInput.addEventListener("input", (e) => {
-                currentSearch = e.target.value;
-                renderAllEvents();
-            });
-
-            const filterBtns = document.querySelectorAll(".filter-btn");
-            filterBtns.forEach(btn => {
-                btn.addEventListener("click", () => {
-                    filterBtns.forEach(b => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    currentFilter = btn.dataset.filter;
-                    renderAllEvents();
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+            // Март
+            march: [
+                { date: "1 марта", title: "160 лет со дня рождения М.М. Пришвина (1873–1954)", author: "Михаил Пришвин", desc: "Русский писатель, певец русской природы. «Кладовая солнца», «Лесная капель».", local: "Книги Пришвина есть в нашей библиотеке, их любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Пришвин,_Михаил_Михайлович", litres: "https://www.litres.ru/mihail-prishvin/", type: "birth", coords: null },
+                { date: "4 марта", title: "130 лет со дня рождения Ю.К. Олеши (1899–1960)", author: "Юрий Олеша", desc: "Русский писатель. «Три толстяка», роман «Зависть».", local: "Его сказка «Три толстяка» остаётся любимой многими поколениями.", wiki: "https://ru.wikipedia.org/wiki/Олеша,_Юрий_Карлович", litres: "https://www.litres.ru/yuriy-olesha/", type: "birth", coords: null },
+                { date: "15 марта", title: "102 года со дня рождения Ю.В. Бондарева (1924–2020)", author: "Юрий Бондарев", desc: "Писатель-фронтовик. «Горячий снег», «Батальоны просят огня».", local: "Книги Бондарева о войне есть в нашей библиотеке, их читают и старшеклассники, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Бондарев,_Юрий_Васильевич", litres: "https://www.litres.ru/yuriy-bondarev/", type: "birth", coords: null },
+                { date: "17 марта", title: "170 лет со дня рождения М.А. Врубеля (1856–1910)", author: "Михаил Врубель", desc: "Русский художник, иллюстратор произведений Лермонтова.", local: "Его иллюстрации к «Демону» — шедевры книжной графики.", wiki: "https://ru.wikipedia.org/wiki/Врубель,_Михаил_Александрович", litres: "", type: "birth", coords: null },
+                { date: "20 марта", title: "100 лет со дня рождения В.В. Ерофеева (1938–1990)", author: "Венедикт Ерофеев", desc: "Писатель, автор поэмы «Москва — Петушки».", local: "Ерофеев жил в Ленинграде, его творчество связано с городом.", wiki: "https://ru.wikipedia.org/wiki/Ерофеев,_Венедикт_Васильевич", litres: "https://www.litres.ru/venedikt-erofeev/", type: "birth", coords: null },
+                { date: "23 марта", title: "205 лет со дня рождения А.Ф. Писемского (1821–1881)", author: "Алексей Писемский", desc: "Русский прозаик, драматург. «Тысяча душ», «Тюфяк».", local: "Его романы о жизни дворянства и купечества есть в нашем фонде.", wiki: "https://ru.wikipedia.org/wiki/Писемский,_Алексей_Феофилактович", litres: "", type: "birth", coords: null },
+                { date: "27 марта", title: "155 лет со дня рождения Г. Манна (1871–1950)", author: "Генрих Манн", desc: "Немецкий писатель, старший брат Томаса Манна. «Верноподданный».", local: "Его сатирические романы актуальны и сегодня.", wiki: "https://ru.wikipedia.org/wiki/Манн,_Генрих", litres: "https://www.litres.ru/genrih-mann/", type: "birth", coords: null },
+                { date: "27 марта", title: "145 лет со дня рождения А.Т. Аверченко (1881–1925)", author: "Аркадий Аверченко", desc: "Русский писатель-сатирик, драматург.", local: "Его юмористические рассказы поднимают настроение читателям любого возраста.", wiki: "https://ru.wikipedia.org/wiki/Аверченко,_Аркадий_Тимофеевич", litres: "https://www.litres.ru/arkadiy-averchenko/", type: "birth", coords: null },
+                { date: "30 марта", title: "250 лет со дня рождения В.А. Тропинина (1776–1857)", author: "Василий Тропинин", desc: "Русский художник-портретист.", local: "Его портреты Пушкина известны каждому.", wiki: "https://ru.wikipedia.org/wiki/Тропинин,_Василий_Андреевич", litres: "", type: "birth", coords: null }
+            ],
+            // Апрель
+            april: [
+                { date: "1 апреля", title: "217 лет со дня рождения Н.В. Гоголя (1809–1852)", author: "Николай Гоголь", desc: "Великий русский прозаик, драматург. «Мёртвые души», «Ревизор», «Вечера на хуторе близ Диканьки».", local: "Гоголь жил в Петербурге, его герои ходили по тем же улицам, что и мы.", wiki: "https://ru.wikipedia.org/wiki/Гоголь,_Николай_Васильевич", litres: "https://www.litres.ru/nikolay-gogol/", type: "birth", coords: [59.934, 30.335] },
+                { date: "6 апреля", title: "185 лет со дня рождения И.З. Сурикова (1841–1880)", author: "Иван Суриков", desc: "Русский поэт, представитель крестьянского направления. «Детство», «В степи».", local: "Его стихи о природе часто входят в школьную программу.", wiki: "https://ru.wikipedia.org/wiki/Суриков,_Иван_Захарович", litres: "", type: "birth", coords: null },
+                { date: "9 апреля", title: "205 лет со дня рождения Ш. Бодлера (1821–1867)", author: "Шарль Бодлер", desc: "Французский поэт, критик. «Цветы зла».", local: "Его поэзия повлияла на всю мировую литературу.", wiki: "https://ru.wikipedia.org/wiki/Бод
