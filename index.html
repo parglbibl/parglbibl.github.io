@@ -618,9 +618,13 @@
                                  data-lang="ru" />
                         </a>
                     </div>
-                    <!-- Общее число уникальных посетителей за всё время (API) -->
+                    <!-- Общее число уникальных посетителей за всё время (iframe) -->
                     <div class="ym-total">
-                        <span id="totalVisitors">Загрузка...</span> уникальных посетителей всего
+                        <iframe src="https://metrika.yandex.ru/informer/107242178/?lang=ru" 
+                                frameborder="0" 
+                                style="width:100%; max-width:200px; height:31px; border:0;" 
+                                scrolling="no">
+                        </iframe>
                     </div>
                 </div>
             </div>
@@ -747,18 +751,6 @@
         window.addEventListener('load', () => {
             setTimeout(updateShareLinks, 100);
         });
-
-        // Получение общего числа уникальных посетителей через API Яндекс.Метрики
-        const counterId = 107242178;
-        const token = 'y0__xCfnu9mGMGvPyDA85LtForrEDbjVNq3x4n9AbvRFYFHF3dT';
-
-        fetch(`https://api-metrika.yandex.ru/stat/v1/data?metric=users&date1=20100101&date2=today&id=${counterId}&oauth_token=${token}`)
-            .then(r => r.json())
-            .then(d => {
-                const total = d.data[0].metrics[0];
-                document.getElementById('totalVisitors').innerText = total.toLocaleString('ru-RU');
-            })
-            .catch(() => document.getElementById('totalVisitors').innerText = '—');
     </script>
     <div id="scrollUp" title="Наверх">↑</div>
 </body>
