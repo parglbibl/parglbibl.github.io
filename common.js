@@ -10,25 +10,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Десктопное меню с "Ещё"
+    // Десктопное меню с "Ещё" – перемещение, а не клонирование
     const navContainer = document.querySelector('.nav ul');
     if (navContainer && window.innerWidth > 768) {
-        const mainItems = document.querySelectorAll('li[data-mobile="main"]');
         const moreItems = document.querySelectorAll('li[data-mobile="more"]');
-
         if (moreItems.length > 0) {
+            // Создаём пункт "Ещё"
             const moreLi = document.createElement('li');
             moreLi.className = 'desktop-more';
             moreLi.innerHTML = '<a href="#"><i class="fas fa-ellipsis-h"></i> Ещё <i class="fas fa-chevron-down"></i></a><ul class="desktop-submenu"></ul>';
-
             navContainer.appendChild(moreLi);
-
             const submenu = moreLi.querySelector('.desktop-submenu');
+
+            // Перемещаем все пункты с data-mobile="more" в подменю
             moreItems.forEach(item => {
-                submenu.appendChild(item.cloneNode(true));
-                item.remove();
+                submenu.appendChild(item);
             });
 
+            // Обработчики
             const moreLink = moreLi.querySelector('a');
             moreLink.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -101,24 +100,19 @@ document.addEventListener('DOMContentLoaded', function() {
         Fancybox.bind('[data-fancybox]');
     }
 
-    // ===== НОВАЯ КНОПКА "НАВЕРХ" (чистый JS) =====
+    // Кнопка "наверх"
     const btn = document.getElementById('scrollUp');
     if (btn) {
-        // Показываем/скрываем при прокрутке
         window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 50) {
+            if (window.pageYOffset > 100) {
                 btn.style.display = 'block';
             } else {
                 btn.style.display = 'none';
             }
         });
 
-        // Плавная прокрутка вверх при клике
         btn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 });
