@@ -1,543 +1,340 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Парголовская библиотека - Литературный календарь 2026</title>
-    <meta name="description" content="Литературный календарь: дни рождения писателей, юбилеи книг, памятные даты. Поиск, фильтрация, экспорт в календарь, иллюстрации.">
-    
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107242178', 'ym');
-        ym(107242178, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/107242178" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-    
-    <link rel="stylesheet" href="common.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-    <style>
-        .calendar-nav {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.8rem;
-            margin: 2rem 0 3rem;
+<script src="common.js"></script>
+<script>
+    // ==================== ПОЛНЫЙ МАССИВ СОБЫТИЙ НА 2026 ГОД ====================
+    const eventsData = {
+        // Январь
+        january: [
+            { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nikolay_Rubtsov.jpg/150px-Nikolay_Rubtsov.jpg" },
+            { date: "4 января", title: "195 лет со дня рождения В.Ф. Одоевского (1804–1869)", author: "Владимир Одоевский", desc: "Русский писатель, философ, музыковед. Сказки «Городок в табакерке», роман «Русские ночи».", local: "Одоевский бывал в Петербурге, его произведения есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Одоевский,_Владимир_Фёдорович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Odoevsky_Vladimir_Fedorovich.jpg/150px-Odoevsky_Vladimir_Fedorovich.jpg" },
+            { date: "6 января", title: "145 лет со дня рождения А.Н. Толстого (1883–1945)", author: "Алексей Толстой", desc: "Русский писатель. «Пётр I», «Аэлита», «Золотой ключик».", local: "Толстой не раз бывал в Петербурге и Ленинграде.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Николаевич", litres: "https://www.litres.ru/aleksey-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Alexei_Nikolaevich_Tolstoy_portrait.jpg/150px-Alexei_Nikolaevich_Tolstoy_portrait.jpg" },
+            { date: "12 января", title: "150 лет со дня рождения Дж. Лондона (1876–1916)", author: "Джек Лондон", desc: "Американский писатель. «Белый Клык», «Мартин Иден», «Морской волк».", local: "Книги Лондона о сильных духом людях всегда популярны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Лондон,_Джек", litres: "https://www.litres.ru/dzhek-london/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Jack_London_portrait.jpg/150px-Jack_London_portrait.jpg" },
+            { date: "15 января", title: "231 год со дня рождения А.С. Грибоедова (1795–1829)", author: "Александр Грибоедов", desc: "Русский дипломат, поэт, драматург, автор комедии «Горе от ума».", local: "В 1826 году Грибоедов гостил в Парголово на даче Фаддея Булгарина, где написал очерк «Загородная поездка».", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", litres: "https://www.litres.ru/aleksandr-griboedov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Griboyedov.jpg/150px-Griboyedov.jpg" },
+            { date: "22 января", title: "205 лет со дня рождения Д.В. Григоровича (1822–1899)", author: "Дмитрий Григорович", desc: "Русский писатель. «Антон-Горемыка», «Гуттаперчевый мальчик».", local: "Его повести о крестьянской жизни были популярны в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Григорович,_Дмитрий_Васильевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Grigorovich.jpg/150px-Grigorovich.jpg" },
+            { date: "24 января", title: "250 лет со дня рождения Э.Т.А. Гофмана (1776–1822)", author: "Эрнст Теодор Амадей Гофман", desc: "Немецкий писатель-романтик, композитор. «Щелкунчик», «Крошка Цахес».", local: "Сказки Гофмана любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Гофман,_Эрнст_Теодор_Амадей", litres: "https://www.litres.ru/ernst-gofman/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/E_T_A_Hoffmann.jpg/150px-E_T_A_Hoffmann.jpg" },
+            { date: "27 января", title: "200 лет со дня рождения М.Е. Салтыкова-Щедрина (1826–1889)", author: "Михаил Салтыков-Щедрин", desc: "Русский писатель-сатирик, журналист.", local: "Его сказки и сатирические романы актуальны по сей день.", wiki: "https://ru.wikipedia.org/wiki/Салтыков-Щедрин,_Михаил_Евграфович", litres: "https://www.litres.ru/mihail-saltykov-schedrin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Saltykov-Shchedrin.jpg/150px-Saltykov-Shchedrin.jpg" },
+            { date: "29 января", title: "160 лет со дня рождения Р. Роллана (1866–1944)", author: "Ромен Роллан", desc: "Французский писатель, общественный деятель. «Жан-Кристоф», «Кола Брюньон».", local: "Его книги о музыке и творчестве вдохновляют читателей уже больше века.", wiki: "https://ru.wikipedia.org/wiki/Роллан,_Ромен", litres: "https://www.litres.ru/romen-rollan/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Romain_Rolland_1915.jpg/150px-Romain_Rolland_1915.jpg" },
+            { date: "29 января", title: "166 лет со дня рождения А.П. Чехова (1860–1904)", author: "Антон Чехов", desc: "Великий русский писатель, драматург. «Вишнёвый сад», «Чайка», «Палата №6».", local: "Чехов не раз проезжал через станцию Парголово по пути в усадьбу Суворина под Петербургом.", wiki: "https://ru.wikipedia.org/wiki/Чехов,_Антон_Павлович", litres: "https://www.litres.ru/anton-chehov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Anton_Chekhov_1893.jpg/150px-Anton_Chekhov_1893.jpg" }
+        ],
+        // Февраль
+        february: [
+            { date: "5 февраля", title: "190 лет со дня рождения Н.А. Добролюбова (1836–1861)", author: "Николай Добролюбов", desc: "Русский литературный критик, публицист. «Что такое обломовщина?», «Луч света в тёмном царстве».", local: "Статьи Добролюбова помогают школьникам лучше понять классику.", wiki: "https://ru.wikipedia.org/wiki/Добролюбов,_Николай_Александрович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Nikolai_Dobrolubov.jpg/150px-Nikolai_Dobrolubov.jpg" },
+            { date: "9 февраля", title: "585 лет со дня рождения Алишера Навои (1441–1501)", author: "Алишер Навои", desc: "Тюркский поэт, философ, основоположник узбекской литературы. «Лейли и Меджнун», «Фархад и Ширин».", local: "Его газели — шедевры восточной поэзии.", wiki: "https://ru.wikipedia.org/wiki/Алишер_Навои", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Alisher_Navoiy.jpg/150px-Alisher_Navoiy.jpg" },
+            { date: "13 февраля", title: "257 лет со дня рождения И.А. Крылова (1769–1844)", author: "Иван Крылов", desc: "Великий русский баснописец.", local: "Басни Крылова любили читатели всех сословий, в том числе и в Парголово.", wiki: "https://ru.wikipedia.org/wiki/Крылов,_Иван_Андреевич", litres: "https://www.litres.ru/ivan-krylov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Krylov_by_Egorov.jpg/150px-Krylov_by_Egorov.jpg" },
+            { date: "16 февраля", title: "195 лет со дня рождения Н.С. Лескова (1831–1895)", author: "Николай Лесков", desc: "Русский писатель. «Левша», «Леди Макбет Мценского уезда», «Очарованный странник».", local: "Удивительный язык Лескова — настоящий подарок для ценителей русской словесности.", wiki: "https://ru.wikipedia.org/wiki/Лесков,_Николай_Семёнович", litres: "https://www.litres.ru/nikolay-leskov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Nikolai_Leskov_circa_1890.jpg/150px-Nikolai_Leskov_circa_1890.jpg" },
+            { date: "17 февраля", title: "120 лет со дня рождения А.Л. Барто (1906–1981)", author: "Агния Барто", desc: "Советская поэтесса, детский писатель. «Игрушки», «Было у бабушки сорок внучат».", local: "Стихи Барто знает наизусть каждый ребёнок в нашей стране.", wiki: "https://ru.wikipedia.org/wiki/Барто,_Агния_Львовна", litres: "https://www.litres.ru/agniya-barto/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Agniya_Barto.jpg/150px-Agniya_Barto.jpg" },
+            { date: "20 февраля", title: "174 года со дня рождения Н.Г. Гарина-Михайловского (1852–1906)", author: "Николай Гарин-Михайловский", desc: "Писатель, инженер. «Детство Тёмы», «Гимназисты».", local: "Бывал в Петербурге, его книги о взрослении до сих пор актуальны.", wiki: "https://ru.wikipedia.org/wiki/Гарин-Михайловский,_Николай_Георгиевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Garin-Mikhailovsky.jpg/150px-Garin-Mikhailovsky.jpg" },
+            { date: "24 февраля", title: "240 лет со дня рождения В. Гримма (1786–1859)", author: "Вильгельм Гримм", desc: "Немецкий филолог, сказочник. «Бременские музыканты», «Золотой гусь».", local: "Сказки братьев Гримм любят и взрослые, и дети.", wiki: "https://ru.wikipedia.org/wiki/Гримм,_Вильгельм", litres: "https://www.litres.ru/bratya-grimm/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Wilhelm_Grimm.jpg/150px-Wilhelm_Grimm.jpg" },
+            { date: "28 февраля", title: "200 лет со дня рождения Ж. Верна (1828–1905)", author: "Жюль Верн", desc: "Французский писатель-фантаст. «Двадцать тысяч лье под водой», «Дети капитана Гранта».", local: "Его приключенческие романы — одни из самых читаемых в мире.", wiki: "https://ru.wikipedia.org/wiki/Верн,_Жюль", litres: "https://www.litres.ru/zhul-vern/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jules_Verne_by_Nadar.jpg/150px-Jules_Verne_by_Nadar.jpg" }
+        ],
+        // Март
+        march: [
+            { date: "1 марта", title: "160 лет со дня рождения М.М. Пришвина (1873–1954)", author: "Михаил Пришвин", desc: "Русский писатель, певец русской природы. «Кладовая солнца», «Лесная капель».", local: "Книги Пришвина есть в нашей библиотеке, их любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Пришвин,_Михаил_Михайлович", litres: "https://www.litres.ru/mihail-prishvin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Mikhail_Prishvin.jpg/150px-Mikhail_Prishvin.jpg" },
+            { date: "4 марта", title: "130 лет со дня рождения Ю.К. Олеши (1899–1960)", author: "Юрий Олеша", desc: "Русский писатель. «Три толстяка», роман «Зависть».", local: "Его сказка «Три толстяка» остаётся любимой многими поколениями.", wiki: "https://ru.wikipedia.org/wiki/Олеша,_Юрий_Карлович", litres: "https://www.litres.ru/yuriy-olesha/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Yuri_Olesha.jpg/150px-Yuri_Olesha.jpg" },
+            { date: "15 марта", title: "102 года со дня рождения Ю.В. Бондарева (1924–2020)", author: "Юрий Бондарев", desc: "Писатель-фронтовик. «Горячий снег», «Батальоны просят огня».", local: "Книги Бондарева о войне есть в нашей библиотеке, их читают и старшеклассники, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Бондарев,_Юрий_Васильевич", litres: "https://www.litres.ru/yuriy-bondarev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Yuri_Bondarev_2013.jpg/150px-Yuri_Bondarev_2013.jpg" },
+            { date: "17 марта", title: "170 лет со дня рождения М.А. Врубеля (1856–1910)", author: "Михаил Врубель", desc: "Русский художник, иллюстратор произведений Лермонтова.", local: "Его иллюстрации к «Демону» — шедевры книжной графики.", wiki: "https://ru.wikipedia.org/wiki/Врубель,_Михаил_Александрович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Mikhail_Vrubel_self-portrait.jpg/150px-Mikhail_Vrubel_self-portrait.jpg" },
+            { date: "20 марта", title: "100 лет со дня рождения В.В. Ерофеева (1938–1990)", author: "Венедикт Ерофеев", desc: "Писатель, автор поэмы «Москва — Петушки».", local: "Ерофеев жил в Ленинграде, его творчество связано с городом.", wiki: "https://ru.wikipedia.org/wiki/Ерофеев,_Венедикт_Васильевич", litres: "https://www.litres.ru/venedikt-erofeev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venedikt_Erofeev.jpg/150px-Venedikt_Erofeev.jpg" },
+            { date: "23 марта", title: "205 лет со дня рождения А.Ф. Писемского (1821–1881)", author: "Алексей Писемский", desc: "Русский прозаик, драматург. «Тысяча душ», «Тюфяк».", local: "Его романы о жизни дворянства и купечества есть в нашем фонде.", wiki: "https://ru.wikipedia.org/wiki/Писемский,_Алексей_Феофилактович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pisemsky.jpg/150px-Pisemsky.jpg" },
+            { date: "27 марта", title: "155 лет со дня рождения Г. Манна (1871–1950)", author: "Генрих Манн", desc: "Немецкий писатель, старший брат Томаса Манна. «Верноподданный».", local: "Его сатирические романы актуальны и сегодня.", wiki: "https://ru.wikipedia.org/wiki/Манн,_Генрих", litres: "https://www.litres.ru/genrih-mann/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Heinrich_Mann_1906.jpg/150px-Heinrich_Mann_1906.jpg" },
+            { date: "27 марта", title: "145 лет со дня рождения А.Т. Аверченко (1881–1925)", author: "Аркадий Аверченко", desc: "Русский писатель-сатирик, драматург.", local: "Его юмористические рассказы поднимают настроение читателям любого возраста.", wiki: "https://ru.wikipedia.org/wiki/Аверченко,_Аркадий_Тимофеевич", litres: "https://www.litres.ru/arkadiy-averchenko/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Averchenko.jpg/150px-Averchenko.jpg" },
+            { date: "30 марта", title: "250 лет со дня рождения В.А. Тропинина (1776–1857)", author: "Василий Тропинин", desc: "Русский художник-портретист.", local: "Его портреты Пушкина известны каждому.", wiki: "https://ru.wikipedia.org/wiki/Тропинин,_Василий_Андреевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tropinin_self.jpg/150px-Tropinin_self.jpg" }
+        ],
+        // Апрель
+        april: [
+            { date: "1 апреля", title: "217 лет со дня рождения Н.В. Гоголя (1809–1852)", author: "Николай Гоголь", desc: "Великий русский прозаик, драматург. «Мёртвые души», «Ревизор», «Вечера на хуторе близ Диканьки».", local: "Гоголь жил в Петербурге, его герои ходили по тем же улицам, что и мы.", wiki: "https://ru.wikipedia.org/wiki/Гоголь,_Николай_Васильевич", litres: "https://www.litres.ru/nikolay-gogol/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nikolai_Gogol_1845.jpg/150px-Nikolai_Gogol_1845.jpg" },
+            { date: "6 апреля", title: "185 лет со дня рождения И.З. Сурикова (1841–1880)", author: "Иван Суриков", desc: "Русский поэт, представитель крестьянского направления. «Детство», «В степи».", local: "Его стихи о природе часто входят в школьную программу.", wiki: "https://ru.wikipedia.org/wiki/Суриков,_Иван_Захарович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ivan_Surikov.jpg/150px-Ivan_Surikov.jpg" },
+            { date: "9 апреля", title: "205 лет со дня рождения Ш. Бодлера (1821–1867)", author: "Шарль Бодлер", desc: "Французский поэт, критик. «Цветы зла».", local: "Его поэзия повлияла на всю мировую литературу.", wiki: "https://ru.wikipedia.org/wiki/Бодлер,_Шарль", litres: "https://www.litres.ru/shar-bodler/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Charles_Baudelaire_1862.jpg/150px-Charles_Baudelaire_1862.jpg" },
+            { date: "12 апреля", title: "130 лет со дня рождения К.Г. Паустовского (1892–1968)", author: "Константин Паустовский", desc: "Русский писатель, мастер лирической прозы. «Золотая роза», «Мещёрская сторона».", local: "Паустовский часто бывал в Ленинграде, его книги есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Паустовский,_Константин_Георгиевич", litres: "https://www.litres.ru/konstantin-paustovskiy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Konstantin_Paustovsky.jpg/150px-Konstantin_Paustovsky.jpg" },
+            { date: "15 апреля", title: "140 лет со дня рождения Н.С. Гумилёва (1886–1921)", author: "Николай Гумилёв", desc: "Русский поэт Серебряного века, переводчик.", local: "Его стихи об экзотических путешествиях завораживают читателей.", wiki: "https://ru.wikipedia.org/wiki/Гумилёв,_Николай_Степанович", litres: "https://www.litres.ru/nikolay-gumilev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Nikolay_Gumilyov.jpg/150px-Nikolay_Gumilyov.jpg" },
+            { date: "21 апреля", title: "210 лет со дня рождения Ш. Бронте (1816–1855)", author: "Шарлотта Бронте", desc: "Английская романистка. «Джен Эйр», «Городок».", local: "«Джен Эйр» — один из самых популярных романов в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Бронте,_Шарлотта", litres: "https://www.litres.ru/sharlotta-bronte/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Charlotte_Bront%C3%AB_restored.jpg/150px-Charlotte_Bront%C3%AB_restored.jpg" },
+            { date: "23 апреля", title: "Всемирный день книги и авторского права", author: "", desc: "Праздник, учреждённый ЮНЕСКО, напоминает о ценности чтения.", local: "В нашей библиотеке в этот день проходят встречи и викторины.", wiki: "https://ru.wikipedia.org/wiki/Всемирный_день_книги", litres: "", type: "birth", imageUrl: "" },
+            { date: "25 апреля", title: "200 лет со дня рождения А.И. Левитова (1835–1877)", author: "Александр Левитов", desc: "Русский писатель-демократ. «Степные очерки», «Жизнь московских закоулков».", local: "Его проза о жизни простого народа была популярна в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Левитов,_Александр_Иванович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alexander_Leviton.jpg/150px-Alexander_Leviton.jpg" }
+        ],
+        // Май
+        may: [
+            { date: "1 мая", title: "135 лет со дня рождения Ф.И. Шаляпина (1873–1938)", author: "Фёдор Шаляпин", desc: "Великий русский оперный певец. Его мемуары «Маска и душа» — ценное литературное свидетельство.", local: "Шаляпин бывал в Парголово, гостил у Владимира Стасова.", wiki: "https://ru.wikipedia.org/wiki/Шаляпин,_Фёдор_Иванович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fyodor_Chaliapin_1912.jpg/150px-Fyodor_Chaliapin_1912.jpg" },
+            { date: "5 мая", title: "180 лет со дня рождения Г. Сенкевича (1846–1916)", author: "Генрик Сенкевич", desc: "Польский писатель, нобелевский лауреат. «Камо грядеши», «Крестоносцы».", local: "Его исторические романы переведены на многие языки.", wiki: "https://ru.wikipedia.org/wiki/Сенкевич,_Генрик", litres: "https://www.litres.ru/genrik-senkevich/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Henryk_Sienkiewicz_1905.jpg/150px-Henryk_Sienkiewicz_1905.jpg" },
+            { date: "7 мая", title: "165 лет со дня рождения Р. Тагора (1861–1941)", author: "Рабиндранат Тагор", desc: "Индийский поэт, писатель, нобелевский лауреат.", local: "Переводы Тагора издавались в России и были в каждой библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Тагор,_Рабиндранат", litres: "https://www.litres.ru/rabindranat-tagor/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Rabindranath_Tagor_1915.jpg/150px-Rabindranath_Tagor_1915.jpg" },
+            { date: "15 мая", title: "135 лет со дня рождения М.А. Булгакова (1891–1940)", author: "Михаил Булгаков", desc: "Русский писатель, драматург. «Мастер и Маргарита», «Белая гвардия», «Собачье сердце».", local: "Булгаков жил и работал в Петербурге, его романы — украшение нашей библиотеки.", wiki: "https://ru.wikipedia.org/wiki/Булгаков,_Михаил_Афанасьевич", litres: "https://www.litres.ru/mihail-bulgakov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mikhail_Bulgakov_1920s.jpg/150px-Mikhail_Bulgakov_1920s.jpg" },
+            { date: "15 мая", title: "170 лет со дня рождения Л.Ф. Баума (1856–1919)", author: "Лаймен Фрэнк Баум", desc: "Американский детский писатель. «Волшебник страны Оз».", local: "Сказки о стране Оз любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Баум,_Лаймен_Фрэнк", litres: "https://www.litres.ru/leymen-frenk-baum/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/L._Frank_Baum_1911.jpg/150px-L._Frank_Baum_1911.jpg" },
+            { date: "24 мая", title: "День славянской письменности и культуры", author: "", desc: "Память святых Кирилла и Мефодия, создателей славянской азбуки.", local: "В библиотеке проходят уроки, посвящённые истории письменности.", wiki: "https://ru.wikipedia.org/wiki/День_славянской_письменности_и_культуры", litres: "", type: "birth", imageUrl: "" },
+            { date: "28 мая", title: "140 лет со дня рождения В.Ф. Ходасевича (1886–1939)", author: "Владислав Ходасевич", desc: "Русский поэт, переводчик, пушкинист.", local: "Его литературоведческие работы помогают лучше понять поэзию.", wiki: "https://ru.wikipedia.org/wiki/Ходасевич,_Владислав_Фелицианович", litres: "https://www.litres.ru/vladislav-hodasevich/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Vladislav_Hodasevich.jpg/150px-Vladislav_Hodasevich.jpg" }
+        ],
+        // Июнь
+        june: [
+            { date: "4 июня", title: "100 лет со дня рождения В.П. Астафьева (1924–2001)", author: "Виктор Астафьев", desc: "Русский писатель, представитель «деревенской прозы». «Царь-рыба», «Пастух и пастушка».", local: "Астафьев часто бывал в Петербурге, его книги есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Астафьев,_Виктор_Петрович", litres: "https://www.litres.ru/viktor-astafev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Viktor_Astafyev_1998.jpg/150px-Viktor_Astafyev_1998.jpg" },
+            { date: "6 июня", title: "Пушкинский день России. 227 лет со дня рождения А.С. Пушкина (1799–1837)", author: "Александр Пушкин", desc: "День рождения великого поэта – главный литературный праздник страны.", local: "В парках Парголово звучат стихи Пушкина на открытых микрофонах.", wiki: "https://ru.wikipedia.org/wiki/Пушкин,_Александр_Сергеевич", litres: "https://www.litres.ru/aleksandr-pushkin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Alexander_Pushkin_by_Kiprensky.jpg/150px-Alexander_Pushkin_by_Kiprensky.jpg" },
+            { date: "14 июня", title: "102 года со дня рождения В.А. Солоухина (1924–1997)", author: "Владимир Солоухин", desc: "Писатель, поэт, представитель «деревенской прозы».", local: "Его книги о природе и русской деревне есть в нашем фонде.", wiki: "https://ru.wikipedia.org/wiki/Солоухин,_Владимир_Алексеевич", litres: "https://www.litres.ru/vladimir-solouhin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Vladimir_Soloukhin.jpg/150px-Vladimir_Soloukhin.jpg" },
+            { date: "14 июня", title: "135 лет со дня рождения А.М. Волкова (1891–1977)", author: "Александр Волков", desc: "Русский писатель. «Волшебник Изумрудного города».", local: "Сказки Волкова — любимое чтение младших школьников.", wiki: "https://ru.wikipedia.org/wiki/Волков,_Александр_Мелентьевич", litres: "https://www.litres.ru/aleksandr-volkov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Alexander_Melentyevich_Volkov.jpg/150px-Alexander_Melentyevich_Volkov.jpg" },
+            { date: "17 июня", title: "115 лет со дня рождения В.П. Некрасова (1911–1987)", author: "Виктор Некрасов", desc: "Русский писатель. «В окопах Сталинграда».", local: "Правдивая книга о войне, которую должен прочитать каждый.", wiki: "https://ru.wikipedia.org/wiki/Некрасов,_Виктор_Платонович", litres: "https://www.litres.ru/viktor-nekrasov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Viktor_Nekrasov_1970.jpg/150px-Viktor_Nekrasov_1970.jpg" },
+            { date: "21 июня", title: "100 лет со дня рождения Ю.В. Друниной (1924–1991)", author: "Юлия Друнина", desc: "Русская поэтесса, фронтовичка. Стихи о войне и любви.", local: "Её стихотворение «Я ушла из детства в грязную теплушку...» знают многие.", wiki: "https://ru.wikipedia.org/wiki/Друнина,_Юлия_Владимировна", litres: "https://www.litres.ru/uliya-drunina/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Julia_Drunina.jpg/150px-Julia_Drunina.jpg" },
+            { date: "23 июня", title: "130 лет со дня рождения Е.И. Замятина (1884–1937)", author: "Евгений Замятин", desc: "Русский писатель, автор романа «Мы».", local: "Его антиутопия предвосхитила многие идеи XX века.", wiki: "https://ru.wikipedia.org/wiki/Замятин,_Евгений_Иванович", litres: "https://www.litres.ru/evgeniy-zamyatin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Yevgeny_Zamyatin_1920.jpg/150px-Yevgeny_Zamyatin_1920.jpg" },
+            { date: "25 июня", title: "108 лет со дня рождения А.И. Солженицына (1918–2008)", author: "Александр Солженицын", desc: "Писатель, публицист, нобелевский лауреат.", local: "Его книги «Один день Ивана Денисовича», «Архипелаг ГУЛАГ» изменили сознание многих.", wiki: "https://ru.wikipedia.org/wiki/Солженицын,_Александр_Исаевич", litres: "https://www.litres.ru/aleksandr-solzhenicyn/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Aleksandr_Solzhenitsyn_1974.jpg/150px-Aleksandr_Solzhenitsyn_1974.jpg" }
+        ],
+        // Июль
+        july: [
+            { date: "3 июля", title: "100 лет со дня рождения В.О. Богомолова (1926–2003)", author: "Владимир Богомолов", desc: "Русский писатель-фронтовик. «Момент истины» («В августе сорок четвёртого»).", local: "Его романы о войне — классика военной прозы.", wiki: "https://ru.wikipedia.org/wiki/Богомолов,_Владимир_Осипович", litres: "https://www.litres.ru/vladimir-bogomolov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Vladimir_Bogomolov.jpg/150px-Vladimir_Bogomolov.jpg" },
+            { date: "10 июля", title: "День воинской славы России – Полтавская битва (в литературе)", author: "", desc: "Пушкин описал это событие в поэме «Полтава».", local: "В библиотеке можно взять книгу и прочитать знаменитые строки.", wiki: "https://ru.wikipedia.org/wiki/Полтавская_битва", litres: "", type: "birth", imageUrl: "" },
+            { date: "20 июля", title: "130 лет со дня рождения Е.Л. Шварца (1896–1958)", author: "Евгений Шварц", desc: "Сказочник, драматург. «Снежная королева», «Обыкновенное чудо».", local: "Его пьесы ставили в театрах Ленинграда, их любили зрители всех возрастов.", wiki: "https://ru.wikipedia.org/wiki/Шварц,_Евгений_Львович", litres: "https://www.litres.ru/evgeniy-shvarc/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Yevgeny_Schwartz.jpg/150px-Yevgeny_Schwartz.jpg" },
+            { date: "22 июля", title: "195 лет со дня рождения А.А. Фета (1820–1892)", author: "Афанасий Фет", desc: "Русский поэт-лирик, переводчик.", local: "Его стихи о природе и любви вошли в золотой фонд русской поэзии.", wiki: "https://ru.wikipedia.org/wiki/Фет,_Афанасий_Афанасьевич", litres: "https://www.litres.ru/afanasiy-fet/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Afanasy_Fet_by_Repin.jpg/150px-Afanasy_Fet_by_Repin.jpg" },
+            { date: "28 июля", title: "130 лет со дня рождения М.И. Цветаевой (1892–1941)", author: "Марина Цветаева", desc: "Русская поэтесса Серебряного века.", local: "Её трагическая судьба и мощная лирика оставляют неизгладимое впечатление.", wiki: "https://ru.wikipedia.org/wiki/Цветаева,_Марина_Ивановна", litres: "https://www.litres.ru/marina-cvetaeva/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Marina_Tsvetaeva_1925.jpg/150px-Marina_Tsvetaeva_1925.jpg" }
+        ],
+        // Август
+        august: [
+            { date: "9 августа", title: "132 года со дня рождения М.М. Зощенко (1894–1958)", author: "Михаил Зощенко", desc: "Сатирик, автор знаменитых рассказов.", local: "Зощенко жил в Ленинграде, его герои – обычные ленинградцы.", wiki: "https://ru.wikipedia.org/wiki/Зощенко,_Михаил_Михайлович", litres: "https://www.litres.ru/mihail-zoschenko/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Zoschenko.jpg/150px-Zoschenko.jpg" },
+            { date: "15 августа", title: "245 лет со дня рождения В. Скотта (1771–1832)", author: "Вальтер Скотт", desc: "Шотландский писатель, основоположник исторического романа. «Айвенго», «Роб Рой».", local: "Его романы есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Скотт,_Вальтер", litres: "https://www.litres.ru/valter-skott/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Sir_Walter_Scott_by_William_Allan.jpg/150px-Sir_Walter_Scott_by_William_Allan.jpg" },
+            { date: "17 августа", title: "190 лет со дня рождения А.К. Толстого (1817–1875)", author: "Алексей Константинович Толстой", desc: "Русский писатель, поэт, драматург. «Князь Серебряный», «Смерть Иоанна Грозного».", local: "Его стихи и романы популярны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Константинович", litres: "https://www.litres.ru/aleksey-konstantinovich-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Aleksey_Konstantinovich_Tolstoy.jpg/150px-Aleksey_Konstantinovich_Tolstoy.jpg" },
+            { date: "28 августа", title: "198 лет со дня рождения Л.Н. Толстого (1828–1910)", author: "Лев Толстой", desc: "Величайший романист, мыслитель. «Война и мир», «Анна Каренина».", local: "Толстой бывал в Петербурге, его посещали местные почитатели.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Лев_Николаевич", litres: "https://www.litres.ru/lev-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Leo_Tolstoy_1909.jpg/150px-Leo_Tolstoy_1909.jpg" }
+        ],
+        // Сентябрь
+        september: [
+            { date: "9 сентября", title: "198 лет со дня рождения Л.Н. Толстого (1828–1910)", author: "Лев Толстой", desc: "Величайший романист, мыслитель. «Война и мир», «Анна Каренина».", local: "Толстой бывал в Петербурге, его посещали местные почитатели.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Лев_Николаевич", litres: "https://www.litres.ru/lev-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Leo_Tolstoy_1909.jpg/150px-Leo_Tolstoy_1909.jpg" },
+            { date: "10 сентября", title: "155 лет со дня рождения А.И. Куприна (1870–1938)", author: "Александр Куприн", desc: "Русский писатель. «Гранатовый браслет», «Поединок».", local: "Куприн жил в Петербурге, его рассказы о любви и жизни офицеров до сих пор трогают.", wiki: "https://ru.wikipedia.org/wiki/Куприн,_Александр_Иванович", litres: "https://www.litres.ru/aleksandr-kuprin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Alexander_Kuprin.jpg/150px-Alexander_Kuprin.jpg" },
+            { date: "13 сентября", title: "120 лет со дня рождения А.Л. Барто (1906–1981)", author: "Агния Барто", desc: "Советская поэтесса.", local: "Стихи Барто знают все дети.", wiki: "https://ru.wikipedia.org/wiki/Барто,_Агния_Львовна", litres: "https://www.litres.ru/agniya-barto/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Agniya_Barto.jpg/150px-Agniya_Barto.jpg" },
+            { date: "17 сентября", title: "95 лет со дня рождения Б.Ш. Окуджавы (1924–1997)", author: "Булат Окуджава", desc: "Поэт, бард, прозаик. «Бумажный солдатик», «Ариозо».", local: "Его песни и стихи о войне, любви и жизни знакомы каждому.", wiki: "https://ru.wikipedia.org/wiki/Окуджава,_Булат_Шалвович", litres: "https://www.litres.ru/bulat-okudzhava/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bulat_Okudzhava.jpg/150px-Bulat_Okudzhava.jpg" },
+            { date: "30 сентября", title: "90 лет со дня рождения А.В. Вампилова (1937–1972)", author: "Александр Вампилов", desc: "Русский драматург. «Старший сын», «Утиная охота».", local: "Его пьесы идут во многих театрах страны.", wiki: "https://ru.wikipedia.org/wiki/Вампилов,_Александр_Валентинович", litres: "https://www.litres.ru/aleksandr-vampilov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Alexander_Vampilov.jpg/150px-Alexander_Vampilov.jpg" }
+        ],
+        // Октябрь
+        october: [
+            { date: "1 октября", title: "130 лет со дня рождения С.Я. Маршака (1887–1964)", author: "Самуил Маршак", desc: "Русский поэт, переводчик, детский писатель. «Двенадцать месяцев», «Вот какой рассеянный».", local: "Его стихи и сказки знакомы каждому с детства.", wiki: "https://ru.wikipedia.org/wiki/Маршак,_Самуил_Яковлевич", litres: "https://www.litres.ru/samuil-marshak/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Samuil_Marshak.jpg/150px-Samuil_Marshak.jpg" },
+            { date: "3 октября", title: "131 год со дня рождения С.А. Есенина (1895–1925)", author: "Сергей Есенин", desc: "Великий русский поэт.", local: "Есенин не раз бывал в Петербурге, его стихи читали и в дачных посёлках.", wiki: "https://ru.wikipedia.org/wiki/Есенин,_Сергей_Александрович", litres: "https://www.litres.ru/sergey-esenin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Sergei_Yesenin_1922.jpg/150px-Sergei_Yesenin_1922.jpg" },
+            { date: "8 октября", title: "120 лет со дня рождения М.А. Шолохова (1905–1984)", author: "Михаил Шолохов", desc: "Русский писатель, нобелевский лауреат. «Тихий Дон», «Поднятая целина».", local: "Его книги о казачестве и революции есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Шолохов,_Михаил_Александрович", litres: "https://www.litres.ru/mihail-sholohov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Mikhail_Sholokhov_1938.jpg/150px-Mikhail_Sholokhov_1938.jpg" },
+            { date: "15 октября", title: "212 лет со дня рождения М.Ю. Лермонтова (1814–1841)", author: "Михаил Лермонтов", desc: "Поэт, прозаик, драматург. «Герой нашего времени».", local: "Лермонтов бывал в Петербурге, его стихи о природе созвучны нашим местам.", wiki: "https://ru.wikipedia.org/wiki/Лермонтов,_Михаил_Юрьевич", litres: "https://www.litres.ru/mihail-lermontov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Mikhail_Lermontov_self_portrait.jpg/150px-Mikhail_Lermontov_self_portrait.jpg" },
+            { date: "22 октября", title: "150 лет со дня рождения И.А. Бунина (1870–1953)", author: "Иван Бунин", desc: "Русский писатель, первый русский нобелевский лауреат по литературе. «Тёмные аллеи», «Жизнь Арсеньева».", local: "Бунин бывал в Петербурге, его проза о любви и русской деревне — классика.", wiki: "https://ru.wikipedia.org/wiki/Бунин,_Иван_Алексеевич", litres: "https://www.litres.ru/ivan-bunin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Ivan_Bunin_1901.jpg/150px-Ivan_Bunin_1901.jpg" },
+            { date: "31 октября", title: "140 лет со дня рождения А.Н. Толстого (1883–1945)", author: "Алексей Толстой", desc: "Русский писатель.", local: "Его трилогия «Хождение по мукам» — эпопея о судьбах русской интеллигенции.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Николаевич", litres: "https://www.litres.ru/aleksey-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Alexei_Nikolaevich_Tolstoy_portrait.jpg/150px-Alexei_Nikolaevich_Tolstoy_portrait.jpg" }
+        ],
+        // Ноябрь
+        november: [
+            { date: "11 ноября", title: "205 лет со дня рождения Ф.М. Достоевского (1821–1881)", author: "Фёдор Достоевский", desc: "Великий писатель, мыслитель. «Преступление и наказание», «Идиот».", local: "Достоевский снимал дачу в Парголово летом 1848 и 1861 годов. Здесь он работал над своими романами.", wiki: "https://ru.wikipedia.org/wiki/Достоевский,_Фёдор_Михайлович", litres: "https://www.litres.ru/fedor-dostoevskiy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Dostoevsky_1872.jpg/150px-Dostoevsky_1872.jpg" },
+            { date: "18 ноября", title: "150 лет со дня рождения Н.А. Клюева (1884–1937)", author: "Николай Клюев", desc: "Русский поэт, представитель «новокрестьянской» поэзии.", local: "Его стихи о русском Севере и народной культуре есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Клюев,_Николай_Алексеевич", litres: "https://www.litres.ru/nikolay-klyuev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Nikolay_Klyuev.jpg/150px-Nikolay_Klyuev.jpg" },
+            { date: "20 ноября", title: "170 лет со дня рождения А.А. Блока (1880–1921)", author: "Александр Блок", desc: "Русский поэт-символист. «Стихи о Прекрасной Даме», поэма «Двенадцать».", local: "Блок жил в Петербурге, его стихи о городе и революции — часть нашей культуры.", wiki: "https://ru.wikipedia.org/wiki/Блок,_Александр_Александрович", litres: "https://www.litres.ru/aleksandr-blok/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Alexander_Blok_1907.jpg/150px-Alexander_Blok_1907.jpg" },
+            { date: "28 ноября", title: "111 лет со дня рождения К.М. Симонова (1915–1979)", author: "Константин Симонов", desc: "Поэт, прозаик, военный корреспондент. «Жди меня», «Живые и мёртвые».", local: "Его книги о войне есть в фонде нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Симонов,_Константин_Михайлович", litres: "https://www.litres.ru/konstantin-simonov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Simonov1943.jpg/150px-Simonov1943.jpg" }
+        ],
+        // Декабрь
+        december: [
+            { date: "5 декабря", title: "223 года со дня рождения Ф.И. Тютчева (1803–1873)", author: "Фёдор Тютчев", desc: "Поэт-философ, мастер пейзажной и любовной лирики.", local: "Тютчев подолгу жил в Петербурге, его стихи знали и любили.", wiki: "https://ru.wikipedia.org/wiki/Тютчев,_Фёдор_Иванович", litres: "https://www.litres.ru/fedor-tyutchev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Fyodor_Tyutchev_by_Reichel.jpg/150px-Fyodor_Tyutchev_by_Reichel.jpg" },
+            { date: "10 декабря", title: "205 лет со дня рождения А.И. Герцена (1812–1870)", author: "Александр Герцен", desc: "Русский публицист, писатель, философ. «Былое и думы».", local: "Герцен бывал в Петербурге, его мемуары — ценнейший исторический источник.", wiki: "https://ru.wikipedia.org/wiki/Герцен,_Александр_Иванович", litres: "https://www.litres.ru/aleksandr-gerzen/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Alexander_Herzen_portrait_1860.jpg/150px-Alexander_Herzen_portrait_1860.jpg" },
+            { date: "11 декабря", title: "108 лет со дня рождения А.И. Солженицына (1918–2008)", author: "Александр Солженицын", desc: "Писатель, публицист, нобелевский лауреат.", local: "В 1970-х его книги были под запретом, но сегодня они доступны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Солженицын,_Александр_Исаевич", litres: "https://www.litres.ru/aleksandr-solzhenicyn/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Aleksandr_Solzhenitsyn_1974.jpg/150px-Aleksandr_Solzhenitsyn_1974.jpg" },
+            { date: "24 декабря", title: "225 лет со дня рождения А.Ф. Мерзлякова (1778–1830)", author: "Алексей Мерзляков", desc: "Русский поэт, переводчик, критик.", local: "Его стихи и переводы были популярны в начале XIX века.", wiki: "https://ru.wikipedia.org/wiki/Мерзляков,_Алексей_Фёдорович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Aleksey_Merzlyakov.jpg/150px-Aleksey_Merzlyakov.jpg" },
+            { date: "30 декабря", title: "160 лет со дня рождения Р. Киплинга (1865–1936)", author: "Редьярд Киплинг", desc: "Английский писатель, нобелевский лауреат. «Книга джунглей», «Ким».", local: "Его сказки о Маугли любят дети всего мира.", wiki: "https://ru.wikipedia.org/wiki/Киплинг,_Редьярд", litres: "https://www.litres.ru/redyar-kipling/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Rudyard_Kipling_1895.jpg/150px-Rudyard_Kipling_1895.jpg" }
+        ]
+    };
+
+    // Книги-юбиляры
+    const bookAnniversaries = [
+        { date: "100 лет", title: "Э. Хемингуэй — «Фиеста (И восходит солнце)»", author: "Эрнест Хемингуэй", desc: "Роман, отражающий настроения «потерянного поколения».", local: "Книга есть в фонде нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Фиеста_(роман)", litres: "https://www.litres.ru/ernest-heminguey/fiesta/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/4/44/The_Sun_Also_Rises_First_Edition_Cover.jpg/150px-The_Sun_Also_Rises_First_Edition_Cover.jpg" },
+        { date: "100 лет", title: "Ф. Кафка — «Замок»", author: "Франц Кафка", desc: "Неоконченный роман, изданный после смерти писателя.", local: "Одно из самых загадочных произведений XX века.", wiki: "https://ru.wikipedia.org/wiki/Замок_(роман)", litres: "https://www.litres.ru/franc-kafka/zamok/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kafka_Das_Schloss_1926.jpg/150px-Kafka_Das_Schloss_1926.jpg" },
+        { date: "100 лет", title: "А. Кристи — «Убийство Роджера Экройда»", author: "Агата Кристи", desc: "Детективный роман с Эркюлем Пуаро.", local: "Книги Кристи — самые читаемые детективы в мире.", wiki: "https://ru.wikipedia.org/wiki/Убийство_Роджера_Экройда", litres: "https://www.litres.ru/agata-kristi/ubiystvo-rodzhera-ekroyda/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5b/The_Murder_of_Roger_Ackroyd_First_Edition_Cover_1926.jpg/150px-The_Murder_of_Roger_Ackroyd_First_Edition_Cover_1926.jpg" },
+        { date: "100 лет", title: "М. Булгаков — «Записки юного врача»", author: "Михаил Булгаков", desc: "Цикл рассказов, опубликованных в 1925–1926 годах.", local: "Автобиографические рассказы о работе земским врачом.", wiki: "https://ru.wikipedia.org/wiki/Записки_юного_врача", litres: "https://www.litres.ru/mihail-bulgakov/zapiski-unogo-vracha/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mikhail_Bulgakov_1920s.jpg/150px-Mikhail_Bulgakov_1920s.jpg" },
+        { date: "100 лет", title: "Я. Кавабата — «Танцовщица из Идзу»", author: "Ясунари Кавабата", desc: "Повесть, принёсшая известность японскому писателю.", local: "Лиричная история первой любви.", wiki: "https://ru.wikipedia.org/wiki/Танцовщица_из_Идзу", litres: "https://www.litres.ru/yasunari-kavabata/tancovschica-iz-idzu/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Yasunari_Kawabata_1938.jpg/150px-Yasunari_Kawabata_1938.jpg" }
+    ];
+
+    // Краеведческие события (добавлены в соответствующие месяцы)
+    const localEvents = [
+        { date: "15 января", title: "Грибоедов в Парголово", author: "Александр Грибоедов", desc: "Александр Грибоедов гостил в Парголово у Фаддея Булгарина и написал очерк «Загородная поездка».", local: "Это событие произошло летом 1826 года.", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Griboyedov.jpg/150px-Griboyedov.jpg" },
+        { date: "30 июня", title: "Венчание Римского-Корсакова в Шуваловском парке", author: "Николай Римский-Корсаков", desc: "В церкви Петра и Павла венчались композитор Николай Римский-Корсаков и пианистка Надежда Пургольд. Шафером был Мусоргский.", local: "Это одно из самых известных культурных событий в истории Парголово.", wiki: "https://ru.wikipedia.org/wiki/Римский-Корсаков,_Николай_Андреевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Rimsky-Korsakov.jpg/150px-Rimsky-Korsakov.jpg" },
+        { date: "30 июля", title: "Стасов в Парголово", author: "Владимир Стасов", desc: "Знаменитый критик Владимир Стасов прожил на даче в Старожиловке 28 лет (1878–1906). Его гостями были Репин, Римский-Корсаков, Шаляпин.", local: "Это событие сделало Парголово центром культурной жизни.", wiki: "https://ru.wikipedia.org/wiki/Стасов,_Владимир_Васильевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Stasov_Vladimir_Vasilievich.jpg/150px-Stasov_Vladimir_Vasilievich.jpg" },
+        { date: "июнь 1844", title: "Тургенев в Парголово", author: "Иван Тургенев", desc: "Иван Тургенев снимал дачу в Парголово, работал над рассказами.", local: "Летом 1844 года Тургенев жил в этих местах.", wiki: "https://ru.wikipedia.org/wiki/Тургенев,_Иван_Сергеевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Ivan_Turgenev_by_Petrov.jpg/150px-Ivan_Turgenev_by_Petrov.jpg" },
+        { date: "июль 1848", title: "Некрасов в Парголово", author: "Николай Некрасов", desc: "Николай Некрасов жил на даче в Парголово, здесь им были написаны стихи.", local: "Летом 1848 года Некрасов работал в Парголово.", wiki: "https://ru.wikipedia.org/wiki/Некрасов,_Николай_Алексеевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Nikolai_Nekrasov_1870.jpg/150px-Nikolai_Nekrasov_1870.jpg" },
+        { date: "июль 1848", title: "Петрашевцы в Парголово", author: "М.В. Петрашевский", desc: "М.В. Петрашевский снимал дачу, здесь собирались члены кружка, включая Достоевского.", local: "Это были важные собрания русской интеллигенции.", wiki: "https://ru.wikipedia.org/wiki/Петрашевцы", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Dostoevsky_1872.jpg/150px-Dostoevsky_1872.jpg" },
+        { date: "июль 1861", title: "Достоевский в Парголово", author: "Фёдор Достоевский", desc: "Фёдор Достоевский снимал дачу в Парголово, работал над «Униженными и оскорблёнными».", local: "Достоевский бывал здесь летом 1848 и 1861 годов.", wiki: "https://ru.wikipedia.org/wiki/Достоевский,_Фёдор_Михайлович", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Dostoevsky_1872.jpg/150px-Dostoevsky_1872.jpg" },
+        { date: "1880-е", title: "Шишкин в Шуваловском парке", author: "Иван Шишкин", desc: "Иван Шишкин создал офорт «Ели в Шуваловском парке».", local: "Художник запечатлел здешние пейзажи.", wiki: "https://ru.wikipedia.org/wiki/Шишкин,_Иван_Иванович", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Ivan_Shishkin_-_Self-portrait.jpg/150px-Ivan_Shishkin_-_Self-portrait.jpg" },
+        { date: "1906", title: "Станция Парголово", author: "Бруно Гранхольм", desc: "Построен вокзал в стиле финского национального романтизма.", local: "Здание станции — памятник архитектуры, изображено на гербе Парголово.", wiki: "https://ru.wikipedia.org/wiki/Парголово_(станция)", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Pargolovo_train_station.jpg/150px-Pargolovo_train_station.jpg" },
+        { date: "1902", title: "Жёлтая дача", author: "Максимилиан Месмахер", desc: "Деревянный особняк, построенный архитектором Месмахером.", local: "Один из немногих сохранившихся деревянных дачных домов XIX века.", wiki: "https://ru.wikipedia.org/wiki/Месмахер,_Максимилиан_Егорович", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Maximilian_Messmacher.jpg/150px-Maximilian_Messmacher.jpg" },
+        { date: "1938", title: "Открытие библиотеки им. Горького", author: "", desc: "В здании на Выборгском шоссе открылась библиотека (предшественница нынешней).", local: "Это начало истории нашей библиотеки.", wiki: "", type: "local", imageUrl: "https://parglbibl.ru/logo.PNG" }
+    ];
+
+    // Функция определения месяца по строке даты
+    function getMonthKeyFromDate(dateStr) {
+        const monthMap = { "января":"january", "февраля":"february", "марта":"march", "апреля":"april", "мая":"may", "июня":"june", "июля":"july", "августа":"august", "сентября":"september", "октября":"october", "ноября":"november", "декабря":"december" };
+        const parts = dateStr.split(" ");
+        if (parts.length < 2) return null;
+        const monthName = parts[1];
+        return monthMap[monthName] || null;
+    }
+
+    // Добавляем краеведческие события в соответствующие месяцы
+    for (let ev of localEvents) {
+        const monthKey = getMonthKeyFromDate(ev.date);
+        if (monthKey && eventsData[monthKey]) {
+            eventsData[monthKey].push(ev);
+        } else {
+            // Если не удалось определить месяц, пытаемся по ключевым словам
+            if (ev.date.includes("июнь") && eventsData.june) eventsData.june.push(ev);
+            else if (ev.date.includes("июль") && eventsData.july) eventsData.july.push(ev);
+            else if (ev.date.includes("август") && eventsData.august) eventsData.august.push(ev);
+            else if (ev.date.includes("сентябрь") && eventsData.september) eventsData.september.push(ev);
+            else if (ev.date.includes("октябрь") && eventsData.october) eventsData.october.push(ev);
+            else if (ev.date.includes("ноябрь") && eventsData.november) eventsData.november.push(ev);
+            else if (ev.date.includes("декабрь") && eventsData.december) eventsData.december.push(ev);
+            else if (ev.date.includes("1880") && eventsData.july) eventsData.july.push(ev);
+            else if (ev.date.includes("1906") && eventsData.september) eventsData.september.push(ev);
+            else if (ev.date.includes("1902") && eventsData.september) eventsData.september.push(ev);
+            else if (ev.date.includes("1938") && eventsData.january) eventsData.january.push(ev);
         }
-        .month-link {
-            background-color: #fff;
-            border: 1px solid #e5989b;
-            color: #5e4b3c;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 0.9rem;
+    }
+
+    // Функция экспорта ICS
+    function downloadICS(event) {
+        const parts = event.date.split(" ");
+        const day = parseInt(parts[0]);
+        const monthName = parts[1];
+        const monthMap = { "января":0, "февраля":1, "марта":2, "апреля":3, "мая":4, "июня":5, "июля":6, "августа":7, "сентября":8, "октября":9, "ноября":10, "декабря":11 };
+        const month = monthMap[monthName];
+        if (month === undefined) return;
+        const startDate = new Date(2026, month, day);
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 1);
+        const formatDate = (d) => d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+        const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Парголовская библиотека//Литературный календарь//RU
+BEGIN:VEVENT
+UID:${Date.now()}@parglbibl.ru
+DTSTAMP:${formatDate(new Date())}
+DTSTART:${formatDate(startDate)}
+DTEND:${formatDate(endDate)}
+SUMMARY:${event.title}
+DESCRIPTION:${event.desc} ${event.local}
+URL:${event.wiki || ''}
+END:VEVENT
+END:VCALENDAR`;
+        const blob = new Blob([icsContent], { type: "text/calendar" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${event.title}.ics`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+    }
+
+    let currentFilter = "all";
+    let currentSearch = "";
+
+    function renderAllEvents() {
+        const allEvents = [];
+        for (let month in eventsData) {
+            eventsData[month].forEach(e => allEvents.push({ ...e, monthKey: month }));
         }
-        .month-link:hover {
-            background-color: #e5989b;
-            color: #fff;
-            transform: translateY(-2px);
+        allEvents.push(...bookAnniversaries.map(e => ({ ...e, monthKey: "book-anniversaries" })));
+
+        let filtered = allEvents;
+        if (currentSearch.trim() !== "") {
+            const search = currentSearch.toLowerCase();
+            filtered = filtered.filter(e =>
+                e.title.toLowerCase().includes(search) ||
+                (e.author && e.author.toLowerCase().includes(search)) ||
+                e.desc.toLowerCase().includes(search)
+            );
         }
-        
-        .month-section {
-            margin-bottom: 4rem;
-            scroll-margin-top: 2rem;
-        }
-        .month-title {
-            font-size: 2rem;
-            color: #b5838d;
-            margin-bottom: 2rem;
-            border-bottom: 2px solid #e5989b;
-            padding-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        .month-title i {
-            font-size: 2rem;
-            color: #e5989b;
-        }
-        
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .event-card {
-            background: #fff;
-            border-radius: 16px;
-            padding: 1.8rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.4s, box-shadow 0.4s;
-            display: flex;
-            flex-direction: column;
-            border-left: 5px solid #e5989b;
-            position: relative;
-        }
-        .event-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
-        }
-        .event-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-            background-color: #f9f0e7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .event-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 12px;
-        }
-        .event-image .fallback-icon {
-            font-size: 4rem;
-            color: #e5989b;
-        }
-        .event-date {
-            font-weight: 700;
-            color: #b5838d;
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .event-title {
-            font-size: 1.4rem;
-            color: #5e4b3c;
-            margin-bottom: 0.5rem;
-            line-height: 1.3;
-        }
-        .event-author {
-            font-weight: 600;
-            color: #e5989b;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
-        .event-desc {
-            color: #666;
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-        .local-history {
-            background-color: #f9f0e7;
-            padding: 0.8rem;
-            border-radius: 8px;
-            margin: 1rem 0;
-            font-size: 0.95rem;
-            border-left: 3px solid #b5838d;
-        }
-        .local-history i {
-            color: #b5838d;
-            margin-right: 5px;
-        }
-        .event-links {
-            margin-top: 0.5rem;
-            display: flex;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-        .event-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 0.8rem;
-            background: #f0f0f0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #5e4b3c;
-            transition: background 0.2s;
-        }
-        .event-links a:hover {
-            background: #e5989b;
-            color: #fff;
-        }
-        .event-share {
-            margin-top: 1rem;
-            text-align: right;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        .share-btn-small, .export-btn {
-            display: inline-block;
-            background-color: #e5989b;
-            color: #fff;
-            padding: 0.4rem 0.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            transition: background-color 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        .share-btn-small:hover, .export-btn:hover {
-            background-color: #d68b8e;
-        }
-        .export-btn {
-            background-color: #6c757d;
-        }
-        .export-btn:hover {
-            background-color: #5a6268;
+        if (currentFilter !== "all") {
+            filtered = filtered.filter(e => e.type === currentFilter);
         }
 
-        /* Блок "Сегодня в календаре" */
-        .today-highlight {
-            background: #fff9f0;
-            border-left: 5px solid #e5989b;
-            padding: 1rem 2rem;
-            margin-bottom: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .today-highlight h3 {
-            margin-top: 0;
-            color: #b5838d;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .today-events-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-        .today-event-item {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-        .today-event-item strong {
-            color: #e5989b;
-        }
-        .today-event-item a {
-            color: #5e4b3c;
-            text-decoration: none;
-        }
-        .today-event-item a:hover {
-            text-decoration: underline;
-        }
+        const grouped = {};
+        filtered.forEach(e => {
+            if (!grouped[e.monthKey]) grouped[e.monthKey] = [];
+            grouped[e.monthKey].push(e);
+        });
 
-        /* Поиск и фильтры */
-        .search-filter {
-            background: #fff;
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        for (let month in eventsData) {
+            const container = document.getElementById(month + "-events");
+            if (container) {
+                const monthEvents = grouped[month] || [];
+                renderEventList(container, monthEvents);
+            }
         }
-        .search-input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 50px;
-            font-size: 1rem;
-            margin-bottom: 1rem;
+        const bookContainer = document.getElementById("book-anniversaries-events");
+        if (bookContainer) {
+            const bookEvents = grouped["book-anniversaries"] || [];
+            renderEventList(bookContainer, bookEvents);
         }
-        .filter-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .filter-btn {
-            background: #f0f0f0;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        .filter-btn.active {
-            background: #e5989b;
-            color: #fff;
-        }
+    }
 
-        @media (max-width: 768px) {
-            .month-title { font-size: 1.8rem; }
-            .calendar-nav { gap: 0.5rem; }
-            .month-link { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
-            .events-grid { grid-template-columns: 1fr; }
-            .event-share { flex-direction: column; align-items: stretch; }
+    function renderEventList(container, events) {
+        if (!events.length) {
+            container.innerHTML = "<p>Нет событий, соответствующих фильтру.</p>";
+            return;
         }
-    </style>
-</head>
-<body class="page-transition">
-    <!-- Кнопка наверх -->
-    <div id="scrollUp" title="Наверх">↑</div>
-
-    <header>
-        <div class="container header-inner">
-            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека" loading="lazy"></a>
-            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
-            <nav class="nav" id="nav">
-                <ul>
-                    <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
-                    <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
-                    <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
-                    <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
-                    <li data-mobile="main"><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
-                    <li data-mobile="main"><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
-                    <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
-                    <li data-mobile="main"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
-                    <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
-                    <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
-
-                    <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
-                    <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
-                    <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
-                    <li data-mobile="more"><a href="literary-calendar.html" class="active"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
-                </ul>
-                <div class="search-icon-container">
-                    <i class="fas fa-search" id="searchIcon"></i>
-                    <div class="search-popup" id="searchPopup">
-                        <form action="https://yandex.ru/search/" method="get" target="_blank">
-                            <input type="hidden" name="site" value="parglbibl.ru">
-                            <input type="hidden" name="host" value="parglbibl.ru">
-                            <input type="hidden" name="lr" value="2">
-                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
+        let html = "";
+        events.forEach(event => {
+            const imageHtml = event.imageUrl
+                ? `<div class="event-image"><img src="${event.imageUrl}" alt="${event.title}" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<i class=\'fas fa-image fallback-icon\'></i>'"></div>`
+                : `<div class="event-image"><i class="fas fa-image fallback-icon"></i></div>`;
+            const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
+            const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
+            html += `
+                <div class="event-card fade-in">
+                    ${imageHtml}
+                    <div class="event-date">${event.date}</div>
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-author">${event.author || ''}</div>
+                    <div class="event-desc">${event.desc}</div>
+                    <div class="local-history"><i class="fas fa-map-pin"></i> ${event.local}</div>
+                    <div class="event-links">
+                        ${wikiLink}
+                        ${litresLink}
+                    </div>
+                    <div class="event-share">
+                        <button class="export-btn" onclick='downloadICS(${JSON.stringify(event)})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
                     </div>
                 </div>
-            </nav>
-        </div>
-    </header>
+            `;
+        });
+        container.innerHTML = html;
+    }
 
-    <section class="section">
-        <div class="container">
-            <div class="breadcrumbs">
-                <a href="index.html">Главная</a> &raquo; <span>Литературный календарь 2026</span>
-            </div>
+    function renderTodayEvents() {
+        const today = new Date();
+        const currentDay = today.getDate();
+        const currentMonthIndex = today.getMonth();
+        const monthMap = { "января":0, "февраля":1, "марта":2, "апреля":3, "мая":4, "июня":5, "июля":6, "августа":7, "сентября":8, "октября":9, "ноября":10, "декабря":11 };
+        const allEvents = [];
+        for (let month in eventsData) {
+            allEvents.push(...eventsData[month]);
+        }
+        allEvents.push(...bookAnniversaries);
+        const todayEvents = allEvents.filter(event => {
+            const parts = event.date.split(" ");
+            if (parts.length < 2) return false;
+            const day = parseInt(parts[0]);
+            const monthName = parts[1];
+            const eventMonth = monthMap[monthName];
+            return day === currentDay && eventMonth === currentMonthIndex;
+        });
+        const container = document.getElementById("today-events-list");
+        if (todayEvents.length === 0) {
+            container.innerHTML = "<p>На сегодня литературных событий нет.</p>";
+            return;
+        }
+        let html = "";
+        todayEvents.forEach(event => {
+            html += `<div class="today-event-item">
+                        <strong>${event.date}</strong> – 
+                        <a href="#">${event.title}</a>
+                        <br><small>${event.author || ''}</small>
+                     </div>`;
+        });
+        container.innerHTML = html;
+    }
 
-            <h1 class="section-title">Литературный календарь 2026</h1>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Дни рождения писателей, юбилеи книг и памятные даты. Поиск, фильтрация и экспорт в календарь.</p>
+    document.addEventListener("DOMContentLoaded", () => {
+        renderAllEvents();
+        renderTodayEvents();
 
-            <!-- Блок "Сегодня в календаре" -->
-            <div id="today-calendar" class="today-highlight">
-                <h3><i class="fas fa-calendar-day"></i> Сегодня в календаре</h3>
-                <div id="today-events-list" class="today-events-list">
-                    <p>Загрузка...</p>
-                </div>
-            </div>
+        const searchInput = document.getElementById("search-input");
+        searchInput.addEventListener("input", (e) => {
+            currentSearch = e.target.value;
+            renderAllEvents();
+        });
 
-            <!-- Поиск и фильтры -->
-            <div class="search-filter">
-                <input type="text" id="search-input" class="search-input" placeholder="Поиск по названию, автору или описанию...">
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Все события</button>
-                    <button class="filter-btn" data-filter="birth">Юбилеи рождения</button>
-                    <button class="filter-btn" data-filter="book">Книги-юбиляры</button>
-                    <button class="filter-btn" data-filter="local">Краеведческие</button>
-                </div>
-            </div>
-
-            <!-- Навигация по месяцам -->
-            <div class="calendar-nav" id="calendar-nav">
-                <a href="#january" class="month-link">Январь</a>
-                <a href="#february" class="month-link">Февраль</a>
-                <a href="#march" class="month-link">Март</a>
-                <a href="#april" class="month-link">Апрель</a>
-                <a href="#may" class="month-link">Май</a>
-                <a href="#june" class="month-link">Июнь</a>
-                <a href="#july" class="month-link">Июль</a>
-                <a href="#august" class="month-link">Август</a>
-                <a href="#september" class="month-link">Сентябрь</a>
-                <a href="#october" class="month-link">Октябрь</a>
-                <a href="#november" class="month-link">Ноябрь</a>
-                <a href="#december" class="month-link">Декабрь</a>
-            </div>
-
-            <!-- Контейнеры для месяцев заполняются скриптом -->
-            <div id="january" class="month-section"><h2 class="month-title"><i class="fas fa-snowflake"></i> Январь</h2><div class="events-grid" id="january-events"></div></div>
-            <div id="february" class="month-section"><h2 class="month-title"><i class="fas fa-heart"></i> Февраль</h2><div class="events-grid" id="february-events"></div></div>
-            <div id="march" class="month-section"><h2 class="month-title"><i class="fas fa-feather-alt"></i> Март</h2><div class="events-grid" id="march-events"></div></div>
-            <div id="april" class="month-section"><h2 class="month-title"><i class="fas fa-cloud-sun"></i> Апрель</h2><div class="events-grid" id="april-events"></div></div>
-            <div id="may" class="month-section"><h2 class="month-title"><i class="fas fa-leaf"></i> Май</h2><div class="events-grid" id="may-events"></div></div>
-            <div id="june" class="month-section"><h2 class="month-title"><i class="fas fa-sun"></i> Июнь</h2><div class="events-grid" id="june-events"></div></div>
-            <div id="july" class="month-section"><h2 class="month-title"><i class="fas fa-umbrella-beach"></i> Июль</h2><div class="events-grid" id="july-events"></div></div>
-            <div id="august" class="month-section"><h2 class="month-title"><i class="fas fa-tree"></i> Август</h2><div class="events-grid" id="august-events"></div></div>
-            <div id="september" class="month-section"><h2 class="month-title"><i class="fas fa-apple-alt"></i> Сентябрь</h2><div class="events-grid" id="september-events"></div></div>
-            <div id="october" class="month-section"><h2 class="month-title"><i class="fas fa-leaf"></i> Октябрь</h2><div class="events-grid" id="october-events"></div></div>
-            <div id="november" class="month-section"><h2 class="month-title"><i class="fas fa-cloud-rain"></i> Ноябрь</h2><div class="events-grid" id="november-events"></div></div>
-            <div id="december" class="month-section"><h2 class="month-title"><i class="fas fa-gift"></i> Декабрь</h2><div class="events-grid" id="december-events"></div></div>
-
-            <!-- Книги-юбиляры 2026 -->
-            <div id="book-anniversaries" class="month-section">
-                <h2 class="month-title"><i class="fas fa-book"></i> Книги-юбиляры 2026</h2>
-                <div class="events-grid" id="book-anniversaries-events"></div>
-            </div>
-
-            <!-- Кнопка "Поделиться всей страницей" -->
-            <div class="share-block" style="text-align: center; margin: 3rem 0;">
-                <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=Литературный%20календарь%20Парголовской%20библиотеки%202026&description=Дни%20рождения%20писателей%20и%20юбилеи%20книг.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn">
-                    <i class="fab fa-vk"></i> Поделиться календарём
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer-content">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Парголовская библиотека</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
-                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
-                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
-                </div>
-                <div class="footer-col footer-accordion">
-                    <h3 class="accordion-header">Карта сайта</h3>
-                    <div class="accordion-content">
-                        <p><a href="index.html">Главная</a></p>
-                        <p><a href="about.html">О нас</a></p>
-                        <p><a href="kraevedenie.html">Краеведение</a></p>
-                        <p><a href="newbooks.html">Новинки</a></p>
-                        <p><a href="services.html">Услуги</a></p>
-                        <p><a href="events.html">События</a></p>
-                        <p><a href="speedcubing.html">Спидкубинг</a></p>
-                        <p><a href="district-libraries.html">Библиотеки района</a></p>
-                        <p><a href="partners.html">Партнёры</a></p>
-                        <p><a href="faq.html">Вопросы</a></p>
-                        <p><a href="gallery.html">Фотогалерея</a></p>
-                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
-                        <p><a href="literary-calendar.html">Литературный календарь</a></p>
-                        <p><a href="contacts.html">Контакты</a></p>
-                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
-                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
-                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
-                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
-                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
-                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
-                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
-                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Мы в соцсетях</h3>
-                    <div class="footer-social">
-                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
-                    </div>
-                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
-                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="footer-actions">
-                    <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html" target="_blank"><i class="fab fa-vk"></i></a>
-                    </div>
-                    <div class="print-button">
-                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
-                    </div>
-                </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
-        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
-        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
-        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
-    </div>
-
-    <script src="common.js"></script>
-    <script>
-        // ==================== ПОЛНЫЙ МАССИВ СОБЫТИЙ НА 2026 ГОД С ИЛЛЮСТРАЦИЯМИ ====================
-        const eventsData = {
-            // Январь
-            january: [
-                { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nikolay_Rubtsov.jpg/150px-Nikolay_Rubtsov.jpg" },
-                { date: "4 января", title: "195 лет со дня рождения В.Ф. Одоевского (1804–1869)", author: "Владимир Одоевский", desc: "Русский писатель, философ, музыковед. Сказки «Городок в табакерке», роман «Русские ночи».", local: "Одоевский бывал в Петербурге, его произведения есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Одоевский,_Владимир_Фёдорович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Odoevsky_Vladimir_Fedorovich.jpg/150px-Odoevsky_Vladimir_Fedorovich.jpg" },
-                { date: "6 января", title: "145 лет со дня рождения А.Н. Толстого (1883–1945)", author: "Алексей Толстой", desc: "Русский писатель. «Пётр I», «Аэлита», «Золотой ключик».", local: "Толстой не раз бывал в Петербурге и Ленинграде.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Николаевич", litres: "https://www.litres.ru/aleksey-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Alexei_Nikolaevich_Tolstoy_portrait.jpg/150px-Alexei_Nikolaevich_Tolstoy_portrait.jpg" },
-                { date: "12 января", title: "150 лет со дня рождения Дж. Лондона (1876–1916)", author: "Джек Лондон", desc: "Американский писатель. «Белый Клык», «Мартин Иден», «Морской волк».", local: "Книги Лондона о сильных духом людях всегда популярны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Лондон,_Джек", litres: "https://www.litres.ru/dzhek-london/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Jack_London_portrait.jpg/150px-Jack_London_portrait.jpg" },
-                { date: "15 января", title: "231 год со дня рождения А.С. Грибоедова (1795–1829)", author: "Александр Грибоедов", desc: "Русский дипломат, поэт, драматург, автор комедии «Горе от ума».", local: "В 1826 году Грибоедов гостил в Парголово на даче Фаддея Булгарина, где написал очерк «Загородная поездка».", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", litres: "https://www.litres.ru/aleksandr-griboedov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Griboyedov.jpg/150px-Griboyedov.jpg" },
-                { date: "22 января", title: "205 лет со дня рождения Д.В. Григоровича (1822–1899)", author: "Дмитрий Григорович", desc: "Русский писатель. «Антон-Горемыка», «Гуттаперчевый мальчик».", local: "Его повести о крестьянской жизни были популярны в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Григорович,_Дмитрий_Васильевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Grigorovich.jpg/150px-Grigorovich.jpg" },
-                { date: "24 января", title: "250 лет со дня рождения Э.Т.А. Гофмана (1776–1822)", author: "Эрнст Теодор Амадей Гофман", desc: "Немецкий писатель-романтик, композитор. «Щелкунчик», «Крошка Цахес».", local: "Сказки Гофмана любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Гофман,_Эрнст_Теодор_Амадей", litres: "https://www.litres.ru/ernst-gofman/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/E_T_A_Hoffmann.jpg/150px-E_T_A_Hoffmann.jpg" },
-                { date: "27 января", title: "200 лет со дня рождения М.Е. Салтыкова-Щедрина (1826–1889)", author: "Михаил Салтыков-Щедрин", desc: "Русский писатель-сатирик, журналист.", local: "Его сказки и сатирические романы актуальны по сей день.", wiki: "https://ru.wikipedia.org/wiki/Салтыков-Щедрин,_Михаил_Евграфович", litres: "https://www.litres.ru/mihail-saltykov-schedrin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Saltykov-Shchedrin.jpg/150px-Saltykov-Shchedrin.jpg" },
-                { date: "29 января", title: "160 лет со дня рождения Р. Роллана (1866–1944)", author: "Ромен Роллан", desc: "Французский писатель, общественный деятель. «Жан-Кристоф», «Кола Брюньон».", local: "Его книги о музыке и творчестве вдохновляют читателей уже больше века.", wiki: "https://ru.wikipedia.org/wiki/Роллан,_Ромен", litres: "https://www.litres.ru/romen-rollan/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Romain_Rolland_1915.jpg/150px-Romain_Rolland_1915.jpg" },
-                { date: "29 января", title: "166 лет со дня рождения А.П. Чехова (1860–1904)", author: "Антон Чехов", desc: "Великий русский писатель, драматург. «Вишнёвый сад», «Чайка», «Палата №6».", local: "Чехов не раз проезжал через станцию Парголово по пути в усадьбу Суворина под Петербургом.", wiki: "https://ru.wikipedia.org/wiki/Чехов,_Антон_Павлович", litres: "https://www.litres.ru/anton-chehov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Anton_Chekhov_1893.jpg/150px-Anton_Chekhov_1893.jpg" }
-            ],
-            // Февраль
-            february: [
-                { date: "5 февраля", title: "190 лет со дня рождения Н.А. Добролюбова (1836–1861)", author: "Николай Добролюбов", desc: "Русский литературный критик, публицист. «Что такое обломовщина?», «Луч света в тёмном царстве».", local: "Статьи Добролюбова помогают школьникам лучше понять классику.", wiki: "https://ru.wikipedia.org/wiki/Добролюбов,_Николай_Александрович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Nikolai_Dobrolubov.jpg/150px-Nikolai_Dobrolubov.jpg" },
-                { date: "9 февраля", title: "585 лет со дня рождения Алишера Навои (1441–1501)", author: "Алишер Навои", desc: "Тюркский поэт, философ, основоположник узбекской литературы. «Лейли и Меджнун», «Фархад и Ширин».", local: "Его газели — шедевры восточной поэзии.", wiki: "https://ru.wikipedia.org/wiki/Алишер_Навои", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Alisher_Navoiy.jpg/150px-Alisher_Navoiy.jpg" },
-                { date: "13 февраля", title: "257 лет со дня рождения И.А. Крылова (1769–1844)", author: "Иван Крылов", desc: "Великий русский баснописец.", local: "Басни Крылова любили читатели всех сословий, в том числе и в Парголово.", wiki: "https://ru.wikipedia.org/wiki/Крылов,_Иван_Андреевич", litres: "https://www.litres.ru/ivan-krylov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Krylov_by_Egorov.jpg/150px-Krylov_by_Egorov.jpg" },
-                { date: "16 февраля", title: "195 лет со дня рождения Н.С. Лескова (1831–1895)", author: "Николай Лесков", desc: "Русский писатель. «Левша», «Леди Макбет Мценского уезда», «Очарованный странник».", local: "Удивительный язык Лескова — настоящий подарок для ценителей русской словесности.", wiki: "https://ru.wikipedia.org/wiki/Лесков,_Николай_Семёнович", litres: "https://www.litres.ru/nikolay-leskov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Nikolai_Leskov_circa_1890.jpg/150px-Nikolai_Leskov_circa_1890.jpg" },
-                { date: "17 февраля", title: "120 лет со дня рождения А.Л. Барто (1906–1981)", author: "Агния Барто", desc: "Советская поэтесса, детский писатель. «Игрушки», «Было у бабушки сорок внучат».", local: "Стихи Барто знает наизусть каждый ребёнок в нашей стране.", wiki: "https://ru.wikipedia.org/wiki/Барто,_Агния_Львовна", litres: "https://www.litres.ru/agniya-barto/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Agniya_Barto.jpg/150px-Agniya_Barto.jpg" },
-                { date: "20 февраля", title: "174 года со дня рождения Н.Г. Гарина-Михайловского (1852–1906)", author: "Николай Гарин-Михайловский", desc: "Писатель, инженер. «Детство Тёмы», «Гимназисты».", local: "Бывал в Петербурге, его книги о взрослении до сих пор актуальны.", wiki: "https://ru.wikipedia.org/wiki/Гарин-Михайловский,_Николай_Георгиевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Garin-Mikhailovsky.jpg/150px-Garin-Mikhailovsky.jpg" },
-                { date: "24 февраля", title: "240 лет со дня рождения В. Гримма (1786–1859)", author: "Вильгельм Гримм", desc: "Немецкий филолог, сказочник. «Бременские музыканты», «Золотой гусь».", local: "Сказки братьев Гримм любят и взрослые, и дети.", wiki: "https://ru.wikipedia.org/wiki/Гримм,_Вильгельм", litres: "https://www.litres.ru/bratya-grimm/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Wilhelm_Grimm.jpg/150px-Wilhelm_Grimm.jpg" },
-                { date: "28 февраля", title: "200 лет со дня рождения Ж. Верна (1828–1905)", author: "Жюль Верн", desc: "Французский писатель-фантаст. «Двадцать тысяч лье под водой», «Дети капитана Гранта».", local: "Его приключенческие романы — одни из самых читаемых в мире.", wiki: "https://ru.wikipedia.org/wiki/Верн,_Жюль", litres: "https://www.litres.ru/zhul-vern/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Jules_Verne_by_Nadar.jpg/150px-Jules_Verne_by_Nadar.jpg" }
-            ],
-            // Март
-            march: [
-                { date: "1 марта", title: "160 лет со дня рождения М.М. Пришвина (1873–1954)", author: "Михаил Пришвин", desc: "Русский писатель, певец русской природы. «Кладовая солнца», «Лесная капель».", local: "Книги Пришвина есть в нашей библиотеке, их любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Пришвин,_Михаил_Михайлович", litres: "https://www.litres.ru/mihail-prishvin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Mikhail_Prishvin.jpg/150px-Mikhail_Prishvin.jpg" },
-                { date: "4 марта", title: "130 лет со дня рождения Ю.К. Олеши (1899–1960)", author: "Юрий Олеша", desc: "Русский писатель. «Три толстяка», роман «Зависть».", local: "Его сказка «Три толстяка» остаётся любимой многими поколениями.", wiki: "https://ru.wikipedia.org/wiki/Олеша,_Юрий_Карлович", litres: "https://www.litres.ru/yuriy-olesha/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Yuri_Olesha.jpg/150px-Yuri_Olesha.jpg" },
-                { date: "15 марта", title: "102 года со дня рождения Ю.В. Бондарева (1924–2020)", author: "Юрий Бондарев", desc: "Писатель-фронтовик. «Горячий снег», «Батальоны просят огня».", local: "Книги Бондарева о войне есть в нашей библиотеке, их читают и старшеклассники, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Бондарев,_Юрий_Васильевич", litres: "https://www.litres.ru/yuriy-bondarev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Yuri_Bondarev_2013.jpg/150px-Yuri_Bondarev_2013.jpg" },
-                { date: "17 марта", title: "170 лет со дня рождения М.А. Врубеля (1856–1910)", author: "Михаил Врубель", desc: "Русский художник, иллюстратор произведений Лермонтова.", local: "Его иллюстрации к «Демону» — шедевры книжной графики.", wiki: "https://ru.wikipedia.org/wiki/Врубель,_Михаил_Александрович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Mikhail_Vrubel_self-portrait.jpg/150px-Mikhail_Vrubel_self-portrait.jpg" },
-                { date: "20 марта", title: "100 лет со дня рождения В.В. Ерофеева (1938–1990)", author: "Венедикт Ерофеев", desc: "Писатель, автор поэмы «Москва — Петушки».", local: "Ерофеев жил в Ленинграде, его творчество связано с городом.", wiki: "https://ru.wikipedia.org/wiki/Ерофеев,_Венедикт_Васильевич", litres: "https://www.litres.ru/venedikt-erofeev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Venedikt_Erofeev.jpg/150px-Venedikt_Erofeev.jpg" },
-                { date: "23 марта", title: "205 лет со дня рождения А.Ф. Писемского (1821–1881)", author: "Алексей Писемский", desc: "Русский прозаик, драматург. «Тысяча душ», «Тюфяк».", local: "Его романы о жизни дворянства и купечества есть в нашем фонде.", wiki: "https://ru.wikipedia.org/wiki/Писемский,_Алексей_Феофилактович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Pisemsky.jpg/150px-Pisemsky.jpg" },
-                { date: "27 марта", title: "155 лет со дня рождения Г. Манна (1871–1950)", author: "Генрих Манн", desc: "Немецкий писатель, старший брат Томаса Манна. «Верноподданный».", local: "Его сатирические романы актуальны и сегодня.", wiki: "https://ru.wikipedia.org/wiki/Манн,_Генрих", litres: "https://www.litres.ru/genrih-mann/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Heinrich_Mann_1906.jpg/150px-Heinrich_Mann_1906.jpg" },
-                { date: "27 марта", title: "145 лет со дня рождения А.Т. Аверченко (1881–1925)", author: "Аркадий Аверченко", desc: "Русский писатель-сатирик, драматург.", local: "Его юмористические рассказы поднимают настроение читателям любого возраста.", wiki: "https://ru.wikipedia.org/wiki/Аверченко,_Аркадий_Тимофеевич", litres: "https://www.litres.ru/arkadiy-averchenko/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Averchenko.jpg/150px-Averchenko.jpg" },
-                { date: "30 марта", title: "250 лет со дня рождения В.А. Тропинина (1776–1857)", author: "Василий Тропинин", desc: "Русский художник-портретист.", local: "Его портреты Пушкина известны каждому.", wiki: "https://ru.wikipedia.org/wiki/Тропинин,_Василий_Андреевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Tropinin_self.jpg/150px-Tropinin_self.jpg" }
-            ],
-            // Апрель
-            april: [
-                { date: "1 апреля", title: "217 лет со дня рождения Н.В. Гоголя (1809–1852)", author: "Николай Гоголь", desc: "Великий русский прозаик, драматург. «Мёртвые души», «Ревизор», «Вечера на хуторе близ Диканьки».", local: "Гоголь жил в Петербурге, его герои ходили по тем же улицам, что и мы.", wiki: "https://ru.wikipedia.org/wiki/Гоголь,_Николай_Васильевич", litres: "https://www.litres.ru/nikolay-gogol/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Nikolai_Gogol_1845.jpg/150px-Nikolai_Gogol_1845.jpg" },
-                { date: "6 апреля", title: "185 лет со дня рождения И.З. Сурикова (1841–1880)", author: "Иван Суриков", desc: "Русский поэт, представитель крестьянского направления. «Детство», «В степи».", local: "Его стихи о природе часто входят в школьную программу.", wiki: "https://ru.wikipedia.org/wiki/Суриков,_Иван_Захарович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Ivan_Surikov.jpg/150px-Ivan_Surikov.jpg" },
-                { date: "9 апреля", title: "205 лет со дня рождения Ш. Бодлера (1821–1867)", author: "Шарль Бодлер", desc: "Французский поэт, критик. «Цветы зла».", local: "Его поэзия повлияла на всю мировую литературу.", wiki: "https://ru.wikipedia.org/wiki/Бодлер,_Шарль", litres: "https://www.litres.ru/shar-bodler/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Charles_Baudelaire_1862.jpg/150px-Charles_Baudelaire_1862.jpg" },
-                { date: "12 апреля", title: "130 лет со дня рождения К.Г. Паустовского (1892–1968)", author: "Константин Паустовский", desc: "Русский писатель, мастер лирической прозы. «Золотая роза», «Мещёрская сторона».", local: "Паустовский часто бывал в Ленинграде, его книги есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Паустовский,_Константин_Георгиевич", litres: "https://www.litres.ru/konstantin-paustovskiy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Konstantin_Paustovsky.jpg/150px-Konstantin_Paustovsky.jpg" },
-                { date: "15 апреля", title: "140 лет со дня рождения Н.С. Гумилёва (1886–1921)", author: "Николай Гумилёв", desc: "Русский поэт Серебряного века, переводчик.", local: "Его стихи об экзотических путешествиях завораживают читателей.", wiki: "https://ru.wikipedia.org/wiki/Гумилёв,_Николай_Степанович", litres: "https://www.litres.ru/nikolay-gumilev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Nikolay_Gumilyov.jpg/150px-Nikolay_Gumilyov.jpg" },
-                { date: "21 апреля", title: "210 лет со дня рождения Ш. Бронте (1816–1855)", author: "Шарлотта Бронте", desc: "Английская романистка. «Джен Эйр», «Городок».", local: "«Джен Эйр» — один из самых популярных романов в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Бронте,_Шарлотта", litres: "https://www.litres.ru/sharlotta-bronte/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Charlotte_Bront%C3%AB_restored.jpg/150px-Charlotte_Bront%C3%AB_restored.jpg" },
-                { date: "23 апреля", title: "Всемирный день книги и авторского права", author: "", desc: "Праздник, учреждённый ЮНЕСКО, напоминает о ценности чтения.", local: "В нашей библиотеке в этот день проходят встречи и викторины.", wiki: "https://ru.wikipedia.org/wiki/Всемирный_день_книги", litres: "", type: "birth", imageUrl: "" },
-                { date: "25 апреля", title: "200 лет со дня рождения А.И. Левитова (1835–1877)", author: "Александр Левитов", desc: "Русский писатель-демократ. «Степные очерки», «Жизнь московских закоулков».", local: "Его проза о жизни простого народа была популярна в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Левитов,_Александр_Иванович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Alexander_Leviton.jpg/150px-Alexander_Leviton.jpg" }
-            ],
-            // Май
-            may: [
-                { date: "1 мая", title: "135 лет со дня рождения Ф.И. Шаляпина (1873–1938)", author: "Фёдор Шаляпин", desc: "Великий русский оперный певец. Его мемуары «Маска и душа» — ценное литературное свидетельство.", local: "Шаляпин бывал в Парголово, гостил у Владимира Стасова.", wiki: "https://ru.wikipedia.org/wiki/Шаляпин,_Фёдор_Иванович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Fyodor_Chaliapin_1912.jpg/150px-Fyodor_Chaliapin_1912.jpg" },
-                { date: "5 мая", title: "180 лет со дня рождения Г. Сенкевича (1846–1916)", author: "Генрик Сенкевич", desc: "Польский писатель, нобелевский лауреат. «Камо грядеши», «Крестоносцы».", local: "Его исторические романы переведены на многие языки.", wiki: "https://ru.wikipedia.org/wiki/Сенкевич,_Генрик", litres: "https://www.litres.ru/genrik-senkevich/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Henryk_Sienkiewicz_1905.jpg/150px-Henryk_Sienkiewicz_1905.jpg" },
-                { date: "7 мая", title: "165 лет со дня рождения Р. Тагора (1861–1941)", author: "Рабиндранат Тагор", desc: "Индийский поэт, писатель, нобелевский лауреат.", local: "Переводы Тагора издавались в России и были в каждой библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Тагор,_Рабиндранат", litres: "https://www.litres.ru/rabindranat-tagor/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Rabindranath_Tagor_1915.jpg/150px-Rabindranath_Tagor_1915.jpg" },
-                { date: "15 мая", title: "135 лет со дня рождения М.А. Булгакова (1891–1940)", author: "Михаил Булгаков", desc: "Русский писатель, драматург. «Мастер и Маргарита», «Белая гвардия», «Собачье сердце».", local: "Булгаков жил и работал в Петербурге, его романы — украшение нашей библиотеки.", wiki: "https://ru.wikipedia.org/wiki/Булгаков,_Михаил_Афанасьевич", litres: "https://www.litres.ru/mihail-bulgakov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Mikhail_Bulgakov_1920s.jpg/150px-Mikhail_Bulgakov_1920s.jpg" },
-                { date: "15 мая", title: "170 лет со дня рождения Л.Ф. Баума (1856–1919)", author: "Лаймен Фрэнк Баум", desc: "Американский детский писатель. «Волшебник страны Оз».", local: "Сказки о стране Оз любят и дети, и взрослые.", wiki: "https://ru.wikipedia.org/wiki/Баум,_Лаймен_Фрэнк", litres: "https://www.litres.ru/leymen-frenk-baum/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/L._Frank_Baum_1911.jpg/150px-L._Frank_Baum_1911.jpg" },
-                { date: "24 мая", title: "День славянской письменности и культуры", author: "", desc: "Память святых Кирилла и Мефодия, создателей славянской азбуки.", local: "В библиотеке проходят уроки, посвящённые истории письменности.", wiki: "https://ru.wikipedia.org/wiki/День_славянской_письменности_и_культуры", litres: "", type: "birth", imageUrl: "" },
-                { date: "28 мая", title: "140 лет со дня рождения В.Ф. Ходасевича (1886–1939)", author: "Владислав Ходасевич", desc: "Русский поэт, переводчик, пушкинист.", local: "Его литературоведческие работы помогают лучше понять поэзию.", wiki: "https://ru.wikipedia.org/wiki/Ходасевич,_Владислав_Фелицианович", litres: "https://www.litres.ru/vladislav-hodasevich/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Vladislav_Hodasevich.jpg/150px-Vladislav_Hodasevich.jpg" }
-            ],
-            // Июнь
-            june: [
-                { date: "4 июня", title: "100 лет со дня рождения В.П. Астафьева (1924–2001)", author: "Виктор Астафьев", desc: "Русский писатель, представитель «деревенской прозы». «Царь-рыба», «Пастух и пастушка».", local: "Астафьев часто бывал в Петербурге, его книги есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Астафьев,_Виктор_Петрович", litres: "https://www.litres.ru/viktor-astafev/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Viktor_Astafyev_1998.jpg/150px-Viktor_Astafyev_1998.jpg" },
-                { date: "6 июня", title: "Пушкинский день России. 227 лет со дня рождения А.С. Пушкина (1799–1837)", author: "Александр Пушкин", desc: "День рождения великого поэта – главный литературный праздник страны.", local: "В парках Парголово звучат стихи Пушкина на открытых микрофонах.", wiki: "https://ru.wikipedia.org/wiki/Пушкин,_Александр_Сергеевич", litres: "https://www.litres.ru/aleksandr-pushkin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Alexander_Pushkin_by_Kiprensky.jpg/150px-Alexander_Pushkin_by_Kiprensky.jpg" },
-                { date: "14 июня", title: "102 года со дня рождения В.А. Солоухина (1924–1997)", author: "Владимир Солоухин", desc: "Писатель, поэт, представитель «деревенской прозы».", local: "Его книги о природе и русской деревне есть в нашем фонде.", wiki: "https://ru.wikipedia.org/wiki/Солоухин,_Владимир_Алексеевич", litres: "https://www.litres.ru/vladimir-solouhin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Vladimir_Soloukhin.jpg/150px-Vladimir_Soloukhin.jpg" },
-                { date: "14 июня", title: "135 лет со дня рождения А.М. Волкова (1891–1977)", author: "Александр Волков", desc: "Русский писатель. «Волшебник Изумрудного города».", local: "Сказки Волкова — любимое чтение младших школьников.", wiki: "https://ru.wikipedia.org/wiki/Волков,_Александр_Мелентьевич", litres: "https://www.litres.ru/aleksandr-volkov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Alexander_Melentyevich_Volkov.jpg/150px-Alexander_Melentyevich_Volkov.jpg" },
-                { date: "17 июня", title: "115 лет со дня рождения В.П. Некрасова (1911–1987)", author: "Виктор Некрасов", desc: "Русский писатель. «В окопах Сталинграда».", local: "Правдивая книга о войне, которую должен прочитать каждый.", wiki: "https://ru.wikipedia.org/wiki/Некрасов,_Виктор_Платонович", litres: "https://www.litres.ru/viktor-nekrasov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Viktor_Nekrasov_1970.jpg/150px-Viktor_Nekrasov_1970.jpg" },
-                { date: "21 июня", title: "100 лет со дня рождения Ю.В. Друниной (1924–1991)", author: "Юлия Друнина", desc: "Русская поэтесса, фронтовичка. Стихи о войне и любви.", local: "Её стихотворение «Я ушла из детства в грязную теплушку...» знают многие.", wiki: "https://ru.wikipedia.org/wiki/Друнина,_Юлия_Владимировна", litres: "https://www.litres.ru/uliya-drunina/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Julia_Drunina.jpg/150px-Julia_Drunina.jpg" },
-                { date: "23 июня", title: "130 лет со дня рождения Е.И. Замятина (1884–1937)", author: "Евгений Замятин", desc: "Русский писатель, автор романа «Мы».", local: "Его антиутопия предвосхитила многие идеи XX века.", wiki: "https://ru.wikipedia.org/wiki/Замятин,_Евгений_Иванович", litres: "https://www.litres.ru/evgeniy-zamyatin/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Yevgeny_Zamyatin_1920.jpg/150px-Yevgeny_Zamyatin_1920.jpg" },
-                { date: "25 июня", title: "108 лет со дня рождения А.И. Солженицына (1918–2008)", author: "Александр Солженицын", desc: "Писатель, публицист, нобелевский лауреат.", local: "Его книги «Один день Ивана Денисовича», «Архипелаг ГУЛАГ» изменили сознание многих.", wiki: "https://ru.wikipedia.org/wiki/Солженицын,_Александр_Исаевич", litres: "https://www.litres.ru/aleksandr-solzhenicyn/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Aleksandr_Solzhenitsyn_1974.jpg/150px-Aleksandr_Solzhenitsyn_1974.jpg" }
-            ],
-            // Июль
-            july: [
-                { date: "3 июля", title: "100 лет со дня рождения В.О. Богомолова (1926–2003)", author: "Владимир Богомолов", desc: "Русский писатель-фронтовик. «Момент истины» («В августе сорок четвёртого»).", local: "Его романы о войне — классика военной прозы.", wiki: "https://ru.wikipedia.org/wiki/Богомолов,_Владимир_Осипович", litres: "https://www.litres.ru/vladimir-bogomolov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Vladimir_Bogomolov.jpg/150px-Vladimir_Bogomolov.jpg" },
-                { date: "10 июля", title: "День воинской славы России – Полтавская битва (в литературе)", author: "", desc: "Пушкин описал это событие в поэме «Полтава».", local: "В библиотеке можно взять книгу и прочитать знаменитые строки.", wiki: "https://ru.wikipedia.org/wiki/Полтавская_битва", litres: "", type: "birth", imageUrl: "" },
-                { date: "20 июля", title: "130 лет со дня рождения Е.Л. Шварца (1896–1958)", author: "Евгений Шварц", desc: "Сказочник, драматург. «Снежная королева», «Обыкновенное чудо».", local: "Его пьесы ставили в театрах Ленинграда, их любили зрители всех возрастов.", wiki: "https://ru.wikipedia.org/wiki/Шварц,_Евгений_Львович", litres: "https://www.litres.ru/evgeniy-shvarc/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Yevgeny_Schwartz.jpg/150px-Yevgeny_Schwartz.jpg" },
-                { date: "22 июля", title: "195 лет со дня рождения А.А. Фета (1820–1892)", author: "Афанасий Фет", desc: "Русский поэт-лирик, переводчик.", local: "Его стихи о природе и любви вошли в золотой фонд русской поэзии.", wiki: "https://ru.wikipedia.org/wiki/Фет,_Афанасий_Афанасьевич", litres: "https://www.litres.ru/afanasiy-fet/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Afanasy_Fet_by_Repin.jpg/150px-Af
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => {
+                filterBtns.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                currentFilter = btn.dataset.filter;
+                renderAllEvents();
+            });
+        });
+    });
+</script>
