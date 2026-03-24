@@ -333,22 +333,17 @@
             }
         }
 
-        /* Стиль для контейнера информера */
-        .ym-informer {
+        /* Стили для двух счётчиков */
+        .ym-counters {
             margin-top: 1.5rem;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
         }
-        .ym-informer a,
-        .ym-informer img {
-            vertical-align: middle;
+        .ym-today, .ym-total {
             display: inline-block;
-        }
-        /* Дополнительная адаптация для мобильных */
-        @media (max-width: 768px) {
-            .ym-informer img {
-                width: auto;
-                height: auto;
-            }
         }
     </style>
 </head>
@@ -612,19 +607,29 @@
                 </div>
                 <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
                 
-                <!-- Яндекс.Метрика информер -->
-                <div class="ym-informer">
-                    <!-- Yandex.Metrika informer -->
-                    <a href="https://metrika.yandex.ru/stat/?id=107242178&amp;from=informer" target="_blank" rel="nofollow">
-                        <img src="https://informer.yandex.ru/informer/107242178/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
-                             style="width:88px; height:31px; border:0;"
-                             alt="Яндекс.Метрика"
-                             title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
-                             class="ym-advanced-informer"
-                             data-cid="107242178"
-                             data-lang="ru" />
-                    </a>
-                    <!-- /Yandex.Metrika informer -->
+                <!-- Два счётчика: сегодня и всего -->
+                <div class="ym-counters">
+                    <!-- Информер за сегодня -->
+                    <div class="ym-today">
+                        <a href="https://metrika.yandex.ru/stat/?id=107242178&amp;from=informer" target="_blank" rel="nofollow">
+                            <img src="https://informer.yandex.ru/informer/107242178/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                                 style="width:88px; height:31px; border:0;"
+                                 alt="Яндекс.Метрика"
+                                 title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+                                 class="ym-advanced-informer"
+                                 data-cid="107242178"
+                                 data-lang="ru" />
+                        </a>
+                    </div>
+                    <!-- Счётчик за всё время (общее число уникальных посетителей) -->
+                    <div class="ym-total">
+                        <a href="https://metrika.yandex.ru/stat/?id=107242178" target="_blank" rel="nofollow">
+                            <img src="https://informer.yandex.ru/informer/107242178/1_1_FFFFFFFF_EFEFEFFF_0_uniques"
+                                 style="width:80px; height:15px; border:0;"
+                                 alt="Яндекс.Метрика"
+                                 title="Яндекс.Метрика: общее количество уникальных посетителей за всё время" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
