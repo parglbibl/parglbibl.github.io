@@ -1,4 +1,4 @@
-/* common.css – книжный, ламповый стиль */
+/* common.css – ламповый, книжный стиль (упрощённый) */
 * {
     margin: 0;
     padding: 0;
@@ -10,9 +10,6 @@ body {
     line-height: 1.6;
     color: #4a4a4a;
     background-color: #fefaf5;
-    /* Текстура бумаги */
-    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBmaWxsPSIjZTBlMGUwIiBmaWxsLW9wYWNpdHk9IjAuMTUiIGQ9Ik0wIDBoNDB2NDBIMHoiLz48cGF0aCBmaWxsPSIjZjBmMGYwIiBmaWxsLW9wYWNpdHk9IjAuMSIgZD0iTTAgMjBoNDB2MjBIMHoiLz48L3N2Zz4=');
-    background-repeat: repeat;
     transition: background-color 0.3s, color 0.3s, font-size 0.3s;
 }
 
@@ -20,7 +17,6 @@ h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color: #5e4b3c;
-    letter-spacing: 0.02em;
 }
 
 .container {
@@ -93,7 +89,6 @@ header {
     justify-content: flex-end;
 }
 
-/* ========== ГОРИЗОНТАЛЬНОЕ МЕНЮ ========== */
 @media (min-width: 769px) {
     .nav ul {
         display: flex !important;
@@ -143,7 +138,7 @@ header {
     border-bottom: none;
 }
 
-/* Выпадающее меню "Ещё" */
+/* Выпадающее меню */
 .desktop-more {
     position: relative;
 }
@@ -310,69 +305,30 @@ header {
     margin-bottom: 3rem;
     font-size: 2.2rem;
     color: #5e4b3c;
-    letter-spacing: 0.05em;
 }
 
 .section-title::after {
     content: '';
     display: block;
-    width: 80px;
-    height: 2px;
+    width: 60px;
+    height: 3px;
     background: #e5989b;
-    margin: 0.8rem auto 0;
+    margin: 0.5rem auto 0;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .section-title:hover::after {
-    width: 120px;
+    width: 100px;
 }
 
-/* ===== КАРТОЧКИ (общий стиль для карточек на всех страницах) ===== */
+/* ===== КАРТОЧКИ ===== */
 .card, .service-card, .book-card, .event-card, .library-card, .partner-category, .timeline-item, .photo-gallery a, .voice-card, .map-container, .form-block, .map-point, .schedule-item, .gallery-item, .info-block, .project-card, .sight-item, .achievement-card, .quiz-container {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-}
-
-/* Эффект "загнутого уголка" для карточек */
-.card::after, .service-card::after, .book-card::after, .event-card::after, .library-card::after, .partner-category::after, .timeline-item::after, .photo-gallery a::after, .voice-card::after, .map-container::after, .form-block::after, .map-point::after, .schedule-item::after, .gallery-item::after, .info-block::after, .project-card::after, .sight-item::after, .achievement-card::after, .quiz-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: 30px;
-    background: linear-gradient(135deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0) 100%);
-    border-radius: 0 0 0 12px;
-    pointer-events: none;
-    transition: opacity 0.3s;
-    opacity: 0;
-}
-
-.card:hover::after, .service-card:hover::after, .book-card:hover::after, .event-card:hover::after, .library-card:hover::after, .partner-category:hover::after, .timeline-item:hover::after, .photo-gallery a:hover::after, .voice-card:hover::after, .map-container:hover::after, .form-block:hover::after, .map-point:hover::after, .schedule-item:hover::after, .gallery-item:hover::after, .info-block:hover::after, .project-card:hover::after, .sight-item:hover::after, .achievement-card:hover::after, .quiz-container:hover::after {
-    opacity: 1;
 }
 
 .card:hover, .service-card:hover, .book-card:hover, .event-card:hover, .library-card:hover, .partner-category:hover, .timeline-item:hover, .photo-gallery a:hover, .voice-card:hover, .map-container:hover, .form-block:hover, .map-point:hover, .schedule-item:hover, .gallery-item:hover, .info-block:hover, .project-card:hover, .sight-item:hover, .achievement-card:hover, .quiz-container:hover {
-    transform: translateY(-8px) rotate(0.5deg);
+    transform: translateY(-8px);
     box-shadow: 0 20px 30px rgba(0,0,0,0.12);
-}
-
-/* Стилизация маркеров списков */
-ul {
-    list-style: none;
-}
-ul li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-ul li::before {
-    content: "❝";
-    position: absolute;
-    left: 0;
-    color: #e5989b;
-    font-size: 1.1rem;
-    top: -0.1rem;
 }
 
 /* Подвал */
