@@ -1,4 +1,4 @@
-/* common.css – книжный стиль с фоном paper.png, горизонтальное меню */
+/* common.css – исправленное горизонтальное меню (id="nav") */
 * {
     margin: 0;
     padding: 0;
@@ -92,7 +92,7 @@ header {
 
 /* ========== ГОРИЗОНТАЛЬНОЕ МЕНЮ НА ДЕСКТОПЕ ========== */
 @media (min-width: 769px) {
-    .nav ul {
+    #nav ul {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
@@ -102,13 +102,13 @@ header {
         padding: 0 !important;
         list-style: none !important;
     }
-    .nav a {
+    #nav a {
         white-space: nowrap !important;
         font-size: 0.95rem !important;
     }
 }
 
-.nav a {
+#nav a {
     position: relative;
     text-decoration: none;
     color: #fff;
@@ -119,7 +119,7 @@ header {
     gap: 6px;
 }
 
-.nav a::after {
+#nav a::after {
     content: '';
     position: absolute;
     bottom: -2px;
@@ -130,13 +130,13 @@ header {
     transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav a:hover::after,
-.nav a.active::after {
+#nav a:hover::after,
+#nav a.active::after {
     width: 100%;
 }
 
-.nav a:hover,
-.nav a.active {
+#nav a:hover,
+#nav a.active {
     border-bottom: none;
 }
 
@@ -493,7 +493,7 @@ header {
     .menu-toggle {
         display: block;
     }
-    .nav {
+    #nav {
         flex: none;
         width: 100%;
         display: none;
@@ -501,10 +501,10 @@ header {
         align-items: stretch;
         margin-top: 0.5rem;
     }
-    .nav.active {
+    #nav.active {
         display: flex;
     }
-    .nav ul {
+    #nav ul {
         flex-direction: column !important;
         gap: 0.5rem !important;
         width: 100%;
@@ -512,10 +512,10 @@ header {
         padding: 0.5rem 0;
         margin: 0 !important;
     }
-    .nav ul li {
+    #nav ul li {
         width: 100%;
     }
-    .nav a {
+    #nav a {
         font-size: 0.9rem;
         padding: 0.3rem 0;
         display: flex;
@@ -543,7 +543,7 @@ header {
 }
 
 @media (max-width: 480px) {
-    .nav a {
+    #nav a {
         font-size: 0.8rem;
         padding: 0.2rem 0;
         gap: 5px;
@@ -620,10 +620,10 @@ body.special-mode .footer-col a {
 }
 
 /* Убираем чёрные точки в меню */
-.nav ul,
-.nav ul li,
-.nav .desktop-submenu,
-.nav .mobile-submenu,
+#nav ul,
+#nav ul li,
+#nav .desktop-submenu,
+#nav .mobile-submenu,
 .desktop-submenu,
 .mobile-submenu {
     list-style: none !important;
@@ -633,7 +633,7 @@ body.special-mode .footer-col a {
     list-style: none !important;
     padding-left: 0 !important;
 }
-.nav ul ul {
+#nav ul ul {
     list-style: none !important;
 }
 
