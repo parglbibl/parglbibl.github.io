@@ -1,4 +1,4 @@
-/* common.css – книжный стиль с фоном paper.png */
+/* common.css – книжный стиль с фоном paper.png, горизонтальное меню */
 * {
     margin: 0;
     padding: 0;
@@ -90,14 +90,30 @@ header {
     justify-content: flex-end;
 }
 
+/* ========== ГОРИЗОНТАЛЬНОЕ МЕНЮ НА ДЕСКТОПЕ ========== */
+@media (min-width: 769px) {
+    .nav ul {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+        gap: 2rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+    }
+    .nav a {
+        white-space: nowrap !important;
+        font-size: 0.95rem !important;
+    }
+}
+
 .nav a {
     position: relative;
     text-decoration: none;
     color: #fff;
     font-weight: 600;
     transition: color 0.3s;
-    font-size: 1.0rem;
-    white-space: nowrap;
     display: flex;
     align-items: center;
     gap: 6px;
@@ -308,7 +324,6 @@ header {
 }
 
 /* ===== КНИЖНЫЕ КАРТОЧКИ ===== */
-/* Общие стили для всех карточек – плавный подъём, тени, лёгкий эффект страницы */
 .card, .service-card, .book-card, .event-card, .library-card, .partner-category, .timeline-item, .photo-gallery a, .voice-card, .map-container, .form-block, .map-point, .schedule-item, .gallery-item, .info-block, .project-card, .sight-item, .achievement-card, .quiz-container {
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     background-color: #fff;
@@ -318,11 +333,6 @@ header {
 
 .card:hover, .service-card:hover, .book-card:hover, .event-card:hover, .library-card:hover, .partner-category:hover, .timeline-item:hover, .photo-gallery a:hover, .voice-card:hover, .map-container:hover, .form-block:hover, .map-point:hover, .schedule-item:hover, .gallery-item:hover, .info-block:hover, .project-card:hover, .sight-item:hover, .achievement-card:hover, .quiz-container:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.12);
-}
-
-/* Лёгкое «свечение» для карточек при наведении, имитирующее свет на странице */
-.card:hover, .service-card:hover, .book-card:hover, .event-card:hover, .library-card:hover, .partner-category:hover, .timeline-item:hover, .photo-gallery a:hover, .voice-card:hover, .map-container:hover, .form-block:hover, .map-point:hover, .schedule-item:hover, .gallery-item:hover, .info-block:hover, .project-card:hover, .sight-item:hover, .achievement-card:hover, .quiz-container:hover {
     box-shadow: 0 20px 30px rgba(0,0,0,0.12), 0 0 0 2px rgba(229,152,155,0.2);
 }
 
@@ -472,7 +482,7 @@ header {
     }
 }
 
-/* Мобильное меню */
+/* ===== МОБИЛЬНОЕ МЕНЮ ===== */
 @media (max-width: 768px) {
     .header-inner {
         flex-wrap: wrap;
@@ -495,11 +505,12 @@ header {
         display: flex;
     }
     .nav ul {
-        flex-direction: column;
-        gap: 0.5rem;
+        flex-direction: column !important;
+        gap: 0.5rem !important;
         width: 100%;
         text-align: center;
         padding: 0.5rem 0;
+        margin: 0 !important;
     }
     .nav ul li {
         width: 100%;
@@ -626,7 +637,7 @@ body.special-mode .footer-col a {
     list-style: none !important;
 }
 
-/* Кнопка наверх (если есть в вёрстке) */
+/* Кнопка наверх */
 #scrollUp {
     display: none;
     position: fixed;
