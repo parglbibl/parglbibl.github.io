@@ -332,6 +332,24 @@
                 text-align: center;
             }
         }
+
+        /* Стиль для контейнера информера */
+        .ym-informer {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+        .ym-informer a,
+        .ym-informer img {
+            vertical-align: middle;
+            display: inline-block;
+        }
+        /* Дополнительная адаптация для мобильных */
+        @media (max-width: 768px) {
+            .ym-informer img {
+                width: auto;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -593,6 +611,21 @@
                     </div>
                 </div>
                 <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
+                
+                <!-- Яндекс.Метрика информер -->
+                <div class="ym-informer">
+                    <!-- Yandex.Metrika informer -->
+                    <a href="https://metrika.yandex.ru/stat/?id=107242178&amp;from=informer" target="_blank" rel="nofollow">
+                        <img src="https://informer.yandex.ru/informer/107242178/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+                             style="width:88px; height:31px; border:0;"
+                             alt="Яндекс.Метрика"
+                             title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)"
+                             class="ym-advanced-informer"
+                             data-cid="107242178"
+                             data-lang="ru" />
+                    </a>
+                    <!-- /Yandex.Metrika informer -->
+                </div>
             </div>
         </div>
     </footer>
