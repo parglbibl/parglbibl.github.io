@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Стили (оставлены без изменений) */
+        /* стили такие же, как в предыдущей версии */
         .calendar-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 2rem 0 3rem; }
         .month-link { background-color: #fff; border: 1px solid #e5989b; color: #5e4b3c; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
         .month-link:hover { background-color: #e5989b; color: #fff; transform: translateY(-2px); }
@@ -349,7 +349,7 @@
             ]
         };
 
-        // Книги-юбиляры
+        // Книги-юбиляры (без изменений)
         const bookAnniversaries = [
             { date: "100 лет", title: "Э. Хемингуэй — «Фиеста (И восходит солнце)»", author: "Эрнест Хемингуэй", desc: "Роман, отражающий настроения «потерянного поколения».", local: "Книга есть в фонде нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Фиеста_(роман)", litres: "https://www.litres.ru/ernest-heminguey/fiesta/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/4/44/The_Sun_Also_Rises_First_Edition_Cover.jpg/150px-The_Sun_Also_Rises_First_Edition_Cover.jpg" },
             { date: "100 лет", title: "Ф. Кафка — «Замок»", author: "Франц Кафка", desc: "Неоконченный роман, изданный после смерти писателя.", local: "Одно из самых загадочных произведений XX века.", wiki: "https://ru.wikipedia.org/wiki/Замок_(роман)", litres: "https://www.litres.ru/franc-kafka/zamok/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Kafka_Das_Schloss_1926.jpg/150px-Kafka_Das_Schloss_1926.jpg" },
@@ -358,7 +358,7 @@
             { date: "100 лет", title: "Я. Кавабата — «Танцовщица из Идзу»", author: "Ясунари Кавабата", desc: "Повесть, принёсшая известность японскому писателю.", local: "Лиричная история первой любви.", wiki: "https://ru.wikipedia.org/wiki/Танцовщица_из_Идзу", litres: "https://www.litres.ru/yasunari-kavabata/tancovschica-iz-idzu/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Yasunari_Kawabata_1938.jpg/150px-Yasunari_Kawabata_1938.jpg" }
         ];
 
-        // Краеведческие события
+        // Краеведческие события (оставлены без изменений)
         const localEvents = [
             { date: "15 января", title: "Грибоедов в Парголово", author: "Александр Грибоедов", desc: "Александр Грибоедов гостил в Парголово у Фаддея Булгарина и написал очерк «Загородная поездка».", local: "Это событие произошло летом 1826 года.", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Griboyedov.jpg/150px-Griboyedov.jpg" },
             { date: "30 июня", title: "Венчание Римского-Корсакова в Шуваловском парке", author: "Николай Римский-Корсаков", desc: "В церкви Петра и Павла венчались композитор Николай Римский-Корсаков и пианистка Надежда Пургольд. Шафером был Мусоргский.", local: "Это одно из самых известных культурных событий в истории Парголово.", wiki: "https://ru.wikipedia.org/wiki/Римский-Корсаков,_Николай_Андреевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Rimsky-Korsakov.jpg/150px-Rimsky-Korsakov.jpg" },
