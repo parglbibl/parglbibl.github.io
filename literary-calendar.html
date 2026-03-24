@@ -30,7 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* стили такие же, как в предыдущей версии */
+        /* Стили такие же, как в предыдущей версии (без изменений) */
         .calendar-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 2rem 0 3rem; }
         .month-link { background-color: #fff; border: 1px solid #e5989b; color: #5e4b3c; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
         .month-link:hover { background-color: #e5989b; color: #fff; transform: translateY(-2px); }
@@ -242,7 +242,7 @@
 
     <script src="common.js"></script>
     <script>
-        // ==================== ПОЛНЫЙ МАССИВ СОБЫТИЙ ====================
+        // ==================== ПОЛНЫЙ МАССИВ СОБЫТИЙ С ОБНОВЛЁННЫМИ ССЫЛКАМИ НА ИЗОБРАЖЕНИЯ ====================
         const eventsData = {
             january: [
                 { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Nikolay_Rubtsov.jpg/150px-Nikolay_Rubtsov.jpg" },
@@ -358,7 +358,7 @@
             { date: "100 лет", title: "Я. Кавабата — «Танцовщица из Идзу»", author: "Ясунари Кавабата", desc: "Повесть, принёсшая известность японскому писателю.", local: "Лиричная история первой любви.", wiki: "https://ru.wikipedia.org/wiki/Танцовщица_из_Идзу", litres: "https://www.litres.ru/yasunari-kavabata/tancovschica-iz-idzu/", type: "book", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Yasunari_Kawabata_1938.jpg/150px-Yasunari_Kawabata_1938.jpg" }
         ];
 
-        // Краеведческие события (оставлены без изменений)
+        // Краеведческие события (без изменений)
         const localEvents = [
             { date: "15 января", title: "Грибоедов в Парголово", author: "Александр Грибоедов", desc: "Александр Грибоедов гостил в Парголово у Фаддея Булгарина и написал очерк «Загородная поездка».", local: "Это событие произошло летом 1826 года.", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Griboyedov.jpg/150px-Griboyedov.jpg" },
             { date: "30 июня", title: "Венчание Римского-Корсакова в Шуваловском парке", author: "Николай Римский-Корсаков", desc: "В церкви Петра и Павла венчались композитор Николай Римский-Корсаков и пианистка Надежда Пургольд. Шафером был Мусоргский.", local: "Это одно из самых известных культурных событий в истории Парголово.", wiki: "https://ru.wikipedia.org/wiki/Римский-Корсаков,_Николай_Андреевич", type: "local", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Rimsky-Korsakov.jpg/150px-Rimsky-Korsakov.jpg" },
