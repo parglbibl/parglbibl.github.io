@@ -1,4 +1,4 @@
-/* common.css – исправленное горизонтальное меню (id="nav") */
+/* common.css – полная версия со всеми стилями */
 * {
     margin: 0;
     padding: 0;
@@ -271,10 +271,6 @@ header {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.btn:active {
-    transform: scale(0.98);
-}
-
 .share-btn {
     display: inline-block;
     background-color: #e5989b;
@@ -321,19 +317,6 @@ header {
 
 .section-title:hover::after {
     width: 100px;
-}
-
-/* ===== КНИЖНЫЕ КАРТОЧКИ ===== */
-.card, .service-card, .book-card, .event-card, .library-card, .partner-category, .timeline-item, .photo-gallery a, .voice-card, .map-container, .form-block, .map-point, .schedule-item, .gallery-item, .info-block, .project-card, .sight-item, .achievement-card, .quiz-container {
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    border-radius: 16px;
-}
-
-.card:hover, .service-card:hover, .book-card:hover, .event-card:hover, .library-card:hover, .partner-category:hover, .timeline-item:hover, .photo-gallery a:hover, .voice-card:hover, .map-container:hover, .form-block:hover, .map-point:hover, .schedule-item:hover, .gallery-item:hover, .info-block:hover, .project-card:hover, .sight-item:hover, .achievement-card:hover, .quiz-container:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 30px rgba(0,0,0,0.12), 0 0 0 2px rgba(229,152,155,0.2);
 }
 
 /* Подвал */
@@ -482,7 +465,7 @@ header {
     }
 }
 
-/* ===== МОБИЛЬНОЕ МЕНЮ ===== */
+/* Мобильное меню */
 @media (max-width: 768px) {
     .header-inner {
         flex-wrap: wrap;
@@ -637,7 +620,7 @@ body.special-mode .footer-col a {
     list-style: none !important;
 }
 
-/* Кнопка наверх */
+/* Кнопка наверх (если есть в вёрстке) */
 #scrollUp {
     display: none;
     position: fixed;
