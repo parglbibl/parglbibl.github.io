@@ -348,7 +348,6 @@
     </style>
 </head>
 <body class="page-transition">
-    <!-- Якорь #top удалён -->
     <header>
         <div class="container header-inner">
             <a href="index.html" class="logo">
@@ -357,7 +356,6 @@
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
-                    <!-- Основные пункты -->
                     <li data-mobile="main"><a href="index.html" class="active"><i class="fas fa-home"></i> Главная</a></li>
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
@@ -369,7 +367,6 @@
                     <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
 
-                    <!-- Второстепенные пункты (уходят в "Ещё") -->
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
@@ -621,21 +618,14 @@
                                  data-lang="ru" />
                         </a>
                     </div>
-                    <!-- Счётчик за всё время (общее число уникальных посетителей) -->
+                    <!-- Общее число уникальных посетителей за всё время (API) -->
                     <div class="ym-total">
-                        <a href="https://metrika.yandex.ru/stat/?id=107242178" target="_blank" rel="nofollow">
-                            <img src="https://informer.yandex.ru/informer/107242178/1_1_FFFFFFFF_EFEFEFFF_0_uniques"
-                                 style="width:80px; height:15px; border:0;"
-                                 alt="Яндекс.Метрика"
-                                 title="Яндекс.Метрика: общее количество уникальных посетителей за всё время" />
-                        </a>
+                        <span id="totalVisitors">Загрузка...</span> уникальных посетителей всего
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Кнопка "наверх" полностью удалена -->
 
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
@@ -757,6 +747,18 @@
         window.addEventListener('load', () => {
             setTimeout(updateShareLinks, 100);
         });
+
+        // Получение общего числа уникальных посетителей через API Яндекс.Метрики
+        const counterId = 107242178;
+        const token = 'y0__xCfnu9mGMGvPyDA85LtForrEDbjVNq3x4n9AbvRFYFHF3dT';
+
+        fetch(`https://api-metrika.yandex.ru/stat/v1/data?metric=users&date1=20100101&date2=today&id=${counterId}&oauth_token=${token}`)
+            .then(r => r.json())
+            .then(d => {
+                const total = d.data[0].metrics[0];
+                document.getElementById('totalVisitors').innerText = total.toLocaleString('ru-RU');
+            })
+            .catch(() => document.getElementById('totalVisitors').innerText = '—');
     </script>
     <div id="scrollUp" title="Наверх">↑</div>
 </body>
