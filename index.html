@@ -94,11 +94,14 @@
         }
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        .hero p:last-of-type {
+            margin-bottom: 2rem;
         }
         @media (max-width: 768px) {
             .hero h1 {
@@ -236,6 +239,7 @@
                 max-width: 100%;
             }
         }
+
         .vk-more-btn {
             display: inline-block;
             background-color: #b5838d;
@@ -250,6 +254,8 @@
         .vk-more-btn:hover {
             background-color: #9f6e7a;
         }
+
+        /* Стили для книгообмена — горизонтальное расположение, текст по центру правого блока */
         .bookswap-banner {
             background: #fff9f0;
             border: 2px solid #e5989b;
@@ -257,38 +263,38 @@
             padding: 2rem;
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 2rem;
             flex-wrap: wrap;
         }
         .bookswap-banner img {
             width: 100%;
-            max-width: 300px;
+            max-width: 280px;
             border-radius: 12px;
-            box-shadow: 0 10px 25px
-            rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
         .bookswap-content {
             flex: 1;
             text-align: center;
-            
+        }
         .bookswap-content h3 {
             color: #b5838d;
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
         }
-            .books-content p {
-                font-size: 1.2rem;
-                color: #5e4b3c;
-                margin-bottom: 1rem;
-            }
+        .bookswap-content p {
+            font-size: 1.1rem;
+            color: #5e4b3c;
+            margin-bottom: 1.2rem;
+        }
         @media (max-width: 768px) {
             .bookswap-banner {
                 flex-direction: column;
                 text-align: center;
             }
             .bookswap-content h3 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
         }
 
@@ -372,7 +378,7 @@
     <section class="hero">
         <div class="container">
             <h1>Библиотека «Парголовская»</h1>
-            <p>Уютное пространство для чтения, творчества и встреч. </p>
+            <p>Уютное пространство для чтения, творчества и встреч.</p>
             <p>Добро пожаловать!</p>
             <a href="about.html" class="btn">Узнать больше</a>
         </div>
@@ -610,7 +616,7 @@
 
     <script src="common.js"></script>
     <script>
-        // Массив книг (20 книг) – замените пути на свои
+        // Массив книг (20 книг)
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
             { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
