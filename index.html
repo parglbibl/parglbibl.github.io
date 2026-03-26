@@ -257,21 +257,31 @@
             padding: 2rem;
             display: flex;
             align-items: center;
-            text-align: center;
-            gap: 1.5rem;
+            gap: 2rem;
+            flex-wrap: wrap;
         }
         .bookswap-banner img {
-            max-width: 250px;
             width: 100%;
+            max-width: 300px;
             border-radius: 12px;
-            margin: 0 auto;
+            box-shadow: 0 10px 25px
+            rgba(0,0,0,0.1);
         }
+        .bookswap-content {
+            flex: 1;
+            text-align: center;
+            
         .bookswap-content h3 {
-           
+            color: #b5838d;
+            font-size: 2rem;
             margin-bottom: 0.5rem;
-            font-size: 1.8rem;
+            font-weight: 700;
         }
-        
+            .books-content p {
+                font-size: 1.2rem;
+                color: #5e4b3c;
+                margin-bottom: 1rem;
+            }
         @media (max-width: 768px) {
             .bookswap-banner {
                 flex-direction: column;
