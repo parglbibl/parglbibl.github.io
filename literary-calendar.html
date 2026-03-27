@@ -222,7 +222,7 @@
                 { date: "20 марта", title: "100 лет со дня рождения В.В. Ерофеева (1938–1990)", author: "Венедикт Ерофеев", desc: "Писатель, автор поэмы «Москва — Петушки».", local: "Ерофеев жил в Ленинграде, его творчество связано с городом.", wiki: "https://ru.wikipedia.org/wiki/Ерофеев,_Венедикт_Васильевич", litres: "https://www.litres.ru/venedikt-erofeev/", type: "birth", imageUrl: "" },
                 { date: "23 марта", title: "205 лет со дня рождения А.Ф. Писемского (1821–1881)", author: "Алексей Писемский", desc: "Русский прозаик, драматург. «Тысяча душ», «Тюфяк».", local: "Его романы о жизни дворянства и купечества есть в нашем фонде.", wiki: "https://ru.wikipedia.org/wiki/Писемский,_Алексей_Феофилактович", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Pisemsky.jpg" },
                 { date: "27 марта", title: "155 лет со дня рождения Г. Манна (1871–1950)", author: "Генрих Манн", desc: "Немецкий писатель, старший брат Томаса Манна. «Верноподданный».", local: "Его сатирические романы актуальны и сегодня.", wiki: "https://ru.wikipedia.org/wiki/Манн,_Генрих", litres: "https://www.litres.ru/genrih-mann/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/76/Bundesarchiv_Bild_183-R98911%2C_Heinrich_Mann.jpg" },
-                { date: "27 марта", title: "145 лет со дня рождения А.Т. Аверченко (1881–1925)", author: "Аркадий Аверченко", desc: "Русский писатель-сатирик, драматург.", local: "Его юмористические рассказы поднимают настроение читателям любого возраста.", wiki: "https://ru.wikipedia.org/wiki/Аверченко,_Аркадий_Тимофеевич", litres: "https://www.litres.ru/arkadiy-averchenko/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7d/Arkady_Averchenko_7.gif" },
+                { date: "27 марта", title: "145 лет со дня рождения А.Т. Аверченко (1881–1925)", author: "Аркадий Аверченко", desc: "Русский писатель-сатирик, драматург.", local: "Его юмористические рассказы поднимают настроение читателям любого возраста.", wiki: "https://ru.wikipedia.org/wiki/Аверченко,_Аркадий_Тимофеевич", litres: "https://www.litres.ru/arkadiy-averchenko/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Averchenko.jpg" },
                 { date: "30 марта", title: "250 лет со дня рождения В.А. Тропинина (1776–1857)", author: "Василий Тропинин", desc: "Русский художник-портретист.", local: "Его портреты Пушкина известны каждому.", wiki: "https://ru.wikipedia.org/wiki/Тропинин,_Василий_Андреевич", litres: "", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Tropinin_self.jpg" }
             ],
             april: [
@@ -425,6 +425,8 @@
                 }
                 const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
                 const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
+                // Используем портрет для картинки в VK, если есть, иначе логотип
+                const shareImage = event.imageUrl ? event.imageUrl : 'https://parglbibl.ru/logo.PNG';
                 html += `
                     <div class="event-card fade-in">
                         ${imageHtml}
@@ -439,7 +441,7 @@
                         </div>
                         <div class="event-share">
                             <button class="export-btn" onclick='downloadICS(${JSON.stringify(event).replace(/'/g, "&#39;")})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
-                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=${encodeURIComponent(shareImage)}" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
                         </div>
                     </div>
                 `;
