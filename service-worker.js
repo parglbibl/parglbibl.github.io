@@ -1,4 +1,3 @@
-// service-worker.js
 const CACHE_NAME = 'pargolovskaya-v1';
 const urlsToCache = [
   '/',
@@ -50,41 +49,66 @@ const urlsToCache = [
   '/n24.jpg',
   '/n26.JPG',
   '/n27.jpg'
-  // При необходимости добавьте другие изображения и страницы
 ];
 
-// Устанавливаем кэш
+// Установка: кэшируем файлы по одному, чтобы ошибка одного не ломала весь кэш
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Кэш открыт');
-        return cache.addAll(urlsToCache);
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      console.log('Кэш открыт, начинаем сохранение файлов...');
+      const cachePromises = urlsToCache.map(url => {
+        return fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Ошибка ${response.status} при загрузке ${url}`);
+            }
+            return cache.put(url, response);
+          })
+          .catch(error => {
+            console.error(`Не удалось закэшировать ${url}:`, error);
+          });
+      });
+      return Promise.allSettled(cachePromises).then(() => {
+        console.log('Кэширование завершено (с возможными пропусками)');
+      });
+    })
   );
 });
 
-// При запросе сначала ищем в кэше, потом в сети
+// При запросе: сначала сеть, если не удалось — кэш
 self.addEventListener('fetch', event => {
+  // Не кэшируем запросы к внешним API (например, Google Calendar)
+  if (event.request.url.includes('calendar.google.com') ||
+      event.request.url.includes('vk.com') ||
+      event.request.url.includes('yandex.ru')) {
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request)
+    fetch(event.request)
       .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
+        // Если получили ответ, кэшируем его для будущих офлайн-запросов
+        const responseClone = response.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      })
+      .catch(() => {
+        // Если нет сети, пытаемся отдать из кэша
+        return caches.match(event.request);
       })
   );
 });
 
-// Обновление кэша (удаляем старый)
+// Активация: удаляем старые кэши
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
+          if (cacheName !== CACHE_NAME) {
+            console.log('Удаляем старый кэш:', cacheName);
             return caches.delete(cacheName);
           }
         })
