@@ -257,16 +257,16 @@
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);"><p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p><button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button><button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button></div>
 
     <div id="modal" class="modal">
-    <div class="modal-content">
-        <span class="modal-close">&times;</span>
-        <div class="modal-image">
-            <img id="modal-img" src="" alt="">
-            <div id="modal-fallback" style="display: none; font-size: 4rem; color: #e5989b;"><i class="fas fa-image"></i></div>
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-image">
+                <img id="modal-img" src="" alt="">
+                <div class="fallback-icon" style="display: none;"><i class="fas fa-image"></i></div>
+            </div>
+            <h3 id="modal-name"></h3>
+            <p id="modal-bio"></p>
         </div>
-        <h3 id="modal-name"></h3>
-        <p id="modal-bio"></p>
     </div>
-</div>
 
     <script src="common.js"></script>
     <script>
@@ -275,7 +275,7 @@
             january: [
                 { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "", bio: "" },
                 { date: "4 января", title: "195 лет со дня рождения В.Ф. Одоевского (1804–1869)", author: "Владимир Одоевский", desc: "Русский писатель, философ, музыковед. Сказки «Городок в табакерке», роман «Русские ночи».", local: "Одоевский бывал в Петербурге, его произведения есть в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Одоевский,_Владимир_Фёдорович", litres: "", type: "birth", imageUrl: "/images/odoevsky.jpg", bio: "Владимир Фёдорович Одоевский (1804–1869) – русский писатель, философ, музыковед. Один из основоположников русского музыкознания. Прославился философскими повестями и сказкой «Городок в табакерке». Его роман «Русские ночи» – важное произведение русской романтической прозы." },
-                { date: "6 января", title: "145 лет со дня рождения А.Н. Толстого (1883–1945)", author: "Алексей Толстой", desc: "Русский писатель. «Пётр I», «Аэлита», «Золотой ключик».", local: "Толстой не раз бывал в Петербурге и Ленинграде.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Николаевич", litres: "https://www.litres.ru/aleksey-tolstoy/", type: "birth", imageUrl: "/images/tolstoy_alexey.jpg", bio: "Алексей Николаевич Толстой (1883–1945) – русский советский писатель, автор романов «Пётр I», «Аэлита», «Хождение по мукам». Лауреат трёх Сталинских премий. Его произведения отличаются ярким сюжетом и глубоким интересом к истории России." },
+                { date: "6 января", title: "145 лет со дня рождения А.Н. Толстого (1883–1945)", author: "Алексей Толстой", desc: "Русский писатель. «Пётр I», «Аэлита», «Золотой ключик».", local: "Толстой не раз бывал в Петербурге и Ленинграде.", wiki: "https://ru.wikipedia.org/wiki/Толстой,_Алексей_Николаевич", litres: "https://www.litres.ru/aleksey-tolstoy/", type: "birth", imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/e7/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9_%D0%9D%D0%B8%D0%BA%D0%BE%D0%BB%D0%B0%D0%B5%D0%B2%D0%B8%D1%87_%D0%A2%D0%BE%D0%BB%D1%81%D1%82%D0%BE%D0%B9_1.jpg", bio: "Алексей Николаевич Толстой (1883–1945) – русский советский писатель, автор романов «Пётр I», «Аэлита», «Хождение по мукам». Лауреат трёх Сталинских премий. Его произведения отличаются ярким сюжетом и глубоким интересом к истории России." },
                 { date: "12 января", title: "150 лет со дня рождения Дж. Лондона (1876–1916)", author: "Джек Лондон", desc: "Американский писатель. «Белый Клык», «Мартин Иден», «Морской волк».", local: "Книги Лондона о сильных духом людях всегда популярны в нашей библиотеке.", wiki: "https://ru.wikipedia.org/wiki/Лондон,_Джек", litres: "https://www.litres.ru/dzhek-london/", type: "birth", imageUrl: "/images/london.jpg", bio: "Джек Лондон (1876–1916) – американский писатель, социалист, общественный деятель. Автор приключенческих романов «Белый Клык», «Мартин Иден», «Морской волк». Его произведения переведены на множество языков и экранизированы." },
                 { date: "15 января", title: "231 год со дня рождения А.С. Грибоедова (1795–1829)", author: "Александр Грибоедов", desc: "Русский дипломат, поэт, драматург, автор комедии «Горе от ума».", local: "В 1826 году Грибоедов гостил в Парголово на даче Фаддея Булгарина, где написал очерк «Загородная поездка».", wiki: "https://ru.wikipedia.org/wiki/Грибоедов,_Александр_Сергеевич", litres: "https://www.litres.ru/aleksandr-griboedov/", type: "birth", imageUrl: "/images/griboyedov.jpg", bio: "Александр Сергеевич Грибоедов (1795–1829) – русский дипломат, поэт, драматург, автор бессмертной комедии «Горе от ума». Погиб в Тегеране, защищая русское посольство." },
                 { date: "22 января", title: "205 лет со дня рождения Д.В. Григоровича (1822–1899)", author: "Дмитрий Григорович", desc: "Русский писатель. «Антон-Горемыка», «Гуттаперчевый мальчик».", local: "Его повести о крестьянской жизни были популярны в XIX веке.", wiki: "https://ru.wikipedia.org/wiki/Григорович,_Дмитрий_Васильевич", litres: "", type: "birth", imageUrl: "/images/grigorovich.jpg", bio: "Дмитрий Васильевич Григорович (1822–1899) – русский писатель, один из первых в литературе обратился к изображению крестьянской жизни. Повести «Деревня» и «Антон-Горемыка» принесли ему известность." },
@@ -488,57 +488,45 @@
         }
 
         function renderEventList(container, events) {
-    if (!events.length) {
-        container.innerHTML = "<p>Нет событий, соответствующих фильтру.</p>";
-        return;
-    }
-    let html = "";
-    events.forEach(event => {
-        let imageHtml = "";
-        if (event.imageUrl) {
-            imageHtml = `<div class="event-image">
-                            <img src="${event.imageUrl}" alt="${event.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-icon').style.display='flex'">
-                            <div class="fallback-icon" style="display: none;"><i class="fas fa-image"></i></div>
-                        </div>`;
-        } else {
-            imageHtml = `<div class="event-image"><div class="fallback-icon"><i class="fas fa-image"></i></div></div>`;
+            if (!events.length) {
+                container.innerHTML = "<p>Нет событий, соответствующих фильтру.</p>";
+                return;
+            }
+            let html = "";
+            events.forEach(event => {
+                let imageHtml = "";
+                if (event.imageUrl) {
+                    imageHtml = `<div class="event-image">
+                                    <img src="${event.imageUrl}" alt="${event.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+                                    <div class="fallback-icon" style="display: none;"><i class="fas fa-image"></i></div>
+                                </div>`;
+                } else {
+                    imageHtml = `<div class="event-image"><div class="fallback-icon"><i class="fas fa-image"></i></div></div>`;
+                }
+                const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
+                const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
+                const shareImage = event.imageUrl ? event.imageUrl : 'https://parglbibl.ru/logo.PNG';
+                html += `
+                    <div class="event-card fade-in" data-bio="${event.bio ? event.bio.replace(/"/g, '&quot;') : ''}" data-image="${event.imageUrl || ''}" data-name="${event.author || event.title}">
+                        ${imageHtml}
+                        <div class="event-date">${event.date}</div>
+                        <div class="event-title" onclick="openModal('${event.author || event.title}', '${event.imageUrl || ''}', \`${event.bio ? event.bio.replace(/'/g, "\\'") : ''}\`)">${event.title}</div>
+                        <div class="event-author">${event.author || ''}</div>
+                        <div class="event-desc">${event.desc}</div>
+                        <div class="local-history"><i class="fas fa-map-pin"></i> ${event.local}</div>
+                        <div class="event-links">
+                            ${wikiLink}
+                            ${litresLink}
+                        </div>
+                        <div class="event-share">
+                            <button class="export-btn" onclick='downloadICS(${JSON.stringify(event).replace(/'/g, "&#39;")})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
+                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=${encodeURIComponent(shareImage)}" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
         }
-        const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
-        const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
-        const shareImage = event.imageUrl ? event.imageUrl : 'https://parglbibl.ru/logo.PNG';
-        // Убираем onclick из HTML, добавим data-атрибуты
-        html += `
-            <div class="event-card fade-in" data-bio="${event.bio ? event.bio.replace(/"/g, '&quot;').replace(/'/g, '&#39;') : ''}" data-image="${event.imageUrl || ''}" data-name="${(event.author || event.title).replace(/'/g, '&#39;').replace(/"/g, '&quot;')}" data-title="${event.title.replace(/'/g, '&#39;').replace(/"/g, '&quot;')}">
-                ${imageHtml}
-                <div class="event-date">${event.date}</div>
-                <div class="event-title">${event.title}</div>
-                <div class="event-author">${event.author || ''}</div>
-                <div class="event-desc">${event.desc}</div>
-                <div class="local-history"><i class="fas fa-map-pin"></i> ${event.local}</div>
-                <div class="event-links">
-                    ${wikiLink}
-                    ${litresLink}
-                </div>
-                <div class="event-share">
-                    <button class="export-btn" onclick='downloadICS(${JSON.stringify(event).replace(/'/g, "&#39;")})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=${encodeURIComponent(shareImage)}" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
-                </div>
-            </div>
-        `;
-    });
-    container.innerHTML = html;
-
-    // Привязываем обработчики клика на заголовки
-    document.querySelectorAll('.event-title').forEach(title => {
-        title.addEventListener('click', function(e) {
-            const card = this.closest('.event-card');
-            const name = card.dataset.name;
-            const imageUrl = card.dataset.image;
-            const bio = card.dataset.bio;
-            openModal(name, imageUrl, bio);
-        });
-    });
-}
 
         function renderTodayEvents() {
             const today = new Date();
@@ -575,24 +563,24 @@
         }
 
         function openModal(name, imageUrl, bio) {
-    if (!imageUrl) return;
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modal-img');
-    const modalFallback = document.getElementById('modal-fallback');
-    const modalName = document.getElementById('modal-name');
-    const modalBio = document.getElementById('modal-bio');
+            if (!imageUrl) return;
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalFallback = document.querySelector('.modal-image .fallback-icon');
+            const modalName = document.getElementById('modal-name');
+            const modalBio = document.getElementById('modal-bio');
 
-    modalImg.src = imageUrl;
-    modalImg.style.display = 'block';
-    modalFallback.style.display = 'none';
-    modalImg.onerror = function() {
-        modalImg.style.display = 'none';
-        modalFallback.style.display = 'block';
-    };
-    modalName.textContent = name;
-    modalBio.textContent = bio || 'Биография временно отсутствует.';
-    modal.style.display = 'flex';
-}
+            modalImg.src = imageUrl;
+            modalImg.style.display = 'block';
+            modalFallback.style.display = 'none';
+            modalImg.onerror = function() {
+                modalImg.style.display = 'none';
+                modalFallback.style.display = 'flex';
+            };
+            modalName.textContent = name;
+            modalBio.textContent = bio || 'Биография временно отсутствует.';
+            modal.style.display = 'flex';
+        }
 
         document.addEventListener("DOMContentLoaded", () => {
             renderAllEvents();
