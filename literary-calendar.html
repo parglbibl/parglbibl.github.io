@@ -220,6 +220,45 @@
     cursor: pointer !important;
     pointer-events: auto !important;
 }
+
+/* Переопределение стилей common.css для модального окна */
+.modal {
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0,0,0,0.85) !important;
+    z-index: 100000 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    backdrop-filter: blur(3px) !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.modal[style*="display: flex"] {
+    display: flex !important;
+}
+.modal-content {
+    pointer-events: auto !important;
+    position: relative !important;
+    background: #fff !important;
+    border-radius: 24px !important;
+    max-width: 550px !important;
+    width: 90% !important;
+    padding: 2rem !important;
+    box-shadow: 0 25px 40px rgba(0,0,0,0.3) !important;
+    text-align: center !important;
+}
+.modal * {
+    pointer-events: auto !important;
+}
+.event-card {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
     </style>
 </head>
 <body class="page-transition">
