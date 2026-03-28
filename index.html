@@ -218,6 +218,7 @@
         }
         .random-book h3 { margin-bottom: 0.5rem; }
         .random-book .author { font-weight: 600; color: #b5838d; margin-bottom: 0.5rem; }
+        .random-book .pages { font-size: 0.85rem; color: #888; margin-bottom: 0.5rem; }
         .random-book .description { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
 
         #vk_groups {
@@ -255,7 +256,6 @@
             background-color: #9f6e7a;
         }
 
-        /* Стили для книгообмена */
         .bookswap-banner {
             background: #fff9f0;
             border: 2px solid #e5989b;
@@ -354,6 +354,7 @@
                     <li data-mobile="main"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
@@ -470,7 +471,7 @@
                 <div class="card fade-in">
                     <i class="fas fa-utensils"></i>
                     <h3>Книжная кухня</h3>
-                    <p>Рецепты из книг: от лимонного пирога из «Гарри Поттера» до оливье из «Собачьего сердца». Делитесь своими!</p>
+                    <p>Рецепты из книг: от пушкинского пирога до уютных плюшек Карлсона. Делитесь своими!</p>
                     <a href="book-kitchen.html" class="btn" style="margin-top: 1rem;">Перейти</a>
                 </div>
             </div>
@@ -638,38 +639,40 @@
 
     <script src="common.js"></script>
     <script>
-        // Массив книг (20 книг)
+        // Массив книг с реальными данными (страницы из открытых источников)
         const newBooks = [
-            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах и художниках.", image: "n3.jpg", year: "2025" },
-            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников для младших школьников.", image: "n6.jpg", year: "2025" },
-            { title: "Мир для детей", author: "Андрианова Н. А.", description: "Путеводитель по странам и континентам с яркими иллюстрациями.", image: "n7.jpg", year: "2022" },
-            { title: "Мигрант", author: "Астахов П. А.", description: "Современный детектив о судьбах людей в большом городе.", image: "n8.JPG", year: "2025" },
-            { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", year: "2025" },
-            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", year: "2025" },
-            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", description: "Классический сборник мифов о богах и героях.", image: "n11.jpg", year: "2024" },
-            { title: "Гербы России. История отечественной геральдики", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", year: "2022" },
-            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", description: "Детский путеводитель по миру финансов и предпринимательства.", image: "n13.jpg", year: "2024" },
-            { title: "Тайны Камчатки", author: "Котова Т. Б.", description: "Захватывающее путешествие по вулканам и дикой природе полуострова.", image: "n14.jpg", year: "2025" },
-            { title: "Девочка, которая хотела...", author: "Лисова И. А.", description: "Добрая проза для детей о мечтах и их исполнении.", image: "n15.jpg", year: "2024" },
-            { title: "Двенадцать месяцев", author: "Маршак С. Я.", description: "Знаменитая сказка-пьеса о падчерице и братьях-месяцах.", image: "n16.jpg", year: "2024" },
-            { title: "Без вести пропавшие", author: "Пичугин Д. В.", description: "Детектив-реконструкция, основанный на реальных событиях.", image: "n17.JPG", year: "2025" },
-            { title: "На один удар больше", author: "Литвинова А. В.", description: "Авантюрный детектив о тайнах приёмного сына.", image: "n20.jpg", year: "2025" },
-            { title: "Последний знак", author: "Райт А.", description: "Триллер о серийном убийце, лауреат премии «Русский детектив».", image: "n21.JPG", year: "2024" },
-            { title: "Маленький принц", author: "Сент-Экзюпери А. де", description: "Философская сказка-притча о дружбе, любви и ответственности.", image: "n23.jpg", year: "2025" },
-            { title: "Большая история путешествий", author: "Тунич А.", description: "Как люди исследовали мир — для детей от 10 до 12 лет.", image: "n24.jpg", year: "2025" },
-            { title: "Царский подарок", author: "Асопил Е.", description: "Вечерний детектив из серии «Тайна старинной книги».", image: "n26.JPG", year: "2025" },
-            { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", year: "2025" }
+            { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах.", image: "n3.jpg", year: "2024", pages: 224 },
+            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024", pages: null },
+            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", description: "Рассказы о детстве великих соотечественников.", image: "n6.jpg", year: "2025", pages: null },
+            { title: "Мир для детей", author: "Андрианова Н. А.", description: "Путеводитель по странам и континентам.", image: "n7.jpg", year: "2022", pages: null },
+            { title: "Мигрант", author: "Астахов П. А.", description: "Современный детектив о судьбах людей в большом городе.", image: "n8.JPG", year: "2025", pages: 320 },
+            { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", year: "2025", pages: null },
+            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", year: "2025", pages: null },
+            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", description: "Классический сборник мифов о богах и героях.", image: "n11.jpg", year: "2024", pages: 416 },
+            { title: "Гербы России. История отечественной геральдики", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", year: "2021", pages: 224 },
+            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", description: "Детский путеводитель по миру финансов.", image: "n13.jpg", year: "2024", pages: null },
+            { title: "Тайны Камчатки", author: "Котова Т. Б.", description: "Захватывающее путешествие по вулканам и дикой природе.", image: "n14.jpg", year: "2025", pages: 288 },
+            { title: "Девочка, которая хотела...", author: "Лисова И. А.", description: "Добрая проза для детей о мечтах.", image: "n15.jpg", year: "2024", pages: null },
+            { title: "Двенадцать месяцев", author: "Маршак С. Я.", description: "Знаменитая сказка-пьеса о падчерице и братьях-месяцах.", image: "n16.jpg", year: "2024", pages: 80 },
+            { title: "Без вести пропавшие", author: "Пичугин Д. В.", description: "Детектив-реконструкция, основанный на реальных событиях.", image: "n17.JPG", year: "2025", pages: null },
+            { title: "На один удар больше", author: "Литвинова А. В.", description: "Авантюрный детектив о тайнах приёмного сына.", image: "n20.jpg", year: "2025", pages: null },
+            { title: "Последний знак", author: "Райт А.", description: "Триллер о серийном убийце, лауреат премии «Русский детектив».", image: "n21.JPG", year: "2024", pages: null },
+            { title: "Маленький принц", author: "Сент-Экзюпери А. де", description: "Философская сказка-притча о дружбе, любви и ответственности.", image: "n23.jpg", year: "2025", pages: 96 },
+            { title: "Большая история путешествий", author: "Тунич А.", description: "Как люди исследовали мир — для детей от 10 до 12 лет.", image: "n24.jpg", year: "2025", pages: null },
+            { title: "Царский подарок", author: "Асопил Е.", description: "Вечерний детектив из серии «Тайна старинной книги».", image: "n26.JPG", year: "2025", pages: null },
+            { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", year: "2025", pages: null }
         ];
 
         function displayRandomBook() {
             const randomIndex = Math.floor(Math.random() * newBooks.length);
             const book = newBooks[randomIndex];
             let rating = localStorage.getItem('bookRating_' + book.title) || 0;
+            const pagesText = book.pages ? `${book.pages} стр.` : 'Объём уточняется';
             const html = `
                 <img src="${book.image}" alt="${book.title}" loading="lazy">
                 <h3>${book.title}</h3>
                 <div class="author">${book.author}</div>
+                <div class="pages">📄 ${pagesText}</div>
                 <div class="description">${book.description}</div>
                 <div class="rating">
                     <span>Оценка: </span>
