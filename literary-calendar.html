@@ -156,6 +156,31 @@
             .modal-content { padding: 1.5rem; width: 95%; }
             .modal-image { min-height: 180px; }
         }
+        /* Переопределяем возможные конфликты с common.css */
+.modal {
+    display: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background-color: rgba(0,0,0,0.85) !important;
+    z-index: 100000 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    backdrop-filter: blur(3px) !important;
+    pointer-events: auto !important;
+}
+.modal[style*="display: flex"] {
+    display: flex !important;
+}
+.modal * {
+    pointer-events: auto !important;
+}
+.event-card {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
     </style>
 </head>
 <body class="page-transition">
