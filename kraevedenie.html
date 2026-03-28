@@ -200,7 +200,6 @@
     </style>
 </head>
 <body class="page-transition">
-    <!-- Якорь #top удалён -->
     <header>
         <div class="container header-inner">
             <a href="index.html" class="logo">
@@ -224,6 +223,8 @@
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
                     <li data-mobile="more"><a href="literary-calendar.html"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="bookmatcher.html"><i class="fas fa-magic"></i> Примерочная книг</a></li>
+                    <li data-mobile="more"><a href="timeline.html"><i class="fas fa-stream"></i> История Парголово</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -272,6 +273,13 @@
                     <h3>Интерактивная карта</h3>
                     <p>Нанесите на карту все достопримечательности, храмы и памятные места. Удобный способ планировать прогулки.</p>
                     <a href="map.html" class="btn">Перейти к карте</a>
+                </div>
+                <!-- Новая карточка: Лента времени -->
+                <div class="project-card fade-in">
+                    <i class="fas fa-stream"></i>
+                    <h3>Лента времени Парголово</h3>
+                    <p>Пролистайте историю посёлка от первого упоминания до наших дней. Интерактивная хроника с иллюстрациями и ссылками на страницы сайта.</p>
+                    <a href="timeline.html" class="btn">Перейти к ленте</a>
                 </div>
                 <div class="project-card placeholder fade-in" style="background: #f8f8f8; border: 2px dashed #ccc;">
                     <i class="fas fa-plus-circle" style="color: #aaa;"></i>
@@ -569,8 +577,6 @@
         </div>
     </footer>
 
-    <!-- Кнопка "наверх" полностью удалена (была <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>) -->
-
     <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
         <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
         <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
@@ -580,7 +586,7 @@
     <script src="common.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script>
-        // Викторина
+        // Викторина (оставляем без изменений)
         (function() {
             const allQuestions = [
                 {
