@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
+        /* Все стили (без изменений) */
         .calendar-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 2rem 0 3rem; }
         .month-link { background-color: #fff; border: 1px solid #e5989b; color: #5e4b3c; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
         .month-link:hover { background-color: #e5989b; color: #fff; transform: translateY(-2px); }
@@ -285,10 +286,10 @@
         </div>
     </div>
 
-    <!-- ВРЕМЕННО ОТКЛЮЧАЕМ common.js, ЧТОБЫ НЕ МЕШАЛ ОТКРЫТИЮ МОДАЛЬНОГО ОКНА -->
+    <!-- ВРЕМЕННО ОТКЛЮЧАЕМ common.js ДЛЯ ГАРАНТИИ РАБОТЫ МОДАЛЬНОГО ОКНА -->
     <!-- <script src="common.js"></script> -->
     <script>
-        // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ (все данные) ==========
+        // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ ==========
         const eventsData = {
             january: [
                 { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "/images/rubtsov.jpg", bio: "Николай Михайлович Рубцов (1936–1971) – русский лирический поэт. Его поэзия, проникнутая любовью к русской природе и истории, получила широкое признание. Основные сборники: «Звезда полей», «Душа хранит», «Сосен шум»." },
@@ -416,7 +417,6 @@
             { date: "1938", title: "Открытие библиотеки им. Горького", author: "", desc: "В здании на Выборгском шоссе открылась библиотека (предшественница нынешней).", local: "Это начало истории нашей библиотеки.", wiki: "", type: "local", imageUrl: "/images/library_history.jpg", bio: "В 1938 году в здании на Выборгском шоссе открылась библиотека имени Горького – предшественница нынешней Парголовской библиотеки." }
         ];
 
-        // Добавляем краеведческие события в соответствующие месяцы
         for (let ev of localEvents) {
             const monthMap = { "января":"january", "февраля":"february", "марта":"march", "апреля":"april", "мая":"may", "июня":"june", "июля":"july", "августа":"august", "сентября":"september", "октября":"october", "ноября":"november", "декабря":"december" };
             const parts = ev.date.split(" ");
@@ -434,7 +434,6 @@
             }
         }
 
-        // ========== ФУНКЦИИ ДЛЯ РАБОТЫ КАЛЕНДАРЯ ==========
         function openModal(name, imageUrl, bio) {
             const modal = document.getElementById('modal');
             if (!modal) return;
