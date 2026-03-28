@@ -465,7 +465,7 @@ header {
     }
 }
 
-/* Мобильное меню */
+/* Мобильное меню (аккордеон) */
 @media (max-width: 768px) {
     .header-inner {
         flex-wrap: wrap;
@@ -487,41 +487,68 @@ header {
     #nav.active {
         display: flex;
     }
-    #nav ul {
-        flex-direction: column !important;
-        gap: 0.5rem !important;
-        width: 100%;
-        text-align: center;
-        padding: 0.5rem 0;
-        margin: 0 !important;
-    }
-    #nav ul li {
+
+    /* Стили аккордеона */
+    #nav .mobile-accordion {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         width: 100%;
     }
-    #nav a {
-        font-size: 0.9rem;
-        padding: 0.3rem 0;
+    #nav .mobile-accordion .accordion-category {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    #nav .mobile-accordion .accordion-header {
+        background: rgba(255,255,255,0.1);
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+        font-weight: 600;
         display: flex;
-        justify-content: center;
-        gap: 8px;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
     }
-    .search-icon-container {
-        display: none;
+    #nav .mobile-accordion .accordion-header i {
+        transition: transform 0.3s;
+    }
+    #nav .mobile-accordion .accordion-category.open .accordion-header i {
+        transform: rotate(180deg);
+    }
+    #nav .mobile-accordion .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        padding: 0;
+        background: rgba(0,0,0,0.2);
+    }
+    #nav .mobile-accordion .accordion-category.open .accordion-content {
+        max-height: 500px; /* достаточно для раскрытия */
+    }
+    #nav .mobile-accordion .accordion-content li {
+        list-style: none;
+    }
+    #nav .mobile-accordion .accordion-content a {
+        display: block;
+        padding: 0.6rem 1rem 0.6rem 2rem;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.2s;
+        font-size: 0.9rem;
+    }
+    #nav .mobile-accordion .accordion-content a i {
+        margin-right: 8px;
+        width: 20px;
+        text-align: center;
+    }
+    #nav .mobile-accordion .accordion-content a:hover,
+    #nav .mobile-accordion .accordion-content a.active {
+        background: rgba(255,255,255,0.2);
     }
 
-    .mobile-more {
-        position: relative;
-    }
-    .mobile-submenu {
-        list-style: none;
-        padding-left: 0;
-        margin-top: 0.5rem;
-        background: rgba(255,255,255,0.1);
-        border-radius: 8px;
-    }
-    .mobile-submenu li a {
-        padding: 0.5rem 1rem;
-        justify-content: center;
+    /* Скрываем десктопные элементы */
+    .desktop-more,
+    .desktop-submenu {
+        display: none;
     }
 }
 
@@ -540,7 +567,7 @@ header {
     }
 }
 
-/* Аккордеон в подвале */
+/* Аккордеон в подвале (если используется) */
 .footer-accordion .accordion-content {
     display: none;
 }
@@ -620,7 +647,7 @@ body.special-mode .footer-col a {
     list-style: none !important;
 }
 
-/* Кнопка наверх (если есть в вёрстке) */
+/* Кнопка наверх */
 #scrollUp {
     display: none;
     position: fixed;
