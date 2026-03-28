@@ -25,12 +25,12 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/107242178" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
-    <link rel="stylesheet" href="common.css">
+    <!-- ВРЕМЕННО ОТКЛЮЧАЕМ common.css И common.js ДЛЯ ГАРАНТИИ РАБОТЫ -->
+    <!-- <link rel="stylesheet" href="common.css"> -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Все стили (без изменений) */
         .calendar-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 2rem 0 3rem; }
         .month-link { background-color: #fff; border: 1px solid #e5989b; color: #5e4b3c; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
         .month-link:hover { background-color: #e5989b; color: #fff; transform: translateY(-2px); }
@@ -286,7 +286,6 @@
         </div>
     </div>
 
-    <!-- ВРЕМЕННО ОТКЛЮЧАЕМ common.js ДЛЯ ГАРАНТИИ РАБОТЫ МОДАЛЬНОГО ОКНА -->
     <!-- <script src="common.js"></script> -->
     <script>
         // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ ==========
@@ -434,6 +433,7 @@
             }
         }
 
+        // ========== ФУНКЦИИ ==========
         function openModal(name, imageUrl, bio) {
             const modal = document.getElementById('modal');
             if (!modal) return;
