@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Что почитать по интересу — Парголовская библиотека</title>
+    <meta name="description" content="Расширенная подборка книг по вашим интересам: жанр, настроение, возраст, длина, тип книги. Сохраняйте подборки и оценивайте.">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="common.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .section { padding: 4rem 0; }
+        .filter-form {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+        .filter-group label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #5e4b3c;
+        }
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+        .filter-options input {
+            display: none;
+        }
+        .filter-options label {
+            background: #f9f0e7;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s;
+        }
+        .filter-options input:checked + label {
+            background: #e5989b;
+            color: white;
+        }
+        .recommendations {
+            margin-top: 2rem;
+        }
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .book-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+        .book-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .book-card h4 {
+            margin-bottom: 0.5rem;
+            color: #5e4b3c;
+        }
+        .book-card .author {
+            font-weight: 600;
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+        }
+        .book-card .description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .rating i {
+            cursor: pointer;
+            color: #ccc;
+            margin-right: 3px;
+        }
+        .rating i.active {
+            color: #ffc107;
+        }
+        .save-btn {
+            background: none;
+            border: none;
+            color: #b5838d;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+        .save-btn i {
+            margin-right: 5px;
+        }
+        .saved-message {
+            text-align: center;
+            margin-top: 1rem;
+            color: #4caf50;
+            font-size: 0.9rem;
+        }
+        .btn-submit {
+            background-color: #b5838d;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #9f6e7a;
+        }
+    </style>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека"></a>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li data-mobile="main"><a href="index.html">Главная</a></li>
+                    <li data-mobile="main"><a href="about.html">О нас</a></li>
+                    <li data-mobile="main"><a href="kraevedenie.html">Краеведение</a></li>
+                    <li data-mobile="main"><a href="newbooks.html">Новинки</a></li>
+                    <li data-mobile="main"><a href="services.html">Услуги</a></li>
+                    <li data-mobile="main"><a href="events.html">События</a></li>
+                    <li data-mobile="main"><a href="faq.html">Вопросы</a></li>
+                    <li data-mobile="main"><a href="district-libraries.html">Библиотеки района</a></li>
+                    <li data-mobile="main"><a href="partners.html">Партнёры</a></li>
+                    <li data-mobile="main"><a href="contacts.html">Контакты</a></li>
+                    <li data-mobile="more"><a href="speedcubing.html">Спидкубинг</a></li>
+                    <li data-mobile="more"><a href="gallery.html">Фотогалерея</a></li>
+                    <li data-mobile="more"><a href="digital-resources.html">Электронные ресурсы</a></li>
+                    <li data-mobile="more"><a href="literary-calendar.html">Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="bookmatcher.html">Примерочная книг</a></li>
+                    <li data-mobile="more"><a href="timeline.html">История Парголово</a></li>
+                    <li data-mobile="more"><a href="book-recommendations.html" class="active">Что почитать по интересу</a></li>
+                    <li data-mobile="more"><a href="book-kitchen.html">Книжная кухня</a></li>
+                </ul>
+                <div class="search-icon-container">
+                    <i class="fas fa-search" id="searchIcon"></i>
+                    <div class="search-popup" id="searchPopup">
+                        <form action="https://yandex.ru/search/" method="get" target="_blank">
+                            <input type="hidden" name="site" value="parglbibl.ru">
+                            <input type="hidden" name="host" value="parglbibl.ru">
+                            <input type="hidden" name="lr" value="2">
+                            <input type="text" name="text" placeholder="Поиск по сайту...">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> &raquo;
+                <span>Что почитать по интересу</span>
+            </div>
+            <h1 class="section-title">Что почитать по интересу</h1>
+            <p style="text-align:center; margin-bottom:2rem;">Выберите параметры, и мы подберём книги из нашего фонда.</p>
+
+            <div class="filter-form fade-in">
+                <form id="interestForm">
+                    <div class="filter-group">
+                        <label>Жанр</label>
+                        <div class="filter-options" id="genreGroup">
+                            <input type="radio" name="genre" id="genre_any" value="any" checked><label for="genre_any">Любой</label>
+                            <input type="radio" name="genre" id="genre_fiction" value="fiction"><label for="genre_fiction">📖 Художественная</label>
+                            <input type="radio" name="genre" id="genre_nonfiction" value="nonfiction"><label for="genre_nonfiction">🔍 Познавательная</label>
+                            <input type="radio" name="genre" id="genre_detective" value="detective"><label for="genre_detective">🕵️ Детектив/триллер</label>
+                            <input type="radio" name="genre" id="genre_child" value="child"><label for="genre_child">🧸 Детская</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Настроение</label>
+                        <div class="filter-options" id="moodGroup">
+                            <input type="radio" name="mood" id="mood_any" value="any" checked><label for="mood_any">Любое</label>
+                            <input type="radio" name="mood" id="mood_adventure" value="adventure"><label for="mood_adventure">⚡ Приключение</label>
+                            <input type="radio" name="mood" id="mood_calm" value="calm"><label for="mood_calm">☕ Уют/спокойствие</label>
+                            <input type="radio" name="mood" id="mood_cheer" value="cheer"><label for="mood_cheer">😊 Веселье/юмор</label>
+                            <input type="radio" name="mood" id="mood_thought" value="thought"><label for="mood_thought">🤔 Глубокие мысли</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Возраст</label>
+                        <div class="filter-options" id="ageGroup">
+                            <input type="radio" name="age" id="age_any" value="any" checked><label for="age_any">Любой</label>
+                            <input type="radio" name="age" id="age_child" value="child"><label for="age_child">👶 Ребёнок (6–12)</label>
+                            <input type="radio" name="age" id="age_teen" value="teen"><label for="age_teen">🧑 Подросток (13–17)</label>
+                            <input type="radio" name="age" id="age_adult" value="adult"><label for="age_adult">👩 Взрослый</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Длина книги</label>
+                        <div class="filter-options" id="lengthGroup">
+                            <input type="radio" name="length" id="length_any" value="any" checked><label for="length_any">Любая</label>
+                            <input type="radio" name="length" id="length_short" value="short"><label for="length_short">📘 Короткая (до 200 стр.)</label>
+                            <input type="radio" name="length" id="length_medium" value="medium"><label for="length_medium">📙 Средняя (200–400 стр.)</label>
+                            <input type="radio" name="length" id="length_long" value="long"><label for="length_long">📚 Длинная (более 400 стр.)</label>
+                        </div>
+                    </div>
+                    <div class="filter-group">
+                        <label>Тип книги</label>
+                        <div class="filter-options" id="typeGroup">
+                            <input type="radio" name="type" id="type_any" value="any" checked><label for="type_any">Любая</label>
+                            <input type="radio" name="type" id="type_classic" value="classic"><label for="type_classic">📜 Классика</label>
+                            <input type="radio" name="type" id="type_modern" value="modern"><label for="type_modern">✨ Современная проза</label>
+                            <input type="radio" name="type" id="type_fantasy" value="fantasy"><label for="type_fantasy">🐉 Фэнтези/фантастика</label>
+                            <input type="radio" name="type" id="type_poetry" value="poetry"><label for="type_poetry">🎭 Поэзия</label>
+                        </div>
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="submit" class="btn-submit">Подобрать книги</button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="recommendations" class="recommendations"></div>
+            <div id="savedMessage" class="saved-message"></div>
+        </div>
+    </section>
+
+    <footer class="footer-content">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
+                </div>
+                <div class="footer-col footer-accordion">
+                    <h3 class="accordion-header">Карта сайта</h3>
+                    <div class="accordion-content">
+                        <p><a href="index.html">Главная</a></p>
+                        <p><a href="about.html">О нас</a></p>
+                        <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="newbooks.html">Новинки</a></p>
+                        <p><a href="services.html">Услуги</a></p>
+                        <p><a href="events.html">События</a></p>
+                        <p><a href="speedcubing.html">Спидкубинг</a></p>
+                        <p><a href="district-libraries.html">Библиотеки района</a></p>
+                        <p><a href="partners.html">Партнёры</a></p>
+                        <p><a href="faq.html">Вопросы</a></p>
+                        <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
+                        <p><a href="literary-calendar.html">Литературный календарь</a></p>
+                        <p><a href="contacts.html">Контакты</a></p>
+                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
+                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
+                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
+                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
+                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
+                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
+                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
+                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social"><a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a></div>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons"><a href="https://vk.com/share.php?url=https://parglbibl.ru/book-recommendations.html" target="_blank"><i class="fab fa-vk"></i></a></div>
+                    <div class="print-button"><a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a></div>
+                </div>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none;">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        // Книги (расширенный массив на основе новинок)
+        const booksCatalog = [
+            { title: "История русского искусства", author: "Игнатова Н. О.", genre: "nonfiction", mood: "calm", age: "adult", length: "medium", type: "classic", description: "От Айвазовского до Репина — популярный рассказ о шедеврах.", cover: "n3.jpg" },
+            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", genre: "nonfiction", mood: "thought", age: "teen", length: "medium", type: "classic", description: "Рассказы о выдающихся личностях, изменивших историю.", cover: "n5.JPG" },
+            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", genre: "nonfiction", mood: "calm", age: "child", length: "short", type: "classic", description: "Рассказы о детстве великих соотечественников.", cover: "n6.jpg" },
+            { title: "Мир для детей", author: "Андрианова Н. А.", genre: "nonfiction", mood: "calm", age: "child", length: "medium", type: "modern", description: "Путеводитель по странам и континентам.", cover: "n7.jpg" },
+            { title: "Мигрант", author: "Астахов П. А.", genre: "detective", mood: "adventure", age: "adult", length: "medium", type: "modern", description: "Современный детектив о судьбах людей в большом городе.", cover: "n8.JPG" },
+            { title: "Медвежий край", author: "Кузнецова Д. А.", genre: "fiction", mood: "adventure", age: "adult", length: "long", type: "modern", description: "Роман о природе Чукотки, её тайнах и людях.", cover: "n9.jpg" },
+            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", genre: "nonfiction", mood: "thought", age: "teen", length: "medium", type: "classic", description: "История Героя России, отдавшей жизнь за Родину.", cover: "n10.jpg" },
+            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", genre: "nonfiction", mood: "calm", age: "teen", length: "long", type: "classic", description: "Классический сборник мифов о богах и героях.", cover: "n11.jpg" },
+            { title: "Гербы России", author: "Воробьева Н. Н.", genre: "nonfiction", mood: "calm", age: "adult", length: "medium", type: "classic", description: "Подарочное издание о символах и истории российских гербов.", cover: "n12.JPG" },
+            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", genre: "nonfiction", mood: "adventure", age: "child", length: "short", type: "modern", description: "Детский путеводитель по миру финансов.", cover: "n13.jpg" },
+            { title: "Тайны Камчатки", author: "Котова Т. Б.", genre: "nonfiction", mood: "adventure", age: "teen", length: "medium", type: "modern", description: "Захватывающее путешествие по вулканам и дикой природе.", cover: "n14.jpg" },
+            { title: "Девочка, которая хотела...", author: "Лисова И. А.", genre: "fiction", mood: "cheer", age: "child", length: "short", type: "modern", description: "Добрая проза для детей о мечтах.", cover: "n15.jpg" },
+            { title: "Двенадцать месяцев", author: "Маршак С. Я.", genre: "child", mood: "cheer", age: "child", length: "short", type: "classic", description: "Знаменитая сказка-пьеса.", cover: "n16.jpg" },
+            { title: "Без вести пропавшие", author: "Пичугин Д. В.", genre: "detective", mood: "adventure", age: "adult", length: "long", type: "modern", description: "Детектив-реконструкция, основанный на реальных событиях.", cover: "n17.JPG" },
+            { title: "На один удар больше", author: "Литвинова А. В.", genre: "detective", mood: "adventure", age: "adult", length: "medium", type: "modern", description: "Авантюрный детектив о тайнах приёмного сына.", cover: "n20.jpg" },
+            { title: "Последний знак", author: "Райт А.", genre: "detective", mood: "adventure", age: "adult", length: "medium", type: "modern", description: "Триллер о серийном убийце.", cover: "n21.JPG" },
+            { title: "Маленький принц", author: "Сент-Экзюпери А. де", genre: "fiction", mood: "thought", age: "child", length: "short", type: "classic", description: "Философская сказка-притча о дружбе.", cover: "n23.jpg" },
+            { title: "Большая история путешествий", author: "Тунич А.", genre: "nonfiction", mood: "adventure", age: "child", length: "medium", type: "modern", description: "Как люди исследовали мир.", cover: "n24.jpg" },
+            { title: "Царский подарок", author: "Асопил Е.", genre: "detective", mood: "adventure", age: "adult", length: "short", type: "modern", description: "Вечерний детектив из серии «Тайна старинной книги».", cover: "n26.JPG" },
+            { title: "Зачем художнику детали?", author: "Никонова А. В.", genre: "nonfiction", mood: "thought", age: "teen", length: "short", type: "modern", description: "Увлекательное путешествие в мир искусства.", cover: "n27.jpg" }
+        ];
+
+        function getBooks(genre, mood, age, length, type) {
+            let filtered = booksCatalog;
+            if (genre !== 'any') filtered = filtered.filter(b => b.genre === genre);
+            if (mood !== 'any') filtered = filtered.filter(b => b.mood === mood);
+            if (age !== 'any') filtered = filtered.filter(b => b.age === age);
+            if (length !== 'any') filtered = filtered.filter(b => b.length === length);
+            if (type !== 'any') filtered = filtered.filter(b => b.type === type);
+            return filtered.slice(0, 4);
+        }
+
+        function renderBooks(books) {
+            if (!books.length) return '<div class="no-results" style="text-align:center;padding:2rem;">К сожалению, нет книг, подходящих под все выбранные параметры. Попробуйте изменить настройки.</div>';
+            let html = '<div class="books-grid">';
+            books.forEach(book => {
+                html += `
+                    <div class="book-card">
+                        <img src="${book.cover}" alt="${book.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Нет+обложки'">
+                        <h4>${book.title}</h4>
+                        <div class="author">${book.author}</div>
+                        <div class="description">${book.description}</div>
+                        <div class="rating" data-title="${book.title}">
+                            ${[1,2,3,4,5].map(star => `<i class="far fa-star" data-value="${star}"></i>`).join('')}
+                        </div>
+                        <button class="save-btn" data-title="${book.title}" data-author="${book.author}"><i class="fas fa-heart"></i> Сохранить в подборку</button>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            return html;
+        }
+
+        function loadRatings() {
+            document.querySelectorAll('.rating').forEach(ratingDiv => {
+                const title = ratingDiv.dataset.title;
+                const savedRating = localStorage.getItem(`rating_${title}`);
+                if (savedRating) {
+                    const stars = ratingDiv.querySelectorAll('i');
+                    stars.forEach((star, idx) => {
+                        if (idx < savedRating) star.classList.add('fas', 'active');
+                        else star.classList.remove('fas', 'active');
+                    });
+                }
+                ratingDiv.querySelectorAll('i').forEach(star => {
+                    star.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const val = parseInt(this.dataset.value);
+                        localStorage.setItem(`rating_${title}`, val);
+                        const stars = ratingDiv.querySelectorAll('i');
+                        stars.forEach((s, idx) => {
+                            if (idx < val) s.classList.add('fas', 'active');
+                            else s.classList.remove('fas', 'active');
+                        });
+                    });
+                });
+            });
+        }
+
+        function attachSaveButtons() {
+            document.querySelectorAll('.save-btn').forEach(btn => {
+                btn.removeEventListener('click', saveHandler);
+                btn.addEventListener('click', saveHandler);
+            });
+        }
+
+        function saveHandler(e) {
+            const title = this.dataset.title;
+            const author = this.dataset.author;
+            let saved = JSON.parse(localStorage.getItem('savedBooks') || '[]');
+            if (!saved.some(b => b.title === title)) {
+                saved.push({ title, author });
+                localStorage.setItem('savedBooks', JSON.stringify(saved));
+                const msgDiv = document.getElementById('savedMessage');
+                msgDiv.textContent = `Книга «${title}» сохранена в вашу подборку!`;
+                setTimeout(() => msgDiv.textContent = '', 3000);
+            } else {
+                const msgDiv = document.getElementById('savedMessage');
+                msgDiv.textContent = `Книга «${title}» уже есть в вашей подборке.`;
+                setTimeout(() => msgDiv.textContent = '', 2000);
+            }
+        }
+
+        document.getElementById('interestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const genre = document.querySelector('input[name="genre"]:checked').value;
+            const mood = document.querySelector('input[name="mood"]:checked').value;
+            const age = document.querySelector('input[name="age"]:checked').value;
+            const length = document.querySelector('input[name="length"]:checked').value;
+            const type = document.querySelector('input[name="type"]:checked').value;
+            const books = getBooks(genre, mood, age, length, type);
+            const html = renderBooks(books);
+            document.getElementById('recommendations').innerHTML = html;
+            loadRatings();
+            attachSaveButtons();
+        });
+
+        // Инициализация при загрузке
+        document.getElementById('interestForm').dispatchEvent(new Event('submit'));
+    </script>
+</body>
+</html>
