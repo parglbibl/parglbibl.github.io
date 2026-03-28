@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
+    // Сохраним оригинальную структуру меню (она будет использоваться на десктопе)
+    if (nav && !window.originalNavHTML) {
+        window.originalNavHTML = nav.innerHTML;
+    }
+
     // Структура категорий для мобильного аккордеона
     const mobileCategories = [
         {
@@ -91,27 +96,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Функция для восстановления десктопного меню (оригинальная структура)
     function restoreDesktopMenu() {
         if (!nav) return;
-        // Оригинальная структура меню (должна быть загружена из HTML)
-        // Поскольку мы её заменили, нужно восстановить из сохранённого шаблона
-        // Сохраним оригинальное содержимое при загрузке страницы
-        if (!window.originalNavHTML) {
-            window.originalNavHTML = nav.innerHTML;
+        if (window.originalNavHTML) {
+            nav.innerHTML = window.originalNavHTML;
         }
-        nav.innerHTML = window.originalNavHTML;
-
-        // Переинициализируем обработчики для десктопного меню (поиск, кнопка "Ещё" и т.д.)
+        // Переинициализируем обработчики для десктопного меню
         initDesktopMenu();
     }
 
     // Инициализация десктопного меню (код, который был в common.js)
     function initDesktopMenu() {
-        // Мобильное меню (гамбургер) - повторно навешиваем, если нужно
-        if (menuToggle && nav) {
-            // Удаляем старый обработчик, чтобы не дублировать
-            menuToggle.removeEventListener('click', toggleMobileMenu);
-            menuToggle.addEventListener('click', toggleMobileMenu);
-        }
-
         // Десктопное меню с "Ещё" – перемещение пунктов
         const navContainer = document.querySelector('.nav ul');
         if (navContainer && window.innerWidth > 768) {
@@ -217,18 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function toggleMobileMenu() {
-        nav.classList.toggle('active');
-        if (nav.classList.contains('active')) {
-            // При открытии мобильного меню убедимся, что используется аккордеон
-            if (window.innerWidth <= 768) {
-                buildMobileMenu();
-            }
-        } else {
-            // При закрытии можно оставить как есть
-        }
-    }
-
     // Функция для переключения между мобильным и десктопным меню при изменении размера окна
     function handleResize() {
         if (window.innerWidth <= 768) {
@@ -237,16 +218,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // Десктопный вид – восстанавливаем оригинальное меню
             restoreDesktopMenu();
-            // Дополнительно, если меню было открыто, закрываем его
+            // Если меню было открыто, закрываем его
             if (nav && nav.classList.contains('active')) {
                 nav.classList.remove('active');
             }
         }
-    }
-
-    // Сохраняем оригинальную структуру меню при загрузке (если ещё не сохранена)
-    if (nav && !window.originalNavHTML) {
-        window.originalNavHTML = nav.innerHTML;
     }
 
     // Инициализация при загрузке
@@ -255,7 +231,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Обработчик изменения размера окна
     window.addEventListener('resize', handleResize);
 
-    // Обработчик клика по гамбургеру (если меню не открыто, строим аккордеон)
+    // Обработчик клика по гамбургеру
     if (menuToggle) {
         menuToggle.addEventListener('click', function(e) {
             if (window.innerWidth <= 768) {
