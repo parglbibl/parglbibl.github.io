@@ -243,6 +243,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.toggle('active');
             }
         });
+        // Регистрация service worker для PWA
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(registration => {
+      console.log('Service Worker зарегистрирован с областью:', registration.scope);
+    })
+    .catch(error => {
+      console.log('Ошибка регистрации Service Worker:', error);
+    });
+}
     }
 
     // Дополнительно: если на десктопе меню уже построено, переинициализируем десктопные функции
