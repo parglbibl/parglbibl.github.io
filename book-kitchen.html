@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Книжная кухня — Парголовская библиотека</title>
+    <meta name="description" content="Рецепты из книг: кулинарные и художественные. Делитесь своими любимыми книжными блюдами.">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="common.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .section { padding: 4rem 0; }
+        .kitchen-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .recipe-card {
+            background: #fff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+        .recipe-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .recipe-content {
+            padding: 1.5rem;
+        }
+        .recipe-title {
+            font-size: 1.3rem;
+            color: #5e4b3c;
+            margin-bottom: 0.3rem;
+        }
+        .recipe-book {
+            font-weight: 600;
+            color: #b5838d;
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+        }
+        .recipe-ingredients {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            border-left: 3px solid #e5989b;
+            padding-left: 0.8rem;
+        }
+        .recipe-description {
+            font-size: 0.9rem;
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+        }
+        .recipe-link {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .share-btn-recipe {
+            margin-top: 1rem;
+            display: inline-block;
+            background: none;
+            border: none;
+            color: #b5838d;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .form-block {
+            background: #fff9f0;
+            border-radius: 24px;
+            padding: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #5e4b3c;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            min-height: 100px;
+        }
+        .submit-recipe {
+            background-color: #b5838d;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        #form-status {
+            margin-top: 1rem;
+            color: green;
+        }
+    </style>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека"></a>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li data-mobile="main"><a href="index.html">Главная</a></li>
+                    <li data-mobile="main"><a href="about.html">О нас</a></li>
+                    <li data-mobile="main"><a href="kraevedenie.html">Краеведение</a></li>
+                    <li data-mobile="main"><a href="newbooks.html">Новинки</a></li>
+                    <li data-mobile="main"><a href="services.html">Услуги</a></li>
+                    <li data-mobile="main"><a href="events.html">События</a></li>
+                    <li data-mobile="main"><a href="faq.html">Вопросы</a></li>
+                    <li data-mobile="main"><a href="district-libraries.html">Библиотеки района</a></li>
+                    <li data-mobile="main"><a href="partners.html">Партнёры</a></li>
+                    <li data-mobile="main"><a href="contacts.html">Контакты</a></li>
+                    <li data-mobile="more"><a href="speedcubing.html">Спидкубинг</a></li>
+                    <li data-mobile="more"><a href="gallery.html">Фотогалерея</a></li>
+                    <li data-mobile="more"><a href="digital-resources.html">Электронные ресурсы</a></li>
+                    <li data-mobile="more"><a href="literary-calendar.html">Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="bookmatcher.html">Примерочная книг</a></li>
+                    <li data-mobile="more"><a href="timeline.html">История Парголово</a></li>
+                    <li data-mobile="more"><a href="book-recommendations.html">Что почитать по интересу</a></li>
+                    <li data-mobile="more"><a href="book-kitchen.html" class="active">Книжная кухня</a></li>
+                </ul>
+                <div class="search-icon-container">
+                    <i class="fas fa-search" id="searchIcon"></i>
+                    <div class="search-popup" id="searchPopup">
+                        <form action="https://yandex.ru/search/" method="get" target="_blank">
+                            <input type="hidden" name="site" value="parglbibl.ru">
+                            <input type="hidden" name="host" value="parglbibl.ru">
+                            <input type="hidden" name="lr" value="2">
+                            <input type="text" name="text" placeholder="Поиск по сайту...">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> &raquo;
+                <span>Книжная кухня</span>
+            </div>
+            <h1 class="section-title">Книжная кухня</h1>
+            <div class="kitchen-intro">
+                <p>Готовим по книгам! Здесь собраны рецепты из художественных произведений и кулинарных книг. Попробуйте знаменитый лимонный пирог из «Гарри Поттера» или суп из «Алисы в Стране чудес». А если у вас есть свой любимый рецепт из книги — поделитесь с нами!</p>
+            </div>
+
+            <div class="recipes-grid" id="recipesGrid">
+                <!-- Рецепты будут загружены динамически -->
+            </div>
+
+            <div class="form-block">
+                <h3>Поделиться своим рецептом</h3>
+                <p>Есть рецепт из книги? Расскажите о нём, и мы добавим его на эту страницу.</p>
+                <form id="recipeForm">
+                    <div class="form-group">
+                        <label for="recipeTitle">Название блюда *</label>
+                        <input type="text" id="recipeTitle" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeBook">Из какой книги *</label>
+                        <input type="text" id="recipeBook" name="book" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeIngredients">Ингредиенты</label>
+                        <textarea id="recipeIngredients" name="ingredients" rows="3" placeholder="Краткий список ингредиентов"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeDescription">Описание приготовления *</label>
+                        <textarea id="recipeDescription" name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeImage">Ссылка на изображение (необязательно)</label>
+                        <input type="text" id="recipeImage" name="image" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipeAuthor">Ваше имя</label>
+                        <input type="text" id="recipeAuthor" name="author" placeholder="Аноним">
+                    </div>
+                    <div style="text-align:center;">
+                        <button type="submit" class="submit-recipe">Отправить рецепт</button>
+                    </div>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-content">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
+                </div>
+                <div class="footer-col footer-accordion">
+                    <h3 class="accordion-header">Карта сайта</h3>
+                    <div class="accordion-content">
+                        <p><a href="index.html">Главная</a></p>
+                        <p><a href="about.html">О нас</a></p>
+                        <p><a href="kraevedenie.html">Краеведение</a></p>
+                        <p><a href="newbooks.html">Новинки</a></p>
+                        <p><a href="services.html">Услуги</a></p>
+                        <p><a href="events.html">События</a></p>
+                        <p><a href="speedcubing.html">Спидкубинг</a></p>
+                        <p><a href="district-libraries.html">Библиотеки района</a></p>
+                        <p><a href="partners.html">Партнёры</a></p>
+                        <p><a href="faq.html">Вопросы</a></p>
+                        <p><a href="gallery.html">Фотогалерея</a></p>
+                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
+                        <p><a href="literary-calendar.html">Литературный календарь</a></p>
+                        <p><a href="contacts.html">Контакты</a></p>
+                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
+                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
+                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
+                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
+                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
+                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
+                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
+                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social"><a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a></div>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons"><a href="https://vk.com/share.php?url=https://parglbibl.ru/book-kitchen.html" target="_blank"><i class="fab fa-vk"></i></a></div>
+                    <div class="print-button"><a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a></div>
+                </div>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none;">
+        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
+        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
+        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    </div>
+
+    <script src="common.js"></script>
+    <script>
+        // Начальные рецепты (можно добавлять)
+        let recipes = [
+            {
+                title: "Лимонный пирог",
+                book: "«Гарри Поттер»",
+                ingredients: "Мука, сливочное масло, сахар, лимоны, яйца",
+                description: "Пирог, который так любил Гарри. Нежный, с кислинкой, подаётся к чаю.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Lemon_cake.jpg/320px-Lemon_cake.jpg",
+                author: "Дж. Роулинг"
+            },
+            {
+                title: "Оливье по-мещански",
+                book: "«Собачье сердце» М. Булгакова",
+                ingredients: "Ветчина, раки, икра паюсная, огурцы, оливки, майонез",
+                description: "Рецепт Филиппа Филипповича Преображенского: 'Нельзя, барин, иностранные вещи есть...'",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Olivier_salad.jpg/320px-Olivier_salad.jpg",
+                author: "М. Булгаков"
+            },
+            {
+                title: "Суп из черепахи",
+                book: "«Алиса в Стране чудес» Л. Кэрролла",
+                ingredients: "Черепаха, овощи, специи",
+                description: "Знаменитое блюдо, упомянутое в главе про Фальшивую Черепаху.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Turtle_soup.jpg/320px-Turtle_soup.jpg",
+                author: "Л. Кэрролл"
+            }
+        ];
+
+        function renderRecipes() {
+            const grid = document.getElementById('recipesGrid');
+            let html = '';
+            recipes.forEach(recipe => {
+                html += `
+                    <div class="recipe-card">
+                        <img class="recipe-img" src="${recipe.image || 'https://via.placeholder.com/300x180?text=Книжный+рецепт'}" alt="${recipe.title}">
+                        <div class="recipe-content">
+                            <div class="recipe-title">${recipe.title}</div>
+                            <div class="recipe-book">📖 ${recipe.book}</div>
+                            <div class="recipe-ingredients">🧂 ${recipe.ingredients || 'Ингредиенты не указаны'}</div>
+                            <div class="recipe-description">${recipe.description}</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <a href="#" class="recipe-link" onclick="shareRecipe('${recipe.title}', '${recipe.book}')">Поделиться</a>
+                                <small>📝 ${recipe.author || 'Читатель'}</small>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            grid.innerHTML = html;
+        }
+
+        window.shareRecipe = function(title, book) {
+            const shareUrl = `https://vk.com/share.php?url=${encodeURIComponent(window.location.href)}&title=Рецепт%20«${title}»%20из%20книги%20${book}`;
+            window.open(shareUrl, '_blank');
+        };
+
+        // Отправка формы
+        const form = document.getElementById('recipeForm');
+        const statusDiv = document.getElementById('form-status');
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            statusDiv.textContent = 'Отправка...';
+            try {
+                const response = await fetch('https://formspree.io/f/xdawoqrg', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    statusDiv.textContent = 'Спасибо! Ваш рецепт отправлен. После модерации он появится на сайте.';
+                    form.reset();
+                } else {
+                    statusDiv.textContent = 'Ошибка при отправке. Попробуйте позже.';
+                }
+            } catch (err) {
+                statusDiv.textContent = 'Ошибка сети. Проверьте подключение.';
+            }
+        });
+
+        renderRecipes();
+    </script>
+</body>
+</html>
