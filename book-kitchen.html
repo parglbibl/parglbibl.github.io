@@ -77,59 +77,11 @@
             font-size: 0.85rem;
             font-weight: 600;
         }
-        .share-btn-recipe {
-            margin-top: 1rem;
-            display: inline-block;
-            background: none;
-            border: none;
-            color: #b5838d;
-            cursor: pointer;
-            font-size: 0.8rem;
-        }
-        .form-block {
-            background: #fff9f0;
-            border-radius: 24px;
-            padding: 2rem;
-            margin-top: 3rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: #5e4b3c;
-        }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            font-family: inherit;
-        }
-        .form-group textarea {
-            min-height: 100px;
-        }
-        .submit-recipe {
-            background-color: #b5838d;
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-        #form-status {
-            margin-top: 1rem;
-            color: green;
-        }
         .note {
             background: #f0f7ff;
             padding: 1rem;
             border-radius: 12px;
-            margin-top: 1rem;
+            margin-top: 2rem;
             font-size: 0.85rem;
             text-align: center;
             color: #4a6a8a;
@@ -189,46 +141,10 @@
                 <p>Готовим по книгам! Здесь собраны рецепты из известных произведений — от пушкинского пирога до уютных плюшек Карлсона. Все рецепты проверены, безопасны и доступны для домашнего приготовления.</p>
             </div>
 
-            <div class="recipes-grid" id="recipesGrid">
-                <!-- Рецепты будут загружены динамически -->
-            </div>
+            <div class="recipes-grid" id="recipesGrid"></div>
 
-            <div class="form-block">
-                <h3>Поделиться своим рецептом</h3>
-                <p>Есть рецепт из книги? Расскажите о нём, и мы добавим его на эту страницу.</p>
-                <form id="recipeForm">
-                    <div class="form-group">
-                        <label for="recipeTitle">Название блюда *</label>
-                        <input type="text" id="recipeTitle" name="title" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipeBook">Из какой книги *</label>
-                        <input type="text" id="recipeBook" name="book" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipeIngredients">Ингредиенты</label>
-                        <textarea id="recipeIngredients" name="ingredients" rows="3" placeholder="Краткий список ингредиентов"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipeDescription">Описание приготовления *</label>
-                        <textarea id="recipeDescription" name="description" rows="4" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="recipeImage">Ссылка на изображение (необязательно)</label>
-                        <input type="text" id="recipeImage" name="image" placeholder="https://...">
-                    </div>
-                    <div class="form-group">
-                        <label for="recipeAuthor">Ваше имя</label>
-                        <input type="text" id="recipeAuthor" name="author" placeholder="Аноним">
-                    </div>
-                    <div style="text-align:center;">
-                        <button type="submit" class="submit-recipe">Отправить рецепт</button>
-                    </div>
-                    <div id="form-status"></div>
-                </form>
-                <div class="note">
-                    <i class="fas fa-info-circle"></i> Рецепты адаптированы для современной кухни. Приятного чтения и аппетита!
-                </div>
+            <div class="note">
+                <i class="fas fa-info-circle"></i> Рецепты адаптированы для современной кухни. Приятного чтения и аппетита!
             </div>
         </div>
     </section>
@@ -294,7 +210,6 @@
 
     <script src="common.js"></script>
     <script>
-        // Рецепты из проверенных источников (библиотечные публикации, академические каталоги, издательские проекты)
         const recipes = [
             {
                 title: "Страсбургский пирог нетленный",
@@ -389,30 +304,6 @@
             const shareUrl = `https://vk.com/share.php?url=${encodeURIComponent(window.location.href)}&title=Рецепт%20«${title}»%20из%20книги%20${book}`;
             window.open(shareUrl, '_blank');
         };
-
-        // Отправка формы
-        const form = document.getElementById('recipeForm');
-        const statusDiv = document.getElementById('form-status');
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-            statusDiv.textContent = 'Отправка...';
-            try {
-                const response = await fetch('https://formspree.io/f/xdawoqrg', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    statusDiv.textContent = 'Спасибо! Ваш рецепт отправлен. После модерации он появится на сайте.';
-                    form.reset();
-                } else {
-                    statusDiv.textContent = 'Ошибка при отправке. Попробуйте позже.';
-                }
-            } catch (err) {
-                statusDiv.textContent = 'Ошибка сети. Проверьте подключение.';
-            }
-        });
 
         renderRecipes();
     </script>
