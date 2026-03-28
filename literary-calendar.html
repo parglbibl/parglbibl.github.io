@@ -25,12 +25,13 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/107242178" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
-    <!-- ВРЕМЕННО ОТКЛЮЧАЕМ common.css И common.js ДЛЯ ГАРАНТИИ РАБОТЫ -->
+    <!-- Подключаем общий CSS сайта -->
     <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
+        /* Стили календаря */
         .calendar-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 2rem 0 3rem; }
         .month-link { background-color: #fff; border: 1px solid #e5989b; color: #5e4b3c; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
         .month-link:hover { background-color: #e5989b; color: #fff; transform: translateY(-2px); }
@@ -156,109 +157,32 @@
             .modal-content { padding: 1.5rem; width: 95%; }
             .modal-image { min-height: 180px; }
         }
-        /* Переопределяем возможные конфликты с common.css */
-.modal {
-    display: none !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: rgba(0,0,0,0.85) !important;
-    z-index: 100000 !important;
-    justify-content: center !important;
-    align-items: center !important;
-    backdrop-filter: blur(3px) !important;
-    pointer-events: auto !important;
-}
-.modal[style*="display: flex"] {
-    display: flex !important;
-}
-.modal * {
-    pointer-events: auto !important;
-}
-.event-card {
-    cursor: pointer !important;
-    pointer-events: auto !important;
-}
 
-/* Переопределение стилей common.css, чтобы модальное окно работало */
-.modal {
-    display: none !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: rgba(0,0,0,0.85) !important;
-    z-index: 100000 !important;
-    justify-content: center !important;
-    align-items: center !important;
-    backdrop-filter: blur(3px) !important;
-    pointer-events: auto !important;
-    overflow: visible !important;
-    opacity: 1 !important;
-}
-.modal[style*="display: flex"] {
-    display: flex !important;
-}
-.modal-content {
-    pointer-events: auto !important;
-    position: relative !important;
-    background: #fff !important;
-    border-radius: 24px !important;
-    max-width: 550px !important;
-    width: 90% !important;
-    padding: 2rem !important;
-    box-shadow: 0 25px 40px rgba(0,0,0,0.3) !important;
-    text-align: center !important;
-}
-.modal * {
-    pointer-events: auto !important;
-}
-.event-card {
-    cursor: pointer !important;
-    pointer-events: auto !important;
-}
-
-/* Переопределение стилей common.css для модального окна */
-.modal {
-    display: none !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-color: rgba(0,0,0,0.85) !important;
-    z-index: 100000 !important;
-    justify-content: center !important;
-    align-items: center !important;
-    backdrop-filter: blur(3px) !important;
-    pointer-events: auto !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-.modal[style*="display: flex"] {
-    display: flex !important;
-}
-.modal-content {
-    pointer-events: auto !important;
-    position: relative !important;
-    background: #fff !important;
-    border-radius: 24px !important;
-    max-width: 550px !important;
-    width: 90% !important;
-    padding: 2rem !important;
-    box-shadow: 0 25px 40px rgba(0,0,0,0.3) !important;
-    text-align: center !important;
-}
-.modal * {
-    pointer-events: auto !important;
-}
-.event-card {
-    cursor: pointer !important;
-    pointer-events: auto !important;
-}
+        /* Переопределение стилей common.css для модального окна и карточек */
+        .modal {
+            display: none !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            background-color: rgba(0,0,0,0.85) !important;
+            z-index: 100000 !important;
+            justify-content: center !important;
+            align-items: center !important;
+            backdrop-filter: blur(3px) !important;
+            pointer-events: auto !important;
+        }
+        .modal[style*="display: flex"] {
+            display: flex !important;
+        }
+        .modal * {
+            pointer-events: auto !important;
+        }
+        .event-card {
+            cursor: pointer !important;
+            pointer-events: auto !important;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -389,6 +313,7 @@
         </div>
     </div>
 
+    <!-- common.js отключён, чтобы не мешать модальному окну -->
     <!-- <script src="common.js"></script> -->
     <script>
         // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ ==========
