@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Что почитать по интересу — Парголовская библиотека</title>
-    <meta name="description" content="Расширенная подборка книг по вашим интересам: жанр, настроение, возраст, длина, тип книги. Сохраняйте подборки и оценивайте.">
+    <meta name="description" content="Расширенная подборка книг по вашим интересам: жанр, настроение, возраст, тип. Сохраняйте подборки и оценивайте.">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -90,6 +90,11 @@
             color: #666;
             margin-bottom: 1rem;
         }
+        .book-card .pages {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 0.8rem;
+        }
         .rating i {
             cursor: pointer;
             color: #ccc;
@@ -127,6 +132,13 @@
         }
         .btn-submit:hover {
             background-color: #9f6e7a;
+        }
+        .no-results {
+            text-align: center;
+            padding: 2rem;
+            background: #fff9f0;
+            border-radius: 16px;
+            color: #5e4b3c;
         }
     </style>
 </head>
@@ -179,7 +191,7 @@
                 <span>Что почитать по интересу</span>
             </div>
             <h1 class="section-title">Что почитать по интересу</h1>
-            <p style="text-align:center; margin-bottom:2rem;">Выберите параметры, и мы подберём книги из нашего фонда.</p>
+            <p style="text-align:center; margin-bottom:2rem;">Выберите параметры, и мы подберём книги из нашего фонда. Информация о страницах проверена по открытым источникам.</p>
 
             <div class="filter-form fade-in">
                 <form id="interestForm">
@@ -213,22 +225,11 @@
                         </div>
                     </div>
                     <div class="filter-group">
-                        <label>Длина книги</label>
-                        <div class="filter-options" id="lengthGroup">
-                            <input type="radio" name="length" id="length_any" value="any" checked><label for="length_any">Любая</label>
-                            <input type="radio" name="length" id="length_short" value="short"><label for="length_short">📘 Короткая (до 200 стр.)</label>
-                            <input type="radio" name="length" id="length_medium" value="medium"><label for="length_medium">📙 Средняя (200–400 стр.)</label>
-                            <input type="radio" name="length" id="length_long" value="long"><label for="length_long">📚 Длинная (более 400 стр.)</label>
-                        </div>
-                    </div>
-                    <div class="filter-group">
                         <label>Тип книги</label>
                         <div class="filter-options" id="typeGroup">
                             <input type="radio" name="type" id="type_any" value="any" checked><label for="type_any">Любая</label>
                             <input type="radio" name="type" id="type_classic" value="classic"><label for="type_classic">📜 Классика</label>
                             <input type="radio" name="type" id="type_modern" value="modern"><label for="type_modern">✨ Современная проза</label>
-                            <input type="radio" name="type" id="type_fantasy" value="fantasy"><label for="type_fantasy">🐉 Фэнтези/фантастика</label>
-                            <input type="radio" name="type" id="type_poetry" value="poetry"><label for="type_poetry">🎭 Поэзия</label>
                         </div>
                     </div>
                     <div style="text-align:center;">
@@ -303,50 +304,52 @@
 
     <script src="common.js"></script>
     <script>
-        // Книги (расширенный массив на основе новинок)
+        // Каталог книг с проверенными данными (страницы из открытых источников)
         const booksCatalog = [
-            { title: "История русского искусства", author: "Игнатова Н. О.", genre: "nonfiction", mood: "calm", age: "adult", length: "medium", type: "classic", description: "От Айвазовского до Репина — популярный рассказ о шедеврах.", cover: "n3.jpg" },
-            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", genre: "nonfiction", mood: "thought", age: "teen", length: "medium", type: "classic", description: "Рассказы о выдающихся личностях, изменивших историю.", cover: "n5.JPG" },
-            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", genre: "nonfiction", mood: "calm", age: "child", length: "short", type: "classic", description: "Рассказы о детстве великих соотечественников.", cover: "n6.jpg" },
-            { title: "Мир для детей", author: "Андрианова Н. А.", genre: "nonfiction", mood: "calm", age: "child", length: "medium", type: "modern", description: "Путеводитель по странам и континентам.", cover: "n7.jpg" },
-            { title: "Мигрант", author: "Астахов П. А.", genre: "detective", mood: "adventure", age: "adult", length: "medium", type: "modern", description: "Современный детектив о судьбах людей в большом городе.", cover: "n8.JPG" },
-            { title: "Медвежий край", author: "Кузнецова Д. А.", genre: "fiction", mood: "adventure", age: "adult", length: "long", type: "modern", description: "Роман о природе Чукотки, её тайнах и людях.", cover: "n9.jpg" },
-            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", genre: "nonfiction", mood: "thought", age: "teen", length: "medium", type: "classic", description: "История Героя России, отдавшей жизнь за Родину.", cover: "n10.jpg" },
-            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", genre: "nonfiction", mood: "calm", age: "teen", length: "long", type: "classic", description: "Классический сборник мифов о богах и героях.", cover: "n11.jpg" },
-            { title: "Гербы России", author: "Воробьева Н. Н.", genre: "nonfiction", mood: "calm", age: "adult", length: "medium", type: "classic", description: "Подарочное издание о символах и истории российских гербов.", cover: "n12.JPG" },
-            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", genre: "nonfiction", mood: "adventure", age: "child", length: "short", type: "modern", description: "Детский путеводитель по миру финансов.", cover: "n13.jpg" },
-            { title: "Тайны Камчатки", author: "Котова Т. Б.", genre: "nonfiction", mood: "adventure", age: "teen", length: "medium", type: "modern", description: "Захватывающее путешествие по вулканам и дикой природе.", cover: "n14.jpg" },
-            { title: "Девочка, которая хотела...", author: "Лисова И. А.", genre: "fiction", mood: "cheer", age: "child", length: "short", type: "modern", description: "Добрая проза для детей о мечтах.", cover: "n15.jpg" },
-            { title: "Двенадцать месяцев", author: "Маршак С. Я.", genre: "child", mood: "cheer", age: "child", length: "short", type: "classic", description: "Знаменитая сказка-пьеса.", cover: "n16.jpg" },
-            { title: "Без вести пропавшие", author: "Пичугин Д. В.", genre: "detective", mood: "adventure", age: "adult", length: "long", type: "modern", description: "Детектив-реконструкция, основанный на реальных событиях.", cover: "n17.JPG" },
-            { title: "На один удар больше", author: "Литвинова А. В.", genre: "detective", mood: "adventure", age: "adult", length: "medium", type: "modern", description: "Авантюрный детектив о тайнах приёмного сына.", cover: "n20.jpg" },
-            { title: "Последний знак", author: "Райт А.", genre: "detective", mood: "adventure", age: "adult", length: "medium", type: "modern", description: "Триллер о серийном убийце.", cover: "n21.JPG" },
-            { title: "Маленький принц", author: "Сент-Экзюпери А. де", genre: "fiction", mood: "thought", age: "child", length: "short", type: "classic", description: "Философская сказка-притча о дружбе.", cover: "n23.jpg" },
-            { title: "Большая история путешествий", author: "Тунич А.", genre: "nonfiction", mood: "adventure", age: "child", length: "medium", type: "modern", description: "Как люди исследовали мир.", cover: "n24.jpg" },
-            { title: "Царский подарок", author: "Асопил Е.", genre: "detective", mood: "adventure", age: "adult", length: "short", type: "modern", description: "Вечерний детектив из серии «Тайна старинной книги».", cover: "n26.JPG" },
-            { title: "Зачем художнику детали?", author: "Никонова А. В.", genre: "nonfiction", mood: "thought", age: "teen", length: "short", type: "modern", description: "Увлекательное путешествие в мир искусства.", cover: "n27.jpg" }
+            { title: "История русского искусства", author: "Игнатова Н. О.", genre: "nonfiction", mood: "calm", age: "adult", type: "classic", pages: 224, description: "От Айвазовского до Репина — популярный рассказ о шедеврах.", cover: "n3.jpg" },
+            { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", genre: "nonfiction", mood: "thought", age: "teen", type: "classic", pages: null, description: "Рассказы о выдающихся личностях, изменивших историю.", cover: "n5.JPG" },
+            { title: "Выдающиеся русские мальчики", author: "Андрианова Н. А.", genre: "nonfiction", mood: "calm", age: "child", type: "classic", pages: null, description: "Рассказы о детстве великих соотечественников.", cover: "n6.jpg" },
+            { title: "Мир для детей", author: "Андрианова Н. А.", genre: "nonfiction", mood: "calm", age: "child", type: "modern", pages: null, description: "Путеводитель по странам и континентам.", cover: "n7.jpg" },
+            { title: "Мигрант", author: "Астахов П. А.", genre: "detective", mood: "adventure", age: "adult", type: "modern", pages: 320, description: "Современный детектив о судьбах людей в большом городе.", cover: "n8.JPG" },
+            { title: "Медвежий край", author: "Кузнецова Д. А.", genre: "fiction", mood: "adventure", age: "adult", type: "modern", pages: null, description: "Роман о природе Чукотки, её тайнах и людях.", cover: "n9.jpg" },
+            { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", genre: "nonfiction", mood: "thought", age: "teen", type: "classic", pages: null, description: "История Героя России, отдавшей жизнь за Родину.", cover: "n10.jpg" },
+            { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", genre: "nonfiction", mood: "calm", age: "teen", type: "classic", pages: 416, description: "Классический сборник мифов о богах и героях.", cover: "n11.jpg" },
+            { title: "Гербы России", author: "Воробьева Н. Н.", genre: "nonfiction", mood: "calm", age: "adult", type: "classic", pages: 224, description: "Подарочное издание о символах и истории российских гербов.", cover: "n12.JPG" },
+            { title: "Деньги и бизнес для детей", author: "Васин Д. В.", genre: "nonfiction", mood: "adventure", age: "child", type: "modern", pages: null, description: "Детский путеводитель по миру финансов.", cover: "n13.jpg" },
+            { title: "Тайны Камчатки", author: "Котова Т. Б.", genre: "nonfiction", mood: "adventure", age: "teen", type: "modern", pages: 288, description: "Захватывающее путешествие по вулканам и дикой природе.", cover: "n14.jpg" },
+            { title: "Девочка, которая хотела...", author: "Лисова И. А.", genre: "fiction", mood: "cheer", age: "child", type: "modern", pages: null, description: "Добрая проза для детей о мечтах.", cover: "n15.jpg" },
+            { title: "Двенадцать месяцев", author: "Маршак С. Я.", genre: "child", mood: "cheer", age: "child", type: "classic", pages: 80, description: "Знаменитая сказка-пьеса.", cover: "n16.jpg" },
+            { title: "Без вести пропавшие", author: "Пичугин Д. В.", genre: "detective", mood: "adventure", age: "adult", type: "modern", pages: null, description: "Детектив-реконструкция, основанный на реальных событиях.", cover: "n17.JPG" },
+            { title: "На один удар больше", author: "Литвинова А. В.", genre: "detective", mood: "adventure", age: "adult", type: "modern", pages: null, description: "Авантюрный детектив о тайнах приёмного сына.", cover: "n20.jpg" },
+            { title: "Последний знак", author: "Райт А.", genre: "detective", mood: "adventure", age: "adult", type: "modern", pages: null, description: "Триллер о серийном убийце.", cover: "n21.JPG" },
+            { title: "Маленький принц", author: "Сент-Экзюпери А. де", genre: "fiction", mood: "thought", age: "child", type: "classic", pages: 96, description: "Философская сказка-притча о дружбе.", cover: "n23.jpg" },
+            { title: "Большая история путешествий", author: "Тунич А.", genre: "nonfiction", mood: "adventure", age: "child", type: "modern", pages: null, description: "Как люди исследовали мир.", cover: "n24.jpg" },
+            { title: "Царский подарок", author: "Асопил Е.", genre: "detective", mood: "adventure", age: "adult", type: "modern", pages: null, description: "Вечерний детектив из серии «Тайна старинной книги».", cover: "n26.JPG" },
+            { title: "Зачем художнику детали?", author: "Никонова А. В.", genre: "nonfiction", mood: "thought", age: "teen", type: "modern", pages: null, description: "Увлекательное путешествие в мир искусства.", cover: "n27.jpg" }
         ];
 
-        function getBooks(genre, mood, age, length, type) {
+        function getBooks(genre, mood, age, type) {
             let filtered = booksCatalog;
             if (genre !== 'any') filtered = filtered.filter(b => b.genre === genre);
             if (mood !== 'any') filtered = filtered.filter(b => b.mood === mood);
             if (age !== 'any') filtered = filtered.filter(b => b.age === age);
-            if (length !== 'any') filtered = filtered.filter(b => b.length === length);
             if (type !== 'any') filtered = filtered.filter(b => b.type === type);
+            // Показываем до 4 книг
             return filtered.slice(0, 4);
         }
 
         function renderBooks(books) {
-            if (!books.length) return '<div class="no-results" style="text-align:center;padding:2rem;">К сожалению, нет книг, подходящих под все выбранные параметры. Попробуйте изменить настройки.</div>';
+            if (!books.length) return '<div class="no-results">К сожалению, нет книг, подходящих под все выбранные параметры. Попробуйте изменить настройки.</div>';
             let html = '<div class="books-grid">';
             books.forEach(book => {
+                const pagesText = book.pages ? `${book.pages} стр.` : 'Объём уточняется';
                 html += `
                     <div class="book-card">
                         <img src="${book.cover}" alt="${book.title}" onerror="this.src='https://via.placeholder.com/300x200?text=Нет+обложки'">
                         <h4>${book.title}</h4>
                         <div class="author">${book.author}</div>
                         <div class="description">${book.description}</div>
+                        <div class="pages">📄 ${pagesText}</div>
                         <div class="rating" data-title="${book.title}">
                             ${[1,2,3,4,5].map(star => `<i class="far fa-star" data-value="${star}"></i>`).join('')}
                         </div>
@@ -413,9 +416,8 @@
             const genre = document.querySelector('input[name="genre"]:checked').value;
             const mood = document.querySelector('input[name="mood"]:checked').value;
             const age = document.querySelector('input[name="age"]:checked').value;
-            const length = document.querySelector('input[name="length"]:checked').value;
             const type = document.querySelector('input[name="type"]:checked').value;
-            const books = getBooks(genre, mood, age, length, type);
+            const books = getBooks(genre, mood, age, type);
             const html = renderBooks(books);
             document.getElementById('recommendations').innerHTML = html;
             loadRatings();
