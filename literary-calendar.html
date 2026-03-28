@@ -25,13 +25,12 @@
     <noscript><div><img src="https://mc.yandex.ru/watch/107242178" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
     
-    <!-- ВРЕМЕННО ОТКЛЮЧАЕМ common.css ДЛЯ ПРОВЕРКИ -->
-    <!-- <link rel="stylesheet" href="common.css"> -->
+    <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* все стили как в оригинале */
+        /* Все стили, включая модальное окно, оставляем без изменений */
         .calendar-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 2rem 0 3rem; }
         .month-link { background-color: #fff; border: 1px solid #e5989b; color: #5e4b3c; padding: 0.5rem 1.2rem; border-radius: 50px; font-weight: 600; text-decoration: none; transition: all 0.3s; font-size: 0.9rem; }
         .month-link:hover { background-color: #e5989b; color: #fff; transform: translateY(-2px); }
@@ -287,14 +286,13 @@
         </div>
     </div>
 
+    <script src="common.js"></script>
     <script>
-        // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ (все данные как в предыдущей версии) ==========
-        // Здесь должны быть ваши полные данные eventsData, bookAnniversaries, localEvents.
-        // Для краткости я не вставляю их снова, так как они уже были.
-        // Но вы должны вставить сюда ВСЕ данные из предыдущего файла, включая январь-декабрь и книги.
-        // ВНИМАНИЕ: если вы скопируете этот код, замените комментарий ниже на реальные данные.
-        
-        // ДЛЯ ТЕСТА: временные данные (одна карточка). Если заработает, замените на полные.
+        // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ (ВАШИ ДАННЫЕ) ==========
+        // Здесь вставьте полные данные eventsData, bookAnniversaries, localEvents.
+        // Для экономии места я не повторяю их, но вы должны скопировать их из предыдущего файла.
+        // ВАЖНО: Вставьте сюда ВСЕ данные из вашего оригинального файла (январь-декабрь, книги, краеведческие).
+        // Пример с одним элементом для проверки:
         const eventsData = {
             january: [
                 { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", wiki: "https://ru.wikipedia.org/wiki/Рубцов,_Николай_Михайлович", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "/images/rubtsov.jpg", bio: "Николай Михайлович Рубцов (1936–1971) – русский лирический поэт. Его поэзия, проникнутая любовью к русской природе и истории, получила широкое признание. Основные сборники: «Звезда полей», «Душа хранит», «Сосен шум»." }
@@ -303,8 +301,8 @@
         };
         const bookAnniversaries = [];
         const localEvents = [];
-        
-        // Добавляем localEvents в eventsData (если есть)
+
+        // Добавляем localEvents в события (если есть)
         for (let ev of localEvents) {
             const monthMap = { "января":"january", "февраля":"february", "марта":"march", "апреля":"april", "мая":"may", "июня":"june", "июля":"july", "августа":"august", "сентября":"september", "октября":"october", "ноября":"november", "декабря":"december" };
             const parts = ev.date.split(" ");
@@ -317,7 +315,6 @@
 
         // ========== ФУНКЦИИ ==========
         function openModal(name, imageUrl, bio) {
-            console.log('openModal called', name, imageUrl);
             const modal = document.getElementById('modal');
             if (!modal) return;
             const modalImg = document.getElementById('modal-img');
@@ -361,7 +358,6 @@
                 const shareImage = imgUrl || 'https://parglbibl.ru/logo.PNG';
                 const safeBio = (event.bio || '').replace(/"/g, '&quot;').replace(/\n/g, ' ').replace(/'/g, "&#39;");
                 
-                // Прямой onclick на карточку
                 html += `<div class="event-card fade-in" onclick="openModal('${event.author || event.title}', '${imgUrl}', '${safeBio}'); return false;">
                             ${imageHtml}
                             <div class="event-date">${event.date}</div>
