@@ -488,45 +488,57 @@
         }
 
         function renderEventList(container, events) {
-            if (!events.length) {
-                container.innerHTML = "<p>Нет событий, соответствующих фильтру.</p>";
-                return;
-            }
-            let html = "";
-            events.forEach(event => {
-                let imageHtml = "";
-                if (event.imageUrl) {
-                    imageHtml = `<div class="event-image">
-                                    <img src="${event.imageUrl}" alt="${event.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-icon').style.display='flex'">
-                                    <div class="fallback-icon" style="display: none;"><i class="fas fa-image"></i></div>
-                                </div>`;
-                } else {
-                    imageHtml = `<div class="event-image"><div class="fallback-icon"><i class="fas fa-image"></i></div></div>`;
-                }
-                const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
-                const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
-                const shareImage = event.imageUrl ? event.imageUrl : 'https://parglbibl.ru/logo.PNG';
-                html += `
-                    <div class="event-card fade-in" data-bio="${event.bio ? event.bio.replace(/"/g, '&quot;') : ''}" data-image="${event.imageUrl || ''}" data-name="${event.author || event.title}">
-                        ${imageHtml}
-                        <div class="event-date">${event.date}</div>
-                        <div class="event-title" onclick="openModal('${event.author || event.title}', '${event.imageUrl || ''}', \`${event.bio ? event.bio.replace(/'/g, "\\'") : ''}\`)">${event.title}</div>
-                        <div class="event-author">${event.author || ''}</div>
-                        <div class="event-desc">${event.desc}</div>
-                        <div class="local-history"><i class="fas fa-map-pin"></i> ${event.local}</div>
-                        <div class="event-links">
-                            ${wikiLink}
-                            ${litresLink}
-                        </div>
-                        <div class="event-share">
-                            <button class="export-btn" onclick='downloadICS(${JSON.stringify(event).replace(/'/g, "&#39;")})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
-                            <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=${encodeURIComponent(shareImage)}" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
+    if (!events.length) {
+        container.innerHTML = "<p>Нет событий, соответствующих фильтру.</p>";
+        return;
+    }
+    let html = "";
+    events.forEach(event => {
+        let imageHtml = "";
+        if (event.imageUrl) {
+            imageHtml = `<div class="event-image">
+                            <img src="${event.imageUrl}" alt="${event.title}" loading="lazy" onerror="this.style.display='none'; this.parentElement.querySelector('.fallback-icon').style.display='flex'">
+                            <div class="fallback-icon" style="display: none;"><i class="fas fa-image"></i></div>
+                        </div>`;
+        } else {
+            imageHtml = `<div class="event-image"><div class="fallback-icon"><i class="fas fa-image"></i></div></div>`;
         }
+        const wikiLink = event.wiki ? `<a href="${event.wiki}" target="_blank"><i class="fab fa-wikipedia-w"></i> Википедия</a>` : "";
+        const litresLink = event.litres ? `<a href="${event.litres}" target="_blank"><i class="fas fa-book"></i> Литрес</a>` : "";
+        const shareImage = event.imageUrl ? event.imageUrl : 'https://parglbibl.ru/logo.PNG';
+        // Убираем onclick из HTML, добавим data-атрибуты
+        html += `
+            <div class="event-card fade-in" data-bio="${event.bio ? event.bio.replace(/"/g, '&quot;').replace(/'/g, '&#39;') : ''}" data-image="${event.imageUrl || ''}" data-name="${(event.author || event.title).replace(/'/g, '&#39;').replace(/"/g, '&quot;')}" data-title="${event.title.replace(/'/g, '&#39;').replace(/"/g, '&quot;')}">
+                ${imageHtml}
+                <div class="event-date">${event.date}</div>
+                <div class="event-title">${event.title}</div>
+                <div class="event-author">${event.author || ''}</div>
+                <div class="event-desc">${event.desc}</div>
+                <div class="local-history"><i class="fas fa-map-pin"></i> ${event.local}</div>
+                <div class="event-links">
+                    ${wikiLink}
+                    ${litresLink}
+                </div>
+                <div class="event-share">
+                    <button class="export-btn" onclick='downloadICS(${JSON.stringify(event).replace(/'/g, "&#39;")})'><i class="fas fa-calendar-plus"></i> Добавить в календарь</button>
+                    <a href="https://vk.com/share.php?url=https://parglbibl.ru/literary-calendar.html&title=${encodeURIComponent(event.title)}&description=${encodeURIComponent(event.desc)}&image=${encodeURIComponent(shareImage)}" target="_blank" class="share-btn-small"><i class="fab fa-vk"></i> Поделиться</a>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+
+    // Привязываем обработчики клика на заголовки
+    document.querySelectorAll('.event-title').forEach(title => {
+        title.addEventListener('click', function(e) {
+            const card = this.closest('.event-card');
+            const name = card.dataset.name;
+            const imageUrl = card.dataset.image;
+            const bio = card.dataset.bio;
+            openModal(name, imageUrl, bio);
+        });
+    });
+}
 
         function renderTodayEvents() {
             const today = new Date();
