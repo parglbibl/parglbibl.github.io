@@ -6,9 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const acceptBtn = document.getElementById('cookie-accept');
     const declineBtn = document.getElementById('cookie-decline');
 
-    // Функция динамической загрузки Яндекс.Метрики
     function loadYandexMetrika() {
-        if (typeof ym !== 'undefined') return; // уже загружена
+        if (typeof ym !== 'undefined') return;
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -18,26 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
         ym(107242178, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     }
 
-    // Проверяем сохранённое согласие
     const cookieAccepted = localStorage.getItem('cookieAccepted');
     const cookieDeclined = localStorage.getItem('cookieDeclined');
 
     if (cookieAccepted === 'true') {
-        // Уже согласился – загружаем метрику
         loadYandexMetrika();
         if (cookieBanner) cookieBanner.style.display = 'none';
     } else if (cookieDeclined === 'true') {
-        // Уже отказался – ничего не делаем, баннер не показываем
         if (cookieBanner) cookieBanner.style.display = 'none';
     } else {
-        // Нет решения – показываем баннер
         if (cookieBanner) {
             cookieBanner.style.display = 'flex';
             cookieBanner.classList.add('cookie-banner');
         }
     }
 
-    // Обработчики кнопок
     if (acceptBtn) {
         acceptBtn.addEventListener('click', () => {
             localStorage.setItem('cookieAccepted', 'true');
@@ -50,20 +44,35 @@ document.addEventListener('DOMContentLoaded', function() {
         declineBtn.addEventListener('click', () => {
             localStorage.setItem('cookieDeclined', 'true');
             if (cookieBanner) cookieBanner.style.display = 'none';
-            // Метрика не загружается
         });
     }
+
+    // --- Аккордеон в подвале (Карта сайта) ---
+    const footerAccordionHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
+    footerAccordionHeaders.forEach(header => {
+        // Если аккордеон был открыт раньше, сохраняем состояние
+        const parent = header.closest('.footer-accordion');
+        if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
+            parent.classList.add('open');
+        }
+        header.addEventListener('click', function(e) {
+            e.preventDefault();
+            const accordion = this.closest('.footer-accordion');
+            if (accordion) {
+                accordion.classList.toggle('open');
+                localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
+            }
+        });
+    });
 
     // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
-    // Сохраним оригинальную структуру меню (для десктопа)
     if (nav && !window.originalNavHTML) {
         window.originalNavHTML = nav.innerHTML;
     }
 
-    // Структура категорий для мобильного аккордеона
     const mobileCategories = [
         {
             title: 'Библиотека',
@@ -165,7 +174,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     navContainer.appendChild(moreLi);
                 }
                 const submenu = moreLi.querySelector('.desktop-submenu');
-                // Перемещаем пункты с data-mobile="more" в подменю
                 moreItems.forEach(item => {
                     submenu.appendChild(item);
                 });
@@ -182,7 +190,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Поиск
         const searchIcon = document.getElementById('searchIcon');
         const searchPopup = document.getElementById('searchPopup');
         if (searchIcon && searchPopup) {
@@ -197,7 +204,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Версия для слабовидящих
         const specialLink = document.getElementById('specialFooterLink');
         if (specialLink) {
             specialLink.addEventListener('click', function(e) {
@@ -210,7 +216,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Кнопка "наверх"
         const btn = document.getElementById('scrollUp');
         if (btn) {
             window.addEventListener('scroll', function() {
