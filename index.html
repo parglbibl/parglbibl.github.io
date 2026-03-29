@@ -544,10 +544,6 @@
         </div>
     </section>
 
-    <script type="text/javascript">
-        VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
-    </script>
-
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
@@ -558,7 +554,7 @@
                     <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
                 <div class="footer-col footer-accordion">
-                    <h3 class="accordion-header">Карта сайта</h3>
+                    <h3 class="accordion-header">Карта сайта <i class="fas fa-chevron-down"></i></h3>
                     <div class="accordion-content">
                         <p><a href="index.html">Главная</a></p>
                         <p><a href="about.html">О нас</a></p>
@@ -604,7 +600,7 @@
                 </div>
                 <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
                 
-                <!-- Яндекс.Метрика информер (только картинка, не собирает данные) -->
+                <!-- Яндекс.Метрика информер -->
                 <div style="margin-top: 1rem;">
                     <a href="https://metrika.yandex.ru/stat/?id=107242178&amp;from=informer" target="_blank" rel="nofollow">
                         <img src="https://informer.yandex.ru/informer/107242178/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
@@ -620,7 +616,7 @@
         </div>
     </footer>
 
-    <!-- Cookie-баннер (новый, с классами для стилизации) -->
+    <!-- Cookie-баннер -->
     <div id="cookie-banner" style="display: none;">
         <p>🍪 Мы используем файлы cookie для улучшения работы сайта. <a href="privacy.html">Подробнее</a>.</p>
         <div class="cookie-buttons">
@@ -747,6 +743,13 @@
         window.addEventListener('load', () => {
             setTimeout(updateShareLinks, 100);
         });
+
+        // Виджет ВК с проверкой интернета
+        if (navigator.onLine) {
+            VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
+        } else {
+            document.getElementById('vk_groups').innerHTML = '<p style="text-align:center;padding:2rem;">Виджет ВКонтакте недоступен в офлайн-режиме.</p>';
+        }
     </script>
 </body>
 </html>
