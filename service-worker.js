@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pargolovskaya-v2';
+const CACHE_NAME = 'pargolovskaya-v3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -48,71 +48,54 @@ const urlsToCache = [
   '/n23.jpg',
   '/n24.jpg',
   '/n26.JPG',
-  '/n27.jpg'
+  '/n27.jpg',
+  'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
+  'https://vk.com/js/api/openapi.js?169'
 ];
 
-// Установка: кэшируем файлы по одному, чтобы ошибка одного не ломала весь кэш
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Кэш открыт, начинаем сохранение файлов...');
-      const cachePromises = urlsToCache.map(url => {
-        return fetch(url)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error(`Ошибка ${response.status} при загрузке ${url}`);
-            }
-            return cache.put(url, response);
-          })
-          .catch(error => {
-            console.error(`Не удалось закэшировать ${url}:`, error);
-          });
-      });
-      return Promise.allSettled(cachePromises).then(() => {
-        console.log('Кэширование завершено (с возможными пропусками)');
+      console.log('Кэширование файлов...');
+      return Promise.allSettled(
+        urlsToCache.map(url => {
+          return fetch(url)
+            .then(response => {
+              if (!response.ok) throw new Error(`Ошибка ${response.status} для ${url}`);
+              return cache.put(url, response);
+            })
+            .catch(err => console.warn(`Не удалось закэшировать ${url}:`, err));
+        })
+      );
+    })
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      if (response) return response;
+      return fetch(event.request).catch(() => {
+        return new Response('Страница не найдена в кэше и нет интернета', { status: 404 });
       });
     })
   );
 });
 
-// При запросе: сначала сеть, если не удалось — кэш
-self.addEventListener('fetch', event => {
-  // Не кэшируем запросы к внешним API (например, Google Calendar)
-  if (event.request.url.includes('calendar.google.com') ||
-      event.request.url.includes('vk.com') ||
-      event.request.url.includes('yandex.ru')) {
-    return;
-  }
-
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // Если получили ответ, кэшируем его для будущих офлайн-запросов
-        const responseClone = response.clone();
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, responseClone);
-        });
-        return response;
-      })
-      .catch(() => {
-        // Если нет сети, пытаемся отдать из кэша
-        return caches.match(event.request);
-      })
-  );
-});
-
-// Активация: удаляем старые кэши
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Удаляем старый кэш:', cacheName);
-            return caches.delete(cacheName);
+        cacheNames.map(name => {
+          if (name !== CACHE_NAME) {
+            console.log('Удаляем старый кэш:', name);
+            return caches.delete(name);
           }
         })
       );
     })
   );
+  self.clients.claim();
 });
