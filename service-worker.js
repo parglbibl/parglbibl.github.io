@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pargolovskaya-v4';
+const CACHE_NAME = 'pargolovskaya-v5';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -51,7 +51,6 @@ const urlsToCache = [
   '/n27.jpg'
 ];
 
-// Установка: кэшируем все файлы по одному, чтобы избежать ошибки 404
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
@@ -59,7 +58,7 @@ self.addEventListener('install', event => {
       const cachePromises = urlsToCache.map(url => {
         return fetch(url)
           .then(response => {
-            if (!response.ok) throw new Error(`Ошибка ${response.status} при загрузке ${url}`);
+            if (!response.ok) throw new Error(`Ошибка ${response.status} для ${url}`);
             return cache.put(url, response);
           })
           .catch(err => console.warn(`Не удалось закэшировать ${url}:`, err));
@@ -70,9 +69,8 @@ self.addEventListener('install', event => {
   self.skipWaiting();
 });
 
-// Запросы: сначала кэш, потом сеть
 self.addEventListener('fetch', event => {
-  // Если запрос на внешний ресурс (не наш домен) — не кэшируем, пусть идёт в сеть
+  // Пропускаем запросы к внешним доменам (не кэшируем)
   if (!event.request.url.startsWith(self.location.origin)) {
     return;
   }
@@ -82,7 +80,7 @@ self.addEventListener('fetch', event => {
         return cachedResponse;
       }
       return fetch(event.request).catch(() => {
-        // Если нет сети и нет в кэше — возвращаем простую страницу
+        // Если нет сети и запрос на навигацию (страница) – возвращаем index.html из кэша
         if (event.request.mode === 'navigate') {
           return caches.match('/index.html');
         }
@@ -92,7 +90,6 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Активация: удаляем старые кэши
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
