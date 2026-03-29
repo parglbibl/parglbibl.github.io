@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Аккордеон в подвале (Карта сайта) ---
     const footerAccordionHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
     footerAccordionHeaders.forEach(header => {
-        // Если аккордеон был открыт раньше, сохраняем состояние
         const parent = header.closest('.footer-accordion');
         if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
             parent.classList.add('open');
