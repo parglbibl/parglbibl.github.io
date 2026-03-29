@@ -465,6 +465,27 @@ header {
     }
 }
 
+/* Аккордеон в подвале */
+.footer-accordion .accordion-content {
+    display: none;
+}
+.footer-accordion.open .accordion-content {
+    display: block;
+}
+.footer-accordion .accordion-header {
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-accordion .accordion-header i {
+    transition: transform 0.3s;
+}
+.footer-accordion.open .accordion-header i {
+    transform: rotate(180deg);
+}
+
 /* Мобильное меню (аккордеон) */
 @media (max-width: 768px) {
     .header-inner {
@@ -563,14 +584,6 @@ header {
         padding: 0.6rem 1.5rem;
         font-size: 0.9rem;
     }
-}
-
-/* Аккордеон в подвале (если используется) */
-.footer-accordion .accordion-content {
-    display: none;
-}
-.footer-accordion.open .accordion-content {
-    display: block;
 }
 
 /* Версия для слабовидящих */
