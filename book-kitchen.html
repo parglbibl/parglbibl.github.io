@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Книжная кухня — Парголовская библиотека</title>
-    <meta name="description" content="Рецепты из книг: от пушкинского страсбургского пирога до уютных блюд из «Хроник Нарнии» и «Хоббита». Готовим с любимыми книгами!">
+    <meta name="description" content="Рецепты из книг: от пушкинского пирога до уютных блюд из «Хайди», «Над пропастью во ржи» и «Хоббита». Готовим с любимыми книгами!">
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -138,13 +138,13 @@
             </div>
             <h1 class="section-title">Книжная кухня</h1>
             <div class="kitchen-intro">
-                <p>Готовим по книгам! Здесь собраны рецепты из известных произведений — от пушкинского пирога до уютных блюд из Нарнии и Средиземья. Все рецепты адаптированы для современной кухни.</p>
+                <p>Готовим по книгам! Здесь собраны рецепты из известных произведений — от классики до современной детской литературы. Все блюда адаптированы для домашнего приготовления.</p>
             </div>
 
             <div class="recipes-grid" id="recipesGrid"></div>
 
             <div class="note">
-                <i class="fas fa-info-circle"></i> Рецепты адаптированы для современной кухни. Приятного чтения и аппетита!
+                <i class="fas fa-info-circle"></i> Рецепты взяты из открытых библиотечных и кулинарных источников. Приятного чтения и аппетита!
             </div>
         </div>
     </section>
@@ -212,34 +212,34 @@
     <script>
         const recipes = [
             {
-                title: "Страсбургский пирог нетленный",
+                title: "Страсбургский пирог",
                 book: "«Евгений Онегин» А.С. Пушкина",
-                ingredients: "Слоёное тесто, гусиная печень (или куриная), трюфели (по желанию), телятина, специи",
-                description: "Знаменитый пирог, который Пушкин упоминает в «Евгении Онегине». В современном варианте — слоёный пирог с паштетом из печени, идеально подходит для праздничного стола.",
+                ingredients: "Слоёное тесто, куриная печень, телятина, лук, специи",
+                description: "Знаменитый пирог, который упоминает Пушкин. Современная версия — слоёный пирог с паштетом из печени и мяса.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/P%C3%A2t%C3%A9_en_cro%C3%BBte_01.jpg/320px-P%C3%A2t%C3%A9_en_cro%C3%BBte_01.jpg",
                 author: "А.С. Пушкин"
             },
             {
-                title: "Сосиски в томате от Воланда",
+                title: "Сосиски в томате",
                 book: "«Мастер и Маргарита» М. Булгакова",
                 ingredients: "Сосиски, томатная паста, лук, сливочное масло, соль, перец",
-                description: "Блюдо, которое заказывали в ресторане дома Грибоедова. Простое и сытное — попробуйте приготовить!",
+                description: "Блюдо, которое заказывали в ресторане дома Грибоедова. Простое и сытное.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Sausages_in_tomato_sauce_01.jpg/320px-Sausages_in_tomato_sauce_01.jpg",
                 author: "М. Булгаков"
             },
             {
                 title: "Уха Демьяна",
                 book: "Басня «Демьянова уха» И.А. Крылова",
-                ingredients: "Рыба (судак или окунь), картофель, морковь, лук, корень петрушки, зелень",
-                description: "Наваристая рыбацкая уха. Крылов в басне высмеял излишнее усердие в угощении, но сама уха — блюдо замечательное!",
+                ingredients: "Рыба (судак или окунь), картофель, морковь, лук, зелень",
+                description: "Наваристая рыбная уха. Крылов высмеял излишнее усердие, но сама уха — отличное блюдо.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Fish_soup_01.jpg/320px-Fish_soup_01.jpg",
                 author: "И.А. Крылов"
             },
             {
-                title: "Горячий шоколад Белой Колдуньи",
+                title: "Горячий шоколад",
                 book: "«Хроники Нарнии» К.С. Льюиса",
-                ingredients: "Молоко, тёмный шоколад, сахар, ваниль, щепотка корицы",
-                description: "Напиток, который подавала Белая Колдунья Эдмунду. Ароматный, густой и согревающий — идеален для зимних вечеров.",
+                ingredients: "Молоко, тёмный шоколад, сахар, ваниль, корица",
+                description: "Напиток, которым угощала Белая Колдунья. Густой, ароматный, согревающий.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Hot_chocolate.jpg/320px-Hot_chocolate.jpg",
                 author: "К.С. Льюис"
             },
@@ -247,25 +247,81 @@
                 title: "Минс-пайс (мясные пирожки)",
                 book: "«Хоббит» Дж.Р.Р. Толкина",
                 ingredients: "Мука, сливочное масло, говяжий фарш, лук, специи",
-                description: "Традиционные английские пирожки, которые так любили хоббиты. В «Хоббите» их подавали на неожиданной вечеринке у Бильбо.",
+                description: "Традиционные английские пирожки, которые подавали на неожиданной вечеринке у Бильбо Бэггинса.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Mince_pie.jpg/320px-Mince_pie.jpg",
                 author: "Дж.Р.Р. Толкин"
             },
             {
-                title: "Сырные сэндвичи Хайди",
+                title: "Сырные сэндвичи",
                 book: "«Хайди» Й. Спири",
                 ingredients: "Хлеб, сыр, сливочное масло",
-                description: "Простые, но такие уютные бутерброды с расплавленным сыром. Хайди угощала ими дедушку в горах.",
+                description: "Простые бутерброды с расплавленным сыром, которыми Хайди угощала дедушку в горах.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Grilled_cheese_sandwich_01.jpg/320px-Grilled_cheese_sandwich_01.jpg",
                 author: "Й. Спири"
             },
             {
-                title: "Тыквенный пирог из «Маленького домика в прериях»",
+                title: "Тыквенный пирог",
                 book: "«Маленький домик в прериях» Л. Инглз-Уайлдер",
                 ingredients: "Тыквенное пюре, мука, яйца, сливки, корица, имбирь, мускатный орех",
-                description: "Знаменитый пирог, который пекла мама Лоры. Уютный, пряный, согревающий — настоящий вкус домашнего счастья.",
+                description: "Пряный пирог, который пекла мама Лоры. Вкус домашнего уюта.",
                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Pumpkin_pie.jpg/320px-Pumpkin_pie.jpg",
                 author: "Л. Инглз-Уайлдер"
+            },
+            {
+                title: "Гренки с сыром",
+                book: "«Над пропастью во ржи» Дж. Сэлинджера",
+                ingredients: "Белый хлеб, сыр, сливочное масло",
+                description: "Любимый завтрак Холдена Колфилда. Просто, сытно и очень вкусно.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Grilled_cheese.jpg/320px-Grilled_cheese.jpg",
+                author: "Дж. Сэлинджер"
+            },
+            {
+                title: "Медовое печенье",
+                book: "«Винни-Пух и все-все-все» А. Милна",
+                ingredients: "Мука, мёд, сливочное масло, яйцо, корица",
+                description: "Печенье, которое так любил Винни-Пух. Мягкое, ароматное, с медовым вкусом.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Honey_cookies.jpg/320px-Honey_cookies.jpg",
+                author: "А. Милн"
+            },
+            {
+                title: "Картофельное пюре с сосиской",
+                book: "«Приключения Эмиля из Лённеберги» А. Линдгрен",
+                ingredients: "Картофель, сливочное масло, молоко, сосиска",
+                description: "Блюдо, которое Эмиль уплетал за обе щеки. Простой и сытный ужин.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Mashed_potatoes_with_sausage.jpg/320px-Mashed_potatoes_with_sausage.jpg",
+                author: "А. Линдгрен"
+            },
+            {
+                title: "Яблочный пирог",
+                book: "«Чудесное путешествие Нильса с дикими гусями» С. Лагерлёф",
+                ingredients: "Мука, яблоки, сахар, корица, сливочное масло",
+                description: "Пирог, которым угощали Нильса в шведских крестьянских домах.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Apple_pie.jpg/320px-Apple_pie.jpg",
+                author: "С. Лагерлёф"
+            },
+            {
+                title: "Овсяная каша",
+                book: "«Мэри Поппинс» П. Трэверс",
+                ingredients: "Овсяные хлопья, молоко, сахар, ягоды",
+                description: "Каша, которую так любили Джейн и Майкл. Полезный и вкусный завтрак.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Oatmeal_porridge.jpg/320px-Oatmeal_porridge.jpg",
+                author: "П. Трэверс"
+            },
+            {
+                title: "Вишнёвый пирог",
+                book: "«Вишнёвый сад» А.П. Чехова",
+                ingredients: "Мука, вишня, сахар, сливочное масло, яйца",
+                description: "Пирог, напоминающий о вишнёвом саде. Летняя выпечка с кисло-сладкой начинкой.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Cherry_pie.jpg/320px-Cherry_pie.jpg",
+                author: "А.П. Чехов"
+            },
+            {
+                title: "Блины",
+                book: "«Сказка о рыбаке и рыбке» А.С. Пушкина",
+                ingredients: "Мука, молоко, яйца, сахар, соль, масло",
+                description: "Те самые блины, которые старуха требовала от золотой рыбки. Классическое русское угощение.",
+                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Pancakes.jpg/320px-Pancakes.jpg",
+                author: "А.С. Пушкин"
             }
         ];
 
