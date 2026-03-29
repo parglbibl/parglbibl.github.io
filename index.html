@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#b5838d">
-<link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json">
     <title>Парголовская библиотека</title>
     <meta name="description" content="Парголовская библиотека - уютное пространство для чтения, творчества и встреч. Бесплатные занятия по спидкубингу, доступная среда.">
     <meta name="keywords" content="Парголовская библиотека, библиотека Выборгского района, спидкубинг, кубик Рубика, чтение, мероприятия, книги">
@@ -458,11 +458,11 @@
                     <a href="book-recommendations.html" class="btn" style="margin-top: 1rem;">Подобрать</a>
                 </div>
                 <div class="card fade-in">
-    <i class="fas fa-utensils"></i>
-    <h3>Книжная кухня</h3>
-    <p>Рецепты из книг: от пушкинского пирога до уютных блюд из «Хайди», «Хоббита» и других произведений. Готовьте вместе с любимыми книгами!</p>
-    <a href="book-kitchen.html" class="btn" style="margin-top: 1rem;">Перейти</a>
-</div>
+                    <i class="fas fa-utensils"></i>
+                    <h3>Книжная кухня</h3>
+                    <p>Рецепты из книг: от пушкинского пирога до уютных блюд из «Хайди», «Хоббита» и других произведений. Готовьте вместе с любимыми книгами!</p>
+                    <a href="book-kitchen.html" class="btn" style="margin-top: 1rem;">Перейти</a>
+                </div>
             </div>
         </div>
     </section>
@@ -604,7 +604,7 @@
                 </div>
                 <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
                 
-                <!-- Яндекс.Метрика информер -->
+                <!-- Яндекс.Метрика информер (только картинка, не собирает данные) -->
                 <div style="margin-top: 1rem;">
                     <a href="https://metrika.yandex.ru/stat/?id=107242178&amp;from=informer" target="_blank" rel="nofollow">
                         <img src="https://informer.yandex.ru/informer/107242178/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
@@ -620,11 +620,16 @@
         </div>
     </footer>
 
-    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
-        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
-        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
-        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
+    <!-- Cookie-баннер (новый, с классами для стилизации) -->
+    <div id="cookie-banner" style="display: none;">
+        <p>🍪 Мы используем файлы cookie для улучшения работы сайта. <a href="privacy.html">Подробнее</a>.</p>
+        <div class="cookie-buttons">
+            <button id="cookie-accept" class="cookie-btn cookie-accept">Принять</button>
+            <button id="cookie-decline" class="cookie-btn cookie-decline">Отклонить</button>
+        </div>
     </div>
+
+    <div id="scrollUp" title="Наверх">↑</div>
 
     <script src="common.js"></script>
     <script>
@@ -743,6 +748,5 @@
             setTimeout(updateShareLinks, 100);
         });
     </script>
-    <div id="scrollUp" title="Наверх">↑</div>
 </body>
 </html>
