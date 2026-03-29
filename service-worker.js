@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pargolovskaya-v3';
+const CACHE_NAME = 'pargolovskaya-v4';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -48,42 +48,51 @@ const urlsToCache = [
   '/n23.jpg',
   '/n24.jpg',
   '/n26.JPG',
-  '/n27.jpg',
-  'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap',
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',
-  'https://vk.com/js/api/openapi.js?169'
+  '/n27.jpg'
 ];
 
+// Установка: кэшируем все файлы по одному, чтобы избежать ошибки 404
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Кэширование файлов...');
-      return Promise.allSettled(
-        urlsToCache.map(url => {
-          return fetch(url)
-            .then(response => {
-              if (!response.ok) throw new Error(`Ошибка ${response.status} для ${url}`);
-              return cache.put(url, response);
-            })
-            .catch(err => console.warn(`Не удалось закэшировать ${url}:`, err));
-        })
-      );
+      console.log('Кэширование начато');
+      const cachePromises = urlsToCache.map(url => {
+        return fetch(url)
+          .then(response => {
+            if (!response.ok) throw new Error(`Ошибка ${response.status} при загрузке ${url}`);
+            return cache.put(url, response);
+          })
+          .catch(err => console.warn(`Не удалось закэшировать ${url}:`, err));
+      });
+      return Promise.allSettled(cachePromises);
     })
   );
   self.skipWaiting();
 });
 
+// Запросы: сначала кэш, потом сеть
 self.addEventListener('fetch', event => {
+  // Если запрос на внешний ресурс (не наш домен) — не кэшируем, пусть идёт в сеть
+  if (!event.request.url.startsWith(self.location.origin)) {
+    return;
+  }
   event.respondWith(
-    caches.match(event.request).then(response => {
-      if (response) return response;
+    caches.match(event.request).then(cachedResponse => {
+      if (cachedResponse) {
+        return cachedResponse;
+      }
       return fetch(event.request).catch(() => {
-        return new Response('Страница не найдена в кэше и нет интернета', { status: 404 });
+        // Если нет сети и нет в кэше — возвращаем простую страницу
+        if (event.request.mode === 'navigate') {
+          return caches.match('/index.html');
+        }
+        return new Response('', { status: 404, statusText: 'Not Found' });
       });
     })
   );
 });
 
+// Активация: удаляем старые кэши
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
