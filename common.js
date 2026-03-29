@@ -1,15 +1,14 @@
 // common.js – общие скрипты для всего сайта
 
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Cookie-баннер с согласием на Яндекс.Метрику ---
+    // --- Cookie-баннер с согласием на Яндекс.Метрику (строгий режим) ---
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept');
     const declineBtn = document.getElementById('cookie-decline');
 
-    // Функция загрузки Яндекс.Метрики (только после согласия)
+    // Функция динамической загрузки Яндекс.Метрики
     function loadYandexMetrika() {
         if (typeof ym !== 'undefined') return; // уже загружена
-        // Динамически создаём скрипт метрики
         (function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -34,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Нет решения – показываем баннер
         if (cookieBanner) {
             cookieBanner.style.display = 'flex';
+            cookieBanner.classList.add('cookie-banner');
         }
     }
 
@@ -54,12 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Остальные скрипты (меню, поиск, доступная среда, кнопка наверх) ---
-    // Мобильное меню
+    // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
-    // Сохраним оригинальную структуру меню
+    // Сохраним оригинальную структуру меню (для десктопа)
     if (nav && !window.originalNavHTML) {
         window.originalNavHTML = nav.innerHTML;
     }
@@ -166,6 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     navContainer.appendChild(moreLi);
                 }
                 const submenu = moreLi.querySelector('.desktop-submenu');
+                // Перемещаем пункты с data-mobile="more" в подменю
                 moreItems.forEach(item => {
                     submenu.appendChild(item);
                 });
@@ -210,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Кнопка наверх
+        // Кнопка "наверх"
         const btn = document.getElementById('scrollUp');
         if (btn) {
             window.addEventListener('scroll', function() {
