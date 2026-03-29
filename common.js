@@ -1,11 +1,65 @@
 // common.js – общие скрипты для всего сайта
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Мобильное меню (гамбургер)
+    // --- Cookie-баннер с согласием на Яндекс.Метрику ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+
+    // Функция загрузки Яндекс.Метрики (только после согласия)
+    function loadYandexMetrika() {
+        if (typeof ym !== 'undefined') return; // уже загружена
+        // Динамически создаём скрипт метрики
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107242178', 'ym');
+        ym(107242178, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    }
+
+    // Проверяем сохранённое согласие
+    const cookieAccepted = localStorage.getItem('cookieAccepted');
+    const cookieDeclined = localStorage.getItem('cookieDeclined');
+
+    if (cookieAccepted === 'true') {
+        // Уже согласился – загружаем метрику
+        loadYandexMetrika();
+        if (cookieBanner) cookieBanner.style.display = 'none';
+    } else if (cookieDeclined === 'true') {
+        // Уже отказался – ничего не делаем, баннер не показываем
+        if (cookieBanner) cookieBanner.style.display = 'none';
+    } else {
+        // Нет решения – показываем баннер
+        if (cookieBanner) {
+            cookieBanner.style.display = 'flex';
+        }
+    }
+
+    // Обработчики кнопок
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieAccepted', 'true');
+            if (cookieBanner) cookieBanner.style.display = 'none';
+            loadYandexMetrika();
+        });
+    }
+
+    if (declineBtn) {
+        declineBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieDeclined', 'true');
+            if (cookieBanner) cookieBanner.style.display = 'none';
+            // Метрика не загружается
+        });
+    }
+
+    // --- Остальные скрипты (меню, поиск, доступная среда, кнопка наверх) ---
+    // Мобильное меню
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
-    // Сохраним оригинальную структуру меню (она будет использоваться на десктопе)
+    // Сохраним оригинальную структуру меню
     if (nav && !window.originalNavHTML) {
         window.originalNavHTML = nav.innerHTML;
     }
@@ -58,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Функция для построения мобильного меню-аккордеона
     function buildMobileMenu() {
         if (!nav) return;
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
@@ -76,7 +129,6 @@ document.addEventListener('DOMContentLoaded', function() {
         html += `</ul>`;
         nav.innerHTML = html;
 
-        // Добавляем обработчики для заголовков аккордеона
         const headers = nav.querySelectorAll('.accordion-header');
         headers.forEach(header => {
             header.addEventListener('click', function(e) {
@@ -93,24 +145,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Функция для восстановления десктопного меню (оригинальная структура)
     function restoreDesktopMenu() {
         if (!nav) return;
         if (window.originalNavHTML) {
             nav.innerHTML = window.originalNavHTML;
         }
-        // Переинициализируем обработчики для десктопного меню
         initDesktopMenu();
     }
 
-    // Инициализация десктопного меню (код, который был в common.js)
     function initDesktopMenu() {
-        // Десктопное меню с "Ещё" – перемещение пунктов
         const navContainer = document.querySelector('.nav ul');
         if (navContainer && window.innerWidth > 768) {
             const moreItems = document.querySelectorAll('li[data-mobile="more"]');
             if (moreItems.length > 0) {
-                // Создаём пункт "Ещё", если его ещё нет
                 let moreLi = document.querySelector('.desktop-more');
                 if (!moreLi) {
                     moreLi = document.createElement('li');
@@ -119,18 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     navContainer.appendChild(moreLi);
                 }
                 const submenu = moreLi.querySelector('.desktop-submenu');
-                // Перемещаем все пункты с data-mobile="more" в подменю
                 moreItems.forEach(item => {
                     submenu.appendChild(item);
                 });
-
-                // Обработчики
                 const moreLink = moreLi.querySelector('a');
                 moreLink.addEventListener('click', function(e) {
                     e.preventDefault();
                     submenu.classList.toggle('show');
                 });
-
                 document.addEventListener('click', function(event) {
                     if (!moreLi.contains(event.target)) {
                         submenu.classList.remove('show');
@@ -167,34 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Баннер cookie
-        const cookieBanner = document.getElementById('cookie-banner');
-        if (cookieBanner) {
-            if (!localStorage.getItem('cookieAccepted') && !localStorage.getItem('cookieDeclined')) {
-                cookieBanner.style.display = 'block';
-            }
-            const acceptBtn = document.getElementById('cookie-accept');
-            const declineBtn = document.getElementById('cookie-decline');
-            if (acceptBtn) {
-                acceptBtn.addEventListener('click', function() {
-                    localStorage.setItem('cookieAccepted', 'true');
-                    cookieBanner.style.display = 'none';
-                });
-            }
-            if (declineBtn) {
-                declineBtn.addEventListener('click', function() {
-                    localStorage.setItem('cookieDeclined', 'true');
-                    cookieBanner.style.display = 'none';
-                });
-            }
-        }
-
-        // Fancybox (если используется)
-        if (typeof Fancybox !== 'undefined') {
-            Fancybox.bind('[data-fancybox]');
-        }
-
-        // Кнопка "наверх"
+        // Кнопка наверх
         const btn = document.getElementById('scrollUp');
         if (btn) {
             window.addEventListener('scroll', function() {
@@ -210,30 +226,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Функция для переключения между мобильным и десктопным меню при изменении размера окна
     function handleResize() {
         if (window.innerWidth <= 768) {
-            // Мобильный вид – используем аккордеон
             buildMobileMenu();
         } else {
-            // Десктопный вид – восстанавливаем оригинальное меню
             restoreDesktopMenu();
-            // Если меню было открыто, закрываем его
             if (nav && nav.classList.contains('active')) {
                 nav.classList.remove('active');
             }
         }
     }
 
-    // Инициализация при загрузке
     handleResize();
-
-    // Обработчик изменения размера окна
     window.addEventListener('resize', handleResize);
 
-    // Обработчик клика по гамбургеру
     if (menuToggle) {
-        menuToggle.addEventListener('click', function(e) {
+        menuToggle.addEventListener('click', function() {
             if (window.innerWidth <= 768) {
                 nav.classList.toggle('active');
                 if (nav.classList.contains('active')) {
@@ -243,18 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.toggle('active');
             }
         });
-        // Регистрация service worker для PWA
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(registration => {
-      console.log('Service Worker зарегистрирован с областью:', registration.scope);
-    })
-    .catch(error => {
-      console.log('Ошибка регистрации Service Worker:', error);
-    });
-}
     }
 
-    // Дополнительно: если на десктопе меню уже построено, переинициализируем десктопные функции
     initDesktopMenu();
 });
