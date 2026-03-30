@@ -18,117 +18,87 @@
         .back-link { margin-bottom: 2rem; text-align: left; }
         .back-link a { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
         .back-link a:hover { background-color: #e5989b; color: white; }
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem 0;
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
         }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 100%;
-            background: #b5838d;
-        }
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-        }
-        .timeline-item:nth-child(even) {
-            justify-content: flex-end;
-        }
-        .timeline-content {
-            width: 45%;
+        .timeline-card {
             background: #fff;
-            border-radius: 16px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            overflow: hidden;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
-        .timeline-content:hover {
+        .timeline-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 30px rgba(0,0,0,0.12);
         }
-        .timeline-content::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            width: 20px;
-            height: 20px;
-            background: #b5838d;
-            border-radius: 50%;
-            border: 3px solid #fff;
-            z-index: 1;
+        .timeline-card-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
         }
-        .timeline-item:nth-child(odd) .timeline-content::before {
-            right: -50px;
+        .timeline-card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
-        .timeline-item:nth-child(even) .timeline-content::before {
-            left: -50px;
-        }
-        .timeline-year {
-            font-size: 1.5rem;
+        .timeline-card-year {
+            font-size: 1.2rem;
             font-weight: 700;
             color: #b5838d;
             margin-bottom: 0.5rem;
+            display: inline-block;
+            background: #f9f0e7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            align-self: flex-start;
         }
-        .timeline-title {
+        .timeline-card-title {
             font-size: 1.3rem;
             font-weight: 600;
             color: #5e4b3c;
-            margin-bottom: 0.5rem;
+            margin: 0.8rem 0 0.5rem;
+            line-height: 1.3;
         }
-        .timeline-desc {
+        .timeline-card-desc {
             color: #4a4a4a;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             line-height: 1.5;
+            flex-grow: 1;
         }
-        .timeline-img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-        }
-        .timeline-link {
+        .timeline-card-link {
             display: inline-block;
             background-color: #e5989b;
             color: #fff;
-            padding: 0.4rem 1rem;
+            padding: 0.5rem 1rem;
             border-radius: 50px;
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 600;
+            text-align: center;
             transition: background 0.2s;
+            margin-top: 0.5rem;
         }
-        .timeline-link:hover {
+        .timeline-card-link:hover {
             background-color: #d68b8e;
-        }
-        @media (max-width: 768px) {
-            .timeline::before { left: 20px; }
-            .timeline-item,
-            .timeline-item:nth-child(even) {
-                justify-content: flex-start;
-                padding-left: 40px;
-            }
-            .timeline-content { width: 90%; }
-            .timeline-item:nth-child(odd) .timeline-content::before,
-            .timeline-item:nth-child(even) .timeline-content::before {
-                left: -30px;
-                right: auto;
-            }
         }
         .timeline-intro {
             text-align: center;
             max-width: 800px;
             margin: 0 auto 2rem;
             color: #4a4a4a;
+        }
+        @media (max-width: 768px) {
+            .timeline-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
@@ -181,9 +151,9 @@
             <div class="breadcrumbs"><a href="index.html">Главная</a> &raquo; <a href="kraevedenie.html">Краеведение</a> &raquo; <span>История Парголово</span></div>
             <div class="back-link fade-in"><a href="kraevedenie.html"><i class="fas fa-arrow-left"></i> Назад к краеведению</a></div>
             <h1 class="section-title">История Парголово</h1>
-            <div class="timeline-intro"><p>Пролистайте ленту времени, чтобы увидеть ключевые события в жизни нашего посёлка — от первого упоминания в письменных источниках до сегодняшнего дня. Нажмите на карточку, чтобы узнать подробности и перейти к связанным материалам на сайте.</p></div>
+            <div class="timeline-intro"><p>Ключевые события в жизни нашего посёлка — от первого упоминания до наших дней. Нажмите на карточку, чтобы узнать подробности и перейти к связанным материалам на сайте.</p></div>
 
-            <div class="timeline" id="timeline">
+            <div class="timeline-grid" id="timeline-grid">
                 <!-- Данные будут загружены через JS -->
             </div>
         </div>
@@ -206,37 +176,36 @@
     <script src="common.js"></script>
     <script src="notes.js"></script>
     <script>
-        // Данные событий
         const events = [
-            { year: "1500", title: "Первое упоминание в письменных источниках", desc: "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala). Это самая ранняя сохранившаяся запись о месте, которое позже станет Парголово.", image: "/logo.PNG", link: "#" },
-            { year: "1746", title: "Имение Шуваловых", desc: "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову. Началось формирование усадебно-паркового ансамбля.", image: "/logo.PNG", link: "verkhnee-pargolovo.html" },
-            { year: "1792", title: "Церковь Спаса Нерукотворного Образа", desc: "По проекту архитектора Луиджи Руска построена деревянная церковь в Нижнем Парголово (не сохранилась, на её месте позже возвели каменную).", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
-            { year: "1826", title: "Грибоедов в Парголово", desc: "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка», в котором иронизирует над северной природой.", image: "/logo.PNG", link: "pargolovo-culture.html#literature" },
-            { year: "1831–1840", title: "Строительство церкви Петра и Павла", desc: "Архитектор А.П. Брюллов закладывает неоготический храм в Шуваловском парке. Освящение состоялось в 1846 году.", image: "/logo.PNG", link: "khramy-verkhnee-pargolovo.html" },
-            { year: "1872", title: "Венчание Римского-Корсакова", desc: "В церкви Петра и Павла венчаются композитор Николай Римский-Корсаков и пианистка Надежда Пургольд. Шафером на свадьбе был Модест Мусоргский.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
-            { year: "1878–1906", title: "Дача Стасова в Старожиловке", desc: "Владимир Стасов прожил на даче 28 лет. Его гостями были Репин, Римский-Корсаков, Шаляпин, Горький.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
-            { year: "1906", title: "Станция Парголово", desc: "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм). Здание сохранилось и является памятником архитектуры.", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
-            { year: "1938", title: "Открытие библиотеки им. Горького", desc: "При школе № 2 на Выборгском шоссе открыта библиотека имени Максима Горького — предшественница нашей «Парголовской».", image: "/s_ylici.jpg", link: "about.html" },
-            { year: "1941–1944", title: "Парголово в годы блокады", desc: "Через посёлок проходил рубеж обороны Ленинграда. В здании школы разместили детский дом, ученики работали на оборонных предприятиях.", image: "/logo.PNG", link: "#" },
-            { year: "2002", title: "Библиотека переезжает на Торфяную, 25", desc: "Библиотека-филиал № 5 размещается в здании школы № 475. В 2007 году она временно покинет его, но в 2025 году вернётся.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
-            { year: "2016", title: "Библиотеке возвращено название «Парголовская»", desc: "В рамках городского проекта «Имя библиотеки» учреждению присвоено топонимическое название, связанное с историей посёлка.", image: "/logo.PNG", link: "about.html" },
-            { year: "2025", title: "Библиотека возвращается на Торфяную, 25", desc: "После нескольких переездов библиотека «Парголовская» вновь обосновывается в здании, где когда-то начиналась её история на этой улице.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
-            { year: "2026", title: "Новые сервисы на сайте", desc: "Запущены интерактивная лента времени, виртуальная примерочная книг, литературный портрет и другие цифровые инструменты для читателей.", image: "/logo.PNG", link: "#" }
+            { year: "1500", title: "Первое упоминание в письменных источниках", desc: "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala).", image: "/logo.PNG", link: "#" },
+            { year: "1746", title: "Имение Шуваловых", desc: "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову.", image: "/logo.PNG", link: "verkhnee-pargolovo.html" },
+            { year: "1792", title: "Церковь Спаса Нерукотворного Образа", desc: "Построена деревянная церковь в Нижнем Парголово (не сохранилась).", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
+            { year: "1826", title: "Грибоедов в Парголово", desc: "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка».", image: "/logo.PNG", link: "pargolovo-culture.html#literature" },
+            { year: "1831–1840", title: "Строительство церкви Петра и Павла", desc: "Архитектор А.П. Брюллов строит неоготический храм в Шуваловском парке.", image: "/logo.PNG", link: "khramy-verkhnee-pargolovo.html" },
+            { year: "1872", title: "Венчание Римского-Корсакова", desc: "В церкви Петра и Павла венчаются Н.А. Римский-Корсаков и Н. Пургольд.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
+            { year: "1878–1906", title: "Дача Стасова в Старожиловке", desc: "Владимир Стасов прожил на даче 28 лет. Гости: Репин, Римский-Корсаков, Шаляпин.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
+            { year: "1906", title: "Станция Парголово", desc: "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм).", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
+            { year: "1938", title: "Открытие библиотеки им. Горького", desc: "При школе № 2 открыта библиотека — предшественница нашей «Парголовской».", image: "/s_ylici.jpg", link: "about.html" },
+            { year: "1941–1944", title: "Парголово в годы блокады", desc: "Через посёлок проходил рубеж обороны Ленинграда.", image: "/logo.PNG", link: "#" },
+            { year: "2002", title: "Библиотека переезжает на Торфяную, 25", desc: "Библиотека размещается в здании школы № 475.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
+            { year: "2016", title: "Библиотеке возвращено название «Парголовская»", desc: "В рамках проекта «Имя библиотеки» учреждению присвоено топонимическое название.", image: "/logo.PNG", link: "about.html" },
+            { year: "2025", title: "Библиотека возвращается на Торфяную, 25", desc: "После нескольких переездов библиотека «Парголовская» вновь обосновывается в этих стенах.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
+            { year: "2026", title: "Новые сервисы на сайте", desc: "Запущены интерактивная лента времени, примерочная книг, литературный портрет.", image: "/logo.PNG", link: "#" }
         ];
 
         function renderTimeline() {
-            const container = document.getElementById('timeline');
+            const container = document.getElementById('timeline-grid');
             if (!container) return;
             let html = '';
-            events.forEach((event, index) => {
+            events.forEach(event => {
                 html += `
-                    <div class="timeline-item">
-                        <div class="timeline-content">
-                            <div class="timeline-year">${event.year}</div>
-                            <div class="timeline-title">${event.title}</div>
-                            ${event.image ? `<img src="${event.image}" alt="${event.title}" class="timeline-img" loading="lazy">` : ''}
-                            <div class="timeline-desc">${event.desc}</div>
-                            ${event.link !== '#' ? `<a href="${event.link}" class="timeline-link">Подробнее →</a>` : ''}
+                    <div class="timeline-card">
+                        <img src="${event.image}" alt="${event.title}" class="timeline-card-img" loading="lazy">
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-year">${event.year}</span>
+                            <h3 class="timeline-card-title">${event.title}</h3>
+                            <p class="timeline-card-desc">${event.desc}</p>
+                            ${event.link !== '#' ? `<a href="${event.link}" class="timeline-card-link">Подробнее →</a>` : ''}
                         </div>
                     </div>
                 `;
