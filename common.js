@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- Меню-аккордеон (единое для всех экранов) ---
+    // --- Меню: на десктопе горизонтальное с аккордеоном, на мобильных вертикальный аккордеон ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
-    // Структура категорий для аккордеона
-    const mobileCategories = [
+    // Структура категорий и пунктов
+    const menuCategories = [
         {
             title: 'Библиотека',
             items: [
@@ -119,12 +119,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Функция для построения меню-аккордеона
-    function buildAccordionMenu() {
+    // Функция для построения десктопного меню (горизонтальные категории, по клику раскрывается блок)
+    function buildDesktopMenu() {
         if (!nav) return;
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        let html = '<ul class="accordion-menu">';
-        mobileCategories.forEach(cat => {
+        let html = '<ul class="desktop-horizontal-menu">';
+        menuCategories.forEach(cat => {
+            // Определяем, активна ли хоть одна ссылка в категории
+            let isCategoryActive = cat.items.some(item => item.href === currentPath);
+            html += `<li class="desktop-category">
+                        <div class="desktop-category-header ${isCategoryActive ? 'active' : ''}">${cat.title} <i class="fas fa-chevron-down"></i></div>
+                        <ul class="desktop-category-content">`;
+            cat.items.forEach(item => {
+                const isActive = (item.href === currentPath);
+                html += `<li><a href="${item.href}" class="${isActive ? 'active' : ''}"><i class="${item.icon}"></i> ${item.name}</a></li>`;
+            });
+            html += `</ul></li>`;
+        });
+        html += `</ul>`;
+        nav.innerHTML = html;
+
+        // Обработчики для заголовков категорий
+        const headers = nav.querySelectorAll('.desktop-category-header');
+        headers.forEach(header => {
+            header.addEventListener('click', function(e) {
+                e.preventDefault();
+                const parent = this.closest('.desktop-category');
+                // Закрываем все другие открытые категории
+                document.querySelectorAll('.desktop-category.open').forEach(cat => {
+                    if (cat !== parent) cat.classList.remove('open');
+                });
+                parent.classList.toggle('open');
+            });
+        });
+    }
+
+    // Функция для построения мобильного меню (вертикальный аккордеон)
+    function buildMobileMenu() {
+        if (!nav) return;
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        let html = '<ul class="mobile-accordion">';
+        menuCategories.forEach(cat => {
             html += `<li class="accordion-category">
                         <div class="accordion-header">${cat.title} <i class="fas fa-chevron-down"></i></div>
                         <ul class="accordion-content">`;
@@ -137,7 +172,6 @@ document.addEventListener('DOMContentLoaded', function() {
         html += `</ul>`;
         nav.innerHTML = html;
 
-        // Обработчики для заголовков
         const headers = nav.querySelectorAll('.accordion-header');
         headers.forEach(header => {
             header.addEventListener('click', function(e) {
@@ -154,13 +188,31 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Инициализация меню
-    buildAccordionMenu();
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            buildMobileMenu();
+            // Если меню было открыто, оставляем открытым
+        } else {
+            buildDesktopMenu();
+            if (nav && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        }
+    }
 
-    // Обработчик гамбургера (для мобильных)
+    // Инициализация при загрузке
+    handleResize();
+
+    // Обработчик изменения размера окна
+    window.addEventListener('resize', handleResize);
+
+    // Обработчик гамбургера (только для мобильных)
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
             nav.classList.toggle('active');
+            if (nav.classList.contains('active' && window.innerWidth <= 768)) {
+                // если нужно что-то сделать при открытии
+            }
         });
     }
 
