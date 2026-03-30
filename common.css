@@ -90,21 +90,81 @@ header {
     justify-content: flex-end;
 }
 
-/* ========== ГОРИЗОНТАЛЬНОЕ МЕНЮ НА ДЕСКТОПЕ ========== */
+/* ========== ГОРИЗОНТАЛЬНОЕ МЕНЮ НА ДЕСКТОПЕ (УЛУЧШЕННОЕ) ========== */
 @media (min-width: 769px) {
     #nav ul {
         display: flex !important;
         flex-direction: row !important;
         align-items: center !important;
         justify-content: flex-end !important;
-        gap: 2rem !important;
+        gap: 1.5rem !important;
         margin: 0 !important;
         padding: 0 !important;
         list-style: none !important;
     }
+    #nav ul li {
+        position: relative;
+    }
     #nav a {
         white-space: nowrap !important;
         font-size: 0.95rem !important;
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+    /* Выпадающее подменю "Ещё" */
+    .desktop-more {
+        position: relative;
+    }
+    .desktop-submenu {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #b5838d;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        padding: 0.5rem 0;
+        min-width: 220px;
+        display: none;
+        z-index: 1000;
+        list-style: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .desktop-submenu.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .desktop-submenu li {
+        width: 100%;
+        margin: 0;
+    }
+    .desktop-submenu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.6rem 1.2rem;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.2s;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+    .desktop-submenu a i {
+        width: 20px;
+        text-align: center;
+    }
+    .desktop-submenu a:hover {
+        background-color: rgba(255,255,255,0.2);
+    }
+    .desktop-more > a i.fa-chevron-down {
+        transition: transform 0.2s;
+    }
+    .desktop-more:hover > a i.fa-chevron-down {
+        transform: rotate(180deg);
     }
 }
 
@@ -138,60 +198,6 @@ header {
 #nav a:hover,
 #nav a.active {
     border-bottom: none;
-}
-
-/* Выпадающее меню "Ещё" на десктопе */
-.desktop-more {
-    position: relative;
-}
-
-.desktop-more > a {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.desktop-submenu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #b5838d;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    padding: 0.5rem 0;
-    min-width: 200px;
-    display: none;
-    z-index: 1000;
-    list-style: none;
-}
-
-.desktop-submenu.show {
-    display: block;
-}
-
-.desktop-submenu li {
-    width: 100%;
-}
-
-.desktop-submenu a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: #fff;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background-color 0.3s;
-}
-
-.desktop-submenu a:hover {
-    background-color: rgba(255,255,255,0.2);
-}
-
-.desktop-more .fa-chevron-down {
-    transition: transform 0.3s;
-}
-
-.desktop-more:hover .fa-chevron-down {
-    transform: rotate(180deg);
 }
 
 /* Поиск (иконка) */
