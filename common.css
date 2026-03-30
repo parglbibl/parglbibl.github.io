@@ -59,7 +59,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 1rem;
 }
 
@@ -85,119 +85,119 @@ header {
 
 .nav {
     flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-/* ========== ГОРИЗОНТАЛЬНОЕ МЕНЮ НА ДЕСКТОПЕ (УЛУЧШЕННОЕ) ========== */
-@media (min-width: 769px) {
-    #nav ul {
-        display: flex !important;
-        flex-direction: row !important;
-        align-items: center !important;
-        justify-content: flex-end !important;
-        gap: 1.5rem !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        list-style: none !important;
-    }
-    #nav ul li {
-        position: relative;
-    }
-    #nav a {
-        white-space: nowrap !important;
-        font-size: 0.95rem !important;
-        padding: 0.5rem 0;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-    }
-    /* Выпадающее подменю "Ещё" */
-    .desktop-more {
-        position: relative;
-    }
-    .desktop-submenu {
-        position: absolute;
-        top: 100%;
-        right: 0;
-        background-color: #b5838d;
-        border-radius: 12px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        padding: 0.5rem 0;
-        min-width: 220px;
-        display: none;
-        z-index: 1000;
-        list-style: none;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.2s ease, transform 0.2s ease;
-    }
-    .desktop-submenu.show {
-        display: block;
-        opacity: 1;
-        transform: translateY(0);
-    }
-    .desktop-submenu li {
-        width: 100%;
-        margin: 0;
-    }
-    .desktop-submenu a {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 0.6rem 1.2rem;
-        color: #fff;
-        text-decoration: none;
-        transition: background 0.2s;
-        font-size: 0.9rem;
-        white-space: nowrap;
-    }
-    .desktop-submenu a i {
-        width: 20px;
-        text-align: center;
-    }
-    .desktop-submenu a:hover {
-        background-color: rgba(255,255,255,0.2);
-    }
-    .desktop-more > a i.fa-chevron-down {
-        transition: transform 0.2s;
-    }
-    .desktop-more:hover > a i.fa-chevron-down {
-        transform: rotate(180deg);
-    }
-}
-
-#nav a {
-    position: relative;
-    text-decoration: none;
-    color: #fff;
-    font-weight: 600;
-    transition: color 0.3s;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-#nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: #f4e3d7;
-    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-#nav a:hover::after,
-#nav a.active::after {
     width: 100%;
 }
 
-#nav a:hover,
-#nav a.active {
-    border-bottom: none;
+/* Аккордеон-меню (общие стили для всех экранов) */
+.accordion-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.accordion-category {
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.accordion-header {
+    background: rgba(255,255,255,0.1);
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    transition: background 0.2s;
+}
+
+.accordion-header:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.accordion-header i {
+    transition: transform 0.3s;
+}
+
+.accordion-category.open .accordion-header i {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0;
+    background: rgba(0,0,0,0.2);
+}
+
+.accordion-category.open .accordion-content {
+    max-height: 500px; /* достаточно для раскрытия */
+}
+
+.accordion-content li {
+    list-style: none;
+}
+
+.accordion-content a {
+    display: block;
+    padding: 0.6rem 1rem 0.6rem 2rem;
+    color: #fff;
+    text-decoration: none;
+    transition: background 0.2s;
+    font-size: 0.9rem;
+}
+
+.accordion-content a i {
+    margin-right: 8px;
+    width: 20px;
+    text-align: center;
+}
+
+.accordion-content a:hover,
+.accordion-content a.active {
+    background: rgba(255,255,255,0.2);
+}
+
+/* На десктопе меню отображается всегда, гамбургер скрыт, аккордеон может быть шире */
+@media (min-width: 769px) {
+    .menu-toggle {
+        display: none;
+    }
+    .nav {
+        display: block !important;
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+    .accordion-header {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+    }
+    .accordion-content a {
+        font-size: 0.95rem;
+        padding: 0.6rem 1rem 0.6rem 2rem;
+    }
+}
+
+/* На мобильных меню по умолчанию скрыто, открывается гамбургером */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .nav {
+        display: none;
+        width: 100%;
+    }
+    .nav.active {
+        display: block;
+    }
+    .accordion-header {
+        font-size: 0.95rem;
+    }
+    .accordion-content a {
+        font-size: 0.9rem;
+    }
 }
 
 /* Поиск (иконка) */
@@ -492,106 +492,6 @@ header {
     transform: rotate(180deg);
 }
 
-/* Мобильное меню (аккордеон) */
-@media (max-width: 768px) {
-    .header-inner {
-        flex-wrap: wrap;
-    }
-    .logo {
-        margin-right: auto;
-    }
-    .menu-toggle {
-        display: block;
-    }
-    #nav {
-        flex: none;
-        width: 100%;
-        display: none;
-        flex-direction: column;
-        align-items: stretch;
-        margin-top: 0.5rem;
-    }
-    #nav.active {
-        display: flex;
-    }
-
-    #nav .mobile-accordion {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-    }
-    #nav .mobile-accordion .accordion-category {
-        border-bottom: 1px solid rgba(255,255,255,0.2);
-    }
-    #nav .mobile-accordion .accordion-header {
-        background: rgba(255,255,255,0.1);
-        padding: 0.8rem 1rem;
-        cursor: pointer;
-        font-weight: 600;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        color: #fff;
-    }
-    #nav .mobile-accordion .accordion-header i {
-        transition: transform 0.3s;
-    }
-    #nav .mobile-accordion .accordion-category.open .accordion-header i {
-        transform: rotate(180deg);
-    }
-    #nav .mobile-accordion .accordion-content {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease-out;
-        padding: 0;
-        background: rgba(0,0,0,0.2);
-    }
-    #nav .mobile-accordion .accordion-category.open .accordion-content {
-        max-height: 500px;
-    }
-    #nav .mobile-accordion .accordion-content li {
-        list-style: none;
-    }
-    #nav .mobile-accordion .accordion-content a {
-        display: block;
-        padding: 0.6rem 1rem 0.6rem 2rem;
-        color: #fff;
-        text-decoration: none;
-        transition: background 0.2s;
-        font-size: 0.9rem;
-    }
-    #nav .mobile-accordion .accordion-content a i {
-        margin-right: 8px;
-        width: 20px;
-        text-align: center;
-    }
-    #nav .mobile-accordion .accordion-content a:hover,
-    #nav .mobile-accordion .accordion-content a.active {
-        background: rgba(255,255,255,0.2);
-    }
-
-    .desktop-more,
-    .desktop-submenu {
-        display: none;
-    }
-}
-
-@media (max-width: 480px) {
-    #nav a {
-        font-size: 0.8rem;
-        padding: 0.2rem 0;
-        gap: 5px;
-    }
-    .section-title {
-        font-size: 1.8rem;
-    }
-    .btn {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.9rem;
-    }
-}
-
 /* Версия для слабовидящих */
 body.special-mode {
     background-color: #fff !important;
@@ -644,24 +544,6 @@ body.special-mode .footer-col a {
 }
 .breadcrumbs a:hover {
     text-decoration: underline;
-}
-
-/* Убираем чёрные точки в меню */
-#nav ul,
-#nav ul li,
-#nav .desktop-submenu,
-#nav .mobile-submenu,
-.desktop-submenu,
-.mobile-submenu {
-    list-style: none !important;
-    padding-left: 0 !important;
-}
-.mobile-submenu {
-    list-style: none !important;
-    padding-left: 0 !important;
-}
-#nav ul ul {
-    list-style: none !important;
 }
 
 /* Кнопка наверх */
