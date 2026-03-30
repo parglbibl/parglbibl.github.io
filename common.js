@@ -47,14 +47,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Аккордеон в подвале (Карта сайта) ---
-    const footerAccordionHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
-    footerAccordionHeaders.forEach(header => {
-        const parent = header.closest('.footer-accordion');
-        if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
-            parent.classList.add('open');
+    // --- Аккордеон в подвале (Карта сайта) – НАДЁЖНАЯ ИНИЦИАЛИЗАЦИЯ ---
+    function initFooterAccordion() {
+        const footerAccordion = document.querySelector('.footer-accordion');
+        if (!footerAccordion) return;
+        
+        const header = footerAccordion.querySelector('.accordion-header');
+        if (!header) return;
+        
+        const content = footerAccordion.querySelector('.accordion-content');
+        if (!content) return;
+        
+        // Восстанавливаем состояние из localStorage
+        if (localStorage.getItem('footerAccordionOpen') === 'true') {
+            footerAccordion.classList.add('open');
+        } else {
+            footerAccordion.classList.remove('open');
         }
-        header.addEventListener('click', function(e) {
+        
+        // Удаляем старый обработчик, чтобы не дублировать
+        const newHeader = header.cloneNode(true);
+        header.parentNode.replaceChild(newHeader, header);
+        
+        newHeader.addEventListener('click', function(e) {
             e.preventDefault();
             const accordion = this.closest('.footer-accordion');
             if (accordion) {
@@ -62,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
             }
         });
-    });
+    }
 
     // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
     const menuToggle = document.getElementById('menuToggle');
@@ -242,6 +257,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.remove('active');
             }
         }
+        // После изменения размера переинициализируем подвал
+        initFooterAccordion();
     }
 
     handleResize();
@@ -257,8 +274,22 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 nav.classList.toggle('active');
             }
+            // После клика по гамбургеру переинициализируем подвал
+            setTimeout(initFooterAccordion, 100);
         });
     }
 
     initDesktopMenu();
+    
+    // Инициализируем подвал при загрузке
+    initFooterAccordion();
+    
+    // Дополнительная инициализация через MutationObserver на случай, если подвал появится позже
+    const observer = new MutationObserver(function(mutations) {
+        if (document.querySelector('.footer-accordion')) {
+            initFooterAccordion();
+            observer.disconnect();
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
 });
