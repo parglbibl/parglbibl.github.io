@@ -299,5 +299,231 @@
             }
         });
     </script>
+    <!-- ИИ-помощник -->
+<style>
+    .ai-chat-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #b5838d;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s, background 0.2s;
+    }
+    .ai-chat-button:hover {
+        background: #9f6e7a;
+        transform: scale(1.05);
+    }
+    .ai-chat-modal {
+        display: none;
+        position: fixed;
+        bottom: 90px;
+        right: 20px;
+        width: 380px;
+        height: 550px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        z-index: 9998;
+        overflow: hidden;
+        flex-direction: column;
+        border: 1px solid #e5989b;
+    }
+    .ai-chat-header {
+        background: #b5838d;
+        color: white;
+        padding: 12px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+    }
+    .ai-chat-header button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    .ai-chat-messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: 12px;
+        background: #fefaf5;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .ai-message {
+        max-width: 85%;
+        padding: 8px 12px;
+        border-radius: 18px;
+        line-height: 1.4;
+        font-size: 0.9rem;
+    }
+    .ai-message.user {
+        background: #e5989b;
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 4px;
+    }
+    .ai-message.bot {
+        background: #fff;
+        color: #4a4a4a;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        border: 1px solid #eee;
+    }
+    .ai-chat-input-area {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #eee;
+        background: white;
+        gap: 8px;
+    }
+    .ai-chat-input {
+        flex: 1;
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 50px;
+        font-family: inherit;
+        outline: none;
+    }
+    .ai-chat-input:focus {
+        border-color: #e5989b;
+    }
+    .ai-chat-send {
+        background: #b5838d;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+    }
+    .ai-chat-send:hover {
+        background: #9f6e7a;
+    }
+    .ai-typing {
+        color: #888;
+        font-size: 0.75rem;
+        padding: 4px 12px;
+        font-style: italic;
+    }
+    @media (max-width: 480px) {
+        .ai-chat-modal {
+            width: calc(100% - 40px);
+            right: 20px;
+            left: 20px;
+            bottom: 80px;
+            height: 500px;
+        }
+    }
+</style>
+
+<div id="aiChatButton" class="ai-chat-button">
+    💬
+</div>
+
+<div id="aiChatModal" class="ai-chat-modal">
+    <div class="ai-chat-header">
+        <span>🤖 Библиотечный помощник</span>
+        <button id="aiChatClose">&times;</button>
+    </div>
+    <div class="ai-chat-messages" id="aiChatMessages">
+        <div class="ai-message bot">
+            Здравствуйте! Я виртуальный помощник Парголовской библиотеки. Спросите меня о режиме работы, услугах, мероприятиях или книгах — я с радостью помогу!
+        </div>
+    </div>
+    <div class="ai-chat-input-area">
+        <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Напишите ваш вопрос...">
+        <button id="aiChatSend" class="ai-chat-send">Отправить</button>
+    </div>
+</div>
+
+<script>
+    const chatButton = document.getElementById('aiChatButton');
+    const chatModal = document.getElementById('aiChatModal');
+    const chatClose = document.getElementById('aiChatClose');
+    const chatMessages = document.getElementById('aiChatMessages');
+    const chatInput = document.getElementById('aiChatInput');
+    const chatSend = document.getElementById('aiChatSend');
+
+    chatButton.addEventListener('click', () => {
+        chatModal.style.display = 'flex';
+    });
+    chatClose.addEventListener('click', () => {
+        chatModal.style.display = 'none';
+    });
+
+    function addAIMessage(text, isUser) {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('ai-message');
+        msgDiv.classList.add(isUser ? 'user' : 'bot');
+        msgDiv.textContent = text;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    let typingDiv = null;
+    function showTyping() {
+        if (typingDiv) return;
+        typingDiv = document.createElement('div');
+        typingDiv.classList.add('ai-typing');
+        typingDiv.id = 'aiTyping';
+        typingDiv.textContent = 'Помощник печатает...';
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    function hideTyping() {
+        if (typingDiv) {
+            typingDiv.remove();
+            typingDiv = null;
+        }
+    }
+
+    async function sendAIMessage() {
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        addAIMessage(message, true);
+        chatInput.value = '';
+        showTyping();
+
+        try {
+            const response = await fetch('/yandex-gpt-proxy.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            });
+            const data = await response.json();
+            hideTyping();
+            if (data.error) {
+                addAIMessage('Извините, произошла ошибка. Попробуйте позже.', false);
+            } else {
+                addAIMessage(data.answer, false);
+            }
+        } catch (error) {
+            hideTyping();
+            addAIMessage('Ошибка соединения. Проверьте интернет.', false);
+        }
+    }
+
+    chatSend.addEventListener('click', sendAIMessage);
+    chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendAIMessage();
+    });
+</script>
 </body>
 </html>
