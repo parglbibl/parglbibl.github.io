@@ -47,30 +47,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Аккордеон в подвале (Карта сайта) – ПРОСТО И НАДЁЖНО ---
-    function initFooterAccordion() {
-        const footerHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
-        footerHeaders.forEach(header => {
-            // Удаляем старые обработчики, чтобы не дублировать
-            const newHeader = header.cloneNode(true);
-            header.parentNode.replaceChild(newHeader, header);
-            
-            const parent = newHeader.closest('.footer-accordion');
-            if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
-                parent.classList.add('open');
+    // --- Аккордеон в подвале (Карта сайта) ---
+    const footerAccordionHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
+    footerAccordionHeaders.forEach(header => {
+        const parent = header.closest('.footer-accordion');
+        if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
+            parent.classList.add('open');
+        }
+        header.addEventListener('click', function(e) {
+            e.preventDefault();
+            const accordion = this.closest('.footer-accordion');
+            if (accordion) {
+                accordion.classList.toggle('open');
+                localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
             }
-            newHeader.addEventListener('click', function(e) {
-                e.preventDefault();
-                const accordion = this.closest('.footer-accordion');
-                if (accordion) {
-                    accordion.classList.toggle('open');
-                    localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
-                }
-            });
         });
-    }
+    });
 
-    // --- Меню (десктоп – горизонтальное с выпадающими блоками, мобильные – аккордеон) ---
+    // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
@@ -267,7 +261,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     initDesktopMenu();
-
-    // Инициализируем аккордеон в подвале после всех изменений DOM
-    initFooterAccordion();
 });
