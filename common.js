@@ -176,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     navContainer.appendChild(moreLi);
                 }
                 const submenu = moreLi.querySelector('.desktop-submenu');
+                // Перемещаем все пункты с data-mobile="more" в подменю
                 moreItems.forEach(item => {
                     submenu.appendChild(item);
                 });
