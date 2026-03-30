@@ -47,29 +47,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Аккордеон в подвале (Карта сайта) – НАДЁЖНАЯ ИНИЦИАЛИЗАЦИЯ ---
-    function initFooterAccordion() {
-        const footerAccordion = document.querySelector('.footer-accordion');
-        if (!footerAccordion) return;
-        
-        const header = footerAccordion.querySelector('.accordion-header');
-        if (!header) return;
-        
-        const content = footerAccordion.querySelector('.accordion-content');
-        if (!content) return;
-        
-        // Восстанавливаем состояние из localStorage
-        if (localStorage.getItem('footerAccordionOpen') === 'true') {
-            footerAccordion.classList.add('open');
-        } else {
-            footerAccordion.classList.remove('open');
+    // --- Аккордеон в подвале (Карта сайта) ---
+    const footerAccordionHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
+    footerAccordionHeaders.forEach(header => {
+        const parent = header.closest('.footer-accordion');
+        if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
+            parent.classList.add('open');
         }
-        
-        // Удаляем старый обработчик, чтобы не дублировать
-        const newHeader = header.cloneNode(true);
-        header.parentNode.replaceChild(newHeader, header);
-        
-        newHeader.addEventListener('click', function(e) {
+        header.addEventListener('click', function(e) {
             e.preventDefault();
             const accordion = this.closest('.footer-accordion');
             if (accordion) {
@@ -77,17 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
             }
         });
-    }
+    });
 
-    // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
+    // --- Меню: на десктопе горизонтальное с аккордеоном, на мобильных вертикальный аккордеон ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
-    if (nav && !window.originalNavHTML) {
-        window.originalNavHTML = nav.innerHTML;
-    }
-
-    const mobileCategories = [
+    // Структура категорий и пунктов
+    const menuCategories = [
         {
             title: 'Библиотека',
             items: [
@@ -137,11 +119,47 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
+    // Функция для построения десктопного меню (горизонтальные категории, по клику раскрывается блок)
+    function buildDesktopMenu() {
+        if (!nav) return;
+        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+        let html = '<ul class="desktop-horizontal-menu">';
+        menuCategories.forEach(cat => {
+            // Определяем, активна ли хоть одна ссылка в категории
+            let isCategoryActive = cat.items.some(item => item.href === currentPath);
+            html += `<li class="desktop-category">
+                        <div class="desktop-category-header ${isCategoryActive ? 'active' : ''}">${cat.title} <i class="fas fa-chevron-down"></i></div>
+                        <ul class="desktop-category-content">`;
+            cat.items.forEach(item => {
+                const isActive = (item.href === currentPath);
+                html += `<li><a href="${item.href}" class="${isActive ? 'active' : ''}"><i class="${item.icon}"></i> ${item.name}</a></li>`;
+            });
+            html += `</ul></li>`;
+        });
+        html += `</ul>`;
+        nav.innerHTML = html;
+
+        // Обработчики для заголовков категорий
+        const headers = nav.querySelectorAll('.desktop-category-header');
+        headers.forEach(header => {
+            header.addEventListener('click', function(e) {
+                e.preventDefault();
+                const parent = this.closest('.desktop-category');
+                // Закрываем все другие открытые категории
+                document.querySelectorAll('.desktop-category.open').forEach(cat => {
+                    if (cat !== parent) cat.classList.remove('open');
+                });
+                parent.classList.toggle('open');
+            });
+        });
+    }
+
+    // Функция для построения мобильного меню (вертикальный аккордеон)
     function buildMobileMenu() {
         if (!nav) return;
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
         let html = '<ul class="mobile-accordion">';
-        mobileCategories.forEach(cat => {
+        menuCategories.forEach(cat => {
             html += `<li class="accordion-category">
                         <div class="accordion-header">${cat.title} <i class="fas fa-chevron-down"></i></div>
                         <ul class="accordion-content">`;
@@ -170,126 +188,74 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function restoreDesktopMenu() {
-        if (!nav) return;
-        if (window.originalNavHTML) {
-            nav.innerHTML = window.originalNavHTML;
-        }
-        initDesktopMenu();
-    }
-
-    function initDesktopMenu() {
-        const navContainer = document.querySelector('.nav ul');
-        if (navContainer && window.innerWidth > 768) {
-            const moreItems = document.querySelectorAll('li[data-mobile="more"]');
-            if (moreItems.length > 0) {
-                let moreLi = document.querySelector('.desktop-more');
-                if (!moreLi) {
-                    moreLi = document.createElement('li');
-                    moreLi.className = 'desktop-more';
-                    moreLi.innerHTML = '<a href="#"><i class="fas fa-ellipsis-h"></i> Ещё <i class="fas fa-chevron-down"></i></a><ul class="desktop-submenu"></ul>';
-                    navContainer.appendChild(moreLi);
-                }
-                const submenu = moreLi.querySelector('.desktop-submenu');
-                moreItems.forEach(item => {
-                    submenu.appendChild(item);
-                });
-                const moreLink = moreLi.querySelector('a');
-                moreLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    submenu.classList.toggle('show');
-                });
-                document.addEventListener('click', function(event) {
-                    if (!moreLi.contains(event.target)) {
-                        submenu.classList.remove('show');
-                    }
-                });
-            }
-        }
-
-        const searchIcon = document.getElementById('searchIcon');
-        const searchPopup = document.getElementById('searchPopup');
-        if (searchIcon && searchPopup) {
-            searchIcon.addEventListener('click', function(e) {
-                e.stopPropagation();
-                searchPopup.classList.toggle('active');
-            });
-            document.addEventListener('click', function(event) {
-                if (!searchIcon.contains(event.target) && !searchPopup.contains(event.target)) {
-                    searchPopup.classList.remove('active');
-                }
-            });
-        }
-
-        const specialLink = document.getElementById('specialFooterLink');
-        if (specialLink) {
-            specialLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.body.classList.toggle('special-mode');
-                localStorage.setItem('specialMode', document.body.classList.contains('special-mode'));
-            });
-            if (localStorage.getItem('specialMode') === 'true') {
-                document.body.classList.add('special-mode');
-            }
-        }
-
-        const btn = document.getElementById('scrollUp');
-        if (btn) {
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 100) {
-                    btn.style.display = 'block';
-                } else {
-                    btn.style.display = 'none';
-                }
-            });
-            btn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    }
-
     function handleResize() {
         if (window.innerWidth <= 768) {
             buildMobileMenu();
+            // Если меню было открыто, оставляем открытым
         } else {
-            restoreDesktopMenu();
+            buildDesktopMenu();
             if (nav && nav.classList.contains('active')) {
                 nav.classList.remove('active');
             }
         }
-        // После изменения размера переинициализируем подвал
-        initFooterAccordion();
     }
 
+    // Инициализация при загрузке
     handleResize();
+
+    // Обработчик изменения размера окна
     window.addEventListener('resize', handleResize);
 
+    // Обработчик гамбургера (только для мобильных)
     if (menuToggle) {
         menuToggle.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                nav.classList.toggle('active');
-                if (nav.classList.contains('active')) {
-                    buildMobileMenu();
-                }
-            } else {
-                nav.classList.toggle('active');
+            nav.classList.toggle('active');
+            if (nav.classList.contains('active' && window.innerWidth <= 768)) {
+                // если нужно что-то сделать при открытии
             }
-            // После клика по гамбургеру переинициализируем подвал
-            setTimeout(initFooterAccordion, 100);
         });
     }
 
-    initDesktopMenu();
-    
-    // Инициализируем подвал при загрузке
-    initFooterAccordion();
-    
-    // Дополнительная инициализация через MutationObserver на случай, если подвал появится позже
-    const observer = new MutationObserver(function(mutations) {
-        if (document.querySelector('.footer-accordion')) {
-            initFooterAccordion();
-            observer.disconnect();
+    // Поиск
+    const searchIcon = document.getElementById('searchIcon');
+    const searchPopup = document.getElementById('searchPopup');
+    if (searchIcon && searchPopup) {
+        searchIcon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            searchPopup.classList.toggle('active');
+        });
+        document.addEventListener('click', function(event) {
+            if (!searchIcon.contains(event.target) && !searchPopup.contains(event.target)) {
+                searchPopup.classList.remove('active');
+            }
+        });
+    }
+
+    // Версия для слабовидящих
+    const specialLink = document.getElementById('specialFooterLink');
+    if (specialLink) {
+        specialLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.toggle('special-mode');
+            localStorage.setItem('specialMode', document.body.classList.contains('special-mode'));
+        });
+        if (localStorage.getItem('specialMode') === 'true') {
+            document.body.classList.add('special-mode');
         }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    // Кнопка наверх
+    const btn = document.getElementById('scrollUp');
+    if (btn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+        btn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 });
