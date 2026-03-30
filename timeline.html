@@ -260,28 +260,6 @@
         }
 
         renderTimeline();
-
-        // Принудительная инициализация аккордеона в подвале (если common.js не справился)
-        setTimeout(function() {
-            const footerHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
-            footerHeaders.forEach(header => {
-                const parent = header.closest('.footer-accordion');
-                if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
-                    parent.classList.add('open');
-                }
-                header.removeEventListener('click', window.footerAccordionHandler);
-                const handler = function(e) {
-                    e.preventDefault();
-                    const accordion = this.closest('.footer-accordion');
-                    if (accordion) {
-                        accordion.classList.toggle('open');
-                        localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
-                    }
-                };
-                window.footerAccordionHandler = handler;
-                header.addEventListener('click', handler);
-            });
-        }, 500);
     </script>
 </body>
 </html>
