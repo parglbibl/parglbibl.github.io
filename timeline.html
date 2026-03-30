@@ -260,6 +260,31 @@
         }
 
         renderTimeline();
+
+        // Принудительная инициализация аккордеона в подвале для этой страницы (без дублирования)
+        setTimeout(function() {
+            const footerHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
+            if (footerHeaders.length > 0) {
+                footerHeaders.forEach(header => {
+                    // Удаляем старый обработчик, чтобы не навесить дважды
+                    const newHeader = header.cloneNode(true);
+                    header.parentNode.replaceChild(newHeader, header);
+                    
+                    const parent = newHeader.closest('.footer-accordion');
+                    if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
+                        parent.classList.add('open');
+                    }
+                    newHeader.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const accordion = this.closest('.footer-accordion');
+                        if (accordion) {
+                            accordion.classList.toggle('open');
+                            localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
+                        }
+                    });
+                });
+            }
+        }, 500);
     </script>
 </body>
 </html>
