@@ -98,8 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { name: 'Фотогалерея', href: 'gallery.html', icon: 'fas fa-images' },
                 { name: 'Примерочная книг', href: 'bookmatcher.html', icon: 'fas fa-magic' },
                 { name: 'Что почитать по интересу', href: 'book-recommendations.html', icon: 'fas fa-star' },
-                { name: 'Книжная кухня', href: 'book-kitchen.html', icon: 'fas fa-utensils' },
-                { name: 'Литературный портрет', href: 'literary-portrait.html', icon: 'fas fa-users' }
+                { name: 'Книжная кухня', href: 'book-kitchen.html', icon: 'fas fa-utensils' }
             ]
         },
         {
@@ -107,7 +106,8 @@ document.addEventListener('DOMContentLoaded', function() {
             items: [
                 { name: 'Краеведение', href: 'kraevedenie.html', icon: 'fas fa-map-signs' },
                 { name: 'История Парголово', href: 'timeline.html', icon: 'fas fa-stream' },
-                { name: 'Карта достопримечательностей', href: 'map.html', icon: 'fas fa-map-marked-alt' }
+                { name: 'Карта достопримечательностей', href: 'map.html', icon: 'fas fa-map-marked-alt' },
+                { name: 'Литературный портрет', href: 'literary-portrait.html', icon: 'fas fa-users' }
             ]
         },
         {
