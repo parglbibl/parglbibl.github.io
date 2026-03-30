@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pargolovskaya-v5';
+const CACHE_NAME = 'pargolovskaya-v6';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -19,42 +19,24 @@ const urlsToCache = [
   '/timeline.html',
   '/book-recommendations.html',
   '/book-kitchen.html',
+  '/literary-portrait.html',
+  '/konkurs.html',
+  '/map.html',
+  '/nizhnee-pargolovo.html',
+  '/verkhnee-pargolovo.html',
+  '/torfyanaya.html',
+  '/pargolovo-culture.html',
+  '/shuvalovsky-park.html',
+  '/khramy-verkhnee-pargolovo.html',
   '/common.css',
   '/common.js',
-  '/logo.PNG',
-  '/s_ylici.jpg',
-  '/chitalnii_zal.jpg',
-  '/vzroslay_literatura.jpg',
-  '/detskie_knigi.jpg',
-  '/knigi_vystavka.jpg',
-  '/vystavka_kartin.jpg',
-  '/knigoobmen.webp',
-  '/n3.jpg',
-  '/n5.JPG',
-  '/n6.jpg',
-  '/n7.jpg',
-  '/n8.JPG',
-  '/n9.jpg',
-  '/n10.jpg',
-  '/n11.jpg',
-  '/n12.JPG',
-  '/n13.jpg',
-  '/n14.jpg',
-  '/n15.jpg',
-  '/n16.jpg',
-  '/n17.JPG',
-  '/n20.jpg',
-  '/n21.JPG',
-  '/n23.jpg',
-  '/n24.jpg',
-  '/n26.JPG',
-  '/n27.jpg'
+  '/notes.js'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
-      console.log('Кэширование начато');
+      console.log('Кэширование критических файлов');
       const cachePromises = urlsToCache.map(url => {
         return fetch(url)
           .then(response => {
@@ -70,21 +52,15 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Пропускаем запросы к внешним доменам (не кэшируем)
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
+  if (!event.request.url.startsWith(self.location.origin)) return;
   event.respondWith(
     caches.match(event.request).then(cachedResponse => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
+      if (cachedResponse) return cachedResponse;
       return fetch(event.request).catch(() => {
-        // Если нет сети и запрос на навигацию (страница) – возвращаем index.html из кэша
         if (event.request.mode === 'navigate') {
           return caches.match('/index.html');
         }
-        return new Response('', { status: 404, statusText: 'Not Found' });
+        return new Response('', { status: 404 });
       });
     })
   );
