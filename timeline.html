@@ -10,21 +10,126 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://cdn.knightlab.com">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Timeline CSS с CDN -->
-    <link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
     <style>
-        .section { padding: 2rem 0 4rem; }
+        .section { padding: 4rem 0; }
         .back-link { margin-bottom: 2rem; text-align: left; }
         .back-link a { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
         .back-link a:hover { background-color: #e5989b; color: white; }
-        #timeline-embed { width: 100%; height: 80vh; min-height: 600px; margin-top: 2rem; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        @media (max-width: 768px) { #timeline-embed { height: 70vh; min-height: 500px; } }
-        .timeline-intro { max-width: 800px; margin: 0 auto 2rem; text-align: center; color: #4a4a4a; }
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: #b5838d;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+        }
+        .timeline-item:nth-child(even) {
+            justify-content: flex-end;
+        }
+        .timeline-content {
+            width: 45%;
+            background: #fff;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: #b5838d;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            z-index: 1;
+        }
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -50px;
+        }
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -50px;
+        }
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #b5838d;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #5e4b3c;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-desc {
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .timeline-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+        .timeline-link {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .timeline-link:hover {
+            background-color: #d68b8e;
+        }
+        @media (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                justify-content: flex-start;
+                padding-left: 40px;
+            }
+            .timeline-content { width: 90%; }
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -30px;
+                right: auto;
+            }
+        }
+        .timeline-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #4a4a4a;
+        }
     </style>
 </head>
 <body class="page-transition">
@@ -77,7 +182,10 @@
             <div class="back-link fade-in"><a href="kraevedenie.html"><i class="fas fa-arrow-left"></i> Назад к краеведению</a></div>
             <h1 class="section-title">История Парголово</h1>
             <div class="timeline-intro"><p>Пролистайте ленту времени, чтобы увидеть ключевые события в жизни нашего посёлка — от первого упоминания в письменных источниках до сегодняшнего дня. Нажмите на карточку, чтобы узнать подробности и перейти к связанным материалам на сайте.</p></div>
-            <div id="timeline-embed"></div>
+
+            <div class="timeline" id="timeline">
+                <!-- Данные будут загружены через JS -->
+            </div>
         </div>
     </section>
 
@@ -96,49 +204,47 @@
     <div id="scrollUp" title="Наверх">↑</div>
 
     <script src="common.js"></script>
-    <!-- Загрузка TimelineJS с fallback на jsDelivr -->
+    <script src="notes.js"></script>
     <script>
-        function loadTimelineScript(callback) {
-            var script = document.createElement('script');
-            script.src = 'https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js';
-            script.onload = callback;
-            script.onerror = function() {
-                console.log('Основной CDN не загрузился, пробуем альтернативный');
-                var fallbackScript = document.createElement('script');
-                fallbackScript.src = 'https://cdn.jsdelivr.net/npm/timelinejs3@3.7.0/dist/js/timeline-min.js';
-                fallbackScript.onload = callback;
-                document.head.appendChild(fallbackScript);
-            };
-            document.head.appendChild(script);
+        // Данные событий
+        const events = [
+            { year: "1500", title: "Первое упоминание в письменных источниках", desc: "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala). Это самая ранняя сохранившаяся запись о месте, которое позже станет Парголово.", image: "/logo.PNG", link: "#" },
+            { year: "1746", title: "Имение Шуваловых", desc: "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову. Началось формирование усадебно-паркового ансамбля.", image: "/logo.PNG", link: "verkhnee-pargolovo.html" },
+            { year: "1792", title: "Церковь Спаса Нерукотворного Образа", desc: "По проекту архитектора Луиджи Руска построена деревянная церковь в Нижнем Парголово (не сохранилась, на её месте позже возвели каменную).", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
+            { year: "1826", title: "Грибоедов в Парголово", desc: "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка», в котором иронизирует над северной природой.", image: "/logo.PNG", link: "pargolovo-culture.html#literature" },
+            { year: "1831–1840", title: "Строительство церкви Петра и Павла", desc: "Архитектор А.П. Брюллов закладывает неоготический храм в Шуваловском парке. Освящение состоялось в 1846 году.", image: "/logo.PNG", link: "khramy-verkhnee-pargolovo.html" },
+            { year: "1872", title: "Венчание Римского-Корсакова", desc: "В церкви Петра и Павла венчаются композитор Николай Римский-Корсаков и пианистка Надежда Пургольд. Шафером на свадьбе был Модест Мусоргский.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
+            { year: "1878–1906", title: "Дача Стасова в Старожиловке", desc: "Владимир Стасов прожил на даче 28 лет. Его гостями были Репин, Римский-Корсаков, Шаляпин, Горький.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
+            { year: "1906", title: "Станция Парголово", desc: "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм). Здание сохранилось и является памятником архитектуры.", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
+            { year: "1938", title: "Открытие библиотеки им. Горького", desc: "При школе № 2 на Выборгском шоссе открыта библиотека имени Максима Горького — предшественница нашей «Парголовской».", image: "/s_ylici.jpg", link: "about.html" },
+            { year: "1941–1944", title: "Парголово в годы блокады", desc: "Через посёлок проходил рубеж обороны Ленинграда. В здании школы разместили детский дом, ученики работали на оборонных предприятиях.", image: "/logo.PNG", link: "#" },
+            { year: "2002", title: "Библиотека переезжает на Торфяную, 25", desc: "Библиотека-филиал № 5 размещается в здании школы № 475. В 2007 году она временно покинет его, но в 2025 году вернётся.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
+            { year: "2016", title: "Библиотеке возвращено название «Парголовская»", desc: "В рамках городского проекта «Имя библиотеки» учреждению присвоено топонимическое название, связанное с историей посёлка.", image: "/logo.PNG", link: "about.html" },
+            { year: "2025", title: "Библиотека возвращается на Торфяную, 25", desc: "После нескольких переездов библиотека «Парголовская» вновь обосновывается в здании, где когда-то начиналась её история на этой улице.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
+            { year: "2026", title: "Новые сервисы на сайте", desc: "Запущены интерактивная лента времени, виртуальная примерочная книг, литературный портрет и другие цифровые инструменты для читателей.", image: "/logo.PNG", link: "#" }
+        ];
+
+        function renderTimeline() {
+            const container = document.getElementById('timeline');
+            if (!container) return;
+            let html = '';
+            events.forEach((event, index) => {
+                html += `
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-year">${event.year}</div>
+                            <div class="timeline-title">${event.title}</div>
+                            ${event.image ? `<img src="${event.image}" alt="${event.title}" class="timeline-img" loading="lazy">` : ''}
+                            <div class="timeline-desc">${event.desc}</div>
+                            ${event.link !== '#' ? `<a href="${event.link}" class="timeline-link">Подробнее →</a>` : ''}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
         }
 
-        loadTimelineScript(function() {
-            var timelineData = {
-                "title": { "text": { "headline": "История Парголово", "text": "Ключевые события от первого упоминания до наших дней" } },
-                "events": [
-                    { "start_date": { "year": "1500" }, "text": { "headline": "Первое упоминание в письменных источниках", "text": "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala)." }, "media": { "url": "/logo.PNG", "caption": "Писцовая книга (фрагмент)" } },
-                    { "start_date": { "year": "1746" }, "text": { "headline": "Имение Шуваловых", "text": "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову." }, "media": { "url": "/logo.PNG", "caption": "Граф П.И. Шувалов" }, "link": "verkhnee-pargolovo.html" },
-                    { "start_date": { "year": "1792" }, "text": { "headline": "Церковь Спаса Нерукотворного Образа", "text": "Построена деревянная церковь в Нижнем Парголово (не сохранилась)." }, "media": { "url": "/logo.PNG", "caption": "Церковь в начале XX века" }, "link": "nizhnee-pargolovo.html" },
-                    { "start_date": { "year": "1826", "month": "7" }, "text": { "headline": "Грибоедов в Парголово", "text": "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка»." }, "media": { "url": "/logo.PNG", "caption": "А.С. Грибоедов" }, "link": "pargolovo-culture.html#literature" },
-                    { "start_date": { "year": "1831", "month": "1" }, "text": { "headline": "Начало строительства церкви Петра и Павла", "text": "Архитектор А.П. Брюллов закладывает неоготический храм в Шуваловском парке." }, "media": { "url": "/logo.PNG", "caption": "Церковь Петра и Павла" }, "link": "khramy-verkhnee-pargolovo.html" },
-                    { "start_date": { "year": "1872", "month": "6", "day": "30" }, "text": { "headline": "Венчание Римского-Корсакова", "text": "В церкви Петра и Павла венчаются композитор Николай Римский-Корсаков и пианистка Надежда Пургольд." }, "media": { "url": "/logo.PNG", "caption": "Н.А. Римский-Корсаков" }, "link": "pargolovo-culture.html#music" },
-                    { "start_date": { "year": "1878" }, "text": { "headline": "Дача Стасова в Старожиловке", "text": "Владимир Стасов начинает снимать дачу. Его гостями были Репин, Римский-Корсаков, Шаляпин." }, "media": { "url": "/logo.PNG", "caption": "В.В. Стасов" }, "link": "pargolovo-culture.html#music" },
-                    { "start_date": { "year": "1906" }, "text": { "headline": "Станция Парголово", "text": "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм)." }, "media": { "url": "/logo.PNG", "caption": "Вокзал станции Парголово" }, "link": "nizhnee-pargolovo.html" },
-                    { "start_date": { "year": "1938" }, "text": { "headline": "Открытие библиотеки им. Горького", "text": "При школе № 2 открыта библиотека — предшественница нашей «Парголовской»." }, "media": { "url": "/s_ylici.jpg", "caption": "Первое здание библиотеки" }, "link": "about.html" },
-                    { "start_date": { "year": "1941", "month": "9" }, "text": { "headline": "Парголово в годы блокады", "text": "Через посёлок проходил рубеж обороны Ленинграда." }, "media": { "url": "/logo.PNG", "caption": "Памятник защитникам Ленинграда" } },
-                    { "start_date": { "year": "2002" }, "text": { "headline": "Библиотека переезжает на Торфяную, 25", "text": "Библиотека размещается в здании школы № 475." }, "media": { "url": "/s_ylici.jpg", "caption": "Здание на Торфяной, 25" }, "link": "torfyanaya.html" },
-                    { "start_date": { "year": "2016", "month": "8", "day": "1" }, "text": { "headline": "Библиотеке возвращено название «Парголовская»", "text": "В рамках проекта «Имя библиотеки» учреждению присвоено топонимическое название." }, "media": { "url": "/logo.PNG", "caption": "Современный логотип библиотеки" }, "link": "about.html" },
-                    { "start_date": { "year": "2025" }, "text": { "headline": "Библиотека возвращается на Торфяную, 25", "text": "После нескольких переездов библиотека «Парголовская» вновь обосновывается в этих стенах." }, "media": { "url": "/s_ylici.jpg", "caption": "Библиотека сегодня" }, "link": "torfyanaya.html" },
-                    { "start_date": { "year": "2026" }, "text": { "headline": "Сайт библиотеки пополняется новыми сервисами", "text": "Запущены интерактивная лента времени, виртуальная примерочная книг и другие инструменты." }, "media": { "url": "/logo.PNG", "caption": "Новые возможности" } }
-                ]
-            };
-            new TL.Timeline('timeline-embed', timelineData, {
-                width: "100%",
-                height: "100%",
-                language: "ru",
-                default_bg_color: "#fefaf5"
-            });
-        });
+        renderTimeline();
     </script>
 </body>
 </html>
