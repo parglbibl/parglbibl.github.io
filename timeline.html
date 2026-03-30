@@ -11,9 +11,11 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://cdn.knightlab.com">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
     <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Timeline CSS с CDN -->
     <link title="timeline-styles" rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
     <style>
         .section { padding: 2rem 0 4rem; }
@@ -23,7 +25,6 @@
         #timeline-embed { width: 100%; height: 80vh; min-height: 600px; margin-top: 2rem; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
         @media (max-width: 768px) { #timeline-embed { height: 70vh; min-height: 500px; } }
         .timeline-intro { max-width: 800px; margin: 0 auto 2rem; text-align: center; color: #4a4a4a; }
-        .timeline-error { text-align: center; padding: 2rem; background: #fff9f0; border-radius: 16px; color: #b5838d; }
     </style>
 </head>
 <body class="page-transition">
@@ -95,45 +96,49 @@
     <div id="scrollUp" title="Наверх">↑</div>
 
     <script src="common.js"></script>
-    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+    <!-- Загрузка TimelineJS с fallback на jsDelivr -->
     <script>
-        // Данные ленты времени (только локальные изображения, чтобы избежать ошибок 404)
-        var timelineData = {
-            "title": { "text": { "headline": "История Парголово", "text": "Ключевые события от первого упоминания до наших дней" } },
-            "events": [
-                { "start_date": { "year": "1500" }, "text": { "headline": "Первое упоминание в письменных источниках", "text": "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala)." }, "media": { "url": "/logo.PNG", "caption": "Писцовая книга (фрагмент)" } },
-                { "start_date": { "year": "1746" }, "text": { "headline": "Имение Шуваловых", "text": "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову." }, "media": { "url": "/logo.PNG", "caption": "Граф П.И. Шувалов" }, "link": "verkhnee-pargolovo.html" },
-                { "start_date": { "year": "1792" }, "text": { "headline": "Церковь Спаса Нерукотворного Образа", "text": "Построена деревянная церковь в Нижнем Парголово (не сохранилась)." }, "media": { "url": "/logo.PNG", "caption": "Церковь в начале XX века" }, "link": "nizhnee-pargolovo.html" },
-                { "start_date": { "year": "1826", "month": "7" }, "text": { "headline": "Грибоедов в Парголово", "text": "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка»." }, "media": { "url": "/logo.PNG", "caption": "А.С. Грибоедов" }, "link": "pargolovo-culture.html#literature" },
-                { "start_date": { "year": "1831", "month": "1" }, "text": { "headline": "Начало строительства церкви Петра и Павла", "text": "Архитектор А.П. Брюллов закладывает неоготический храм в Шуваловском парке." }, "media": { "url": "/logo.PNG", "caption": "Церковь Петра и Павла" }, "link": "khramy-verkhnee-pargolovo.html" },
-                { "start_date": { "year": "1872", "month": "6", "day": "30" }, "text": { "headline": "Венчание Римского-Корсакова", "text": "В церкви Петра и Павла венчаются композитор Николай Римский-Корсаков и пианистка Надежда Пургольд." }, "media": { "url": "/logo.PNG", "caption": "Н.А. Римский-Корсаков" }, "link": "pargolovo-culture.html#music" },
-                { "start_date": { "year": "1878" }, "text": { "headline": "Дача Стасова в Старожиловке", "text": "Владимир Стасов начинает снимать дачу. Его гостями были Репин, Римский-Корсаков, Шаляпин." }, "media": { "url": "/logo.PNG", "caption": "В.В. Стасов" }, "link": "pargolovo-culture.html#music" },
-                { "start_date": { "year": "1906" }, "text": { "headline": "Станция Парголово", "text": "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм)." }, "media": { "url": "/logo.PNG", "caption": "Вокзал станции Парголово" }, "link": "nizhnee-pargolovo.html" },
-                { "start_date": { "year": "1938" }, "text": { "headline": "Открытие библиотеки им. Горького", "text": "При школе № 2 открыта библиотека — предшественница нашей «Парголовской»." }, "media": { "url": "/s_ylici.jpg", "caption": "Первое здание библиотеки" }, "link": "about.html" },
-                { "start_date": { "year": "1941", "month": "9" }, "text": { "headline": "Парголово в годы блокады", "text": "Через посёлок проходил рубеж обороны Ленинграда." }, "media": { "url": "/logo.PNG", "caption": "Памятник защитникам Ленинграда" } },
-                { "start_date": { "year": "2002" }, "text": { "headline": "Библиотека переезжает на Торфяную, 25", "text": "Библиотека размещается в здании школы № 475." }, "media": { "url": "/s_ylici.jpg", "caption": "Здание на Торфяной, 25" }, "link": "torfyanaya.html" },
-                { "start_date": { "year": "2016", "month": "8", "day": "1" }, "text": { "headline": "Библиотеке возвращено название «Парголовская»", "text": "В рамках проекта «Имя библиотеки» учреждению присвоено топонимическое название." }, "media": { "url": "/logo.PNG", "caption": "Современный логотип библиотеки" }, "link": "about.html" },
-                { "start_date": { "year": "2025" }, "text": { "headline": "Библиотека возвращается на Торфяную, 25", "text": "После нескольких переездов библиотека «Парголовская» вновь обосновывается в этих стенах." }, "media": { "url": "/s_ylici.jpg", "caption": "Библиотека сегодня" }, "link": "torfyanaya.html" },
-                { "start_date": { "year": "2026" }, "text": { "headline": "Сайт библиотеки пополняется новыми сервисами", "text": "Запущены интерактивная лента времени, виртуальная примерочная книг и другие инструменты." }, "media": { "url": "/logo.PNG", "caption": "Новые возможности" } }
-            ]
-        };
-
-        function initTimeline() {
-            if (typeof TL !== 'undefined') {
-                new TL.Timeline('timeline-embed', timelineData, {
-                    width: "100%",
-                    height: "100%",
-                    language: "ru",
-                    default_bg_color: "#fefaf5"
-                });
-            } else {
-                // Если скрипт ещё не загрузился, пробуем через 0.5 секунды
-                setTimeout(initTimeline, 500);
-            }
+        function loadTimelineScript(callback) {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js';
+            script.onload = callback;
+            script.onerror = function() {
+                console.log('Основной CDN не загрузился, пробуем альтернативный');
+                var fallbackScript = document.createElement('script');
+                fallbackScript.src = 'https://cdn.jsdelivr.net/npm/timelinejs3@3.7.0/dist/js/timeline-min.js';
+                fallbackScript.onload = callback;
+                document.head.appendChild(fallbackScript);
+            };
+            document.head.appendChild(script);
         }
 
-        // Запускаем инициализацию после загрузки DOM
-        document.addEventListener('DOMContentLoaded', initTimeline);
+        loadTimelineScript(function() {
+            var timelineData = {
+                "title": { "text": { "headline": "История Парголово", "text": "Ключевые события от первого упоминания до наших дней" } },
+                "events": [
+                    { "start_date": { "year": "1500" }, "text": { "headline": "Первое упоминание в письменных источниках", "text": "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala)." }, "media": { "url": "/logo.PNG", "caption": "Писцовая книга (фрагмент)" } },
+                    { "start_date": { "year": "1746" }, "text": { "headline": "Имение Шуваловых", "text": "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову." }, "media": { "url": "/logo.PNG", "caption": "Граф П.И. Шувалов" }, "link": "verkhnee-pargolovo.html" },
+                    { "start_date": { "year": "1792" }, "text": { "headline": "Церковь Спаса Нерукотворного Образа", "text": "Построена деревянная церковь в Нижнем Парголово (не сохранилась)." }, "media": { "url": "/logo.PNG", "caption": "Церковь в начале XX века" }, "link": "nizhnee-pargolovo.html" },
+                    { "start_date": { "year": "1826", "month": "7" }, "text": { "headline": "Грибоедов в Парголово", "text": "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка»." }, "media": { "url": "/logo.PNG", "caption": "А.С. Грибоедов" }, "link": "pargolovo-culture.html#literature" },
+                    { "start_date": { "year": "1831", "month": "1" }, "text": { "headline": "Начало строительства церкви Петра и Павла", "text": "Архитектор А.П. Брюллов закладывает неоготический храм в Шуваловском парке." }, "media": { "url": "/logo.PNG", "caption": "Церковь Петра и Павла" }, "link": "khramy-verkhnee-pargolovo.html" },
+                    { "start_date": { "year": "1872", "month": "6", "day": "30" }, "text": { "headline": "Венчание Римского-Корсакова", "text": "В церкви Петра и Павла венчаются композитор Николай Римский-Корсаков и пианистка Надежда Пургольд." }, "media": { "url": "/logo.PNG", "caption": "Н.А. Римский-Корсаков" }, "link": "pargolovo-culture.html#music" },
+                    { "start_date": { "year": "1878" }, "text": { "headline": "Дача Стасова в Старожиловке", "text": "Владимир Стасов начинает снимать дачу. Его гостями были Репин, Римский-Корсаков, Шаляпин." }, "media": { "url": "/logo.PNG", "caption": "В.В. Стасов" }, "link": "pargolovo-culture.html#music" },
+                    { "start_date": { "year": "1906" }, "text": { "headline": "Станция Парголово", "text": "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм)." }, "media": { "url": "/logo.PNG", "caption": "Вокзал станции Парголово" }, "link": "nizhnee-pargolovo.html" },
+                    { "start_date": { "year": "1938" }, "text": { "headline": "Открытие библиотеки им. Горького", "text": "При школе № 2 открыта библиотека — предшественница нашей «Парголовской»." }, "media": { "url": "/s_ylici.jpg", "caption": "Первое здание библиотеки" }, "link": "about.html" },
+                    { "start_date": { "year": "1941", "month": "9" }, "text": { "headline": "Парголово в годы блокады", "text": "Через посёлок проходил рубеж обороны Ленинграда." }, "media": { "url": "/logo.PNG", "caption": "Памятник защитникам Ленинграда" } },
+                    { "start_date": { "year": "2002" }, "text": { "headline": "Библиотека переезжает на Торфяную, 25", "text": "Библиотека размещается в здании школы № 475." }, "media": { "url": "/s_ylici.jpg", "caption": "Здание на Торфяной, 25" }, "link": "torfyanaya.html" },
+                    { "start_date": { "year": "2016", "month": "8", "day": "1" }, "text": { "headline": "Библиотеке возвращено название «Парголовская»", "text": "В рамках проекта «Имя библиотеки» учреждению присвоено топонимическое название." }, "media": { "url": "/logo.PNG", "caption": "Современный логотип библиотеки" }, "link": "about.html" },
+                    { "start_date": { "year": "2025" }, "text": { "headline": "Библиотека возвращается на Торфяную, 25", "text": "После нескольких переездов библиотека «Парголовская» вновь обосновывается в этих стенах." }, "media": { "url": "/s_ylici.jpg", "caption": "Библиотека сегодня" }, "link": "torfyanaya.html" },
+                    { "start_date": { "year": "2026" }, "text": { "headline": "Сайт библиотеки пополняется новыми сервисами", "text": "Запущены интерактивная лента времени, виртуальная примерочная книг и другие инструменты." }, "media": { "url": "/logo.PNG", "caption": "Новые возможности" } }
+                ]
+            };
+            new TL.Timeline('timeline-embed', timelineData, {
+                width: "100%",
+                height: "100%",
+                language: "ru",
+                default_bg_color: "#fefaf5"
+            });
+        });
     </script>
 </body>
 </html>
