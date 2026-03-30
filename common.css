@@ -88,99 +88,88 @@ header {
     width: 100%;
 }
 
-/* Аккордеон-меню (общие стили для всех экранов) */
-.accordion-menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-}
-
-.accordion-category {
-    border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-.accordion-header {
-    background: rgba(255,255,255,0.1);
-    padding: 0.8rem 1rem;
-    cursor: pointer;
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    transition: background 0.2s;
-}
-
-.accordion-header:hover {
-    background: rgba(255,255,255,0.2);
-}
-
-.accordion-header i {
-    transition: transform 0.3s;
-}
-
-.accordion-category.open .accordion-header i {
-    transform: rotate(180deg);
-}
-
-.accordion-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    padding: 0;
-    background: rgba(0,0,0,0.2);
-}
-
-.accordion-category.open .accordion-content {
-    max-height: 500px; /* достаточно для раскрытия */
-}
-
-.accordion-content li {
-    list-style: none;
-}
-
-.accordion-content a {
-    display: block;
-    padding: 0.6rem 1rem 0.6rem 2rem;
-    color: #fff;
-    text-decoration: none;
-    transition: background 0.2s;
-    font-size: 0.9rem;
-}
-
-.accordion-content a i {
-    margin-right: 8px;
-    width: 20px;
-    text-align: center;
-}
-
-.accordion-content a:hover,
-.accordion-content a.active {
-    background: rgba(255,255,255,0.2);
-}
-
-/* На десктопе меню отображается всегда, гамбургер скрыт, аккордеон может быть шире */
+/* ========== ДЕСКТОПНОЕ МЕНЮ (горизонтальное с аккордеоном) ========== */
 @media (min-width: 769px) {
-    .menu-toggle {
+    .desktop-horizontal-menu {
+        display: flex;
+        justify-content: flex-end;
+        gap: 2rem;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        flex-wrap: wrap;
+    }
+    .desktop-category {
+        position: relative;
+    }
+    .desktop-category-header {
+        color: #fff;
+        font-weight: 600;
+        padding: 0.5rem 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: color 0.3s;
+        white-space: nowrap;
+    }
+    .desktop-category-header i {
+        font-size: 0.8rem;
+        transition: transform 0.3s;
+    }
+    .desktop-category.open .desktop-category-header i {
+        transform: rotate(180deg);
+    }
+    .desktop-category-header:hover,
+    .desktop-category-header.active {
+        color: #f4e3d7;
+    }
+    .desktop-category-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #b5838d;
+        border-radius: 12px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        padding: 0.5rem 0;
+        min-width: 220px;
         display: none;
+        z-index: 1000;
+        list-style: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
     }
-    .nav {
-        display: block !important;
+    .desktop-category.open .desktop-category-content {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .desktop-category-content li {
         width: 100%;
-        margin-top: 0.5rem;
     }
-    .accordion-header {
-        font-size: 1rem;
-        padding: 0.8rem 1rem;
+    .desktop-category-content a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 0.6rem 1.2rem;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.2s;
+        font-size: 0.9rem;
+        white-space: nowrap;
     }
-    .accordion-content a {
-        font-size: 0.95rem;
-        padding: 0.6rem 1rem 0.6rem 2rem;
+    .desktop-category-content a i {
+        width: 20px;
+        text-align: center;
+    }
+    .desktop-category-content a:hover,
+    .desktop-category-content a.active {
+        background-color: rgba(255,255,255,0.2);
     }
 }
 
-/* На мобильных меню по умолчанию скрыто, открывается гамбургером */
+/* ========== МОБИЛЬНОЕ МЕНЮ (вертикальный аккордеон) ========== */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -192,11 +181,60 @@ header {
     .nav.active {
         display: block;
     }
+    .mobile-accordion {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+    .accordion-category {
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
     .accordion-header {
-        font-size: 0.95rem;
+        background: rgba(255,255,255,0.1);
+        padding: 0.8rem 1rem;
+        cursor: pointer;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #fff;
+    }
+    .accordion-header i {
+        transition: transform 0.3s;
+    }
+    .accordion-category.open .accordion-header i {
+        transform: rotate(180deg);
+    }
+    .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        padding: 0;
+        background: rgba(0,0,0,0.2);
+    }
+    .accordion-category.open .accordion-content {
+        max-height: 500px;
+    }
+    .accordion-content li {
+        list-style: none;
     }
     .accordion-content a {
+        display: block;
+        padding: 0.6rem 1rem 0.6rem 2rem;
+        color: #fff;
+        text-decoration: none;
+        transition: background 0.2s;
         font-size: 0.9rem;
+    }
+    .accordion-content a i {
+        margin-right: 8px;
+        width: 20px;
+        text-align: center;
+    }
+    .accordion-content a:hover,
+    .accordion-content a.active {
+        background: rgba(255,255,255,0.2);
     }
 }
 
