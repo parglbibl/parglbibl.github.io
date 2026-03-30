@@ -20,70 +20,72 @@
         .back-link a:hover { background-color: #e5989b; color: white; }
         .timeline-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
         .timeline-card {
             background: #fff;
-            border-radius: 20px;
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
         }
         .timeline-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
         }
         .timeline-card-img {
             width: 100%;
-            height: 160px;
+            height: 140px;
             object-fit: cover;
         }
         .timeline-card-content {
-            padding: 1.5rem;
+            padding: 1rem 1.2rem 1.2rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
         .timeline-card-year {
-            font-size: 1.2rem;
-            font-weight: 700;
+            font-size: 0.85rem;
+            font-weight: 600;
             color: #b5838d;
             margin-bottom: 0.5rem;
             display: inline-block;
             background: #f9f0e7;
-            padding: 0.2rem 0.8rem;
+            padding: 0.2rem 0.6rem;
             border-radius: 20px;
             align-self: flex-start;
         }
         .timeline-card-title {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             color: #5e4b3c;
-            margin: 0.8rem 0 0.5rem;
+            margin: 0.5rem 0 0.4rem;
             line-height: 1.3;
         }
         .timeline-card-desc {
             color: #4a4a4a;
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
+            margin-bottom: 1rem;
+            line-height: 1.45;
+            font-size: 0.9rem;
             flex-grow: 1;
         }
         .timeline-card-link {
             display: inline-block;
             background-color: #e5989b;
             color: #fff;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 50px;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-align: center;
             transition: background 0.2s;
             margin-top: 0.5rem;
+            align-self: flex-start;
         }
         .timeline-card-link:hover {
             background-color: #d68b8e;
@@ -97,7 +99,10 @@
         @media (max-width: 768px) {
             .timeline-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 1rem;
+            }
+            .timeline-card-img {
+                height: 120px;
             }
         }
     </style>
@@ -153,9 +158,7 @@
             <h1 class="section-title">История Парголово</h1>
             <div class="timeline-intro"><p>Ключевые события в жизни нашего посёлка — от первого упоминания до наших дней. Нажмите на карточку, чтобы узнать подробности и перейти к связанным материалам на сайте.</p></div>
 
-            <div class="timeline-grid" id="timeline-grid">
-                <!-- Данные будут загружены через JS -->
-            </div>
+            <div class="timeline-grid" id="timeline-grid"></div>
         </div>
     </section>
 
@@ -177,20 +180,20 @@
     <script src="notes.js"></script>
     <script>
         const events = [
-            { year: "1500", title: "Первое упоминание в письменных источниках", desc: "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala).", image: "/logo.PNG", link: "#" },
+            { year: "1500", title: "Первое упоминание", desc: "В Писцовой книге Водской пятины упоминается селение Паркола (фин. Parkala).", image: "/logo.PNG", link: "#" },
             { year: "1746", title: "Имение Шуваловых", desc: "Императрица Елизавета Петровна подарила Парголовскую мызу графу Петру Ивановичу Шувалову.", image: "/logo.PNG", link: "verkhnee-pargolovo.html" },
             { year: "1792", title: "Церковь Спаса Нерукотворного Образа", desc: "Построена деревянная церковь в Нижнем Парголово (не сохранилась).", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
             { year: "1826", title: "Грибоедов в Парголово", desc: "Александр Грибоедов гостит на даче Фаддея Булгарина, пишет очерк «Загородная поездка».", image: "/logo.PNG", link: "pargolovo-culture.html#literature" },
-            { year: "1831–1840", title: "Строительство церкви Петра и Павла", desc: "Архитектор А.П. Брюллов строит неоготический храм в Шуваловском парке.", image: "/logo.PNG", link: "khramy-verkhnee-pargolovo.html" },
+            { year: "1831–1840", title: "Церковь Петра и Павла", desc: "Архитектор А.П. Брюллов строит неоготический храм в Шуваловском парке.", image: "/logo.PNG", link: "khramy-verkhnee-pargolovo.html" },
             { year: "1872", title: "Венчание Римского-Корсакова", desc: "В церкви Петра и Павла венчаются Н.А. Римский-Корсаков и Н. Пургольд.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
-            { year: "1878–1906", title: "Дача Стасова в Старожиловке", desc: "Владимир Стасов прожил на даче 28 лет. Гости: Репин, Римский-Корсаков, Шаляпин.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
+            { year: "1878–1906", title: "Дача Стасова", desc: "Владимир Стасов прожил на даче 28 лет. Гости: Репин, Римский-Корсаков, Шаляпин.", image: "/logo.PNG", link: "pargolovo-culture.html#music" },
             { year: "1906", title: "Станция Парголово", desc: "Построен вокзал в стиле финского национального романтизма (арх. Бруно Гранхольм).", image: "/logo.PNG", link: "nizhnee-pargolovo.html" },
-            { year: "1938", title: "Открытие библиотеки им. Горького", desc: "При школе № 2 открыта библиотека — предшественница нашей «Парголовской».", image: "/s_ylici.jpg", link: "about.html" },
-            { year: "1941–1944", title: "Парголово в годы блокады", desc: "Через посёлок проходил рубеж обороны Ленинграда.", image: "/logo.PNG", link: "#" },
-            { year: "2002", title: "Библиотека переезжает на Торфяную, 25", desc: "Библиотека размещается в здании школы № 475.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
-            { year: "2016", title: "Библиотеке возвращено название «Парголовская»", desc: "В рамках проекта «Имя библиотеки» учреждению присвоено топонимическое название.", image: "/logo.PNG", link: "about.html" },
-            { year: "2025", title: "Библиотека возвращается на Торфяную, 25", desc: "После нескольких переездов библиотека «Парголовская» вновь обосновывается в этих стенах.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
-            { year: "2026", title: "Новые сервисы на сайте", desc: "Запущены интерактивная лента времени, примерочная книг, литературный портрет.", image: "/logo.PNG", link: "#" }
+            { year: "1938", title: "Библиотека им. Горького", desc: "При школе № 2 открыта библиотека — предшественница нашей «Парголовской».", image: "/s_ylici.jpg", link: "about.html" },
+            { year: "1941–1944", title: "Блокада", desc: "Через посёлок проходил рубеж обороны Ленинграда.", image: "/logo.PNG", link: "#" },
+            { year: "2002", title: "Переезд на Торфяную", desc: "Библиотека размещается в здании школы № 475.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
+            { year: "2016", title: "Название «Парголовская»", desc: "В рамках проекта «Имя библиотеки» учреждению присвоено топонимическое название.", image: "/logo.PNG", link: "about.html" },
+            { year: "2025", title: "Возвращение на Торфяную", desc: "Библиотека «Парголовская» вновь обосновывается в этих стенах.", image: "/s_ylici.jpg", link: "torfyanaya.html" },
+            { year: "2026", title: "Новые сервисы", desc: "Запущены лента времени, примерочная книг, литературный портрет.", image: "/logo.PNG", link: "#" }
         ];
 
         function renderTimeline() {
