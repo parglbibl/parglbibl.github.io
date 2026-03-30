@@ -3,107 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#b5838d">
-<link rel="manifest" href="/manifest.json">
     <title>Храмы Верхнего Парголово — Парголовская библиотека</title>
     <meta name="description" content="Церкви и часовни Верхнего Парголово: история, архитектура, святыни.">
-    
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    
     <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
     <style>
-        .info-block {
-            transition: transform 0.4s, box-shadow 0.4s;
-            background: #fff;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-        .info-block:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-
+        .info-block { transition: transform 0.4s, box-shadow 0.4s; background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+        .info-block:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
         .section { padding: 4rem 0; }
-        .back-link {
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-        .back-link a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid #e5989b;
-            color: #e5989b;
-            padding: 6px 18px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .back-link a:hover {
-            background-color: #e5989b;
-            color: white;
-        }
-
-        .church-card {
-            background: #f9f9f9;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            border-left: 4px solid #e5989b;
-        }
-        .church-card h3 {
-            color: #b5838d;
-            margin-bottom: 0.5rem;
-            font-size: 1.4rem;
-        }
-        .church-card p {
-            margin-bottom: 0.8rem;
-        }
-        .share-block {
-            margin: 2rem 0;
-            text-align: center;
-        }
-        .share-btn {
-            display: inline-block;
-            background-color: #e5989b;
-            color: #fff;
-            padding: 0.4rem 0.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.8rem;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-        }
-        .share-btn:hover {
-            background-color: #d68b8e;
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .share-btn i {
-            margin-right: 4px;
-        }
+        .back-link { margin-bottom: 2rem; text-align: left; }
+        .back-link a { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .back-link a:hover { background-color: #e5989b; color: white; }
+        .church-card { background: #f9f9f9; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; border-left: 4px solid #e5989b; }
+        .church-card h3 { color: #b5838d; margin-bottom: 0.5rem; font-size: 1.4rem; }
+        .church-card p { margin-bottom: 0.8rem; }
+        .share-block { margin: 2rem 0; text-align: center; }
+        .share-btn { display: inline-block; background-color: #e5989b; color: #fff; padding: 0.4rem 0.8rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.8rem; border: none; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s; }
+        .share-btn:hover { background-color: #d68b8e; transform: scale(1.05); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .share-btn i { margin-right: 4px; }
     </style>
 </head>
 <body class="page-transition">
-    <!-- Якорь #top удалён -->
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">
-                <img src="logo.PNG" alt="Парголовская библиотека" loading="lazy">
-            </a>
+            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека" loading="lazy"></a>
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
@@ -117,11 +46,14 @@
                     <li data-mobile="main"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
                     <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
                     <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
-
                     <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
                     <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
                     <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
                     <li data-mobile="more"><a href="literary-calendar.html"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="bookmatcher.html"><i class="fas fa-magic"></i> Примерочная книг</a></li>
+                    <li data-mobile="more"><a href="timeline.html"><i class="fas fa-stream"></i> История Парголово</a></li>
+                    <li data-mobile="more"><a href="book-recommendations.html"><i class="fas fa-star"></i> Что почитать по интересу</a></li>
+                    <li data-mobile="more"><a href="book-kitchen.html"><i class="fas fa-utensils"></i> Книжная кухня</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -141,132 +73,40 @@
 
     <section class="section">
         <div class="container">
-            <div class="breadcrumbs">
-                <a href="index.html">Главная</a> &raquo;
-                <a href="kraevedenie.html">Краеведение</a> &raquo;
-                <a href="verkhnee-pargolovo.html">Верхнее Парголово</a> &raquo;
-                <span>Храмы Верхнего Парголово</span>
-            </div>
-
-            <div class="back-link fade-in">
-                <a href="verkhnee-pargolovo.html"><i class="fas fa-arrow-left"></i> Назад к Верхнему Парголово</a>
-            </div>
-
+            <div class="breadcrumbs"><a href="index.html">Главная</a> &raquo; <a href="kraevedenie.html">Краеведение</a> &raquo; <a href="verkhnee-pargolovo.html">Верхнее Парголово</a> &raquo; <span>Храмы Верхнего Парголово</span></div>
+            <div class="back-link fade-in"><a href="verkhnee-pargolovo.html"><i class="fas fa-arrow-left"></i> Назад к Верхнему Парголово</a></div>
             <h1 class="section-title">Храмы Верхнего Парголово</h1>
+            <div class="info-block fade-in"><p>Верхнее Парголово (историческое Шувалово) всегда было местом, где духовная жизнь играла важную роль. Главной святыней этой части посёлка является церковь Петра и Павла в Шуваловском парке.</p></div>
 
-            <div class="info-block fade-in">
-                <p>Верхнее Парголово (историческое Шувалово) всегда было местом, где духовная жизнь играла важную роль. Главной святыней этой части посёлка является церковь Петра и Павла в Шуваловском парке.</p>
-            </div>
+            <div class="church-card fade-in"><h3>Церковь Петра и Павла (неоготическая)</h3><p><strong>Архитектор:</strong> А. П. Брюллов (брат знаменитого художника Карла Брюллова).</p><p><strong>Годы строительства:</strong> 1831–1840.</p><p><strong>Освящение:</strong> 27 июня (9 июля) 1846 года.</p><p><strong>История:</strong> Храм был возведён по заказу графини Варвары Петровны Шуваловой в память о её втором муже — французском графе Адольфе Полье, который скончался в 1830 году. Изначально был построен склеп для его праха, а затем над ним возвели церковь. Здание выполнено в стиле неоготики, что было необычно для православной архитектуры того времени.</p><p><strong>Венчание Римского-Корсакова:</strong> 30 июня (12 июля) 1872 года в этой церкви венчался композитор Николай Андреевич Римский-Корсаков с пианисткой Надеждой Николаевной Пургольд. Шафером (свидетелем) на свадьбе был Модест Петрович Мусоргский.</p><p><strong>Советский период:</strong> Храм был закрыт в 1935 году. В здании размещались клуб, затем лаборатория НИИ токов высокой частоты. В 1991 году возвращён Русской Православной Церкви. Реставрация завершилась в 2008 году восстановлением шпиля.</p><p><strong>Святыни:</strong> В храме находятся частицы мощей апостолов Петра и Павла, частица мощей святителя Николая Чудотворца, икона преподобного Серафима Саровского, освящённая в день его прославления в 1903 году.</p><p><strong>Адрес:</strong> Шуваловский парк, дом 41.</p></div>
 
-            <div class="church-card fade-in">
-                <h3>Церковь Петра и Павла (неоготическая)</h3>
-                <p><strong>Архитектор:</strong> А. П. Брюллов (брат знаменитого художника Карла Брюллова).</p>
-                <p><strong>Годы строительства:</strong> 1831–1840.</p>
-                <p><strong>Освящение:</strong> 27 июня (9 июля) 1846 года.</p>
-                <p><strong>История:</strong> Храм был возведён по заказу графини Варвары Петровны Шуваловой в память о её втором муже — французском графе Адольфе Полье, который скончался в 1830 году. Изначально был построен склеп для его праха, а затем над ним возвели церковь. Здание выполнено в стиле неоготики, что было необычно для православной архитектуры того времени.</p>
-                <p><strong>Венчание Римского-Корсакова:</strong> 30 июня (12 июля) 1872 года в этой церкви венчался композитор Николай Андреевич Римский-Корсаков с пианисткой Надеждой Николаевной Пургольд. Шафером (свидетелем) на свадьбе был Модест Петрович Мусоргский.</p>
-                <p><strong>Советский период:</strong> Храм был закрыт в 1935 году. В здании размещались клуб, затем лаборатория НИИ токов высокой частоты. В 1991 году возвращён Русской Православной Церкви. Реставрация завершилась в 2008 году восстановлением шпиля.</p>
-                <p><strong>Святыни:</strong> В храме находятся частицы мощей апостолов Петра и Павла, частица мощей святителя Николая Чудотворца, икона преподобного Серафима Саровского, освящённая в день его прославления в 1903 году.</p>
-                <p><strong>Адрес:</strong> Шуваловский парк, дом 41.</p>
-            </div>
+            <div class="church-card fade-in"><h3>Склеп Адольфа Полье</h3><p>Расположен рядом с церковью Петра и Павла. Построен архитектором А. П. Брюлловым в 1831 году для захоронения праха графа Адольфа Полье. Склеп выполнен в готическом стиле со стрельчатой чугунной аркой перед входом.</p></div>
 
-            <div class="church-card fade-in">
-                <h3>Склеп Адольфа Полье</h3>
-                <p>Расположен рядом с церковью Петра и Павла. Построен архитектором А. П. Брюлловым в 1831 году для захоронения праха графа Адольфа Полье. Склеп выполнен в готическом стиле со стрельчатой чугунной аркой перед входом.</p>
-            </div>
+            <div class="church-card fade-in"><h3>Часовня Александра Невского (утрачена)</h3><p>Находилась при въезде в усадьбу. Была построена в честь императора Александра I, посещавшего эти места. В настоящее время на её фундаменте установлен памятный крест.</p></div>
 
-            <div class="church-card fade-in">
-                <h3>Часовня Александра Невского (утрачена)</h3>
-                <p>Находилась при въезде в усадьбу. Была построена в честь императора Александра I, посещавшего эти места. В настоящее время на её фундаменте установлен памятный крест.</p>
-            </div>
+            <div class="info-block fade-in"><h2 style="color: #b5838d;">Как добраться</h2><p>Церковь Петра и Павла находится на территории Шуваловского парка, вход свободный.</p><p><strong>От станции метро «Озерки»:</strong> трамвай № 58 до остановки «Универсам Перекрёсток»; автобус № 109, маршрутки № 259 и № 673 до остановки «Шуваловский парк».</p><p><strong>От станции метро «Проспект Просвещения»:</strong> автобусы № 104, № 167 до остановки «Шуваловский парк».</p></div>
 
-            <div class="info-block fade-in">
-                <h2 style="color: #b5838d;">Как добраться</h2>
-                <p>Церковь Петра и Павла находится на территории Шуваловского парка, вход свободный.</p>
-                <p><strong>От станции метро «Озерки»:</strong> трамвай № 58 до остановки «Универсам Перекрёсток»; автобус № 109, маршрутки № 259 и № 673 до остановки «Шуваловский парк».</p>
-                <p><strong>От станции метро «Проспект Просвещения»:</strong> автобусы № 104, № 167 до остановки «Шуваловский парк».</p>
-            </div>
+            <div class="info-block fade-in"><h2 style="color: #b5838d;">Примечание</h2><p>В Нижнем Парголово также есть уникальная деревянная церковь Спаса Нерукотворного Образа (1792 г., арх. Луиджи Руска). Она будет представлена в соответствующем разделе.</p></div>
 
-            <div class="info-block fade-in">
-                <h2 style="color: #b5838d;">Примечание</h2>
-                <p>В Нижнем Парголово также есть уникальная деревянная церковь Спаса Нерукотворного Образа (1792 г., арх. Луиджи Руска). Она будет представлена в соответствующем разделе.</p>
-            </div>
-
-            <div class="share-block">
-                <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html&title=Храмы%20Верхнего%20Парголово&description=Церковь%20Петра%20и%20Павла%20(неоготическая)%2C%20склеп%20Адольфа%20Полье%2C%20часовня%20Александра%20Невского.%20История%2C%20архитектура%2C%20святыни.&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="share-btn">
-                    <i class="fab fa-vk"></i> Поделиться страницей
-                </a>
-            </div>
+            <div class="share-block"><a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html&title=Храмы%20Верхнего%20Парголово&description=Церковь%20Петра%20и%20Павла%20(неоготическая)%2C%20склеп%20Адольфа%20Полье%2C%20часовня%20Александра%20Невского.%20История%2C%20архитектура%2C%20святыни.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn"><i class="fab fa-vk"></i> Поделиться страницей</a></div>
         </div>
     </section>
 
     <footer class="footer-content">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>Парголовская библиотека</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
-                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
-                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
-                </div>
-                <div class="footer-col footer-accordion">
-                    <h3 class="accordion-header">Карта сайта</h3>
-                    <div class="accordion-content">
-                        <p><a href="index.html">Главная</a></p>
-                        <p><a href="about.html">О нас</a></p>
-                        <p><a href="kraevedenie.html">Краеведение</a></p>
-                        <p><a href="newbooks.html">Новинки</a></p>
-                        <p><a href="services.html">Услуги</a></p>
-                        <p><a href="events.html">События</a></p>
-                        <p><a href="speedcubing.html">Спидкубинг</a></p>
-                        <p><a href="district-libraries.html">Библиотеки района</a></p>
-                        <p><a href="partners.html">Партнёры</a></p>
-                        <p><a href="faq.html">Вопросы</a></p>
-                        <p><a href="gallery.html">Фотогалерея</a></p>
-                        <p><a href="digital-resources.html">Электронные ресурсы</a></p>
-                        <p><a href="literary-calendar.html">Литературный календарь</a></p>
-                        <p><a href="contacts.html">Контакты</a></p>
-                        <p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p>
-                        <p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p>
-                        <p><a href="torfyanaya.html">Улица Торфяная</a></p>
-                        <p><a href="pargolovo-culture.html">Парголово в культуре</a></p>
-                        <p><a href="shuvalovsky-park.html">Шуваловский парк</a></p>
-                        <p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p>
-                        <p><a href="konkurs.html">Конкурс «История одной улицы»</a></p>
-                        <p><a href="privacy.html">Политика конфиденциальности</a></p>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Мы в соцсетях</h3>
-                    <div class="footer-social">
-                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
-                    </div>
-                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
-                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
-                </div>
+                <div class="footer-col"><h3>Парголовская библиотека</h3><p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p><p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p><p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p></div>
+                <div class="footer-col footer-accordion"><h3 class="accordion-header">Карта сайта <i class="fas fa-chevron-down"></i></h3><div class="accordion-content"><p><a href="index.html">Главная</a></p><p><a href="about.html">О нас</a></p><p><a href="kraevedenie.html">Краеведение</a></p><p><a href="newbooks.html">Новинки</a></p><p><a href="services.html">Услуги</a></p><p><a href="events.html">События</a></p><p><a href="speedcubing.html">Спидкубинг</a></p><p><a href="district-libraries.html">Библиотеки района</a></p><p><a href="partners.html">Партнёры</a></p><p><a href="faq.html">Вопросы</a></p><p><a href="gallery.html">Фотогалерея</a></p><p><a href="digital-resources.html">Электронные ресурсы</a></p><p><a href="literary-calendar.html">Литературный календарь</a></p><p><a href="contacts.html">Контакты</a></p><p><a href="nizhnee-pargolovo.html">Нижнее Парголово</a></p><p><a href="verkhnee-pargolovo.html">Верхнее Парголово</a></p><p><a href="torfyanaya.html">Улица Торфяная</a></p><p><a href="pargolovo-culture.html">Парголово в культуре</a></p><p><a href="shuvalovsky-park.html">Шуваловский парк</a></p><p><a href="khramy-verkhnee-pargolovo.html">Храмы Верхнего Парголово</a></p><p><a href="konkurs.html">Конкурс «История одной улицы»</a></p><p><a href="privacy.html">Политика конфиденциальности</a></p></div></div>
+                <div class="footer-col"><h3>Мы в соцсетях</h3><div class="footer-social"><a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a></div><p style="margin-top:1.5rem;">Подпишитесь на новости!</p><p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p></div>
             </div>
-            <div class="footer-bottom">
-                <div class="footer-actions">
-                    <div class="share-buttons">
-                        <a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html" target="_blank"><i class="fab fa-vk"></i></a>
-                    </div>
-                    <div class="print-button">
-                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
-                    </div>
-                </div>
-                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
-            </div>
+            <div class="footer-bottom"><div class="footer-actions"><div class="share-buttons"><a href="https://vk.com/share.php?url=https://parglbibl.ru/khramy-verkhnee-pargolovo.html" target="_blank"><i class="fab fa-vk"></i></a></div><div class="print-button"><a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a></div></div><p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p></div>
         </div>
     </footer>
 
-    <!-- Кнопка "наверх" полностью удалена (была <a href="#" class="back-to-top" id="backToTop"><i class="fas fa-chevron-up"></i></a>) -->
-
-    <div id="cookie-banner" style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #333; color: #fff; padding: 15px; text-align: center; z-index: 9999; display: none; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);">
-        <p style="margin: 0; display: inline-block; margin-right: 20px;">Мы используем файлы cookie. <a href="privacy.html" style="color:#e5989b;">Подробнее</a>.</p>
-        <button id="cookie-accept" style="background-color:#e5989b; color:#fff; border:none; padding:8px 20px; border-radius:50px; margin-right:10px;">Принять</button>
-        <button id="cookie-decline" style="background-color:#666; color:#fff; border:none; padding:8px 20px; border-radius:50px;">Отклонить</button>
-    </div>
+    <div id="cookie-banner" style="display: none;"><p>🍪 Мы используем файлы cookie. <a href="privacy.html">Подробнее</a>.</p><div class="cookie-buttons"><button id="cookie-accept" class="cookie-btn cookie-accept">Принять</button><button id="cookie-decline" class="cookie-btn cookie-decline">Отклонить</button></div></div>
+    <div id="scrollUp" title="Наверх">↑</div>
 
     <script src="common.js"></script>
+    <script src="notes.js"></script>
 </body>
 </html>
