@@ -47,22 +47,28 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Аккордеон в подвале (Карта сайта) ---
-    const footerAccordionHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
-    footerAccordionHeaders.forEach(header => {
-        const parent = header.closest('.footer-accordion');
-        if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
-            parent.classList.add('open');
-        }
-        header.addEventListener('click', function(e) {
-            e.preventDefault();
-            const accordion = this.closest('.footer-accordion');
-            if (accordion) {
-                accordion.classList.toggle('open');
-                localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
+    // --- Аккордеон в подвале (Карта сайта) – ИНИЦИАЛИЗАЦИЯ ЯВНАЯ ---
+    function initFooterAccordion() {
+        const footerHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
+        footerHeaders.forEach(header => {
+            // Удаляем старые обработчики, чтобы не дублировать
+            const newHeader = header.cloneNode(true);
+            header.parentNode.replaceChild(newHeader, header);
+            
+            const parent = newHeader.closest('.footer-accordion');
+            if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
+                parent.classList.add('open');
             }
+            newHeader.addEventListener('click', function(e) {
+                e.preventDefault();
+                const accordion = this.closest('.footer-accordion');
+                if (accordion) {
+                    accordion.classList.toggle('open');
+                    localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
+                }
+            });
         });
-    });
+    }
 
     // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
     const menuToggle = document.getElementById('menuToggle');
@@ -242,6 +248,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.remove('active');
             }
         }
+        // После перестроения меню – переинициализируем подвал
+        initFooterAccordion();
     }
 
     handleResize();
@@ -257,8 +265,13 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 nav.classList.toggle('active');
             }
+            // После открытия/закрытия меню – переинициализируем подвал
+            initFooterAccordion();
         });
     }
 
     initDesktopMenu();
+    
+    // Первоначальная инициализация подвала
+    initFooterAccordion();
 });
