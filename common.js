@@ -47,29 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Аккордеон в подвале (Карта сайта) ---
-    function initFooterAccordion() {
-        const footerHeaders = document.querySelectorAll('.footer-accordion .accordion-header');
-        footerHeaders.forEach(header => {
-            // Удаляем старый обработчик, чтобы не дублировать
-            const newHeader = header.cloneNode(true);
-            header.parentNode.replaceChild(newHeader, header);
-            
-            const parent = newHeader.closest('.footer-accordion');
-            if (parent && localStorage.getItem('footerAccordionOpen') === 'true') {
-                parent.classList.add('open');
-            }
-            newHeader.addEventListener('click', function(e) {
-                e.preventDefault();
-                const accordion = this.closest('.footer-accordion');
-                if (accordion) {
-                    accordion.classList.toggle('open');
-                    localStorage.setItem('footerAccordionOpen', accordion.classList.contains('open'));
-                }
-            });
-        });
-    }
-
     // --- Мобильное меню (аккордеон) и десктопное "Ещё" ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
@@ -248,8 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 nav.classList.remove('active');
             }
         }
-        // После изменения размера переинициализируем подвал
-        initFooterAccordion();
     }
 
     handleResize();
@@ -265,13 +240,8 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 nav.classList.toggle('active');
             }
-            // После клика по гамбургеру переинициализируем подвал
-            setTimeout(initFooterAccordion, 50);
         });
     }
 
     initDesktopMenu();
-    
-    // Инициализируем подвал при загрузке
-    initFooterAccordion();
 });
