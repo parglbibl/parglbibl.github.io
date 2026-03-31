@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: 'События и проекты',
-            icon: 'fas fa-calendar-star',
+            icon: 'fas fa-book-open', // открытая книга - символ библиотечных событий
             items: [
                 { name: 'События', href: 'events.html', icon: 'fas fa-calendar-alt' },
                 { name: 'Фотогалерея', href: 'gallery.html', icon: 'fas fa-images' },
