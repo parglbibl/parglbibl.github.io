@@ -88,7 +88,7 @@ header {
     width: 100%;
 }
 
-/* ========== ДЕСКТОПНОЕ МЕНЮ (горизонтальное с аккордеоном) ========== */
+/* ========== ДЕСКТОПНОЕ МЕНЮ (горизонтальное с раскрытием по ховеру) ========== */
 @media (min-width: 769px) {
     .desktop-horizontal-menu {
         display: flex;
@@ -113,11 +113,16 @@ header {
         transition: color 0.3s;
         white-space: nowrap;
     }
-    .desktop-category-header i {
+    .desktop-category-header i:first-child {
+        margin-right: 5px;
+        width: 20px;
+        text-align: center;
+    }
+    .desktop-category-header i:last-child {
         font-size: 0.8rem;
         transition: transform 0.3s;
     }
-    .desktop-category.open .desktop-category-header i {
+    .desktop-category.open .desktop-category-header i:last-child {
         transform: rotate(180deg);
     }
     .desktop-category-header:hover,
@@ -200,10 +205,15 @@ header {
         align-items: center;
         color: #fff;
     }
-    .accordion-header i {
+    .accordion-header i:first-child {
+        margin-right: 10px;
+        width: 24px;
+        text-align: center;
+    }
+    .accordion-header i:last-child {
         transition: transform 0.3s;
     }
-    .accordion-category.open .accordion-header i {
+    .accordion-category.open .accordion-header i:last-child {
         transform: rotate(180deg);
     }
     .accordion-content {
