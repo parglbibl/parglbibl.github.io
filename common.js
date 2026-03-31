@@ -252,11 +252,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== Универсальная кнопка "наверх" =====
+    // ===== Универсальная плавающая кнопка "наверх" =====
     function createScrollUpButton() {
-        // Удаляем все существующие элементы с id="scrollUp", чтобы избежать дублирования и неработающих старых кнопок
-        const existingBtns = document.querySelectorAll('#scrollUp');
-        existingBtns.forEach(btn => btn.remove());
+        // Удаляем все старые кнопки (в том числе из подвала)
+        document.querySelectorAll('#scrollUp').forEach(btn => btn.remove());
 
         const btn = document.createElement('div');
         btn.id = 'scrollUp';
@@ -265,19 +264,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(btn);
 
         function toggleButton() {
-            if (window.pageYOffset > 100) {
-                btn.style.display = 'block';
-            } else {
-                btn.style.display = 'none';
-            }
+            btn.style.display = window.pageYOffset > 100 ? 'block' : 'none';
         }
 
         window.addEventListener('scroll', toggleButton);
-        btn.addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Проверяем начальное состояние
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
         toggleButton();
     }
 
