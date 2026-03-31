@@ -138,14 +138,22 @@ document.addEventListener('DOMContentLoaded', function() {
         categories.forEach(category => {
             // При наведении на категорию
             category.addEventListener('mouseenter', function(e) {
+                // Отменяем таймер закрытия, если был
                 if (closeTimeout) clearTimeout(closeTimeout);
+                
+                // Закрываем все другие открытые категории
                 categories.forEach(cat => {
-                    if (cat !== this) cat.classList.remove('open');
+                    if (cat !== this) {
+                        cat.classList.remove('open');
+                    }
                 });
+                // Открываем текущую
                 this.classList.add('open');
             });
             
+            // При уходе мыши с категории
             category.addEventListener('mouseleave', function(e) {
+                // Устанавливаем таймер на закрытие (300мс)
                 closeTimeout = setTimeout(() => {
                     this.classList.remove('open');
                 }, 300);
@@ -179,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const parent = this.closest('.accordion-category');
                 parent.classList.toggle('open');
-                const icon = this.querySelectorAll('i')[1];
+                const icon = this.querySelectorAll('i')[1]; // берем вторую иконку (стрелку)
                 if (parent.classList.contains('open')) {
                     icon.style.transform = 'rotate(180deg)';
                 } else {
@@ -246,9 +254,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== КНОПКА "НАВЕРХ" =====
     function initBackToTop() {
-        // Удаляем все старые кнопки из подвала
-        const oldBtns = document.querySelectorAll('#scrollUp, .back-to-top, #backToTop');
-        oldBtns.forEach(btn => btn.remove());
+        // Удаляем или скрываем все старые статические кнопки в подвале
+        const oldBtns = document.querySelectorAll('#scrollUp, .back-to-top, #backToTop, .back-to-top');
+        oldBtns.forEach(btn => {
+            btn.remove(); // полностью удаляем старые кнопки
+        });
         
         // Создаём новую плавающую кнопку
         const backBtn = document.createElement('a');
@@ -257,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
         backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
         document.body.appendChild(backBtn);
         
-        // Показываем/скрываем при прокрутке
+        // Обработчик прокрутки
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 100) {
                 backBtn.classList.add('show');
@@ -266,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Плавная прокрутка наверх
+        // Обработчик клика
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
