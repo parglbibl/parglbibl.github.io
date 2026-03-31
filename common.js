@@ -136,15 +136,24 @@ document.addEventListener('DOMContentLoaded', function() {
         let closeTimeout;
         
         categories.forEach(category => {
+            // При наведении на категорию
             category.addEventListener('mouseenter', function(e) {
+                // Отменяем таймер закрытия, если был
                 if (closeTimeout) clearTimeout(closeTimeout);
+                
+                // Закрываем все другие открытые категории
                 categories.forEach(cat => {
-                    if (cat !== this) cat.classList.remove('open');
+                    if (cat !== this) {
+                        cat.classList.remove('open');
+                    }
                 });
+                // Открываем текущую
                 this.classList.add('open');
             });
             
+            // При уходе мыши с категории
             category.addEventListener('mouseleave', function(e) {
+                // Устанавливаем таймер на закрытие (300мс)
                 closeTimeout = setTimeout(() => {
                     this.classList.remove('open');
                 }, 300);
@@ -178,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const parent = this.closest('.accordion-category');
                 parent.classList.toggle('open');
-                const icon = this.querySelectorAll('i')[1];
+                const icon = this.querySelectorAll('i')[1]; // берем вторую иконку (стрелку)
                 if (parent.classList.contains('open')) {
                     icon.style.transform = 'rotate(180deg)';
                 } else {
@@ -243,45 +252,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== КНОПКА "НАВЕРХ" =====
-    // Ждём 100мс, чтобы убедиться, что DOM полностью загружен
-    setTimeout(function() {
-        // Удаляем все старые кнопки
-        const oldBtns = document.querySelectorAll('#scrollUp, .back-to-top, #backToTop');
-        oldBtns.forEach(function(btn) {
-            if (btn && btn.parentNode) {
-                btn.parentNode.removeChild(btn);
+    // ===== Кнопка "наверх" =====
+    function initBackToTop() {
+        // Проверяем, есть ли уже кнопка с классом .back-to-top
+        let backBtn = document.querySelector('.back-to-top');
+        
+        // Если кнопки нет, создаём её
+        if (!backBtn) {
+            backBtn = document.createElement('a');
+            backBtn.href = '#';
+            backBtn.className = 'back-to-top';
+            backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            document.body.appendChild(backBtn);
+        }
+        
+        // Обработчик прокрутки
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
             }
         });
         
-        // Создаём новую кнопку
-        var backBtn = document.createElement('a');
-        backBtn.setAttribute('href', '#');
-        backBtn.setAttribute('class', 'back-to-top');
-        backBtn.setAttribute('id', 'custom-back-to-top');
-        backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-        backBtn.style.cssText = 'position:fixed;bottom:20px;right:20px;background:#e5989b;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:24px;opacity:0;visibility:hidden;transition:all 0.3s ease;z-index:99999;box-shadow:0 2px 10px rgba(0,0,0,0.2);cursor:pointer;border:none;';
-        document.body.appendChild(backBtn);
-        
-        // Функция показа/скрытия
-        function toggleButton() {
-            if (window.pageYOffset > 100) {
-                backBtn.style.opacity = '1';
-                backBtn.style.visibility = 'visible';
-            } else {
-                backBtn.style.opacity = '0';
-                backBtn.style.visibility = 'hidden';
-            }
-        }
-        
-        // Обработчики
-        window.addEventListener('scroll', toggleButton);
+        // Обработчик клика
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-        
-        // Проверяем сразу
-        toggleButton();
-    }, 100);
+    }
+    
+    initBackToTop();
 });
