@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuCategories = [
         {
             title: 'Библиотека',
+            icon: 'fas fa-landmark',
             items: [
                 { name: 'Главная', href: 'index.html', icon: 'fas fa-home' },
                 { name: 'О нас', href: 'about.html', icon: 'fas fa-users' },
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: 'Читателям',
+            icon: 'fas fa-book-reader',
             items: [
                 { name: 'Новинки', href: 'newbooks.html', icon: 'fas fa-book-open' },
                 { name: 'Электронные ресурсы', href: 'digital-resources.html', icon: 'fas fa-laptop' },
@@ -76,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: 'События и проекты',
+            icon: 'fas fa-calendar-star',
             items: [
                 { name: 'События', href: 'events.html', icon: 'fas fa-calendar-alt' },
                 { name: 'Фотогалерея', href: 'gallery.html', icon: 'fas fa-images' },
@@ -87,6 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: 'Краеведение',
+            icon: 'fas fa-map-marked-alt',
             items: [
                 { name: 'Краеведение', href: 'kraevedenie.html', icon: 'fas fa-map-signs' },
                 { name: 'История Парголово', href: 'timeline.html', icon: 'fas fa-stream' },
@@ -97,6 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: 'Информация',
+            icon: 'fas fa-info-circle',
             items: [
                 { name: 'Вопросы (FAQ)', href: 'faq.html', icon: 'fas fa-question-circle' },
                 { name: 'Библиотеки района', href: 'district-libraries.html', icon: 'fas fa-building' },
@@ -113,7 +118,9 @@ document.addEventListener('DOMContentLoaded', function() {
         menuCategories.forEach(cat => {
             let isCategoryActive = cat.items.some(item => item.href === currentPath);
             html += `<li class="desktop-category">
-                        <div class="desktop-category-header ${isCategoryActive ? 'active' : ''}">${cat.title} <i class="fas fa-chevron-down"></i></div>
+                        <div class="desktop-category-header ${isCategoryActive ? 'active' : ''}">
+                            <i class="${cat.icon}"></i> ${cat.title} <i class="fas fa-chevron-down"></i>
+                        </div>
                         <ul class="desktop-category-content">`;
             cat.items.forEach(item => {
                 const isActive = (item.href === currentPath);
@@ -161,7 +168,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let html = '<ul class="mobile-accordion">';
         menuCategories.forEach(cat => {
             html += `<li class="accordion-category">
-                        <div class="accordion-header">${cat.title} <i class="fas fa-chevron-down"></i></div>
+                        <div class="accordion-header">
+                            <i class="${cat.icon}"></i> ${cat.title} <i class="fas fa-chevron-down"></i>
+                        </div>
                         <ul class="accordion-content">`;
             cat.items.forEach(item => {
                 const isActive = (item.href === currentPath);
@@ -178,7 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const parent = this.closest('.accordion-category');
                 parent.classList.toggle('open');
-                const icon = this.querySelector('i');
+                const icon = this.querySelectorAll('i')[1]; // берем вторую иконку (стрелку)
                 if (parent.classList.contains('open')) {
                     icon.style.transform = 'rotate(180deg)';
                 } else {
