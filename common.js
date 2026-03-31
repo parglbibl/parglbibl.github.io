@@ -254,21 +254,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== КНОПКА "НАВЕРХ" =====
     function initBackToTop() {
-        // Проверяем, есть ли уже кнопка с классом .back-to-top
-        let backBtn = document.querySelector('.back-to-top');
+        // Удаляем или скрываем все старые статические кнопки в подвале
+        const oldBtns = document.querySelectorAll('#scrollUp, .back-to-top, #backToTop, .back-to-top');
+        oldBtns.forEach(btn => {
+            btn.remove(); // полностью удаляем старые кнопки
+        });
         
-        // Если кнопки нет, создаём её
-        if (!backBtn) {
-            backBtn = document.createElement('a');
-            backBtn.href = '#';
-            backBtn.className = 'back-to-top';
-            backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-            document.body.appendChild(backBtn);
-        }
-        
-        // Удаляем все старые кнопки с id="scrollUp", если они есть
-        const oldScrollBtns = document.querySelectorAll('#scrollUp');
-        oldScrollBtns.forEach(btn => btn.remove());
+        // Создаём новую плавающую кнопку
+        const backBtn = document.createElement('a');
+        backBtn.href = '#';
+        backBtn.className = 'back-to-top';
+        backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+        document.body.appendChild(backBtn);
         
         // Обработчик прокрутки
         window.addEventListener('scroll', function() {
