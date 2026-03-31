@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- Меню: десктоп – горизонтальное с аккордеоном, мобильные – вертикальный аккордеон ---
+    // --- Меню: десктоп – горизонтальное с раскрытием по ховеру, мобильные – вертикальный аккордеон ---
     const menuToggle = document.getElementById('menuToggle');
     const nav = document.getElementById('nav');
 
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Функция для построения десктопного меню (горизонтальные категории, по клику раскрывается блок)
+    // Функция для построения десктопного меню (горизонтальные категории, раскрытие по ховеру)
     function buildDesktopMenu() {
         if (!nav) return;
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
@@ -124,17 +124,32 @@ document.addEventListener('DOMContentLoaded', function() {
         html += `</ul>`;
         nav.innerHTML = html;
 
-        // Обработчики для заголовков категорий (аккордеон по клику)
-        const headers = nav.querySelectorAll('.desktop-category-header');
-        headers.forEach(header => {
-            header.addEventListener('click', function(e) {
-                e.preventDefault();
-                const parent = this.closest('.desktop-category');
+        // --- ЛОГИКА РАСКРЫТИЯ ПО ХОВЕРУ С ЗАДЕРЖКОЙ ---
+        const categories = nav.querySelectorAll('.desktop-category');
+        let closeTimeout;
+        
+        categories.forEach(category => {
+            // При наведении на категорию
+            category.addEventListener('mouseenter', function(e) {
+                // Отменяем таймер закрытия, если был
+                if (closeTimeout) clearTimeout(closeTimeout);
+                
                 // Закрываем все другие открытые категории
-                document.querySelectorAll('.desktop-category.open').forEach(cat => {
-                    if (cat !== parent) cat.classList.remove('open');
+                categories.forEach(cat => {
+                    if (cat !== this) {
+                        cat.classList.remove('open');
+                    }
                 });
-                parent.classList.toggle('open');
+                // Открываем текущую
+                this.classList.add('open');
+            });
+            
+            // При уходе мыши с категории
+            category.addEventListener('mouseleave', function(e) {
+                // Устанавливаем таймер на закрытие (300мс)
+                closeTimeout = setTimeout(() => {
+                    this.classList.remove('open');
+                }, 300);
             });
         });
     }
