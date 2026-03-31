@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             title: 'События и проекты',
-            icon: 'fas fa-book-open', // открытая книга - символ библиотечных событий
+            icon: 'fas fa-book-open',
             items: [
                 { name: 'События', href: 'events.html', icon: 'fas fa-calendar-alt' },
                 { name: 'Фотогалерея', href: 'gallery.html', icon: 'fas fa-images' },
@@ -252,9 +252,18 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Кнопка наверх
-    const btn = document.getElementById('scrollUp');
-    if (btn) {
+    // ===== Универсальная кнопка "наверх" =====
+    function createScrollUpButton() {
+        // Проверяем, существует ли уже кнопка
+        if (document.getElementById('scrollUp')) return;
+
+        const btn = document.createElement('div');
+        btn.id = 'scrollUp';
+        btn.title = 'Наверх';
+        btn.innerHTML = '↑';
+        document.body.appendChild(btn);
+
+        // Обработчики
         window.addEventListener('scroll', function() {
             if (window.pageYOffset > 100) {
                 btn.style.display = 'block';
@@ -266,4 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+
+    createScrollUpButton();
 });
