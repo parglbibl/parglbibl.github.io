@@ -731,19 +731,6 @@
             document.getElementById('vk_groups').innerHTML = '<p style="text-align:center;padding:2rem;">Виджет ВКонтакте недоступен в офлайн-режиме.</p>';
         }
     </script>
-    <a href="#" id="simpleToTop" style="position:fixed;bottom:20px;right:20px;background:#e5989b;color:#fff;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:24px;opacity:0;transition:0.3s;z-index:999999;border:none;">↑</a>
-
-<script>
-(function() {
-    var btn = document.getElementById('simpleToTop');
-    window.addEventListener('scroll', function() {
-        btn.style.opacity = window.pageYOffset > 100 ? '1' : '0';
-    });
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})();
 </script>
 </body>
 </html>
