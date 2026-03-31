@@ -252,33 +252,39 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== Универсальная плавающая кнопка "наверх" =====
-    // Сначала удаляем все существующие кнопки с id="scrollUp" (включая те, что были в подвале)
-    const oldButtons = document.querySelectorAll('#scrollUp');
-    oldButtons.forEach(btn => btn.remove());
-
-    // Создаём новую кнопку
-    const scrollUpBtn = document.createElement('div');
-    scrollUpBtn.id = 'scrollUp';
-    scrollUpBtn.title = 'Наверх';
-    scrollUpBtn.innerHTML = '↑';
-    document.body.appendChild(scrollUpBtn);
-
-    // Функция для отображения/скрытия кнопки
-    function toggleScrollButton() {
-        if (window.pageYOffset > 100) {
-            scrollUpBtn.style.display = 'block';
-        } else {
-            scrollUpBtn.style.display = 'none';
+    // ===== КНОПКА "НАВЕРХ" =====
+    function initBackToTop() {
+        // Проверяем, есть ли уже кнопка с классом .back-to-top
+        let backBtn = document.querySelector('.back-to-top');
+        
+        // Если кнопки нет, создаём её
+        if (!backBtn) {
+            backBtn = document.createElement('a');
+            backBtn.href = '#';
+            backBtn.className = 'back-to-top';
+            backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+            document.body.appendChild(backBtn);
         }
+        
+        // Удаляем все старые кнопки с id="scrollUp", если они есть
+        const oldScrollBtns = document.querySelectorAll('#scrollUp');
+        oldScrollBtns.forEach(btn => btn.remove());
+        
+        // Обработчик прокрутки
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 100) {
+                backBtn.classList.add('show');
+            } else {
+                backBtn.classList.remove('show');
+            }
+        });
+        
+        // Обработчик клика
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
-
-    // Добавляем обработчики
-    window.addEventListener('scroll', toggleScrollButton);
-    scrollUpBtn.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // Проверяем начальное состояние
-    toggleScrollButton();
+    
+    initBackToTop();
 });
