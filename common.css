@@ -569,7 +569,6 @@ body.special-mode .footer-col a {
     z-index: 9999;
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     cursor: pointer;
-    border: none;
 }
 
 .back-to-top:hover {
