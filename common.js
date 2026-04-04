@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { name: 'Новинки', href: 'newbooks.html', icon: 'fas fa-book-open' },
                 { name: 'Электронные ресурсы', href: 'digital-resources.html', icon: 'fas fa-laptop' },
                 { name: 'Литературный календарь', href: 'literary-calendar.html', icon: 'fas fa-calendar-alt' },
+                { name: 'Календарь праздников', href: 'holidays-calendar.html', icon: 'fas fa-calendar-day' },
                 { name: 'Спидкубинг', href: 'speedcubing.html', icon: 'fas fa-puzzle-piece' }
             ]
         },
@@ -85,8 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { name: 'Примерочная книг', href: 'bookmatcher.html', icon: 'fas fa-magic' },
                 { name: 'Что почитать по интересу', href: 'book-recommendations.html', icon: 'fas fa-star' },
                 { name: 'Книжная кухня', href: 'book-kitchen.html', icon: 'fas fa-utensils' },
-                { name: 'Выставки', href: 'exhibitions.html', icon: 'fas fa-palette' },
-                { name: 'Библиотечный календарь 2026', href: 'holidays-calendar.html', icon: 'fas fa-calendar-alt' }
+                { name: 'Выставки', href: 'exhibitions.html', icon: 'fas fa-palette' }
             ]
         },
         {
@@ -139,22 +139,14 @@ document.addEventListener('DOMContentLoaded', function() {
         categories.forEach(category => {
             // При наведении на категорию
             category.addEventListener('mouseenter', function(e) {
-                // Отменяем таймер закрытия, если был
                 if (closeTimeout) clearTimeout(closeTimeout);
-                
-                // Закрываем все другие открытые категории
                 categories.forEach(cat => {
-                    if (cat !== this) {
-                        cat.classList.remove('open');
-                    }
+                    if (cat !== this) cat.classList.remove('open');
                 });
-                // Открываем текущую
                 this.classList.add('open');
             });
             
-            // При уходе мыши с категории
             category.addEventListener('mouseleave', function(e) {
-                // Устанавливаем таймер на закрытие (300мс)
                 closeTimeout = setTimeout(() => {
                     this.classList.remove('open');
                 }, 300);
@@ -188,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 const parent = this.closest('.accordion-category');
                 parent.classList.toggle('open');
-                const icon = this.querySelectorAll('i')[1]; // берем вторую иконку (стрелку)
+                const icon = this.querySelectorAll('i')[1];
                 if (parent.classList.contains('open')) {
                     icon.style.transform = 'rotate(180deg)';
                 } else {
@@ -255,18 +247,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== КНОПКА "НАВЕРХ" =====
     function initBackToTop() {
-        // Удаляем все старые кнопки
         const oldBtns = document.querySelectorAll('#scrollUp, .back-to-top, #backToTop, #toTop');
         oldBtns.forEach(btn => btn.remove());
         
-        // Создаём новую кнопку
         const backBtn = document.createElement('a');
         backBtn.href = '#';
         backBtn.className = 'back-to-top';
         backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
         document.body.appendChild(backBtn);
         
-        // Добавляем стили напрямую через JS для надёжности
         backBtn.style.position = 'fixed';
         backBtn.style.bottom = '20px';
         backBtn.style.right = '20px';
@@ -287,7 +276,6 @@ document.addEventListener('DOMContentLoaded', function() {
         backBtn.style.cursor = 'pointer';
         backBtn.style.border = 'none';
         
-        // Функция показа/скрытия
         function toggleButton() {
             if (window.pageYOffset > 100) {
                 backBtn.style.opacity = '1';
@@ -298,7 +286,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // Обработчики
         window.addEventListener('scroll', toggleButton);
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
