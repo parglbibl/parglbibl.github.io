@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { name: 'Что почитать по интересу', href: 'book-recommendations.html', icon: 'fas fa-star' },
                 { name: 'Книжная кухня', href: 'book-kitchen.html', icon: 'fas fa-utensils' },
                 { name: 'Выставки', href: 'exhibitions.html', icon: 'fas fa-palette' }
+                { name: 'Библиотечный календарь 2026', href: 'holidays-calendar.html', icon: 'fas fa-calendar-alt' }
             ]
         },
         {
