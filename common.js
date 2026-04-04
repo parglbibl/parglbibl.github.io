@@ -301,4 +301,126 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     initBackToTop();
+
+    // ===== СИСТЕМА ЛАЙКОВ (СЕРДЕЧКО) =====
+    
+    // Функция для отправки лайка в Яндекс.Метрику
+    function sendLikeToMetric(itemId, itemName, itemType, isLiked) {
+        if (typeof ym !== 'undefined') {
+            ym(107242178, 'reachGoal', 'item_like', {
+                item_id: itemId,
+                item_name: itemName,
+                item_type: itemType,
+                action: isLiked ? 'unlike' : 'like'
+            });
+        }
+        
+        // Сохраняем в localStorage для статистики
+        const stats = JSON.parse(localStorage.getItem('likes_stats') || '{}');
+        const key = `${itemType}_${itemId}`;
+        stats[key] = stats[key] || { name: itemName, type: itemType, likes: 0 };
+        stats[key].likes += isLiked ? -1 : 1;
+        localStorage.setItem('likes_stats', JSON.stringify(stats));
+    }
+    
+    // Инициализация лайков для книг
+    function initBookLikes() {
+        const likeBtns = document.querySelectorAll('.like-btn');
+        
+        likeBtns.forEach(btn => {
+            const bookId = btn.dataset.id;
+            const bookName = btn.dataset.name || 'Книга';
+            const isLiked = localStorage.getItem(`liked_book_${bookId}`) === 'true';
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                }
+            }
+            
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const wasLiked = this.classList.contains('liked');
+                const icon = this.querySelector('i');
+                
+                if (wasLiked) {
+                    this.classList.remove('liked');
+                    if (icon) {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                    }
+                    localStorage.setItem(`liked_book_${bookId}`, 'false');
+                    sendLikeToMetric(bookId, bookName, 'book', true);
+                } else {
+                    this.classList.add('liked');
+                    if (icon) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                    }
+                    localStorage.setItem(`liked_book_${bookId}`, 'true');
+                    sendLikeToMetric(bookId, bookName, 'book', false);
+                }
+                
+                const countSpan = this.querySelector('.like-count');
+                if (countSpan) {
+                    let currentCount = parseInt(countSpan.textContent) || 0;
+                    countSpan.textContent = wasLiked ? currentCount - 1 : currentCount + 1;
+                }
+            });
+        });
+    }
+    
+    // Инициализация лайков для праздников
+    window.initHolidayLikes = function() {
+        const likeBtns = document.querySelectorAll('.holiday-like-btn');
+        
+        likeBtns.forEach(btn => {
+            const holidayId = btn.dataset.id;
+            const holidayName = btn.dataset.name || 'Праздник';
+            const isLiked = localStorage.getItem(`liked_holiday_${holidayId}`) === 'true';
+            
+            if (isLiked) {
+                btn.classList.add('liked');
+                const icon = btn.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                }
+            }
+            
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                const wasLiked = this.classList.contains('liked');
+                const icon = this.querySelector('i');
+                
+                if (wasLiked) {
+                    this.classList.remove('liked');
+                    if (icon) {
+                        icon.classList.remove('fas');
+                        icon.classList.add('far');
+                    }
+                    localStorage.setItem(`liked_holiday_${holidayId}`, 'false');
+                    sendLikeToMetric(holidayId, holidayName, 'holiday', true);
+                } else {
+                    this.classList.add('liked');
+                    if (icon) {
+                        icon.classList.remove('far');
+                        icon.classList.add('fas');
+                    }
+                    localStorage.setItem(`liked_holiday_${holidayId}`, 'true');
+                    sendLikeToMetric(holidayId, holidayName, 'holiday', false);
+                }
+            });
+        });
+    };
+    
+    // Вызываем инициализацию лайков для книг
+    setTimeout(initBookLikes, 500);
 });
