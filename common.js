@@ -137,7 +137,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let closeTimeout;
         
         categories.forEach(category => {
-            // При наведении на категорию
             category.addEventListener('mouseenter', function(e) {
                 if (closeTimeout) clearTimeout(closeTimeout);
                 categories.forEach(cat => {
@@ -217,13 +216,19 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Поиск
+    // ===== ПОИСК В ШАПКЕ =====
     const searchIcon = document.getElementById('searchIcon');
     const searchPopup = document.getElementById('searchPopup');
     if (searchIcon && searchPopup) {
         searchIcon.addEventListener('click', function(e) {
             e.stopPropagation();
             searchPopup.classList.toggle('active');
+            const searchInput = searchPopup.querySelector('input[type="text"]');
+            if (searchInput && searchPopup.classList.contains('active')) {
+                setTimeout(function() {
+                    searchInput.focus();
+                }, 100);
+            }
         });
         document.addEventListener('click', function(event) {
             if (!searchIcon.contains(event.target) && !searchPopup.contains(event.target)) {
