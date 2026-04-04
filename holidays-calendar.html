@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#b5838d">
+    <title>Библиотечный календарь 2026 — Парголовская библиотека</title>
+    <meta name="description" content="Календарь библиотечных праздников, памятных дат и дней для мероприятий в Парголовской библиотеке на 2026 год.">
+    
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    
+    <link rel="stylesheet" href="common.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        .section { padding: 4rem 0; }
+        .calendar-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #4a4a4a;
+        }
+        .month-nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 2rem 0 3rem;
+        }
+        .month-link {
+            background: #fff;
+            border: 1px solid #e5989b;
+            color: #5e4b3c;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .month-link:hover, .month-link.active {
+            background: #e5989b;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .month-section {
+            margin-bottom: 4rem;
+            scroll-margin-top: 100px;
+        }
+        .month-title {
+            font-size: 2rem;
+            color: #b5838d;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e5989b;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .month-title i {
+            font-size: 2rem;
+            color: #e5989b;
+        }
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+        .calendar-table th {
+            background: #b5838d;
+            color: #fff;
+            padding: 1rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .calendar-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+            background: #fff;
+        }
+        .calendar-table tr:last-child td {
+            border-bottom: none;
+        }
+        .calendar-date {
+            font-weight: 700;
+            color: #b5838d;
+            font-size: 1.1rem;
+            white-space: nowrap;
+            width: 80px;
+        }
+        .event-name {
+            font-weight: 700;
+            color: #5e4b3c;
+            font-size: 1rem;
+        }
+        .event-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        .event-idea {
+            font-size: 0.85rem;
+            color: #e5989b;
+            margin-top: 0.5rem;
+            background: #fefaf5;
+            padding: 0.4rem 0.6rem;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .event-idea i {
+            margin-right: 5px;
+        }
+        .filter-bar {
+            background: #fff;
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+        }
+        .filter-bar label {
+            font-weight: 600;
+            color: #5e4b3c;
+        }
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            background: #fff;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            font-family: inherit;
+        }
+        .reset-btn {
+            background: #e5989b;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .reset-btn:hover {
+            background: #d68b8e;
+        }
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            background: #fff;
+            border-radius: 16px;
+            color: #888;
+        }
+        .share-block {
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .share-btn {
+            display: inline-block;
+            background-color: #e5989b;
+            color: #fff;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .share-btn:hover {
+            background-color: #d68b8e;
+        }
+        @media (max-width: 768px) {
+            .calendar-table th, .calendar-table td {
+                padding: 0.75rem;
+            }
+            .calendar-date {
+                font-size: 0.9rem;
+                white-space: normal;
+                width: auto;
+            }
+            .month-title {
+                font-size: 1.5rem;
+            }
+            .filter-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <img src="logo.PNG" alt="Парголовская библиотека" loading="lazy">
+            </a>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
+                    <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
+                    <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
+                    <li data-mobile="main"><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
+                    <li data-mobile="main"><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
+                    <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
+                    <li data-mobile="main"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
+                    <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
+                    <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                    <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
+                    <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
+                    <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
+                    <li data-mobile="more"><a href="literary-calendar.html"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="bookmatcher.html"><i class="fas fa-magic"></i> Примерочная книг</a></li>
+                    <li data-mobile="more"><a href="timeline.html"><i class="fas fa-stream"></i> История Парголово</a></li>
+                    <li data-mobile="more"><a href="book-recommendations.html"><i class="fas fa-star"></i> Что почитать по интересу</a></li>
+                    <li data-mobile="more"><a href="book-kitchen.html"><i class="fas fa-utensils"></i> Книжная кухня</a></li>
+                </ul>
+                <div class="search-icon-container">
+                    <i class="fas fa-search" id="searchIcon"></i>
+                    <div class="search-popup" id="searchPopup">
+                        <form action="https://yandex.ru/search/" method="get" target="_blank">
+                            <input type="hidden" name="site" value="parglbibl.ru">
+                            <input type="hidden" name="host" value="parglbibl.ru">
+                            <input type="hidden" name="lr" value="2">
+                            <input type="text" name="text" placeholder="Поиск по сайту..." autocomplete="off">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="index.html">Главная</a> &raquo;
+                <a href="events.html">События</a> &raquo;
+                <span>Библиотечный календарь 2026</span>
+            </div>
+
+            <h1 class="section-title">Библиотечный календарь 2026</h1>
+            <div class="calendar-intro">
+                <p>📚 Праздники, памятные даты и дни, которые можно провести в библиотеке с пользой. Для каждой даты мы подготовили идею мероприятия или выставки.</p>
+                <p>📍 <strong>Санкт-Петербург</strong> — добавлены городские памятные даты.</p>
+            </div>
+
+            <div class="filter-bar">
+                <label><i class="fas fa-filter"></i> Фильтр:</label>
+                <select id="monthFilter" class="filter-select">
+                    <option value="all">Все месяцы</option>
+                    <option value="0">Январь</option>
+                    <option value="1">Февраль</option>
+                    <option value="2">Март</option>
+                    <option value="3">Апрель</option>
+                    <option value="4">Май</option>
+                    <option value="5">Июнь</option>
+                    <option value="6">Июль</option>
+                    <option value="7">Август</option>
+                    <option value="8">Сентябрь</option>
+                    <option value="9">Октябрь</option>
+                    <option value="10">Ноябрь</option>
+                    <option value="11">Декабрь</option>
+                </select>
+                <input type="text" id="searchInput" class="search-input" placeholder="Поиск по событию...">
+                <button id="resetFilter" class="reset-btn"><i class="fas fa-undo-alt"></i> Сбросить</button>
+            </div>
+
+            <div id="calendarContainer">
+                <!-- Данные будут загружены через JS -->
+                <div style="text-align:center; padding:2rem;">Загрузка календаря...</div>
+            </div>
+
+            <div class="share-block">
+                <a href="https://vk.com/share.php?url=https://parglbibl.ru/holidays-calendar.html&title=Библиотечный%20календарь%202026&description=Праздники%2C%20памятные%20даты%20и%20идеи%20для%20мероприятий%20в%20Парголовской%20библиотеке." target="_blank" class="share-btn">
+                    <i class="fab fa-vk"></i> Поделиться календарём
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-content">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Полезные ссылки</h3>
+                    <p><a href="index.html">Главная</a></p>
+                    <p><a href="about.html">О нас</a></p>
+                    <p><a href="services.html">Услуги</a></p>
+                    <p><a href="events.html">События</a></p>
+                    <p><a href="contacts.html">Контакты</a></p>
+                    <p><a href="faq.html">Вопросы</a></p>
+                    <p><a href="privacy.html">Политика конфиденциальности</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social">
+                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <div class="print-button">
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
+                    </div>
+                </div>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" style="display: none;"><p>🍪 Мы используем файлы cookie. <a href="privacy.html">Подробнее</a>.</p><div class="cookie-buttons"><button id="cookie-accept" class="cookie-btn cookie-accept">Принять</button><button id="cookie-decline" class="cookie-btn cookie-decline">Отклонить</button></div></div>
+    <div id="scrollUp" title="Наверх">↑</div>
+
+    <script src="common.js"></script>
+    <script>
+        // ===== ДАННЫЕ КАЛЕНДАРЯ =====
+        const holidaysData = [
+            // Январь (month: 0)
+            { month: 0, day: 1, name: "Новый год", desc: "Праздник начала нового календарного года", idea: "Книжная выставка «Новогодние чудеса», мастер-класс по созданию закладок" },
+            { month: 0, day: 2, name: "День научной фантастики", desc: "Неофициальный праздник любителей фантастики", idea: "Выставка фантастики, викторина «Угадай книгу по экранизации»" },
+            { month: 0, day: 11, name: "День заповедников и национальных парков", desc: "Праздник особо охраняемых природных территорий", idea: "Выставка книг о природе, викторина «Знаешь ли ты свой край?»" },
+            { month: 0, day: 13, name: "День российской печати", desc: "Праздник журналистов и издателей", idea: "Выставка старых газет и журналов, мастер-класс «Как сделать свою газету»" },
+            { month: 0, day: 15, name: "День зимующих птиц России", desc: "Праздник заботы о птицах, остающихся на зиму", idea: "Мастер-класс по изготовлению кормушек, викторина о птицах" },
+            { month: 0, day: 17, name: "День детских изобретений", desc: "Праздник юных изобретателей", idea: "Выставка книг об изобретениях, конкурс «Я бы придумал...»" },
+            { month: 0, day: 18, name: "День прорыва блокады Ленинграда", desc: "Памятная дата военной истории Петербурга (1943)", idea: "Час истории, чтение дневников блокадников, выставка военной литературы" },
+            { month: 0, day: 18, name: "День творчества и вдохновения", desc: "Праздник всех, кто творит", idea: "Мастер-классы, арт-терапия, творческая лаборатория" },
+            { month: 0, day: 25, name: "Татьянин день / День студента", desc: "Праздник российского студенчества", idea: "Выставка «Студенту в помощь», викторина для студентов" },
+            { month: 0, day: 27, name: "День полного освобождения Ленинграда от блокады", desc: "Главная блокадная дата Петербурга (1944)", idea: "Торжественное мероприятие, встреча с жителями блокадного Ленинграда, выставка" },
+            { month: 0, day: 28, name: "День защиты персональных данных", desc: "День информационной безопасности", idea: "Урок цифровой грамотности, беседа о безопасности в интернете" },
+            
+            // Февраль (month: 1)
+            { month: 1, day: 2, name: "День воинской славы (Сталинградская битва)", desc: "День разгрома немецко-фашистских войск под Сталинградом (1943)", idea: "Книжная выставка о Великой Отечественной войне, час истории" },
+            { month: 1, day: 8, name: "День российской науки", desc: "Праздник научных достижений России", idea: "Квиз «Великие открытия», выставка научно-популярной литературы" },
+            { month: 1, day: 9, name: "День чтения в ванной (шуточный)", desc: "Неофициальный праздник любителей расслабленного чтения", idea: "Флешмоб «Книга и релакс», рекомендации книг для отдыха" },
+            { month: 1, day: 14, name: "День святого Валентина", desc: "Праздник всех влюблённых", idea: "Выставка книг о любви, «Свидание с книгой вслепую»" },
+            { month: 1, day: 14, name: "Международный день дарения книг", desc: "Праздник щедрости и любви к чтению", idea: "Акция «Подари книгу библиотеке», книгообмен" },
+            { month: 1, day: 14, name: "День города Колпино", desc: "День основания города Колпино (304 года)", idea: "Выставка книг о городе, краеведческая викторина" },
+            { month: 1, day: 17, name: "День спонтанного проявления доброты", desc: "Международный праздник добрых дел", idea: "Акция «Доброе слово», выставка книг о дружбе и доброте" },
+            { month: 1, day: 19, name: "Всемирный день китов", desc: "Праздник защиты морских млекопитающих", idea: "Выставка книг о морских обитателях, экологический час" },
+            { month: 1, day: 21, name: "День города Павловска", desc: "День основания города Павловска", idea: "Виртуальная экскурсия, выставка книг об истории Павловска" },
+            { month: 1, day: 21, name: "Международный день родного языка", desc: "Праздник языкового разнообразия", idea: "Час родного языка, чтение стихов на разных языках" },
+            { month: 1, day: 23, name: "День защитника Отечества", desc: "День воинской славы России", idea: "Выставка книг о военной истории, патриотический час" },
+            
+            // Март (month: 2)
+            { month: 2, day: 1, name: "Всемирный день кошек", desc: "Неофициальный праздник домашних любимцев", idea: "Выставка книг о кошках, конкурс рисунков «Мой пушистый друг»" },
+            { month: 2, day: 3, name: "Всемирный день писателя", desc: "Профессиональный праздник литераторов", idea: "Встреча с местным писателем, мастер-класс по написанию рассказов" },
+            { month: 2, day: 8, name: "Международный женский день", desc: "Праздник весны и женщин", idea: "Выставка книг о женщинах, поэтический вечер" },
+            { month: 2, day: 14, name: "День православной книги", desc: "Праздник духовной литературы", idea: "Выставка духовной литературы, беседа о книгопечатании" },
+            { month: 2, day: 20, name: "День весеннего равноденствия / День Земли", desc: "Астрономическое начало весны", idea: "Выставка книг о природе, экологический час" },
+            { month: 2, day: 21, name: "Всемирный день поэзии", desc: "Праздник поэтического слова", idea: "Поэтический вечер, конкурс стихов собственного сочинения" },
+            { month: 2, day: 21, name: "Международный день леса", desc: "Праздник защиты лесных богатств", idea: "Экологический час, выставка книг о лесе" },
+            { month: 2, day: 22, name: "Всемирный день водных ресурсов", desc: "Праздник воды и её сохранения", idea: "Экологический час, выставка книг о воде" },
+            { month: 2, day: 28, name: "День защиты Земли", desc: "Экологическая акция", idea: "Экологическая акция, конкурс плакатов" },
+            { month: 2, day: 28, name: "Неделя детской книги (28 мар – 5 апр)", desc: "Ежегодный праздник детского чтения", idea: "Книжные праздники, викторины, встречи с детскими писателями" },
+            
+            // Апрель (month: 3)
+            { month: 3, day: 1, name: "День птиц", desc: "Международный праздник пернатых", idea: "Викторина о птицах, мастер-класс по созданию скворечников" },
+            { month: 3, day: 1, name: "День смеха", desc: "Праздник юмора и шуток", idea: "Юмористическая выставка, конкурс на лучшую шутку" },
+            { month: 3, day: 2, name: "Международный день детской книги", desc: "День рождения Ханса Кристиана Андерсена", idea: "Праздник детской книги, викторины, конкурс рисунков" },
+            { month: 3, day: 7, name: "Всемирный день здоровья", desc: "Праздник здорового образа жизни", idea: "Час здоровья, выставка книг о ЗОЖ, зарядка в библиотеке" },
+            { month: 3, day: 12, name: "День космонавтики", desc: "День первого полёта человека в космос", idea: "Выставка книг о космосе, квиз «Тайны вселенной»" },
+            { month: 3, day: 15, name: "День экологических знаний", desc: "Праздник экологического просвещения", idea: "Эко-урок, викторина о природе" },
+            { month: 3, day: 18, name: "Международный день памятников и исторических мест", desc: "Праздник сохранения наследия", idea: "Краеведческая экскурсия, выставка книг об истории Парголово" },
+            { month: 3, day: 22, name: "Всемирный день Земли", desc: "Праздник планеты Земля", idea: "Экологическая акция, конкурс плакатов «Сохраним планету»" },
+            { month: 3, day: 23, name: "Всемирный день книги и авторского права", desc: "Главный книжный праздник года", idea: "Книжный фестиваль, буккроссинг, встреча с писателем" },
+            
+            // Май (month: 4)
+            { month: 4, day: 1, name: "Праздник Весны и Труда", desc: "День солидарности трудящихся", idea: "Выставка книг о профессиях, творческий мастер-класс" },
+            { month: 4, day: 3, name: "День Солнца", desc: "Праздник солнечной энергии", idea: "Экологический час, мастер-класс по рисованию солнца" },
+            { month: 4, day: 9, name: "День Победы", desc: "День Победы в Великой Отечественной войне", idea: "Книжная выставка о войне, час памяти, чтение стихов" },
+            { month: 4, day: 12, name: "День экологического образования", desc: "Праздник экологических знаний", idea: "Урок экологии, викторина" },
+            { month: 4, day: 15, name: "Международный день климата", desc: "Праздник заботы о климате", idea: "Выставка книг о климате, экологический час" },
+            { month: 4, day: 20, name: "День Волги", desc: "Праздник великой русской реки", idea: "Экологический час о реках России, викторина" },
+            { month: 4, day: 21, name: "Международный день чая", desc: "Праздник чайных традиций", idea: "Чайная церемония, выставка книг о традициях" },
+            { month: 4, day: 24, name: "День славянской письменности и культуры", desc: "День памяти Кирилла и Мефодия", idea: "Час истории письменности, мастер-класс по каллиграфии" },
+            { month: 4, day: 27, name: "Общероссийский день библиотек", desc: "Главный профессиональный праздник библиотекарей", idea: "День открытых дверей, экскурсии по библиотеке, поздравление читателей" },
+            { month: 4, day: 27, name: "День города Санкт-Петербурга", desc: "День основания Петербурга (323 года)", idea: "Праздничная программа, викторина «Знаешь ли ты свой город?», выставка краеведческой литературы" },
+            { month: 4, day: 31, name: "Всемирный день без табака", desc: "Праздник здорового образа жизни", idea: "Час здоровья, беседа о вреде курения" },
+            
+            // Июнь (month: 5)
+            { month: 5, day: 1, name: "Международный день защиты детей", desc: "Праздник детства", idea: "Праздник для детей, конкурс рисунков на асфальте" },
+            { month: 5, day: 5, name: "Всемирный день охраны окружающей среды / День эколога", desc: "Праздник экологии", idea: "Экологический квест, посадка растений у библиотеки" },
+            { month: 5, day: 6, name: "Пушкинский день России", desc: "День рождения великого поэта", idea: "Чтение стихов Пушкина, литературная викторина, экскурсия по пушкинским местам Петербурга" },
+            { month: 5, day: 8, name: "Всемирный день океанов", desc: "Праздник Мирового океана", idea: "Выставка книг о морях и океанах, викторина" },
+            { month: 5, day: 12, name: "День России", desc: "Государственный праздник", idea: "Патриотический час, викторина «Символы России»" },
+            { month: 5, day: 22, name: "День памяти и скорби (начало ВОВ)", desc: "День начала Великой Отечественной войны", idea: "Час истории, чтение стихов о войне" },
+            { month: 5, day: 26, name: "Международный день борьбы с наркоманией", desc: "День здорового образа жизни", idea: "Час здоровья, профилактическая беседа" },
+            
+            // Июль (month: 6)
+            { month: 6, day: 4, name: "Международный день дельфинов-пленников", desc: "День защиты морских животных", idea: "Экологический час о защите животных" },
+            { month: 6, day: 5, name: "День города Ломоносова (Ораниенбаума)", desc: "День основания города", idea: "Выставка книг об истории города, краеведческая викторина" },
+            { month: 6, day: 8, name: "День семьи, любви и верности", desc: "Праздник семейных ценностей", idea: "Праздник семьи, мастер-класс по созданию ромашек" },
+            { month: 6, day: 23, name: "Всемирный день китов и дельфинов", desc: "День защиты морских млекопитающих", idea: "Выставка книг о морских млекопитающих" },
+            { month: 6, day: 28, name: "День Крещения Руси", desc: "Памятная дата русской истории", idea: "Выставка духовной литературы, час истории" },
+            
+            // Август (month: 7)
+            { month: 7, day: 2, name: "День города Сестрорецка", desc: "День основания города", idea: "Виртуальная экскурсия, выставка книг" },
+            { month: 7, day: 6, name: "Всемирный день борьбы за запрещение ядерного оружия", desc: "День памяти жертв атомной бомбардировки", idea: "Выставка книг о мире" },
+            { month: 7, day: 8, name: "Всемирный день кошек", desc: "Международный праздник кошек", idea: "Фотоконкурс «Мой пушистый друг»" },
+            { month: 7, day: 9, name: "Всемирный день книголюбов", desc: "Праздник любителей чтения", idea: "Книжный флешмоб, фотоконкурс «Я с книгой»" },
+            { month: 7, day: 22, name: "День Государственного флага России", desc: "Патриотический праздник", idea: "Патриотический час, мастер-класс по созданию флага" },
+            { month: 7, day: 27, name: "День российского кино", desc: "Праздник кинематографа", idea: "Кинопоказ экранизаций книг, обсуждение фильмов" },
+            
+            // Сентябрь (month: 8)
+            { month: 8, day: 1, name: "День знаний", desc: "Начало учебного года", idea: "Праздник для первоклассников, выставка учебной литературы" },
+            { month: 8, day: 3, name: "День солидарности в борьбе с терроризмом", desc: "День памяти жертв террора", idea: "Час памяти, беседа о безопасности" },
+            { month: 8, day: 8, name: "День памяти жертв блокады Ленинграда", desc: "День начала блокады", idea: "Час памяти, чтение стихов, минута молчания" },
+            { month: 8, day: 8, name: "Международный день грамотности", desc: "Праздник грамотности", idea: "Диктант для читателей, выставка словарей" },
+            { month: 8, day: 16, name: "Международный день охраны озонового слоя", desc: "День защиты атмосферы", idea: "Экологический час" },
+            { month: 8, day: 21, name: "Международный день мира", desc: "День глобального перемирия", idea: "Час мира, конкурс рисунков «Мир без войны»" },
+            { month: 8, day: 23, name: "День города Кронштадта", desc: "День основания Кронштадта", idea: "Выставка книг о морской славе России" },
+            { month: 8, day: 27, name: "Всемирный день туризма", desc: "Праздник путешествий", idea: "Выставка путеводителей, виртуальное путешествие" },
+            { month: 8, day: 30, name: "День интернета в России", desc: "Праздник Рунета", idea: "Урок цифровой грамотности, обзор электронных ресурсов библиотеки" },
+            
+            // Октябрь (month: 9)
+            { month: 9, day: 1, name: "Международный день пожилых людей", desc: "День уважения к старшему поколению", idea: "Праздник для ветеранов, чаепитие, чтение стихов" },
+            { month: 9, day: 3, name: "Всемирный день защиты животных", desc: "День защиты животных", idea: "Выставка книг о животных, конкурс рисунков" },
+            { month: 9, day: 5, name: "День учителя", desc: "Профессиональный праздник педагогов", idea: "Поздравление учителей, выставка педагогической литературы" },
+            { month: 9, day: 9, name: "Всероссийский день чтения", desc: "День, когда читать особенно полезно", idea: "Марафон чтения, рекомендации от библиотекаря" },
+            { month: 9, day: 14, name: "День работников заповедников", desc: "Профессиональный праздник", idea: "Выставка книг о заповедниках России" },
+            { month: 9, day: 15, name: "День отца", desc: "Праздник пап", idea: "Праздник для пап, конкурс «Папа и я — читающая семья»" },
+            { month: 9, day: 15, name: "Царскосельский лицей — день основания", desc: "День открытия знаменитого лицея (1811)", idea: "Литературный вечер, посвящённый лицейским друзьям Пушкина" },
+            { month: 9, day: 22, name: "Международный день школьных библиотек", desc: "Профессиональный праздник школьных библиотекарей", idea: "Акция «Подари учебник», выставка любимых книг учеников" },
+            { month: 9, day: 22, name: "Праздник Белых журавлей", desc: "День поэзии и памяти павших", idea: "Поэтический вечер, чтение стихов о войне и мире" },
+            
+            // Ноябрь (month: 10)
+            { month: 10, day: 4, name: "День народного единства", desc: "Государственный праздник", idea: "Патриотический час, викторина по истории России" },
+            { month: 10, day: 4, name: "Ночь искусств", desc: "Ежегодная культурная акция", idea: "Вечер творчества, мастер-классы, выставка картин читателей" },
+            { month: 10, day: 10, name: "Всемирный день науки", desc: "День науки и знаний", idea: "Научный квиз, выставка научно-популярной литературы" },
+            { month: 10, day: 16, name: "Международный день толерантности", desc: "День терпимости и уважения", idea: "Час толерантности, обсуждение книг о дружбе народов" },
+            { month: 10, day: 17, name: "Международный день студентов", desc: "День студенчества", idea: "Студенческая вечеринка, книжный квиз" },
+            { month: 10, day: 20, name: "День матери", desc: "Праздник мам", idea: "Праздничный концерт, конкурс стихов о маме" },
+            { month: 10, day: 22, name: "День словаря (день рождения В.И. Даля)", desc: "День русского языка", idea: "Выставка словарей, урок русского языка, конкурс «Знаток слов»" },
+            { month: 10, day: 26, name: "Всемирный день информации", desc: "День информационной грамотности", idea: "Урок информационной грамотности" },
+            
+            // Декабрь (month: 11)
+            { month: 11, day: 3, name: "День неизвестного солдата", desc: "День памяти безымянных героев", idea: "Час памяти, книжная выставка о войне" },
+            { month: 11, day: 5, name: "День добровольца (волонтёра)", desc: "День волонтёрского движения", idea: "Акция «Добрые дела», встреча с волонтёрами" },
+            { month: 11, day: 9, name: "День героев Отечества", desc: "День памяти Героев России", idea: "Патриотический час, выставка книг о героях" },
+            { month: 11, day: 10, name: "Всемирный день футбола", desc: "Праздник спорта", idea: "Выставка спортивной литературы, футбольная викторина" },
+            { month: 11, day: 12, name: "День Конституции РФ", desc: "День Основного закона России", idea: "Правовой час, викторина «Знаешь ли ты Конституцию?»" },
+            { month: 11, day: 31, name: "Новогодний вечер", desc: "Праздник встречи Нового года", idea: "Праздничная программа, конкурсы, чаепитие" }
+        ];
+
+        // Месяцы для навигации
+        const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+        const monthIcons = ["fa-snowflake", "fa-heart", "fa-feather-alt", "fa-cloud-sun", "fa-leaf", "fa-sun", "fa-umbrella-beach", "fa-tree", "fa-apple-alt", "fa-leaf", "fa-cloud-rain", "fa-gift"];
+
+        // Рендер календаря
+        function renderCalendar(monthFilter = "all", searchQuery = "") {
+            const container = document.getElementById("calendarContainer");
+            if (!container) return;
+            
+            let filteredData = [...holidaysData];
+            
+            // Фильтр по месяцу
+            if (monthFilter !== "all") {
+                filteredData = filteredData.filter(item => item.month === parseInt(monthFilter));
+            }
+            
+            // Поиск
+            if (searchQuery.trim() !== "") {
+                const query = searchQuery.toLowerCase();
+                filteredData = filteredData.filter(item => 
+                    item.name.toLowerCase().includes(query) || 
+                    item.desc.toLowerCase().includes(query) ||
+                    item.idea.toLowerCase().includes(query)
+                );
+            }
+            
+            if (filteredData.length === 0) {
+                container.innerHTML = `<div class="no-results"><i class="fas fa-calendar-times"></i> По вашему запросу ничего не найдено.</div>`;
+                return;
+            }
+            
+            // Группируем по месяцам
+            const grouped = {};
+            for (let i = 0; i < 12; i++) grouped[i] = [];
+            filteredData.forEach(item => {
+                grouped[item.month].push(item);
+            });
+            
+            let html = "";
+            for (let m = 0; m < 12; m++) {
+                if (grouped[m].length === 0) continue;
+                if (monthFilter !== "all" && m !== parseInt(monthFilter)) continue;
+                
+                html += `<div class="month-section" id="month-${m}">`;
+                html += `<h2 class="month-title"><i class="fas ${monthIcons[m]}"></i> ${monthNames[m]} 2026</h2>`;
+                html += `<table class="calendar-table">`;
+                html += `<thead><tr><th>Дата</th><th>Событие</th></tr></thead><tbody>`;
+                
+                // Сортируем по дню
+                grouped[m].sort((a, b) => a.day - b.day);
+                grouped[m].forEach(item => {
+                    html += `<tr>
+                        <td class="calendar-date">${item.day} ${monthNames[m].slice(0,3)}</td>
+                        <td>
+                            <div class="event-name">${item.name}</div>
+                            <div class="event-desc">${item.desc}</div>
+                            <div class="event-idea"><i class="fas fa-lightbulb"></i> ${item.idea}</div>
+                        </td>
+                    </tr>`;
+                });
+                html += `</tbody></table></div>`;
+            }
+            container.innerHTML = html;
+        }
+
+        // Инициализация
+        document.addEventListener("DOMContentLoaded", function() {
+            renderCalendar();
+            
+            const monthFilter = document.getElementById("monthFilter");
+            const searchInput = document.getElementById("searchInput");
+            const resetBtn = document.getElementById("resetFilter");
+            
+            monthFilter.addEventListener("change", function() {
+                renderCalendar(monthFilter.value, searchInput.value);
+                // Прокрутка к выбранному месяцу
+                if (monthFilter.value !== "all") {
+                    setTimeout(() => {
+                        const target = document.getElementById(`month-${monthFilter.value}`);
+                        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }, 100);
+                }
+            });
+            
+            searchInput.addEventListener("input", function() {
+                renderCalendar(monthFilter.value, searchInput.value);
+            });
+            
+            resetBtn.addEventListener("click", function() {
+                monthFilter.value = "all";
+                searchInput.value = "";
+                renderCalendar("all", "");
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        });
+    </script>
+</body>
+</html>
