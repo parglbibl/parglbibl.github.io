@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 { name: 'Примерочная книг', href: 'bookmatcher.html', icon: 'fas fa-magic' },
                 { name: 'Что почитать по интересу', href: 'book-recommendations.html', icon: 'fas fa-star' },
                 { name: 'Книжная кухня', href: 'book-kitchen.html', icon: 'fas fa-utensils' },
-                { name: 'Выставки', href: 'exhibitions.html', icon: 'fas fa-palette' }
+                { name: 'Выставки', href: 'exhibitions.html', icon: 'fas fa-palette' },
                 { name: 'Библиотечный календарь 2026', href: 'holidays-calendar.html', icon: 'fas fa-calendar-alt' }
             ]
         },
@@ -253,34 +253,59 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // ===== Кнопка "наверх" =====
+    // ===== КНОПКА "НАВЕРХ" =====
     function initBackToTop() {
-        // Проверяем, есть ли уже кнопка с классом .back-to-top
-        let backBtn = document.querySelector('.back-to-top');
+        // Удаляем все старые кнопки
+        const oldBtns = document.querySelectorAll('#scrollUp, .back-to-top, #backToTop, #toTop');
+        oldBtns.forEach(btn => btn.remove());
         
-        // Если кнопки нет, создаём её
-        if (!backBtn) {
-            backBtn = document.createElement('a');
-            backBtn.href = '#';
-            backBtn.className = 'back-to-top';
-            backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
-            document.body.appendChild(backBtn);
+        // Создаём новую кнопку
+        const backBtn = document.createElement('a');
+        backBtn.href = '#';
+        backBtn.className = 'back-to-top';
+        backBtn.innerHTML = '<i class="fas fa-chevron-up"></i>';
+        document.body.appendChild(backBtn);
+        
+        // Добавляем стили напрямую через JS для надёжности
+        backBtn.style.position = 'fixed';
+        backBtn.style.bottom = '20px';
+        backBtn.style.right = '20px';
+        backBtn.style.backgroundColor = '#e5989b';
+        backBtn.style.color = '#fff';
+        backBtn.style.width = '50px';
+        backBtn.style.height = '50px';
+        backBtn.style.borderRadius = '50%';
+        backBtn.style.display = 'flex';
+        backBtn.style.alignItems = 'center';
+        backBtn.style.justifyContent = 'center';
+        backBtn.style.textDecoration = 'none';
+        backBtn.style.fontSize = '24px';
+        backBtn.style.opacity = '0';
+        backBtn.style.visibility = 'hidden';
+        backBtn.style.transition = 'all 0.3s ease';
+        backBtn.style.zIndex = '999999';
+        backBtn.style.cursor = 'pointer';
+        backBtn.style.border = 'none';
+        
+        // Функция показа/скрытия
+        function toggleButton() {
+            if (window.pageYOffset > 100) {
+                backBtn.style.opacity = '1';
+                backBtn.style.visibility = 'visible';
+            } else {
+                backBtn.style.opacity = '0';
+                backBtn.style.visibility = 'hidden';
+            }
         }
         
-        // Обработчик прокрутки
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 100) {
-                backBtn.classList.add('show');
-            } else {
-                backBtn.classList.remove('show');
-            }
-        });
-        
-        // Обработчик клика
+        // Обработчики
+        window.addEventListener('scroll', toggleButton);
         backBtn.addEventListener('click', function(e) {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
+        
+        toggleButton();
     }
     
     initBackToTop();
