@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика лайков — Парголовская библиотека</title>
+    <link rel="stylesheet" href="common.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .stats-container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .stats-card { background: #fff; border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .stats-table { width: 100%; border-collapse: collapse; }
+        .stats-table th, .stats-table td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #eee; }
+        .stats-table th { background: #b5838d; color: #fff; font-weight: 600; }
+        .stats-table tr:hover { background: #f9f0e7; }
+        .stats-total { font-size: 1.5rem; font-weight: 700; color: #e5989b; text-align: center; padding: 1rem; }
+        .clear-btn { background: #666; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 50px; cursor: pointer; margin-top: 1rem; }
+        .clear-btn:hover { background: #999; }
+        .section { padding: 2rem 0; }
+    </style>
+</head>
+<body class="page-transition">
+    <div class="container">
+        <div class="stats-container">
+            <h1 class="section-title">📊 Статистика лайков</h1>
+            <div class="stats-card">
+                <h2><i class="fas fa-heart" style="color: #e5989b;"></i> Топ понравившихся материалов</h2>
+                <div id="statsTable"></div>
+                <div class="stats-total" id="totalLikes"></div>
+                <button id="clearStats" class="clear-btn"><i class="fas fa-trash-alt"></i> Очистить статистику</button>
+                <button id="exportStats" class="clear-btn" style="background: #e5989b; margin-left: 1rem;"><i class="fas fa-download"></i> Экспорт в JSON</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function loadStats() {
+            const stats = JSON.parse(localStorage.getItem('likes_stats') || '{}');
+            const tableBody = document.getElementById('statsTable');
+            const totalSpan = document.getElementById('totalLikes');
+            
+            const statsArray = Object.entries(stats).map(([key, value]) => ({
+                id: key,
+                name: value.name || key,
+                type: value.type || 'unknown',
+                likes: value.likes || 0
+            })).filter(item => item.likes > 0).sort((a, b) => b.likes - a.likes);
+            
+            const total = statsArray.reduce((sum, item) => sum + item.likes, 0);
+            totalSpan.innerHTML = `❤️ Всего лайков: ${total}`;
+            
+            if (statsArray.length === 0) {
+                tableBody.innerHTML = '<p style="text-align:center; padding:2rem;">Пока нет ни одного лайка. Добавьте сердечки к книгам или праздникам!</p>';
+                return;
+            }
+            
+            let html = `<table class="stats-table">
+                <thead>
+                    <tr><th>№</th><th><i class="fas fa-heart"></i> Лайков</th><th>Название</th><th>Тип</th></tr>
+                </thead>
+                <tbody>`;
+            statsArray.forEach((item, index) => {
+                const typeIcon = item.type === 'book' ? '📖' : '📅';
+                const typeName = item.type === 'book' ? 'Книга' : 'Праздник';
+                html += `<tr>
+                    <td>${index + 1}</td>
+                    <td><strong style="color:#e5989b;">${item.likes}</strong></td>
+                    <td>${typeIcon} ${item.name}</td>
+                    <td>${typeName}</td>
+                </tr>`;
+            });
+            html += `</tbody>able`;
+            tableBody.innerHTML = html;
+        }
+        
+        document.getElementById('clearStats')?.addEventListener('click', function() {
+            if (confirm('Вы уверены? Вся статистика лайков будет удалена.')) {
+                localStorage.removeItem('likes_stats');
+                loadStats();
+            }
+        });
+        
+        document.getElementById('exportStats')?.addEventListener('click', function() {
+            const stats = localStorage.getItem('likes_stats');
+            const blob = new Blob([stats], { type: 'application/json' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `likes_stats_${new Date().toISOString().slice(0,19)}.json`;
+            link.click();
+        });
+        
+        loadStats();
+    </script>
+</body>
+</html>
