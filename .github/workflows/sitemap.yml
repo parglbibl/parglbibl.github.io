@@ -2,26 +2,37 @@ name: Generate Sitemap
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+  workflow_dispatch:  # позволяет запускать вручную
 
 jobs:
-  sitemap:
+  generate-sitemap:
     runs-on: ubuntu-latest
-    name: Generate Sitemap
+    
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # получаем всю историю для правильной работы
 
       - name: Generate sitemap
         uses: cicirello/generate-sitemap@v1
         with:
-          base-url-path: https://parglbibl.github.io/
-          path-to-root: ./
+          base-url-path: https://parglbibl.ru/
+          exclude-paths: >
+            privacy.html
+            sitemap.html
+            yandex_561d16c6c04cad44.html
+          include-robots-txt: false
+          robots-txt-path: robots.txt
+          verbose: true
 
-      - name: Commit and push sitemap
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add sitemap.xml
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update sitemap"
-          git push
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: GitHub Action
+          author_email: actions@github.com
+          message: 'Автоматическое обновление карты сайта'
+          add: 'sitemap.xml'
+          push: true
