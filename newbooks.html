@@ -91,10 +91,35 @@
             margin: 1rem 0 0;
             text-align: center;
         }
+        .like-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: #ccc;
+            transition: all 0.2s ease;
+            padding: 8px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .like-btn:hover {
+            transform: scale(1.15);
+            background: rgba(229, 152, 155, 0.1);
+        }
+        .like-btn.liked {
+            color: #e5989b;
+        }
+        .like-count {
+            font-size: 0.7rem;
+            color: #888;
+            margin-left: 4px;
+        }
     </style>
 </head>
 <body class="page-transition">
-    <!-- Якорь #top отсутствовал в исходном файле, но если был, удалён -->
     <header>
         <div class="container header-inner">
             <a href="index.html" class="logo">
@@ -226,8 +251,9 @@
             const container = document.getElementById('books-grid');
             if (!container) return;
             let html = '';
-            newBooks.forEach(book => {
+            newBooks.forEach((book, index) => {
                 const savedRating = localStorage.getItem('bookRating_' + book.title) || 0;
+                const isLiked = localStorage.getItem(`liked_book_${index}`) === 'true';
                 const shareUrl = `https://vk.com/share.php?url=https://parglbibl.ru/newbooks.html&title=${encodeURIComponent(book.title + ' — ' + book.author)}&description=${encodeURIComponent(book.description)}&image=${encodeURIComponent('https://parglbibl.ru/' + book.image)}&noparse=true`;
                 html += `
                     <div class="book-card fade-in">
@@ -243,6 +269,10 @@
                                 `<i class="fa${star <= savedRating ? 's' : 'r'} fa-star" data-value="${star}"></i>`
                             ).join('')}
                         </div>
+                        <button class="like-btn ${isLiked ? 'liked' : ''}" data-id="${index}" data-name="${book.title}">
+                            <i class="${isLiked ? 'fas' : 'far'} fa-heart"></i>
+                            <span class="like-count">0</span>
+                        </button>
                         <div class="share-block">
                             <a href="${shareUrl}" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 1rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
                                 <i class="fab fa-vk"></i> Поделиться
