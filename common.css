@@ -667,3 +667,74 @@ a.back-to-top.show {
     opacity: 1 !important;
     visibility: visible !important;
 }
+
+/* ===== ПОИСК В ШАПКЕ ===== */
+.search-icon-container {
+    position: relative;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#searchIcon {
+    font-size: 1.3rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.3s;
+}
+
+#searchIcon:hover {
+    color: #f4e3d7;
+}
+
+.search-popup {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    padding: 12px;
+    display: none;
+    z-index: 10000;
+    min-width: 280px;
+    margin-top: 8px;
+}
+
+.search-popup.active {
+    display: block;
+}
+
+.search-popup form {
+    display: flex;
+    gap: 8px;
+}
+
+.search-popup input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    outline: none;
+    font-size: 0.9rem;
+    font-family: inherit;
+}
+
+.search-popup input[type="text"]:focus {
+    border-color: #e5989b;
+}
+
+.search-popup button {
+    background-color: #e5989b;
+    color: white;
+    border: none;
+    padding: 0 18px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.search-popup button:hover {
+    background-color: #d68b8e;
+}
