@@ -340,6 +340,18 @@ header {
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
+.btn-outline {
+    background: transparent;
+    border: 2px solid #e5989b;
+    color: #e5989b;
+}
+
+.btn-outline:hover {
+    background: #e5989b;
+    color: #fff;
+    transform: scale(1.05);
+}
+
 /* Заголовки разделов */
 .section-title {
     position: relative;
@@ -639,6 +651,67 @@ body.special-mode .footer-col a {
     font-size: 0.7rem;
     color: #888;
     margin-left: 4px;
+}
+
+/* ===== БАННЕР К ГОДУ НАРОДОВ РОССИИ ===== */
+.unity-banner {
+    background: linear-gradient(135deg, #fff9f0 0%, #fefaf5 100%);
+    border: 2px solid #e5989b;
+    border-radius: 24px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.unity-banner-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background: #e5989b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.unity-banner-icon i {
+    font-size: 3rem;
+    color: #fff;
+}
+
+.unity-banner-content {
+    flex: 1;
+}
+
+.unity-banner-content h3 {
+    color: #b5838d;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.unity-banner-content p {
+    color: #4a4a4a;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
+}
+
+.unity-banner-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+    .unity-banner {
+        flex-direction: column;
+        text-align: center;
+    }
+    .unity-banner-buttons {
+        justify-content: center;
+    }
 }
 
 /* Cookie-баннер — заметный */
