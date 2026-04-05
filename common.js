@@ -44,8 +44,20 @@ document.addEventListener('DOMContentLoaded', function() {
         declineBtn.addEventListener('click', () => {
             localStorage.setItem('cookieDeclined', 'true');
             if (cookieBanner) cookieBanner.style.display = 'none';
+            // Отправляем событие в Метрику, если она уже загружена
+            if (typeof ym !== 'undefined') {
+                ym(107242178, 'reachGoal', 'cookie_declined');
+            }
         });
     }
+
+    // Автоматическое скрытие баннера через 30 секунд, если пользователь не выбрал
+    setTimeout(() => {
+        if (cookieBanner && cookieBanner.style.display !== 'none' && 
+            !localStorage.getItem('cookieAccepted') && !localStorage.getItem('cookieDeclined')) {
+            cookieBanner.style.display = 'none';
+        }
+    }, 30000);
 
     // --- Меню: десктоп – горизонтальное с раскрытием по ховеру, мобильные – вертикальный аккордеон ---
     const menuToggle = document.getElementById('menuToggle');
