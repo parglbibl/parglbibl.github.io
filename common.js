@@ -97,7 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 { name: 'История Парголово', href: 'timeline.html', icon: 'fas fa-stream' },
                 { name: 'Карта достопримечательностей', href: 'map.html', icon: 'fas fa-map-marked-alt' },
                 { name: 'Литературный портрет', href: 'literary-portrait.html', icon: 'fas fa-users' },
-                { name: 'Конкурс «История одной улицы»', href: 'konkurs.html', icon: 'fas fa-trophy' }
+                { name: 'Конкурс «История одной улицы»', href: 'konkurs.html', icon: 'fas fa-trophy' },
+                { name: 'Народы Парголово', href: 'narody-pargolovo.html', icon: 'fas fa-users' }
             ]
         },
         {
@@ -304,7 +305,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===== СИСТЕМА ЛАЙКОВ (СЕРДЕЧКО) =====
     
-    // Функция для отправки лайка в Яндекс.Метрику
     function sendLikeToMetric(itemId, itemName, itemType, isLiked) {
         if (typeof ym !== 'undefined') {
             ym(107242178, 'reachGoal', 'item_like', {
@@ -315,7 +315,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Сохраняем в localStorage для статистики
         const stats = JSON.parse(localStorage.getItem('likes_stats') || '{}');
         const key = `${itemType}_${itemId}`;
         stats[key] = stats[key] || { name: itemName, type: itemType, likes: 0 };
@@ -323,7 +322,6 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('likes_stats', JSON.stringify(stats));
     }
     
-    // Инициализация лайков для книг
     function initBookLikes() {
         const likeBtns = document.querySelectorAll('.like-btn');
         
@@ -375,7 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Инициализация лайков для праздников
     window.initHolidayLikes = function() {
         const likeBtns = document.querySelectorAll('.holiday-like-btn');
         
@@ -421,6 +418,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     };
     
-    // Вызываем инициализацию лайков для книг
     setTimeout(initBookLikes, 500);
 });
