@@ -72,6 +72,7 @@
                     <li data-mobile="more"><a href="timeline.html"><i class="fas fa-stream"></i> История Парголово</a></li>
                     <li data-mobile="more"><a href="book-recommendations.html"><i class="fas fa-star"></i> Что почитать по интересу</a></li>
                     <li data-mobile="more"><a href="book-kitchen.html"><i class="fas fa-utensils"></i> Книжная кухня</a></li>
+                    <li data-mobile="more"><a href="narody-pargolovo.html"><i class="fas fa-users"></i> Народы Парголово</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -103,6 +104,7 @@
                 <div class="project-card fade-in"><i class="fas fa-map-marked-alt"></i><h3>Интерактивная карта</h3><p>Нанесите на карту все достопримечательности, храмы и памятные места. Удобный способ планировать прогулки.</p><a href="map.html" class="btn">Перейти к карте</a></div>
                 <div class="project-card fade-in"><i class="fas fa-stream"></i><h3>Лента времени Парголово</h3><p>Пролистайте историю посёлка от первого упоминания до наших дней. Интерактивная хроника с иллюстрациями и ссылками.</p><a href="timeline.html" class="btn">Перейти к ленте</a></div>
                 <div class="project-card fade-in"><i class="fas fa-users"></i><h3>Литературный портрет Парголово</h3><p>Писатели, композиторы и художники, связанные с нашим краем. Интерактивная галерея творческого наследия: Грибоедов, Достоевский, Римский-Корсаков, Репин и другие. Узнайте, кто из великих жил и работал в Парголово.</p><a href="literary-portrait.html" class="btn">Перейти к портрету</a></div>
+                <div class="project-card fade-in"><i class="fas fa-users"></i><h3>Народы Парголово</h3><p>Ижора, финны-ингерманландцы, русские переселенцы, немцы — кто жил и оставил свой след в истории нашего посёлка.</p><a href="narody-pargolovo.html" class="btn">Перейти к разделу</a></div>
                 <div class="project-card placeholder fade-in" style="background: #f8f8f8; border: 2px dashed #ccc;"><i class="fas fa-plus-circle" style="color: #aaa;"></i><h3 style="color: #888;">Ваш проект?</h3><p style="color: #aaa;">Если у вас есть идеи или материалы, поделитесь с нами через раздел «Контакты».</p></div>
             </div>
 
@@ -113,6 +115,20 @@
                 <div class="project-card fade-in" style="text-align: left;"><i class="fas fa-hard-hat"></i><h3>Немцы и другие европейцы</h3><p>В формировании облика усадьбы участвовали архитекторы разных национальностей. Например, «Жёлтую дачу» в Шуваловском парке построил в 1902 году архитектор Максимилиан Месмахер (немецкого происхождения) для своего брата. В XIX веке Парголово стало дачным местом, куда приезжали люди со всей Европы, создавая уникальную среду культурного обмена.</p></div>
             </div>
             <div class="share-block"><a href="https://vk.com/share.php?url=https://parglbibl.ru/kraevedenie.html#narody&title=Народы%20Парголово&description=Ижора%2C%20финны-ингерманландцы%2C%20русские%20переселенцы%2C%20немцы%20и%20другие%20европейцы%20в%20истории%20Парголово.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn"><i class="fab fa-vk"></i> Поделиться разделом</a></div>
+
+            <!-- Викторина о народах Парголово -->
+            <div class="quiz-container" style="background: #fff9f0; border: 2px solid #e5989b; margin: 3rem 0;">
+                <h3 style="color: #b5838d; text-align: center; margin-bottom: 1rem;">📜 Знаете ли вы историю народов Парголово?</h3>
+                <div id="narodyQuiz">
+                    <div class="quiz-question" id="narodyQuestion"></div>
+                    <div class="quiz-options" id="narodyOptions"></div>
+                    <div class="quiz-feedback" id="narodyFeedback"></div>
+                    <div class="quiz-controls">
+                        <span class="quiz-score" id="narodyScore">Правильно: 0 / <span id="narodyTotal"></span></span>
+                        <button class="btn" id="narodyNextBtn" style="display:none;">Следующий вопрос</button>
+                    </div>
+                </div>
+            </div>
 
             <h2 class="section-title" id="knizhnaya-polka">Книжная полка</h2>
             <div class="books-grid fade-in">
@@ -125,60 +141,161 @@
                 <div class="book-card"><div class="book-cover"><svg width="100%" height="200" viewBox="0 0 250 350" preserveAspectRatio="xMidYMid meet" style="background: #f9f0e7; border-radius: 8px;"><rect width="250" height="350" fill="#f9f0e7" rx="8" ry="8"/><text x="125" y="100" font-family="Montserrat, sans-serif" font-size="14" fill="#b5838d" text-anchor="middle" font-weight="600">Карельский</text><text x="125" y="125" font-family="Montserrat, sans-serif" font-size="14" fill="#b5838d" text-anchor="middle" font-weight="600">перешеек:</text><text x="125" y="150" font-family="Montserrat, sans-serif" font-size="14" fill="#b5838d" text-anchor="middle" font-weight="600">путешествия</text><text x="125" y="175" font-family="Montserrat, sans-serif" font-size="14" fill="#b5838d" text-anchor="middle" font-weight="600">для детей</text><text x="125" y="210" font-family="Open Sans, sans-serif" font-size="12" fill="#4a4a4a" text-anchor="middle">Сыров, Мягких</text><text x="125" y="280" font-family="Open Sans, sans-serif" font-size="12" fill="#e5989b" text-anchor="middle">Есть в фонде</text></svg></div><h3>Карельский перешеек: путешествия для детей</h3><div class="author">А.А. Сыров, М.А. Мягких</div><div class="description">Книга для детей с крупным шрифтом и цветными иллюстрациями. Рассказывает об истории Карельского перешейка, станциях и достопримечательностях, включая Парголово. СПб: Инкери, 2016.</div><div style="margin-top:0.5rem;"><span style="color:#b5838d;"><i class="fas fa-check-circle"></i> Есть в фонде</span></div><div class="share-block"><a href="https://vk.com/share.php?url=https://parglbibl.ru/kraevedenie.html#knizhnaya-polka&title=Карельский%20перешеек:%20путешествия%20для%20детей&description=А.А.%20Сыров,%20М.А.%20Мягких.%20Книга%20для%20детей%20об%20истории%20Карельского%20перешейка.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn"><i class="fab fa-vk"></i> Поделиться</a></div></div>
                 <div class="book-card"><div class="book-cover"><svg width="100%" height="200" viewBox="0 0 250 350" preserveAspectRatio="xMidYMid meet" style="background: #f9f0e7; border-radius: 8px;"><rect width="250" height="350" fill="#f9f0e7" rx="8" ry="8"/><text x="125" y="100" font-family="Montserrat, sans-serif" font-size="16" fill="#b5838d" text-anchor="middle" font-weight="600">От земских</text><text x="125" y="130" font-family="Montserrat, sans-serif" font-size="16" fill="#b5838d" text-anchor="middle" font-weight="600">школ до</text><text x="125" y="160" font-family="Montserrat, sans-serif" font-size="16" fill="#b5838d" text-anchor="middle" font-weight="600">образования</text><text x="125" y="200" font-family="Open Sans, sans-serif" font-size="14" fill="#4a4a4a" text-anchor="middle">Е. Александрова</text><text x="125" y="280" font-family="Open Sans, sans-serif" font-size="12" fill="#e5989b" text-anchor="middle">Есть в фонде</text></svg></div><h3>Парголово: от земских школ до образовательных учреждений</h3><div class="author">Е.Л. Александрова</div><div class="description">История образования в Парголово: земские школы, первые советские школы, спортивные кружки. Вклад А.П. Шувалова. СПб, 2019.</div><div style="margin-top:0.5rem;"><span style="color:#b5838d;"><i class="fas fa-check-circle"></i> Есть в фонде</span></div><div class="share-block"><a href="https://vk.com/share.php?url=https://parglbibl.ru/kraevedenie.html#knizhnaya-polka&title=Парголово:%20от%20земских%20школ%20до%20образовательных%20учреждений&description=Е.Л.%20Александрова.%20История%20образования%20в%20Парголово.%20Вклад%20А.П.%20Шувалова.&image=https://parglbibl.ru/logo.PNG" target="_blank" class="share-btn"><i class="fab fa-vk"></i> Поделиться</a></div></div>
             </div>
-
-            <h2 class="section-title">Викторина «Знаешь ли ты Парголово?»</h2>
-            <div class="quiz-container"><div id="quiz"><div class="quiz-question" id="question"></div><div class="quiz-options" id="options"></div><div class="quiz-feedback" id="feedback"></div><div class="quiz-controls"><span class="quiz-score" id="score">Правильно: 0</span><button class="btn" id="nextBtn" style="display:none;">Следующий вопрос</button></div></div></div>
         </div>
     </section>
 
     <footer class="footer-content">
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>Парголовская библиотека</h3>
-                <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
-                <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
-                <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
-            </div>
-            <div class="footer-col">
-                <h3>Полезные ссылки</h3>
-                <p><a href="index.html">Главная</a></p>
-                <p><a href="about.html">О нас</a></p>
-                <p><a href="services.html">Услуги</a></p>
-                <p><a href="events.html">События</a></p>
-                <p><a href="contacts.html">Контакты</a></p>
-                <p><a href="faq.html">Вопросы</a></p>
-                <p><a href="privacy.html">Политика конфиденциальности</a></p>
-            </div>
-            <div class="footer-col">
-                <h3>Мы в соцсетях</h3>
-                <div class="footer-social">
-                    <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Парголовская библиотека</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p>
+                    <p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p>
+                    <p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p>
                 </div>
-                <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
-                <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                <div class="footer-col">
+                    <h3>Полезные ссылки</h3>
+                    <p><a href="index.html">Главная</a></p>
+                    <p><a href="about.html">О нас</a></p>
+                    <p><a href="services.html">Услуги</a></p>
+                    <p><a href="events.html">События</a></p>
+                    <p><a href="contacts.html">Контакты</a></p>
+                    <p><a href="faq.html">Вопросы</a></p>
+                    <p><a href="privacy.html">Политика конфиденциальности</a></p>
+                </div>
+                <div class="footer-col">
+                    <h3>Мы в соцсетях</h3>
+                    <div class="footer-social">
+                        <a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <p style="margin-top:1.5rem;">Подпишитесь на новости!</p>
+                    <p><a href="#" id="specialFooterLink" style="color:#fff;"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-actions">
+                    <div class="share-buttons">
+                        <a href="https://vk.com/share.php?url=https://parglbibl.ru" target="_blank"><i class="fab fa-vk"></i></a>
+                    </div>
+                    <div class="print-button">
+                        <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
+                    </div>
+                </div>
+                <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <div class="footer-actions">
-                <div class="share-buttons">
-                    <a href="https://vk.com/share.php?url=https://parglbibl.ru" target="_blank"><i class="fab fa-vk"></i></a>
-                </div>
-                <div class="print-button">
-                    <a href="javascript:window.print()"><i class="fas fa-print"></i> Печать</a>
-                </div>
-            </div>
-            <p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района | <a href="privacy.html" style="color:#fff; text-decoration:underline;">Политика конфиденциальности</a></p>
-        </div>
-    </div>
-</footer>
+    </footer>
 
     <div id="cookie-banner" style="display: none;"><p>🍪 Мы используем файлы cookie. <a href="privacy.html">Подробнее</a>.</p><div class="cookie-buttons"><button id="cookie-accept" class="cookie-btn cookie-accept">Принять</button><button id="cookie-decline" class="cookie-btn cookie-decline">Отклонить</button></div></div>
+    <div id="scrollUp" title="Наверх">↑</div>
 
     <script src="common.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
     <script src="notes.js"></script>
     <script>
+        // Викторина о народах Парголово
+        (function() {
+            const narodyQuestions = [
+                {
+                    question: "Какое название носит искусственный холм в Шуваловском парке, созданный крепостными графа Шувалова?",
+                    options: ["Олимп", "Парнас", "Арарат", "Эверест"],
+                    correct: 1,
+                    explanation: "Гора Парнас — искусственный холм высотой 61 м, созданный в середине XVIII века. Название, по одной из версий, происходит от древнегреческой горы — обители муз."
+                },
+                {
+                    question: "Жители каких губерний были переселены графом Шуваловым для заселения парголовских земель?",
+                    options: ["Московской и Тверской", "Новгородской и Псковской", "Вологодской и Владимирской", "Калужской и Рязанской"],
+                    correct: 2,
+                    explanation: "Свои южные владения Шуваловы заселили крепостными крестьянами, переселёнными из Вологодской и Владимирской губерний."
+                },
+                {
+                    question: "Какой знаменитый русский композитор венчался в церкви Петра и Павла в Шуваловском парке?",
+                    options: ["П.И. Чайковский", "М.П. Мусоргский", "Н.А. Римский-Корсаков", "С.В. Рахманинов"],
+                    correct: 2,
+                    explanation: "30 июня 1872 года в церкви святых апостолов Петра и Павла состоялось венчание Николая Андреевича Римского-Корсакова с пианисткой Надеждой Пургольд."
+                },
+                {
+                    question: "Как переводится на русский язык название деревни Старожиловка, где жил критик В.В. Стасов?",
+                    options: ["Старое село", "Место старожилов", "Старое жильё", "Жилище старейшин"],
+                    correct: 1,
+                    explanation: "Название «Старожиловка» происходит от слова «старожил», то есть «коренной житель», что подчёркивает статус этой деревни как одного из старейших поселений в округе."
+                },
+                {
+                    question: "В каком году Парголово впервые упоминается в письменных источниках?",
+                    options: ["1240 год", "1500 год", "1703 год", "1746 год"],
+                    correct: 1,
+                    explanation: "Первое упоминание о селении Паркола содержится в Писцовой книге Водской пятины за 1500 год."
+                }
+            ];
+
+            let currentQuestion = 0;
+            let score = 0;
+            let answered = false;
+            const totalQuestions = narodyQuestions.length;
+
+            const questionEl = document.getElementById('narodyQuestion');
+            const optionsEl = document.getElementById('narodyOptions');
+            const feedbackEl = document.getElementById('narodyFeedback');
+            const scoreEl = document.getElementById('narodyScore');
+            const totalEl = document.getElementById('narodyTotal');
+            const nextBtn = document.getElementById('narodyNextBtn');
+
+            if (totalEl) totalEl.textContent = totalQuestions;
+
+            function loadNarodyQuestion() {
+                answered = false;
+                const q = narodyQuestions[currentQuestion];
+                if (questionEl) questionEl.textContent = q.question;
+                if (optionsEl) {
+                    optionsEl.innerHTML = '';
+                    q.options.forEach((opt, idx) => {
+                        const btn = document.createElement('div');
+                        btn.classList.add('quiz-option');
+                        btn.textContent = opt;
+                        btn.dataset.index = idx;
+                        btn.addEventListener('click', () => selectNarodyOption(idx));
+                        optionsEl.appendChild(btn);
+                    });
+                }
+                if (feedbackEl) feedbackEl.innerHTML = '';
+                if (nextBtn) nextBtn.style.display = 'none';
+            }
+
+            function selectNarodyOption(selectedIdx) {
+                if (answered) return;
+                answered = true;
+                const q = narodyQuestions[currentQuestion];
+                const isCorrect = (selectedIdx === q.correct);
+                const options = document.querySelectorAll('#narodyOptions .quiz-option');
+                options.forEach((opt, idx) => {
+                    opt.classList.add('disabled');
+                    if (idx === q.correct) opt.classList.add('correct');
+                    else if (idx === selectedIdx && !isCorrect) opt.classList.add('wrong');
+                });
+                if (isCorrect) {
+                    score++;
+                    if (feedbackEl) feedbackEl.innerHTML = `✅ Правильно! ${q.explanation || ''}`;
+                } else {
+                    if (feedbackEl) feedbackEl.innerHTML = `❌ Неверно. Правильный ответ: ${q.options[q.correct]}. ${q.explanation || ''}`;
+                }
+                if (scoreEl) scoreEl.textContent = `Правильно: ${score} / ${totalQuestions}`;
+                if (currentQuestion < totalQuestions - 1 && nextBtn) nextBtn.style.display = 'inline-block';
+                else if (currentQuestion === totalQuestions - 1 && feedbackEl) {
+                    feedbackEl.innerHTML += `<br><strong>Викторина завершена! Вы ответили правильно на ${score} из ${totalQuestions} вопросов.</strong>`;
+                }
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    currentQuestion++;
+                    loadNarodyQuestion();
+                });
+            }
+
+            loadNarodyQuestion();
+        })();
+
+        // Основная викторина о Парголово
         (function() {
             const allQuestions = [
                 { question: "Как называлась усадьба в Верхнем Парголово?", options: ["Воронцово", "Шувалово", "Строганово", "Юсупово"], correct: 1, explanation: "Усадьба принадлежала графам Шуваловым, отсюда и второе название местности — Шувалово." },
@@ -203,31 +320,33 @@
             function shuffleArray(arr) { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; }
             const shuffled = shuffleArray([...allQuestions]);
             const questions = shuffled.slice(0, 10);
-            let currentQuestion = 0, score = 0, answered = false;
-            const questionEl = document.getElementById('question'), optionsEl = document.getElementById('options'), feedbackEl = document.getElementById('feedback'), scoreEl = document.getElementById('score'), nextBtn = document.getElementById('nextBtn');
-            function loadQuestion() {
-                answered = false;
-                const q = questions[currentQuestion];
-                questionEl.textContent = q.question;
-                optionsEl.innerHTML = '';
-                q.options.forEach((opt, idx) => { const btn = document.createElement('div'); btn.classList.add('quiz-option'); btn.textContent = opt; btn.dataset.index = idx; btn.addEventListener('click', () => selectOption(idx)); optionsEl.appendChild(btn); });
-                feedbackEl.innerHTML = '';
-                nextBtn.style.display = 'none';
+            let currentQuestionMain = 0, scoreMain = 0, answeredMain = false;
+            const questionElMain = document.getElementById('question'), optionsElMain = document.getElementById('options'), feedbackElMain = document.getElementById('feedback'), scoreElMain = document.getElementById('score'), nextBtnMain = document.getElementById('nextBtn');
+            function loadQuestionMain() {
+                answeredMain = false;
+                const q = questions[currentQuestionMain];
+                if (questionElMain) questionElMain.textContent = q.question;
+                if (optionsElMain) {
+                    optionsElMain.innerHTML = '';
+                    q.options.forEach((opt, idx) => { const btn = document.createElement('div'); btn.classList.add('quiz-option'); btn.textContent = opt; btn.dataset.index = idx; btn.addEventListener('click', () => selectOptionMain(idx)); optionsElMain.appendChild(btn); });
+                }
+                if (feedbackElMain) feedbackElMain.innerHTML = '';
+                if (nextBtnMain) nextBtnMain.style.display = 'none';
             }
-            function selectOption(selectedIdx) {
-                if (answered) return;
-                answered = true;
-                const q = questions[currentQuestion];
+            function selectOptionMain(selectedIdx) {
+                if (answeredMain) return;
+                answeredMain = true;
+                const q = questions[currentQuestionMain];
                 const isCorrect = (selectedIdx === q.correct);
-                const options = document.querySelectorAll('.quiz-option');
+                const options = document.querySelectorAll('#options .quiz-option');
                 options.forEach((opt, idx) => { opt.classList.add('disabled'); if (idx === q.correct) opt.classList.add('correct'); else if (idx === selectedIdx && !isCorrect) opt.classList.add('wrong'); });
-                if (isCorrect) { score++; feedbackEl.innerHTML = `✅ Правильно! ${q.explanation || ''}`; } else { feedbackEl.innerHTML = `❌ Неверно. Правильный ответ: ${q.options[q.correct]}. ${q.explanation || ''}`; }
-                scoreEl.textContent = `Правильно: ${score}`;
-                if (currentQuestion < questions.length - 1) nextBtn.style.display = 'inline-block';
-                else feedbackEl.innerHTML += `<br><strong>Викторина завершена! Вы ответили правильно на ${score} из ${questions.length} вопросов.</strong>`;
+                if (isCorrect) { scoreMain++; if (feedbackElMain) feedbackElMain.innerHTML = `✅ Правильно! ${q.explanation || ''}`; } else { if (feedbackElMain) feedbackElMain.innerHTML = `❌ Неверно. Правильный ответ: ${q.options[q.correct]}. ${q.explanation || ''}`; }
+                if (scoreElMain) scoreElMain.textContent = `Правильно: ${scoreMain}`;
+                if (currentQuestionMain < questions.length - 1 && nextBtnMain) nextBtnMain.style.display = 'inline-block';
+                else if (currentQuestionMain === questions.length - 1 && feedbackElMain) feedbackElMain.innerHTML += `<br><strong>Викторина завершена! Вы ответили правильно на ${scoreMain} из ${questions.length} вопросов.</strong>`;
             }
-            nextBtn.addEventListener('click', () => { currentQuestion++; loadQuestion(); });
-            loadQuestion();
+            if (nextBtnMain) nextBtnMain.addEventListener('click', () => { currentQuestionMain++; loadQuestionMain(); });
+            if (document.getElementById('question')) loadQuestionMain();
         })();
     </script>
 </body>
