@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Народы России — культура, традиции, литература</title>
+    <meta name="description" content="Знакомство с культурой, традициями и литературой народов России. Книги, рецепты, акции и мероприятия.">
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="common.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .section { padding: 4rem 0; }
+        .back-link { margin-bottom: 2rem; text-align: left; }
+        .back-link a { display: inline-flex; align-items: center; gap: 8px; border: 2px solid #e5989b; color: #e5989b; padding: 6px 18px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .back-link a:hover { background-color: #e5989b; color: white; }
+        
+        .culture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .culture-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .culture-card:hover { transform: translateY(-8px); }
+        .culture-card-img { width: 100%; height: 200px; object-fit: cover; }
+        .culture-card-content { padding: 1.5rem; }
+        .culture-card-title { font-size: 1.3rem; color: #5e4b3c; margin-bottom: 0.5rem; }
+        .culture-card-desc { color: #666; margin-bottom: 1rem; line-height: 1.5; }
+        
+        .recipes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .recipe-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .recipe-card:hover { transform: translateY(-5px); }
+        .recipe-img { width: 100%; height: 180px; object-fit: cover; }
+        .recipe-content { padding: 1.2rem; }
+        .recipe-title { font-size: 1.2rem; color: #b5838d; margin-bottom: 0.3rem; }
+        .recipe-people { font-size: 0.85rem; color: #e5989b; margin-bottom: 0.5rem; font-weight: 600; }
+        .recipe-desc { font-size: 0.9rem; color: #666; margin-bottom: 0.8rem; }
+        
+        .action-card { background: linear-gradient(135deg, #fff9f0 0%, #fefaf5 100%); border: 2px solid #e5989b; border-radius: 24px; padding: 2rem; text-align: center; margin: 2rem 0; }
+        .action-card h3 { color: #b5838d; margin-bottom: 1rem; }
+        .action-card p { margin-bottom: 1.5rem; }
+        
+        .form-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 2rem; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
+        .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; transition: background 0.3s; }
+        .submit-btn:hover { background-color: #d68b8e; }
+        
+        .books-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding: 1rem 0; scrollbar-width: thin; }
+        .book-item { flex: 0 0 200px; text-align: center; background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .book-item img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; }
+        .book-item h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+        .book-item p { font-size: 0.8rem; color: #888; }
+        
+        @media (max-width: 768px) {
+            .culture-grid, .recipes-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="page-transition">
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека"></a>
+            <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
+            <nav class="nav" id="nav">
+                <ul>
+                    <li data-mobile="main"><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                    <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
+                    <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
+                    <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
+                    <li data-mobile="main"><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
+                    <li data-mobile="main"><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
+                    <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
+                    <li data-mobile="main"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
+                    <li data-mobile="main"><a href="partners.html"><i class="fas fa-handshake"></i> Партнёры</a></li>
+                    <li data-mobile="main"><a href="contacts.html"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+                    <li data-mobile="more"><a href="speedcubing.html"><i class="fas fa-puzzle-piece"></i> Спидкубинг</a></li>
+                    <li data-mobile="more"><a href="gallery.html"><i class="fas fa-images"></i> Фотогалерея</a></li>
+                    <li data-mobile="more"><a href="digital-resources.html"><i class="fas fa-laptop"></i> Электронные ресурсы</a></li>
+                    <li data-mobile="more"><a href="literary-calendar.html"><i class="fas fa-calendar-alt"></i> Литературный календарь</a></li>
+                    <li data-mobile="more"><a href="bookmatcher.html"><i class="fas fa-magic"></i> Примерочная книг</a></li>
+                    <li data-mobile="more"><a href="timeline.html"><i class="fas fa-stream"></i> История Парголово</a></li>
+                    <li data-mobile="more"><a href="book-recommendations.html"><i class="fas fa-star"></i> Что почитать по интересу</a></li>
+                    <li data-mobile="more"><a href="book-kitchen.html"><i class="fas fa-utensils"></i> Книжная кухня</a></li>
+                    <li data-mobile="more"><a href="narody-pargolovo.html"><i class="fas fa-users"></i> Народы Парголово</a></li>
+                    <li data-mobile="more"><a href="narody-rossii.html" class="active"><i class="fas fa-flag"></i> Народы России</a></li>
+                </ul>
+                <div class="search-icon-container">
+                    <i class="fas fa-search" id="searchIcon"></i>
+                    <div class="search-popup" id="searchPopup">
+                        <form action="https://yandex.ru/search/" method="get" target="_blank">
+                            <input type="hidden" name="site" value="parglbibl.ru">
+                            <input type="text" name="text" placeholder="Поиск по сайту...">
+                            <button type="submit"><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="breadcrumbs"><a href="index.html">Главная</a> &raquo; <span>Народы России</span></div>
+            <div class="back-link fade-in"><a href="index.html"><i class="fas fa-arrow-left"></i> На главную</a></div>
+            
+            <h1 class="section-title">Народы России</h1>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">Россия — многонациональная страна, в которой живут более 190 народов. Каждый из них хранит свои традиции, язык, культуру и кухню. Приглашаем вас в путешествие по народам России!</p>
+
+            <!-- Раздел 1: Культура народов России -->
+            <h2 class="section-title" style="font-size: 1.8rem;">Культура и традиции</h2>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Sabantuy_2014_01.jpg/400px-Sabantuy_2014_01.jpg" alt="Сабантуй" class="culture-card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Сабантуй'">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Сабантуй — праздник плуга</div>
+                        <div class="culture-card-desc">Татарский и башкирский народный праздник окончания весенних полевых работ. Сопровождается скачками, борьбой куреш, бегом с коромыслом и другими состязаниями.</div>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Ysyakh_2013_7.jpg/400px-Ysyakh_2013_7.jpg" alt="Ысыах" class="culture-card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Ысыах'">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Ысыах — якутский новый год</div>
+                        <div class="culture-card-desc">Главный национальный праздник якутов, приуроченный к летнему солнцестоянию. Включает ритуал кормления огня, хоровод осуохай и кумысопитие.</div>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Kalmyk_temple_2010.jpg/400px-Kalmyk_temple_2010.jpg" alt="Зул" class="culture-card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Зул'">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Зул — калмыцкий новый год</div>
+                        <div class="culture-card-desc">Национальный праздник калмыков, символизирующий прибавление дня и наступление нового года. Зажигаются лампады, готовятся борцоки.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 2: Книги о народах России -->
+            <h2 class="section-title" style="font-size: 1.8rem;">Книги о народах России</h2>
+            <div class="books-slider" id="booksSlider"></div>
+            <p style="text-align: center; margin-top: 1rem;"><a href="newbooks.html" class="btn">Смотреть все новинки</a></p>
+
+            <!-- Раздел 3: Кухня народов России -->
+            <h2 class="section-title" style="font-size: 1.8rem;">Кухня народов России</h2>
+            <div class="recipes-grid" id="recipesGrid"></div>
+            <p style="text-align: center; margin-top: 1rem;"><a href="book-kitchen.html" class="btn">Больше рецептов на Книжной кухне</a></p>
+
+            <!-- Раздел 4: Литература народов России -->
+            <h2 class="section-title" style="font-size: 1.8rem;">Литература народов России</h2>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Расул Гамзатов (аварец)</div>
+                        <div class="culture-card-desc">«Журавли», «Мой Дагестан». Поэт, чьи стихи о войне, мире и родном крае стали всенародными.</div>
+                        <a href="literary-calendar.html" class="btn" style="margin-top: 0.5rem;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Чингиз Айтматов (киргиз)</div>
+                        <div class="culture-card-desc">«Плаха», «Белый пароход», «Джамиля». Классик мировой литературы, писавший на русском и киргизском.</div>
+                        <a href="literary-calendar.html" class="btn" style="margin-top: 0.5rem;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Юрий Рытхэу (чукча)</div>
+                        <div class="culture-card-desc">«Сон в начале тумана», «Когда киты уходят». Писатель, познакомивший мир с культурой чукчей.</div>
+                        <a href="literary-calendar.html" class="btn" style="margin-top: 0.5rem;">Подробнее</a>
+                    </div>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-card-content">
+                        <div class="culture-card-title">Кайсын Кулиев (балкарец)</div>
+                        <div class="culture-card-desc">Поэт, чьи стихи о горах, войне и любви переведены на многие языки мира.</div>
+                        <a href="literary-calendar.html" class="btn" style="margin-top: 0.5rem;">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Раздел 5: Акция "Читаем на родном языке" -->
+            <div class="action-card">
+                <h3><i class="fas fa-microphone-alt"></i> Акция «Читаем на родном языке»</h3>
+                <p>Запишите видео или аудио с чтением стихотворения или отрывка прозы на своём родном языке (с переводом на русский). Лучшие работы будут опубликованы на сайте и в группе ВКонтакте!</p>
+                <button id="openFormBtn" class="btn">Участвовать</button>
+            </div>
+
+            <div id="actionForm" class="form-block" style="display: none;">
+                <h3 style="color: #b5838d; margin-bottom: 1rem;">Форма участия</h3>
+                <form id="nativeLanguageForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="language">Ваш родной язык</label>
+                        <input type="text" id="language" name="language" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="author">Автор произведения</label>
+                        <input type="text" id="author" name="author">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Название произведения</label>
+                        <input type="text" id="title" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Ссылка на видео (YouTube, VK, Яндекс.Диск)</label>
+                        <input type="url" id="link" name="link" placeholder="https://...">
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Комментарий</label>
+                        <textarea id="comment" name="comment" rows="3" placeholder="Расскажите о себе и о том, почему выбрали это произведение"></textarea>
+                    </div>
+                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="privacy" name="privacy" required style="width: auto;">
+                        <label for="privacy">Я согласен с <a href="privacy.html">Политикой конфиденциальности</a></label>
+                    </div>
+                    <div id="formStatus" style="margin-bottom: 1rem;"></div>
+                    <button type="submit" class="submit-btn">Отправить заявку</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-content">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col"><h3>Парголовская библиотека</h3><p><i class="fas fa-map-marker-alt"></i> ул. Торфяная, 25, Парголово</p><p><i class="fas fa-phone-alt"></i> +7 (812) 246-93-05</p><p><i class="fas fa-envelope"></i> pargolovo@cbsvib.ru</p></div>
+                <div class="footer-col"><h3>Полезные ссылки</h3><p><a href="index.html">Главная</a></p><p><a href="about.html">О нас</a></p><p><a href="services.html">Услуги</a></p><p><a href="contacts.html">Контакты</a></p><p><a href="privacy.html">Политика конфиденциальности</a></p></div>
+                <div class="footer-col"><h3>Мы в соцсетях</h3><div class="footer-social"><a href="https://vk.com/pargolovskaya_library" target="_blank"><i class="fab fa-vk"></i></a></div><p style="margin-top:1.5rem;">Подпишитесь на новости!</p><p><a href="#" id="specialFooterLink"><i class="fas fa-eye"></i> Версия для слабовидящих</a></p></div>
+            </div>
+            <div class="footer-bottom"><p>© 2026 Библиотека «Парголовская» | ЦБС Выборгского района</p></div>
+        </div>
+    </footer>
+
+    <div id="cookie-banner" style="display: none;"><p>🍪 Мы используем файлы cookie. <a href="privacy.html">Подробнее</a>.</p><div class="cookie-buttons"><button id="cookie-accept" class="cookie-btn cookie-accept">Принять</button><button id="cookie-decline" class="cookie-btn cookie-decline">Отклонить</button></div></div>
+    <div id="scrollUp" title="Наверх">↑</div>
+
+    <script src="common.js"></script>
+    <script>
+        // Книги о народах России
+        const booksData = [
+            { title: "Сказки народов России", author: "Сборник", image: "https://via.placeholder.com/150x200?text=Сказки+народов+России", link: "newbooks.html" },
+            { title: "Мифы и легенды народов России", author: "Сборник", image: "https://via.placeholder.com/150x200?text=Мифы+и+легенды", link: "newbooks.html" },
+            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "https://via.placeholder.com/150x200?text=Энциклопедия", link: "newbooks.html" },
+            { title: "Расул Гамзатов. Стихи", author: "Расул Гамзатов", image: "https://via.placeholder.com/150x200?text=Гамзатов", link: "newbooks.html" },
+            { title: "Чингиз Айтматов. Плаха", author: "Чингиз Айтматов", image: "https://via.placeholder.com/150x200?text=Айтматов", link: "newbooks.html" },
+            { title: "Юрий Рытхэу. Сон в начале тумана", author: "Юрий Рытхэу", image: "https://via.placeholder.com/150x200?text=Рытхэу", link: "newbooks.html" }
+        ];
+
+        function renderBooksSlider() {
+            const container = document.getElementById('booksSlider');
+            if (!container) return;
+            let html = '';
+            booksData.forEach(book => {
+                html += `
+                    <div class="book-item">
+                        <img src="${book.image}" alt="${book.title}">
+                        <h4>${book.title}</h4>
+                        <p>${book.author}</p>
+                        <a href="${book.link}" class="btn" style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; font-size: 0.7rem;">Подробнее</a>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Рецепты народов России
+        const recipesData = [
+            { people: "Татары", title: "Чак-чак", desc: "Медовое лакомство из жареных кусочков теста. Традиционное угощение на свадьбах и праздниках.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Chak_Chak.jpg/300px-Chak_Chak.jpg" },
+            { people: "Буряты", title: "Буузы (позы)", desc: "Паровые мясные пирожки с бульоном внутри. Лепится 33 защипа — по числу складок на одежде богини.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Buuzy.jpg/300px-Buuzy.jpg" },
+            { people: "Карелы", title: "Калитки", desc: "Открытые ржаные пирожки с начинкой из картофеля, пшённой каши или творога. Символ карельской кухни.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Karelian_pasties.jpg/300px-Karelian_pasties.jpg" },
+            { people: "Осетины", title: "Осетинские пироги", desc: "Три вида пирогов: с сыром (уалибах), с мясом (фыдджин), с картофелем (картофджин). Символ Солнца, Земли и Неба.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Ossetian_pie.jpg/300px-Ossetian_pie.jpg" },
+            { people: "Якуты", title: "Строганина", desc: "Замороженная рыба (чир, муксун, нельма), нарезанная тонкими стружками. Традиционное блюдо северных народов.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Stroganina.jpg/300px-Stroganina.jpg" },
+            { people: "Марийцы", title: "Команмелна", desc: "Марийские блины из кислого теста. Готовятся на праздники и поминки, подаются с маслом или сметаной.", image: "https://via.placeholder.com/300x200?text=Команмелна" }
+        ];
+
+        function renderRecipes() {
+            const container = document.getElementById('recipesGrid');
+            if (!container) return;
+            let html = '';
+            recipesData.forEach(recipe => {
+                html += `
+                    <div class="recipe-card">
+                        <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=${encodeURIComponent(recipe.title)}'">
+                        <div class="recipe-content">
+                            <div class="recipe-title">${recipe.title}</div>
+                            <div class="recipe-people"><i class="fas fa-users"></i> ${recipe.people}</div>
+                            <div class="recipe-desc">${recipe.desc}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Форма акции
+        document.getElementById('openFormBtn')?.addEventListener('click', function() {
+            const form = document.getElementById('actionForm');
+            if (form) {
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+
+        document.getElementById('nativeLanguageForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const statusDiv = document.getElementById('formStatus');
+            statusDiv.textContent = 'Отправка...';
+            try {
+                const response = await fetch('https://formspree.io/f/xdawoqrg', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    statusDiv.textContent = 'Спасибо! Ваша заявка принята. Мы свяжемся с вами.';
+                    form.reset();
+                    document.getElementById('actionForm').style.display = 'none';
+                } else {
+                    statusDiv.textContent = 'Ошибка при отправке. Попробуйте позже.';
+                }
+            } catch (error) {
+                statusDiv.textContent = 'Ошибка сети. Проверьте подключение.';
+            }
+        });
+
+        renderBooksSlider();
+        renderRecipes();
+    </script>
+</body>
+</html>
