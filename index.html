@@ -459,18 +459,19 @@
         </div>
     </section>
 
-    <!-- Баннер к Году единства народов -->
+    <!-- Баннер к Году народов России -->
     <section class="section">
         <div class="container">
-            <div class="info-block fade-in" style="background: #f0f7ff; border-left: 5px solid #b5838d; border-radius: 16px; padding: 2rem;">
-                <div style="display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;">
-                    <div style="flex: 0 0 80px; text-align: center;">
-                        <i class="fas fa-hand-holding-heart" style="font-size: 3rem; color: #b5838d;"></i>
-                    </div>
-                    <div style="flex: 1;">
-                        <h3 style="color: #5e4b3c; margin-bottom: 0.5rem;">2026 – Год единства народов</h3>
-                        <p style="margin-bottom: 1rem; color: #4a4a4a;">Парголово всегда было местом встречи разных культур. В истории нашего края переплелись судьбы русских, финнов, ижор и многих других народов. Приглашаем вас познакомиться с материалами, которые раскрывают это многообразие.</p>
-                        <a href="kraevedenie.html#narody" class="btn">Подробнее</a>
+            <div class="unity-banner fade-in">
+                <div class="unity-banner-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <div class="unity-banner-content">
+                    <h3>2026 – Год народов России</h3>
+                    <p>Парголово всегда было местом встречи разных культур. В истории нашего края переплелись судьбы русских переселенцев из Суздальского и Вологодского уездов, финнов-ингерманландцев и представителей других народов. Приглашаем вас познакомиться с историей, традициями и культурным наследием, которое формировало облик нашего посёлка на протяжении веков.</p>
+                    <div class="unity-banner-buttons">
+                        <a href="narody-pargolovo.html" class="btn">Народы Парголово</a>
+                        <a href="kraevedenie.html#narody" class="btn btn-outline">Подробнее о краеведении</a>
                     </div>
                 </div>
             </div>
@@ -603,7 +604,6 @@
 
     <script src="common.js"></script>
     <script>
-        // Массив книг с реальными данными (страницы из открытых источников)
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах.", image: "n3.jpg", year: "2024", pages: 224 },
             { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024", pages: null },
@@ -718,7 +718,6 @@
             setTimeout(updateShareLinks, 100);
         });
 
-        // Виджет ВК с проверкой интернета
         if (navigator.onLine) {
             VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
         } else {
