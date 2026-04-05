@@ -93,13 +93,13 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'Краеведение',
             icon: 'fas fa-map-marked-alt',
             items: [
+                { name: 'Народы России', href: 'narody-rossii.html', icon: 'fas fa-flag' },
+                { name: 'Народы Парголово', href: 'narody-pargolovo.html', icon: 'fas fa-users' },
                 { name: 'Краеведение', href: 'kraevedenie.html', icon: 'fas fa-map-signs' },
                 { name: 'История Парголово', href: 'timeline.html', icon: 'fas fa-stream' },
                 { name: 'Карта достопримечательностей', href: 'map.html', icon: 'fas fa-map-marked-alt' },
                 { name: 'Литературный портрет', href: 'literary-portrait.html', icon: 'fas fa-users' },
-                { name: 'Конкурс «История одной улицы»', href: 'konkurs.html', icon: 'fas fa-trophy' },
-                { name: 'Народы Парголово', href: 'narody-pargolovo.html', icon: 'fas fa-users' },
-                { name: 'Народы России', href: 'narody-rossii.html', icon: 'fas fa-flag' }
+                { name: 'Конкурс «История одной улицы»', href: 'konkurs.html', icon: 'fas fa-trophy' }
             ]
         },
         {
