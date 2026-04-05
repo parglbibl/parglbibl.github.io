@@ -83,14 +83,11 @@
         }
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-        .hero p:last-of-type {
-            margin-bottom: 2rem;
         }
         @media (max-width: 768px) {
             .hero h1 {
@@ -106,6 +103,46 @@
         .card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; transition: transform 0.4s, box-shadow 0.4s; }
         .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.12); }
         .card i { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
+
+        .popular-books-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            scrollbar-width: thin;
+        }
+        .popular-book-item {
+            flex: 0 0 220px;
+            text-align: center;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .popular-book-item:hover {
+            transform: translateY(-5px);
+        }
+        .popular-book-item img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+        .popular-book-item h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+        .popular-book-item p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .popular-book-item .likes-count {
+            font-size: 0.7rem;
+            color: #e5989b;
+            margin-top: 0.3rem;
+        }
 
         .slider-container {
             position: relative;
@@ -245,80 +282,83 @@
             background-color: #9f6e7a;
         }
 
-        .bookswap-banner {
+        .action-banners {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .action-card {
             background: #fff9f0;
             border: 2px solid #e5989b;
             border-radius: 16px;
             padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .bookswap-banner img {
-            width: 100%;
-            max-width: 280px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .bookswap-content {
-            flex: 1;
             text-align: center;
+            transition: transform 0.3s;
         }
-        .bookswap-content h3 {
+        .action-card:hover {
+            transform: translateY(-5px);
+        }
+        .action-card i {
+            font-size: 2.5rem;
+            color: #e5989b;
+            margin-bottom: 1rem;
+        }
+        .action-card h3 {
             color: #b5838d;
-            font-size: 1.8rem;
             margin-bottom: 0.5rem;
-            font-weight: 700;
         }
-        .bookswap-content p {
-            font-size: 1.1rem;
-            color: #5e4b3c;
-            margin-bottom: 1.2rem;
+        .action-card p {
+            margin-bottom: 1rem;
+            color: #4a4a4a;
         }
         @media (max-width: 768px) {
-            .bookswap-banner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .bookswap-content h3 {
-                font-size: 1.6rem;
+            .action-banners {
+                grid-template-columns: 1fr;
             }
         }
 
-        .literary-banner {
+        .calendars-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        .calendar-card {
             background: #f0f7ff;
             border: 2px solid #b5838d;
             border-radius: 16px;
             padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s;
             display: flex;
             align-items: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            gap: 1.5rem;
         }
-        .literary-banner i {
+        .calendar-card i {
             font-size: 3rem;
             color: #b5838d;
-            flex: 0 0 80px;
-            text-align: center;
         }
-        .literary-content {
+        .calendar-content {
             flex: 1;
+            text-align: left;
         }
-        .literary-content h3 {
+        .calendar-content h3 {
             color: #5e4b3c;
             margin-bottom: 0.5rem;
-            font-size: 1.8rem;
         }
-        .literary-content p {
-            font-size: 1.1rem;
+        .calendar-content p {
             color: #4a4a4a;
             margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
         @media (max-width: 768px) {
-            .literary-banner {
+            .calendars-grid {
+                grid-template-columns: 1fr;
+            }
+            .calendar-card {
                 flex-direction: column;
+                text-align: center;
+            }
+            .calendar-content {
                 text-align: center;
             }
         }
@@ -353,6 +393,8 @@
                     <li data-mobile="more"><a href="book-recommendations.html"><i class="fas fa-star"></i> Что почитать по интересу</a></li>
                     <li data-mobile="more"><a href="book-kitchen.html"><i class="fas fa-utensils"></i> Книжная кухня</a></li>
                     <li data-mobile="more"><a href="holidays-calendar.html"><i class="fas fa-calendar-alt"></i> Календарь праздников</a></li>
+                    <li data-mobile="more"><a href="narody-pargolovo.html"><i class="fas fa-users"></i> Народы Парголово</a></li>
+                    <li data-mobile="more"><a href="narody-rossii.html"><i class="fas fa-flag"></i> Народы России</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -374,8 +416,7 @@
         <div class="container">
             <h1>Библиотека «Парголовская»</h1>
             <p>Уютное пространство для чтения, творчества и встреч.</p>
-            <p>Добро пожаловать!</p>
-            <a href="about.html" class="btn">Узнать больше</a>
+            <a href="about.html" class="btn">Добро пожаловать</a>
         </div>
     </section>
 
@@ -411,7 +452,7 @@
 
     <section class="section">
         <div class="container">
-            <h2 class="section-title">Что мы предлагаем</h2>
+            <h2 class="section-title">Наши сервисы</h2>
             <div class="cards-grid">
                 <div class="card fade-in">
                     <i class="fas fa-book-open"></i>
@@ -427,22 +468,31 @@
                 </div>
                 <div class="card fade-in">
                     <i class="fas fa-magic"></i>
-                    <h3>Виртуальная примерочная книг</h3>
-                    <p>Не знаете, что почитать? Ответьте на три вопроса — и мы подберём книги по вашему настроению и возрасту!</p>
+                    <h3>Примерочная книг</h3>
+                    <p>Не знаете, что почитать? Ответьте на три вопроса — и мы подберём книги по вашему настроению!</p>
                     <a href="bookmatcher.html" class="btn" style="margin-top: 1rem;">Подобрать книгу</a>
                 </div>
                 <div class="card fade-in">
                     <i class="fas fa-star"></i>
                     <h3>Что почитать по интересу</h3>
-                    <p>Расширенный подбор книг: жанр, настроение, длина, тип, возраст. Сохраняйте подборки и оценивайте книги.</p>
+                    <p>Расширенный подбор книг: жанр, настроение, длина, тип, возраст. Сохраняйте подборки!</p>
                     <a href="book-recommendations.html" class="btn" style="margin-top: 1rem;">Подобрать</a>
                 </div>
-                <div class="card fade-in">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Книжная кухня</h3>
-                    <p>Рецепты из книг: от пушкинского пирога до уютных блюд из «Хайди», «Хоббита» и других произведений. Готовьте вместе с любимыми книгами!</p>
-                    <a href="book-kitchen.html" class="btn" style="margin-top: 1rem;">Перейти</a>
-                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Популярные книги</h2>
+            <div id="popularBooksContainer" class="popular-books-slider"></div>
+            <p style="text-align: center; margin-top: 1rem;"><a href="newbooks.html" class="btn">Смотреть все новинки</a></p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="cards-grid">
                 <div class="card fade-in">
                     <i class="fas fa-puzzle-piece"></i>
                     <h3>Спидкубинг</h3>
@@ -450,69 +500,75 @@
                     <a href="speedcubing.html" class="btn" style="margin-top: 1rem;">Подробнее</a>
                 </div>
                 <div class="card fade-in">
-                    <i class="fas fa-calendar-alt"></i>
-                    <h3>Календарь праздников</h3>
-                    <p>Праздники, памятные даты и идеи для мероприятий на каждый день года. Планируйте вместе с нами!</p>
-                    <a href="holidays-calendar.html" class="btn" style="margin-top: 1rem;">Открыть календарь</a>
+                    <i class="fas fa-utensils"></i>
+                    <h3>Книжная кухня</h3>
+                    <p>Рецепты из книг: от пушкинского пирога до уютных блюд из «Хайди», «Хоббита» и других произведений.</p>
+                    <a href="book-kitchen.html" class="btn" style="margin-top: 1rem;">Перейти</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Баннер к Году народов России -->
-<section class="section">
-    <div class="container">
-        <div class="unity-banner fade-in">
-            <div class="unity-banner-icon">
-                <i class="fas fa-handshake"></i>
-            </div>
-            <div class="unity-banner-content">
-                <h3>2026 – Год народов России</h3>
-                <p>Парголово всегда было местом встречи разных культур. В истории нашего края переплелись судьбы русских переселенцев из Суздальского и Вологодского уездов, финнов-ингерманландцев и представителей других народов. Приглашаем вас познакомиться с историей, традициями и культурным наследием, которое формировало облик нашего посёлка на протяжении веков.</p>
-                <div class="unity-banner-buttons">
-                    <a href="narody-rossii.html" class="btn">Народы России</a>
-                    <a href="narody-pargolovo.html" class="btn btn-outline">Народы Парголово</a>
+    <section class="section">
+        <div class="container">
+            <div class="unity-banner fade-in">
+                <div class="unity-banner-icon">
+                    <i class="fas fa-handshake"></i>
                 </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Блок о конкурсе -->
-    <section class="section">
-        <div class="container">
-            <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b; text-align: center; padding: 2.5rem;">
-                <i class="fas fa-trophy" style="font-size: 3rem; color: #e5989b; margin-bottom: 1rem;"></i>
-                <h2 style="color: #b5838d; margin-bottom: 1rem;">Конкурс «История одной улицы»</h2>
-                <p style="font-size: 1.1rem; max-width: 800px; margin: 0 auto 1.5rem;">Мы участвуем в городском конкурсе краеведческих выставок. Приглашаем вас поделиться фотографиями и воспоминаниями о Торфяной улице.<br><strong>Приём работ – до 30 сентября 2026.</strong><br>Ваши истории станут частью нашей инсталляции!</p>
-                <a href="konkurs.html" class="btn" style="font-size: 1.2rem; padding: 0.8rem 3rem;">Узнать подробнее и участвовать</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Книгообмен -->
-    <section class="section">
-        <div class="container">
-            <div class="bookswap-banner fade-in">
-                <img src="knigoobmen.webp" alt="Акция книгообмена">
-                <div class="bookswap-content">
-                    <h3>«ЧИТАТЕЛИ ДАРЯТ ЧИТАТЕЛЯМ»</h3>
-                    <p>Принеси свою книгу — возьми любую другую.<br>Поделись радостью чтения!</p>
-                    <a href="services.html#bookcrossing" class="btn">Подробнее об акции</a>
+                <div class="unity-banner-content">
+                    <h3>2026 – Год народов России</h3>
+                    <p>Парголово всегда было местом встречи разных культур. В истории нашего края переплелись судьбы русских переселенцев из Суздальского и Вологодского уездов, финнов-ингерманландцев и представителей других народов. Приглашаем вас познакомиться с историей, традициями и культурным наследием, которое формировало облик нашего посёлка на протяжении веков.</p>
+                    <div class="unity-banner-buttons">
+                        <a href="narody-rossii.html" class="btn">Народы России</a>
+                        <a href="narody-pargolovo.html" class="btn btn-outline">Народы Парголово</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Литературный календарь -->
+    <!-- Акции -->
     <section class="section">
         <div class="container">
-            <div class="literary-banner fade-in">
-                <i class="fas fa-calendar-alt"></i>
-                <div class="literary-content">
-                    <h3>Литературный календарь 2026</h3>
-                    <p>Дни рождения писателей, юбилеи книг и памятные даты. Каждый месяц мы рассказываем о классиках и их связи с нашим краем.</p>
-                    <a href="literary-calendar.html" class="btn">Перейти к календарю</a>
+            <h2 class="section-title">Акции и проекты</h2>
+            <div class="action-banners">
+                <div class="action-card fade-in">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Книгообмен</h3>
+                    <p>Принеси свою книгу — возьми любую другую. Акция «Читатели дарят читателям» работает постоянно!</p>
+                    <a href="services.html#bookcrossing" class="btn">Подробнее</a>
+                </div>
+                <div class="action-card fade-in">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Конкурс «История одной улицы»</h3>
+                    <p>Участвуем в городском конкурсе краеведческих выставок. Приём работ до 30 сентября 2026!</p>
+                    <a href="konkurs.html" class="btn">Участвовать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Календари -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Календари</h2>
+            <div class="calendars-grid">
+                <div class="calendar-card fade-in">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div class="calendar-content">
+                        <h3>Литературный календарь 2026</h3>
+                        <p>Дни рождения писателей, юбилеи книг и памятные даты.</p>
+                        <a href="literary-calendar.html" class="btn">Перейти</a>
+                    </div>
+                </div>
+                <div class="calendar-card fade-in">
+                    <i class="fas fa-calendar-day"></i>
+                    <div class="calendar-content">
+                        <h3>Календарь праздников</h3>
+                        <p>Праздники, памятные даты и идеи для мероприятий на каждый день года.</p>
+                        <a href="holidays-calendar.html" class="btn">Перейти</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -593,7 +649,7 @@
 
     <!-- Cookie-баннер -->
     <div id="cookie-banner" style="display: none;">
-        <p>🍪 Мы используем файлы cookie для улучшения работы сайта. <a href="privacy.html">Подробнее</a>.</p>
+        <p>🍪 <strong>Мы используем файлы cookie</strong> для улучшения работы сайта. <a href="privacy.html">Подробнее</a>.</p>
         <div class="cookie-buttons">
             <button id="cookie-accept" class="cookie-btn cookie-accept">Принять</button>
             <button id="cookie-decline" class="cookie-btn cookie-decline">Отклонить</button>
@@ -604,6 +660,7 @@
 
     <script src="common.js"></script>
     <script>
+        // Массив книг
         const newBooks = [
             { title: "История русского искусства", author: "Игнатова Н. О.", description: "От Айвазовского до Репина — популярный рассказ о шедеврах.", image: "n3.jpg", year: "2024", pages: 224 },
             { title: "Выдающиеся русские люди", author: "Андрианова Н. А.", description: "Рассказы о выдающихся личностях, изменивших историю.", image: "n5.JPG", year: "2024", pages: null },
@@ -613,7 +670,7 @@
             { title: "Медвежий край", author: "Кузнецова Д. А.", description: "Роман о природе Чукотки, её тайнах и людях.", image: "n9.jpg", year: "2025", pages: null },
             { title: "Ольга Корса. Женщина-воин", author: "Карабет Е. С.", description: "История Героя России, отдавшей жизнь за Родину.", image: "n10.jpg", year: "2025", pages: null },
             { title: "Легенды и мифы Древней Греции", author: "Кун Н. А.", description: "Классический сборник мифов о богах и героях.", image: "n11.jpg", year: "2024", pages: 416 },
-            { title: "Гербы России. История отечественной геральдики", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", year: "2021", pages: 224 },
+            { title: "Гербы России", author: "Воробьева Н. Н.", description: "Подарочное издание о символах и истории российских гербов.", image: "n12.JPG", year: "2021", pages: 224 },
             { title: "Деньги и бизнес для детей", author: "Васин Д. В.", description: "Детский путеводитель по миру финансов.", image: "n13.jpg", year: "2024", pages: null },
             { title: "Тайны Камчатки", author: "Котова Т. Б.", description: "Захватывающее путешествие по вулканам и дикой природе.", image: "n14.jpg", year: "2025", pages: 288 },
             { title: "Девочка, которая хотела...", author: "Лисова И. А.", description: "Добрая проза для детей о мечтах.", image: "n15.jpg", year: "2024", pages: null },
@@ -627,6 +684,43 @@
             { title: "Зачем художнику детали?", author: "Никонова А. В.", description: "Увлекательное путешествие в мир искусства и деталей, которые меняют всё.", image: "n27.jpg", year: "2025", pages: null }
         ];
 
+        // Функция для отображения популярных книг (на основе лайков)
+        function renderPopularBooks() {
+            const container = document.getElementById('popularBooksContainer');
+            if (!container) return;
+            
+            // Собираем статистику лайков
+            const likesStats = JSON.parse(localStorage.getItem('likes_stats') || '{}');
+            const bookLikes = [];
+            
+            for (let i = 0; i < newBooks.length; i++) {
+                const book = newBooks[i];
+                const liked = localStorage.getItem(`liked_book_${i}`) === 'true';
+                if (liked) {
+                    bookLikes.push({ index: i, title: book.title, author: book.author, image: book.image });
+                }
+            }
+            
+            if (bookLikes.length === 0) {
+                container.innerHTML = '<p style="text-align:center; padding:2rem;">Пока нет популярных книг. Добавьте сердечки к понравившимся книгам!</p>';
+                return;
+            }
+            
+            let html = '';
+            bookLikes.slice(0, 6).forEach(book => {
+                html += `
+                    <div class="popular-book-item">
+                        <img src="${book.image}" alt="${book.title}" onerror="this.src='https://via.placeholder.com/150x200?text=Нет+обложки'">
+                        <h4>${book.title}</h4>
+                        <p>${book.author}</p>
+                        <div class="likes-count"><i class="fas fa-heart" style="color:#e5989b;"></i> В избранном</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Случайная книга
         function displayRandomBook() {
             const randomIndex = Math.floor(Math.random() * newBooks.length);
             const book = newBooks[randomIndex];
@@ -657,8 +751,7 @@
             });
         }
 
-        displayRandomBook();
-
+        // Цитаты
         const quotes = [
             { text: "Все дело в мыслях. Мысль – начало всего.", author: "Л. Толстой" },
             { text: "Следовать за мыслями великого человека есть наука самая занимательная.", author: "А. Пушкин" },
@@ -670,8 +763,8 @@
             document.querySelector('.quote-text').textContent = `«${quote.text}»`;
             document.querySelector('.quote-author').textContent = quote.author;
         }
-        displayRandomQuote();
 
+        // Слайдер
         const slider = document.getElementById('slider');
         const dotsContainer = document.getElementById('sliderDots');
         const images = slider.children;
@@ -718,11 +811,17 @@
             setTimeout(updateShareLinks, 100);
         });
 
+        // Виджет ВК
         if (navigator.onLine) {
             VK.Widgets.Group("vk_groups", {mode: 4, wide: 1, height: 600, color1: "FFFFFF", color2: "000000", color3: "5181B8"}, 176521452);
         } else {
             document.getElementById('vk_groups').innerHTML = '<p style="text-align:center;padding:2rem;">Виджет ВКонтакте недоступен в офлайн-режиме.</p>';
         }
+
+        // Инициализация
+        displayRandomBook();
+        displayRandomQuote();
+        renderPopularBooks();
     </script>
 </body>
 </html>
