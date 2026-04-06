@@ -1,16 +1,16 @@
-/* common.css – полная версия с тёплыми серыми акцентами */
+/* common.css – с графическими фишками и улучшениями дизайна */
 
 :root {
-    --primary: #b5838d;      /* пыльная роза (шапка, иконки) */
-    --primary-light: #e5989b; /* светлый акцент (кнопки, рамки) */
-    --primary-dark: #9f6e7a;  /* тёмный вариант для ховеров */
-    --gray-warm: #8a7c6f;     /* тёплый серый (каменный) – подвал, акценты */
-    --gray-light: #c9b6a6;    /* светлый бежево-серый – рамки, фоны, второстепенные кнопки */
-    --gray-bg: #fcfaf8;       /* очень светлый серый для фоновых блоков */
-    --text-dark: #4a4a4a;     /* основной текст */
-    --text-title: #5e4b3c;    /* заголовки */
-    --bg-light: #fefaf5;      /* основной фон */
-    --bg-card: #ffffff;       /* фон карточек */
+    --primary: #b5838d;
+    --primary-light: #e5989b;
+    --primary-dark: #9f6e7a;
+    --gray-warm: #8a7c6f;
+    --gray-light: #c9b6a6;
+    --gray-bg: #fcfaf8;
+    --text-dark: #4a4a4a;
+    --text-title: #5e4b3c;
+    --bg-light: #fefaf5;
+    --bg-card: #fffef7;
 }
 
 * {
@@ -24,8 +24,24 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-light);
-    background-image: url('paper.png');
+    background-image: url('paper.png'), repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0px, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 8px);
     transition: background-color 0.3s, color 0.3s, font-size 0.3s;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f0e6e0;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
 }
 
 h1, h2, h3, h4 {
@@ -131,6 +147,10 @@ header {
         margin-right: 5px;
         width: 20px;
         text-align: center;
+        transition: transform 0.3s;
+    }
+    .desktop-category-header:hover i:first-child {
+        transform: rotate(5deg) scale(1.1);
     }
     .desktop-category-header i:last-child {
         font-size: 0.8rem;
@@ -275,11 +295,12 @@ header {
     color: #fff;
     cursor: pointer;
     padding: 8px;
-    transition: color 0.3s;
+    transition: color 0.3s, transform 0.3s;
 }
 
 #searchIcon:hover {
     color: #f4e3d7;
+    transform: scale(1.1);
 }
 
 .search-popup {
@@ -320,60 +341,62 @@ header {
 }
 
 .search-popup button {
-    background-color: var(--primary-light);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     color: white;
     border: none;
     padding: 0 18px;
     border-radius: 50px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: transform 0.2s, opacity 0.2s;
 }
 
 .search-popup button:hover {
-    background-color: var(--primary-dark);
+    transform: scale(1.02);
+    opacity: 0.9;
 }
 
-/* Кнопки */
+/* Кнопки градиентные */
 .btn {
     display: inline-block;
-    background-color: var(--primary-light);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     color: #fff;
     padding: 0.8rem 2rem;
-    border-radius: 50px;
+    border-radius: 60px;
     text-decoration: none;
     font-weight: 600;
     border: none;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .btn:hover {
-    background-color: var(--primary-dark);
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .btn-outline {
     background: transparent;
     border: 2px solid var(--primary-light);
     color: var(--primary-light);
+    box-shadow: none;
 }
 
 .btn-outline:hover {
     background: var(--primary-light);
     color: #fff;
-    transform: scale(1.05);
+    transform: translateY(-3px);
 }
 
 .btn-secondary {
-    background-color: var(--gray-light);
+    background: linear-gradient(135deg, var(--gray-light), #b8a48f);
     color: var(--text-title);
 }
 
 .btn-secondary:hover {
-    background-color: #b8a48f;
-    transform: scale(1.05);
+    background: linear-gradient(135deg, #b8a48f, var(--gray-warm));
+    transform: translateY(-3px);
 }
 
 .btn-subtle {
@@ -384,7 +407,7 @@ header {
 
 .btn-subtle:hover {
     background-color: #b8a48f;
-    color: #fff;
+    transform: translateY(-2px);
 }
 
 /* Заголовки разделов */
@@ -410,25 +433,34 @@ header {
     width: 100px;
 }
 
-/* Карточки и общие блоки */
+/* Карточки и общие блоки (эффект пожелтевшей бумаги) */
 .card, .book-card, .recipe-card, .project-card, .info-block {
     background: var(--bg-card);
-    border-radius: 16px;
+    border-radius: 24px;
     padding: 1.5rem;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.8);
     transition: transform 0.4s, box-shadow 0.4s;
+    border: 1px solid #f0e3d0;
 }
 
 .card:hover, .book-card:hover, .recipe-card:hover, .project-card:hover, .info-block:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 30px rgba(138,124,111,0.15);
+    box-shadow: 0 20px 30px rgba(138,124,111,0.15), inset 0 1px 0 #fff;
+}
+
+/* Иконки в карточках */
+.card i {
+    transition: transform 0.3s ease;
+}
+.card:hover i {
+    transform: rotate(5deg) scale(1.1);
 }
 
 /* Блоки акций и календарей (светлый серый фон) */
 .action-card, .calendar-card {
     background-color: var(--gray-bg);
     border: 1px solid var(--gray-light);
-    border-radius: 16px;
+    border-radius: 24px;
     padding: 2rem;
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -438,16 +470,50 @@ header {
     box-shadow: 0 15px 25px rgba(138,124,111,0.1);
 }
 
-/* Цитата дня */
+/* Цитата дня с декоративной кавычкой */
 .quote-block {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 16px;
+    border-radius: 24px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     text-align: center;
     max-width: 800px;
     margin: 0 auto;
     border-left: 4px solid var(--gray-light);
+    position: relative;
+}
+
+.quote-block::before {
+    content: "“";
+    font-size: 6rem;
+    font-family: serif;
+    color: var(--gray-light);
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    opacity: 0.3;
+}
+
+/* Декоративный разделитель "книжная полка" */
+.section-divider {
+    height: 30px;
+    background: repeating-linear-gradient(90deg, var(--gray-light) 0px, var(--gray-light) 2px, transparent 2px, transparent 30px);
+    margin: 2rem 0;
+    position: relative;
+}
+.section-divider::before,
+.section-divider::after {
+    content: "📚";
+    position: absolute;
+    top: -10px;
+    font-size: 1.2rem;
+    opacity: 0.5;
+}
+.section-divider::before {
+    left: 10px;
+}
+.section-divider::after {
+    right: 10px;
 }
 
 /* Подвал — тёплый серый */
@@ -521,11 +587,12 @@ header {
     height: 40px;
     border-radius: 50%;
     background-color: rgba(255,255,255,0.2);
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .footer-social a:hover {
     background-color: var(--gray-light);
+    transform: translateY(-3px);
 }
 
 .footer-social a:hover i {
@@ -656,7 +723,7 @@ body.special-mode .footer-col a {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: var(--primary-light);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     color: #fff;
     width: 50px;
     height: 50px;
@@ -676,8 +743,8 @@ body.special-mode .footer-col a {
 }
 
 .back-to-top:hover {
-    background-color: var(--primary-dark);
-    transform: scale(1.05);
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    transform: scale(1.1);
 }
 
 .back-to-top.show {
@@ -733,7 +800,7 @@ body.special-mode .footer-col a {
 .unity-banner {
     background: linear-gradient(135deg, #fff9f0 0%, var(--bg-light) 100%);
     border: 2px solid var(--primary-light);
-    border-radius: 24px;
+    border-radius: 32px;
     padding: 2rem;
     display: flex;
     align-items: center;
@@ -746,11 +813,16 @@ body.special-mode .footer-col a {
     flex-shrink: 0;
     width: 80px;
     height: 80px;
-    background: var(--primary-light);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: transform 0.3s;
+}
+
+.unity-banner-icon:hover {
+    transform: rotate(5deg) scale(1.05);
 }
 
 .unity-banner-icon i {
@@ -842,13 +914,13 @@ body.special-mode .footer-col a {
 }
 
 .cookie-accept {
-    background-color: var(--primary-light);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
     color: #1a1a2e;
 }
 
 .cookie-accept:hover {
-    background-color: var(--primary-dark);
     transform: scale(1.02);
+    opacity: 0.9;
 }
 
 .cookie-decline {
@@ -870,11 +942,4 @@ body.special-mode .footer-col a {
     .cookie-btn {
         padding: 0.4rem 1.2rem;
     }
-}
-
-/* Дополнительные разделители */
-.section-divider {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--gray-light), transparent);
-    margin: 2rem 0;
 }
