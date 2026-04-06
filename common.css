@@ -1,11 +1,9 @@
-/* common.css – полная версия с гармоничной цветовой гаммой */
+/* common.css – полная версия с гармоничным градиентным подвалом */
 
 :root {
     --primary: #b5838d;      /* пыльная роза (шапка, иконки) */
     --primary-light: #e5989b; /* светлый акцент (кнопки, рамки) */
     --primary-dark: #9f6e7a;  /* тёмный вариант для ховеров */
-    --secondary: #8a9a7a;     /* шалфей (подвал, второстепенные блоки) */
-    --secondary-dark: #6b7b5e; /* тёмный шалфей для ховеров */
     --text-dark: #4a4a4a;     /* основной текст */
     --text-title: #5e4b3c;    /* заголовки */
     --bg-light: #fefaf5;      /* фон */
@@ -365,15 +363,6 @@ header {
     transform: scale(1.05);
 }
 
-.btn-secondary {
-    background-color: var(--secondary);
-    color: #fff;
-}
-
-.btn-secondary:hover {
-    background-color: var(--secondary-dark);
-}
-
 /* Заголовки разделов */
 .section-title {
     position: relative;
@@ -397,12 +386,13 @@ header {
     width: 100px;
 }
 
-/* Подвал */
+/* Подвал — плавный градиент от основного цвета к тёплому нейтральному */
 .footer-content {
-    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+    background: linear-gradient(135deg, #b5838d 0%, #9e8b7a 100%);
     color: #fff;
     padding: 3rem 0 2rem;
     margin-top: 2rem;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
 }
 
 .footer-grid {
