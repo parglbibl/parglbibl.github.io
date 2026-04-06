@@ -1,9 +1,11 @@
-/* common.css – полная версия с гармоничным градиентным подвалом */
+/* common.css – полная версия с гармоничным подвалом (тёплый серый) */
 
 :root {
     --primary: #b5838d;      /* пыльная роза (шапка, иконки) */
     --primary-light: #e5989b; /* светлый акцент (кнопки, рамки) */
     --primary-dark: #9f6e7a;  /* тёмный вариант для ховеров */
+    --footer-bg: #8a7c6f;     /* тёплый серый (каменный) – подвал */
+    --footer-accent: #c9b6a6; /* светлый бежевый для акцентов в подвале */
     --text-dark: #4a4a4a;     /* основной текст */
     --text-title: #5e4b3c;    /* заголовки */
     --bg-light: #fefaf5;      /* фон */
@@ -363,6 +365,16 @@ header {
     transform: scale(1.05);
 }
 
+.btn-secondary {
+    background-color: var(--footer-accent);
+    color: #5e4b3c;
+}
+
+.btn-secondary:hover {
+    background-color: #b8a48f;
+    transform: scale(1.05);
+}
+
 /* Заголовки разделов */
 .section-title {
     position: relative;
@@ -386,9 +398,9 @@ header {
     width: 100px;
 }
 
-/* Подвал — плавный градиент от основного цвета к тёплому нейтральному */
+/* Подвал — тёплый серый */
 .footer-content {
-    background: linear-gradient(135deg, #b5838d 0%, #9e8b7a 100%);
+    background-color: var(--footer-bg);
     color: #fff;
     padding: 3rem 0 2rem;
     margin-top: 2rem;
@@ -417,7 +429,7 @@ header {
     bottom: 0;
     width: 40px;
     height: 2px;
-    background-color: #fff;
+    background-color: var(--footer-accent);
 }
 
 .footer-col p {
@@ -435,7 +447,7 @@ header {
 }
 
 .footer-col a:hover {
-    color: #f4e3d7;
+    color: var(--footer-accent);
 }
 
 .footer-col i {
@@ -461,7 +473,11 @@ header {
 }
 
 .footer-social a:hover {
-    background-color: rgba(255,255,255,0.4);
+    background-color: var(--footer-accent);
+}
+
+.footer-social a:hover i {
+    color: #5e4b3c;
 }
 
 .footer-social i {
@@ -504,7 +520,7 @@ header {
 }
 
 .share-buttons a:hover {
-    background-color: #f4e3d7;
+    background-color: var(--footer-accent);
     color: var(--text-title);
     transform: translateY(-3px);
 }
@@ -517,7 +533,7 @@ header {
 }
 
 .print-button a:hover {
-    background-color: #f4e3d7;
+    background-color: var(--footer-accent);
     color: var(--text-title);
 }
 
