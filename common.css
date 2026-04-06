@@ -1,4 +1,4 @@
-/* common.css – полная версия */
+/* common.css – полная версия с обновлённой цветовой гаммой */
 * {
     margin: 0;
     padding: 0;
@@ -352,6 +352,16 @@ header {
     transform: scale(1.05);
 }
 
+/* Вторая акцентная кнопка (зелёная) */
+.btn-secondary {
+    background-color: #4a6a5e;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #3d5a4f;
+}
+
 /* Заголовки разделов */
 .section-title {
     position: relative;
@@ -377,7 +387,7 @@ header {
 
 /* Подвал */
 .footer-content {
-    background: #b5838d;
+    background: #3d5a4f;
     color: #fff;
     padding: 3rem 0 2rem;
     margin-top: 2rem;
