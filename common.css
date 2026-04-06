@@ -1,4 +1,17 @@
-/* common.css – полная версия с обновлённой цветовой гаммой */
+/* common.css – полная версия с гармоничной цветовой гаммой */
+
+:root {
+    --primary: #b5838d;      /* пыльная роза (шапка, иконки) */
+    --primary-light: #e5989b; /* светлый акцент (кнопки, рамки) */
+    --primary-dark: #9f6e7a;  /* тёмный вариант для ховеров */
+    --secondary: #8a9a7a;     /* шалфей (подвал, второстепенные блоки) */
+    --secondary-dark: #6b7b5e; /* тёмный шалфей для ховеров */
+    --text-dark: #4a4a4a;     /* основной текст */
+    --text-title: #5e4b3c;    /* заголовки */
+    --bg-light: #fefaf5;      /* фон */
+    --bg-card: #ffffff;       /* фон карточек */
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,8 +21,8 @@
 body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
-    color: #4a4a4a;
-    background-color: #fefaf5;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
     background-image: url('paper.png');
     transition: background-color 0.3s, color 0.3s, font-size 0.3s;
 }
@@ -17,7 +30,7 @@ body {
 h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: #5e4b3c;
+    color: var(--text-title);
 }
 
 .container {
@@ -48,7 +61,7 @@ h1, h2, h3, h4 {
 
 /* ===== ШАПКА ===== */
 header {
-    background-color: #b5838d;
+    background-color: var(--primary);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
@@ -88,7 +101,7 @@ header {
     width: 100%;
 }
 
-/* ========== ДЕСКТОПНОЕ МЕНЮ (горизонтальное с раскрытием по ховеру) ========== */
+/* ========== ДЕСКТОПНОЕ МЕНЮ ========== */
 @media (min-width: 769px) {
     .desktop-horizontal-menu {
         display: flex;
@@ -134,7 +147,7 @@ header {
         top: 100%;
         left: 50%;
         transform: translateX(-50%) translateY(-10px);
-        background-color: #b5838d;
+        background-color: var(--primary);
         border-radius: 12px;
         box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         padding: 0.5rem 0;
@@ -174,7 +187,7 @@ header {
     }
 }
 
-/* ========== МОБИЛЬНОЕ МЕНЮ (вертикальный аккордеон) ========== */
+/* ========== МОБИЛЬНОЕ МЕНЮ ========== */
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
@@ -302,11 +315,11 @@ header {
 }
 
 .search-popup input[type="text"]:focus {
-    border-color: #e5989b;
+    border-color: var(--primary-light);
 }
 
 .search-popup button {
-    background-color: #e5989b;
+    background-color: var(--primary-light);
     color: white;
     border: none;
     padding: 0 18px;
@@ -316,13 +329,13 @@ header {
 }
 
 .search-popup button:hover {
-    background-color: #d68b8e;
+    background-color: var(--primary-dark);
 }
 
 /* Кнопки */
 .btn {
     display: inline-block;
-    background-color: #e5989b;
+    background-color: var(--primary-light);
     color: #fff;
     padding: 0.8rem 2rem;
     border-radius: 50px;
@@ -335,31 +348,30 @@ header {
 }
 
 .btn:hover {
-    background-color: #d68b8e;
+    background-color: var(--primary-dark);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .btn-outline {
     background: transparent;
-    border: 2px solid #e5989b;
-    color: #e5989b;
+    border: 2px solid var(--primary-light);
+    color: var(--primary-light);
 }
 
 .btn-outline:hover {
-    background: #e5989b;
+    background: var(--primary-light);
     color: #fff;
     transform: scale(1.05);
 }
 
-/* Вторая акцентная кнопка (зелёная) */
 .btn-secondary {
-    background-color: #4a6a5e;
+    background-color: var(--secondary);
     color: #fff;
 }
 
 .btn-secondary:hover {
-    background-color: #3d5a4f;
+    background-color: var(--secondary-dark);
 }
 
 /* Заголовки разделов */
@@ -368,7 +380,7 @@ header {
     text-align: center !important;
     margin-bottom: 3rem;
     font-size: 2.2rem;
-    color: #5e4b3c;
+    color: var(--text-title);
 }
 
 .section-title::after {
@@ -376,7 +388,7 @@ header {
     display: block;
     width: 60px;
     height: 3px;
-    background: #e5989b;
+    background: var(--primary-light);
     margin: 0.5rem auto 0;
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -387,7 +399,7 @@ header {
 
 /* Подвал */
 .footer-content {
-    background: #3d5a4f;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
     color: #fff;
     padding: 3rem 0 2rem;
     margin-top: 2rem;
@@ -494,7 +506,7 @@ header {
     height: 40px;
     border-radius: 50%;
     background-color: #fff;
-    color: #b5838d;
+    color: var(--primary);
     font-size: 1.2rem;
     transition: all 0.3s;
     border: 1px solid transparent;
@@ -503,7 +515,7 @@ header {
 
 .share-buttons a:hover {
     background-color: #f4e3d7;
-    color: #5e4b3c;
+    color: var(--text-title);
     transform: translateY(-3px);
 }
 
@@ -516,7 +528,7 @@ header {
 
 .print-button a:hover {
     background-color: #f4e3d7;
-    color: #5e4b3c;
+    color: var(--text-title);
 }
 
 @media (max-width: 768px) {
@@ -578,7 +590,7 @@ body.special-mode .footer-col a {
     color: #888;
 }
 .breadcrumbs a {
-    color: #e5989b;
+    color: var(--primary-light);
     text-decoration: none;
 }
 .breadcrumbs a:hover {
@@ -590,7 +602,7 @@ body.special-mode .footer-col a {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #e5989b;
+    background-color: var(--primary-light);
     color: #fff;
     width: 50px;
     height: 50px;
@@ -610,7 +622,7 @@ body.special-mode .footer-col a {
 }
 
 .back-to-top:hover {
-    background-color: #d68b8e;
+    background-color: var(--primary-dark);
     transform: scale(1.05);
 }
 
@@ -643,7 +655,7 @@ body.special-mode .footer-col a {
 
 .like-btn.liked,
 .holiday-like-btn.liked {
-    color: #e5989b;
+    color: var(--primary-light);
 }
 
 .like-btn.liked i,
@@ -665,8 +677,8 @@ body.special-mode .footer-col a {
 
 /* ===== БАННЕР К ГОДУ НАРОДОВ РОССИИ ===== */
 .unity-banner {
-    background: linear-gradient(135deg, #fff9f0 0%, #fefaf5 100%);
-    border: 2px solid #e5989b;
+    background: linear-gradient(135deg, #fff9f0 0%, var(--bg-light) 100%);
+    border: 2px solid var(--primary-light);
     border-radius: 24px;
     padding: 2rem;
     display: flex;
@@ -680,7 +692,7 @@ body.special-mode .footer-col a {
     flex-shrink: 0;
     width: 80px;
     height: 80px;
-    background: #e5989b;
+    background: var(--primary-light);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -697,13 +709,13 @@ body.special-mode .footer-col a {
 }
 
 .unity-banner-content h3 {
-    color: #b5838d;
+    color: var(--primary);
     font-size: 1.8rem;
     margin-bottom: 0.5rem;
 }
 
 .unity-banner-content p {
-    color: #4a4a4a;
+    color: var(--text-dark);
     margin-bottom: 1.2rem;
     line-height: 1.5;
 }
@@ -724,7 +736,7 @@ body.special-mode .footer-col a {
     }
 }
 
-/* ===== COOKIE-БАННЕР (ЯРКИЙ И ЗАМЕТНЫЙ) ===== */
+/* ===== COOKIE-БАННЕР ===== */
 .cookie-banner {
     position: fixed;
     bottom: 0;
@@ -740,7 +752,7 @@ body.special-mode .footer-col a {
     gap: 1.5rem;
     z-index: 100000;
     font-size: 0.95rem;
-    border-top: 3px solid #e5989b;
+    border-top: 3px solid var(--primary-light);
     box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
     animation: slideUp 0.5s ease;
 }
@@ -776,12 +788,12 @@ body.special-mode .footer-col a {
 }
 
 .cookie-accept {
-    background-color: #e5989b;
+    background-color: var(--primary-light);
     color: #1a1a2e;
 }
 
 .cookie-accept:hover {
-    background-color: #d68b8e;
+    background-color: var(--primary-dark);
     transform: scale(1.02);
 }
 
