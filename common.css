@@ -1,14 +1,15 @@
-/* common.css – полная версия с гармоничным подвалом (тёплый серый) */
+/* common.css – полная версия с тёплыми серыми акцентами */
 
 :root {
     --primary: #b5838d;      /* пыльная роза (шапка, иконки) */
     --primary-light: #e5989b; /* светлый акцент (кнопки, рамки) */
     --primary-dark: #9f6e7a;  /* тёмный вариант для ховеров */
-    --footer-bg: #8a7c6f;     /* тёплый серый (каменный) – подвал */
-    --footer-accent: #c9b6a6; /* светлый бежевый для акцентов в подвале */
+    --gray-warm: #8a7c6f;     /* тёплый серый (каменный) – подвал, акценты */
+    --gray-light: #c9b6a6;    /* светлый бежево-серый – рамки, фоны, второстепенные кнопки */
+    --gray-bg: #fcfaf8;       /* очень светлый серый для фоновых блоков */
     --text-dark: #4a4a4a;     /* основной текст */
     --text-title: #5e4b3c;    /* заголовки */
-    --bg-light: #fefaf5;      /* фон */
+    --bg-light: #fefaf5;      /* основной фон */
     --bg-card: #ffffff;       /* фон карточек */
 }
 
@@ -315,7 +316,7 @@ header {
 }
 
 .search-popup input[type="text"]:focus {
-    border-color: var(--primary-light);
+    border-color: var(--gray-light);
 }
 
 .search-popup button {
@@ -366,13 +367,24 @@ header {
 }
 
 .btn-secondary {
-    background-color: var(--footer-accent);
-    color: #5e4b3c;
+    background-color: var(--gray-light);
+    color: var(--text-title);
 }
 
 .btn-secondary:hover {
     background-color: #b8a48f;
     transform: scale(1.05);
+}
+
+.btn-subtle {
+    background-color: var(--gray-light);
+    color: var(--text-title);
+    box-shadow: none;
+}
+
+.btn-subtle:hover {
+    background-color: #b8a48f;
+    color: #fff;
 }
 
 /* Заголовки разделов */
@@ -398,9 +410,49 @@ header {
     width: 100px;
 }
 
+/* Карточки и общие блоки */
+.card, .book-card, .recipe-card, .project-card, .info-block {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: transform 0.4s, box-shadow 0.4s;
+}
+
+.card:hover, .book-card:hover, .recipe-card:hover, .project-card:hover, .info-block:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 30px rgba(138,124,111,0.15);
+}
+
+/* Блоки акций и календарей (светлый серый фон) */
+.action-card, .calendar-card {
+    background-color: var(--gray-bg);
+    border: 1px solid var(--gray-light);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.action-card:hover, .calendar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(138,124,111,0.1);
+}
+
+/* Цитата дня */
+.quote-block {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    border-left: 4px solid var(--gray-light);
+}
+
 /* Подвал — тёплый серый */
 .footer-content {
-    background-color: var(--footer-bg);
+    background-color: var(--gray-warm);
     color: #fff;
     padding: 3rem 0 2rem;
     margin-top: 2rem;
@@ -429,7 +481,7 @@ header {
     bottom: 0;
     width: 40px;
     height: 2px;
-    background-color: var(--footer-accent);
+    background-color: var(--gray-light);
 }
 
 .footer-col p {
@@ -447,7 +499,7 @@ header {
 }
 
 .footer-col a:hover {
-    color: var(--footer-accent);
+    color: var(--gray-light);
 }
 
 .footer-col i {
@@ -473,11 +525,11 @@ header {
 }
 
 .footer-social a:hover {
-    background-color: var(--footer-accent);
+    background-color: var(--gray-light);
 }
 
 .footer-social a:hover i {
-    color: #5e4b3c;
+    color: var(--text-title);
 }
 
 .footer-social i {
@@ -519,8 +571,9 @@ header {
     text-decoration: none;
 }
 
-.share-buttons a:hover {
-    background-color: var(--footer-accent);
+.share-buttons a:hover,
+.print-button a:hover {
+    background-color: var(--gray-light);
     color: var(--text-title);
     transform: translateY(-3px);
 }
@@ -530,11 +583,6 @@ header {
     padding: 0 1.2rem;
     border-radius: 40px;
     gap: 8px;
-}
-
-.print-button a:hover {
-    background-color: var(--footer-accent);
-    color: var(--text-title);
 }
 
 @media (max-width: 768px) {
@@ -822,4 +870,11 @@ body.special-mode .footer-col a {
     .cookie-btn {
         padding: 0.4rem 1.2rem;
     }
+}
+
+/* Дополнительные разделители */
+.section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gray-light), transparent);
+    margin: 2rem 0;
 }
