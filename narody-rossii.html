@@ -22,7 +22,7 @@
         .culture-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
         .culture-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: transform 0.3s; }
         .culture-card:hover { transform: translateY(-8px); }
-        .culture-card-img { width: 100%; height: 200px; object-fit: cover; }
+        .culture-card-img { width: 100%; height: 200px; object-fit: cover; background-color: #f9f0e7; display: flex; align-items: center; justify-content: center; color: #b5838d; font-size: 3rem; }
         .culture-card-content { padding: 1.5rem; }
         .culture-card-title { font-size: 1.3rem; color: #5e4b3c; margin-bottom: 0.5rem; }
         .culture-card-desc { color: #666; margin-bottom: 1rem; line-height: 1.5; }
@@ -30,7 +30,7 @@
         .recipes-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0; }
         .recipe-card { background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: transform 0.3s; }
         .recipe-card:hover { transform: translateY(-5px); }
-        .recipe-img { width: 100%; height: 180px; object-fit: cover; }
+        .recipe-img { width: 100%; height: 180px; object-fit: cover; background-color: #f0e6e0; display: flex; align-items: center; justify-content: center; color: #b5838d; font-size: 2rem; }
         .recipe-content { padding: 1.2rem; }
         .recipe-title { font-size: 1.2rem; color: #b5838d; margin-bottom: 0.3rem; }
         .recipe-people { font-size: 0.85rem; color: #e5989b; margin-bottom: 0.5rem; font-weight: 600; }
@@ -49,7 +49,7 @@
         
         .books-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding: 1rem 0; scrollbar-width: thin; }
         .book-item { flex: 0 0 200px; text-align: center; background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .book-item img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; }
+        .book-item img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 0.5rem; background-color: #f9f0e7; }
         .book-item h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
         .book-item p { font-size: 0.8rem; color: #888; }
         
@@ -112,21 +112,21 @@
             <h2 class="section-title" style="font-size: 1.8rem;">Культура и традиции</h2>
             <div class="culture-grid">
                 <div class="culture-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Sabantuy_2014_01.jpg/400px-Sabantuy_2014_01.jpg" alt="Сабантуй" class="culture-card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Сабантуй'">
+                    <div class="culture-card-img"><i class="fas fa-drumstick-bite"></i></div>
                     <div class="culture-card-content">
                         <div class="culture-card-title">Сабантуй — праздник плуга</div>
                         <div class="culture-card-desc">Татарский и башкирский народный праздник окончания весенних полевых работ. Сопровождается скачками, борьбой куреш, бегом с коромыслом и другими состязаниями.</div>
                     </div>
                 </div>
                 <div class="culture-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Ysyakh_2013_7.jpg/400px-Ysyakh_2013_7.jpg" alt="Ысыах" class="culture-card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Ысыах'">
+                    <div class="culture-card-img"><i class="fas fa-sun"></i></div>
                     <div class="culture-card-content">
                         <div class="culture-card-title">Ысыах — якутский новый год</div>
                         <div class="culture-card-desc">Главный национальный праздник якутов, приуроченный к летнему солнцестоянию. Включает ритуал кормления огня, хоровод осуохай и кумысопитие.</div>
                     </div>
                 </div>
                 <div class="culture-card">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Kalmyk_temple_2010.jpg/400px-Kalmyk_temple_2010.jpg" alt="Зул" class="culture-card-img" onerror="this.src='https://via.placeholder.com/400x200?text=Зул'">
+                    <div class="culture-card-img"><i class="fas fa-fire"></i></div>
                     <div class="culture-card-content">
                         <div class="culture-card-title">Зул — калмыцкий новый год</div>
                         <div class="culture-card-desc">Национальный праздник калмыков, символизирующий прибавление дня и наступление нового года. Зажигаются лампады, готовятся борцоки.</div>
@@ -242,14 +242,14 @@
 
     <script src="common.js"></script>
     <script>
-        // Книги о народах России
+        // Книги о народах России (локальные плейсхолдеры)
         const booksData = [
-            { title: "Сказки народов России", author: "Сборник", image: "https://via.placeholder.com/150x200?text=Сказки+народов+России", link: "newbooks.html" },
-            { title: "Мифы и легенды народов России", author: "Сборник", image: "https://via.placeholder.com/150x200?text=Мифы+и+легенды", link: "newbooks.html" },
-            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "https://via.placeholder.com/150x200?text=Энциклопедия", link: "newbooks.html" },
-            { title: "Расул Гамзатов. Стихи", author: "Расул Гамзатов", image: "https://via.placeholder.com/150x200?text=Гамзатов", link: "newbooks.html" },
-            { title: "Чингиз Айтматов. Плаха", author: "Чингиз Айтматов", image: "https://via.placeholder.com/150x200?text=Айтматов", link: "newbooks.html" },
-            { title: "Юрий Рытхэу. Сон в начале тумана", author: "Юрий Рытхэу", image: "https://via.placeholder.com/150x200?text=Рытхэу", link: "newbooks.html" }
+            { title: "Сказки народов России", author: "Сборник", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EСказки%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Мифы и легенды народов России", author: "Сборник", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EМифы%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EЭнциклопедия%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Расул Гамзатов. Стихи", author: "Расул Гамзатов", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EГамзатов%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Чингиз Айтматов. Плаха", author: "Чингиз Айтматов", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EАйтматов%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Юрий Рытхэу. Сон в начале тумана", author: "Юрий Рытхэу", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EРытхэу%3C/text%3E%3C/svg%3E", link: "newbooks.html" }
         ];
 
         function renderBooksSlider() {
@@ -259,7 +259,7 @@
             booksData.forEach(book => {
                 html += `
                     <div class="book-item">
-                        <img src="${book.image}" alt="${book.title}">
+                        <img src="${book.image}" alt="${book.title}" loading="lazy">
                         <h4>${book.title}</h4>
                         <p>${book.author}</p>
                         <a href="${book.link}" class="btn" style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; font-size: 0.7rem;">Подробнее</a>
@@ -269,14 +269,14 @@
             container.innerHTML = html;
         }
 
-        // Рецепты народов России
+        // Рецепты народов России (локальные плейсхолдеры)
         const recipesData = [
-            { people: "Татары", title: "Чак-чак", desc: "Медовое лакомство из жареных кусочков теста. Традиционное угощение на свадьбах и праздниках.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Chak_Chak.jpg/300px-Chak_Chak.jpg" },
-            { people: "Буряты", title: "Буузы (позы)", desc: "Паровые мясные пирожки с бульоном внутри. Лепится 33 защипа — по числу складок на одежде богини.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/Buuzy.jpg/300px-Buuzy.jpg" },
-            { people: "Карелы", title: "Калитки", desc: "Открытые ржаные пирожки с начинкой из картофеля, пшённой каши или творога. Символ карельской кухни.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Karelian_pasties.jpg/300px-Karelian_pasties.jpg" },
-            { people: "Осетины", title: "Осетинские пироги", desc: "Три вида пирогов: с сыром (уалибах), с мясом (фыдджин), с картофелем (картофджин). Символ Солнца, Земли и Неба.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Ossetian_pie.jpg/300px-Ossetian_pie.jpg" },
-            { people: "Якуты", title: "Строганина", desc: "Замороженная рыба (чир, муксун, нельма), нарезанная тонкими стружками. Традиционное блюдо северных народов.", image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Stroganina.jpg/300px-Stroganina.jpg" },
-            { people: "Марийцы", title: "Команмелна", desc: "Марийские блины из кислого теста. Готовятся на праздники и поминки, подаются с маслом или сметаной.", image: "https://via.placeholder.com/300x200?text=Команмелна" }
+            { people: "Татары", title: "Чак-чак", desc: "Медовое лакомство из жареных кусочков теста. Традиционное угощение на свадьбах и праздниках.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EЧак-чак%3C/text%3E%3C/svg%3E" },
+            { people: "Буряты", title: "Буузы (позы)", desc: "Паровые мясные пирожки с бульоном внутри. Лепится 33 защипа — по числу складок на одежде богини.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EБуузы%3C/text%3E%3C/svg%3E" },
+            { people: "Карелы", title: "Калитки", desc: "Открытые ржаные пирожки с начинкой из картофеля, пшённой каши или творога. Символ карельской кухни.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EКалитки%3C/text%3E%3C/svg%3E" },
+            { people: "Осетины", title: "Осетинские пироги", desc: "Три вида пирогов: с сыром (уалибах), с мясом (фыдджин), с картофелем (картофджин). Символ Солнца, Земли и Неба.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EОсетинские пироги%3C/text%3E%3C/svg%3E" },
+            { people: "Якуты", title: "Строганина", desc: "Замороженная рыба (чир, муксун, нельма), нарезанная тонкими стружками. Традиционное блюдо северных народов.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EСтроганина%3C/text%3E%3C/svg%3E" },
+            { people: "Марийцы", title: "Команмелна", desc: "Марийские блины из кислого теста. Готовятся на праздники и поминки, подаются с маслом или сметаной.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EКоманмелна%3C/text%3E%3C/svg%3E" }
         ];
 
         function renderRecipes() {
@@ -286,7 +286,7 @@
             recipesData.forEach(recipe => {
                 html += `
                     <div class="recipe-card">
-                        <img src="${recipe.image}" alt="${recipe.title}" class="recipe-img" onerror="this.src='https://via.placeholder.com/300x180?text=${encodeURIComponent(recipe.title)}'">
+                        <div class="recipe-img"><i class="fas fa-utensils"></i></div>
                         <div class="recipe-content">
                             <div class="recipe-title">${recipe.title}</div>
                             <div class="recipe-people"><i class="fas fa-users"></i> ${recipe.people}</div>
