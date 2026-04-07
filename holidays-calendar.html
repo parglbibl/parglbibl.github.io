@@ -207,7 +207,7 @@
             color: #e5989b;
         }
 
-        /* Блок "Сегодня в календаре" */
+        /* Блок ближайших событий (компактный) */
         .today-highlight {
             background: #fff9f0;
             border-left: 5px solid #e5989b;
@@ -222,6 +222,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.3rem;
         }
         .today-events-list {
             display: flex;
@@ -239,6 +240,12 @@
             margin-top: 0.3rem;
             background: none;
             padding: 0;
+        }
+        #next-event-short {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #e5989b;
         }
 
         @media (max-width: 768px) {
@@ -318,10 +325,11 @@
                 <p><strong>Санкт-Петербург</strong> — добавлены городские памятные даты.</p>
             </div>
 
-            <!-- Блок "Сегодня в календаре" -->
+            <!-- Ближайшие события (компактный блок) -->
             <div id="today-calendar" class="today-highlight">
-                <h3><i class="fas fa-calendar-day"></i> Сегодня в календаре</h3>
-                <div id="today-events-list" class="today-events-list"><p>Загрузка...</p></div>
+                <h3><i class="fas fa-calendar-day"></i> Ближайшие события</h3>
+                <div id="today-events-list" class="today-events-list"></div>
+                <div id="next-event-short"></div>
             </div>
 
             <div class="filter-bar">
@@ -404,7 +412,7 @@
 
     <script src="common.js"></script>
     <script>
-        // ===== ДАННЫЕ КАЛЕНДАРЯ (полный список, как был ранее) =====
+        // ===== ДАННЫЕ КАЛЕНДАРЯ (полный список) =====
         const holidaysData = [
             { month: 0, day: 1, name: "Новый год", desc: "Праздник начала нового календарного года", idea: "Книжная выставка «Новогодние чудеса», мастер-класс по созданию закладок" },
             { month: 0, day: 2, name: "День научной фантастики", desc: "Неофициальный праздник любителей фантастики", idea: "Выставка фантастики, викторина «Угадай книгу по экранизации»" },
@@ -513,32 +521,49 @@
         const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
         const monthIcons = ["fa-snowflake", "fa-heart", "fa-feather-alt", "fa-cloud-sun", "fa-leaf", "fa-sun", "fa-umbrella-beach", "fa-tree", "fa-apple-alt", "fa-leaf", "fa-cloud-rain", "fa-gift"];
 
-        // Функция отображения событий на сегодня
-        function renderTodayEvents() {
+        // Функция для отображения сегодняшних и следующего праздника
+        function renderUpcomingEvents() {
             const today = new Date();
             const currentDay = today.getDate();
-            const currentMonth = today.getMonth(); // 0-11
+            const currentMonth = today.getMonth();
+            const currentYear = today.getFullYear();
             
+            // 1. Сегодняшние события
             const todayEvents = holidaysData.filter(event => event.month === currentMonth && event.day === currentDay);
-            const container = document.getElementById('today-events-list');
-            if (!container) return;
-            
-            if (todayEvents.length === 0) {
-                container.innerHTML = '<p>На сегодня событий в календаре нет. Загляните в другие дни!</p>';
-                return;
+            const todayContainer = document.getElementById('today-events-list');
+            if (todayContainer) {
+                if (todayEvents.length === 0) {
+                    todayContainer.innerHTML = '<p>Сегодня праздников нет.</p>';
+                } else {
+                    let html = '';
+                    todayEvents.forEach(event => {
+                        html += `
+                            <div class="today-event-item">
+                                <strong>${event.name}</strong><br>
+                                ${event.desc}<br>
+                                <div class="event-idea"><i class="fas fa-lightbulb"></i> ${event.idea}</div>
+                            </div>
+                        `;
+                    });
+                    todayContainer.innerHTML = html;
+                }
             }
             
-            let html = '';
-            todayEvents.forEach(event => {
-                html += `
-                    <div class="today-event-item">
-                        <strong>${event.name}</strong><br>
-                        ${event.desc}<br>
-                        <div class="event-idea"><i class="fas fa-lightbulb"></i> ${event.idea}</div>
-                    </div>
-                `;
+            // 2. Следующее событие (кратко)
+            const eventsWithDates = holidaysData.map(event => {
+                let eventDate = new Date(currentYear, event.month, event.day);
+                if (eventDate < today) eventDate = new Date(currentYear + 1, event.month, event.day);
+                const diffDays = Math.ceil((eventDate - today) / (1000 * 60 * 60 * 24));
+                return { ...event, diffDays };
             });
-            container.innerHTML = html;
+            eventsWithDates.sort((a, b) => a.diffDays - b.diffDays);
+            const next = eventsWithDates[0];
+            
+            const nextContainer = document.getElementById('next-event-short');
+            if (nextContainer && next) {
+                let dayText = next.diffDays === 0 ? 'сегодня' : (next.diffDays === 1 ? 'завтра' : `через ${next.diffDays} дн.`);
+                nextContainer.innerHTML = `📅 <strong>Следующий:</strong> ${next.name} — ${dayText}`;
+            }
         }
 
         // Основная функция рендеринга календаря (с фильтрацией и поиском)
@@ -612,8 +637,8 @@
 
         // Инициализация страницы
         document.addEventListener("DOMContentLoaded", function() {
-            renderTodayEvents();       // показываем события сегодняшнего дня
-            renderCalendar();          // показываем весь календарь
+            renderUpcomingEvents();   // показываем сегодняшние и следующий праздник
+            renderCalendar();         // показываем весь календарь
             
             const monthFilter = document.getElementById("monthFilter");
             const searchInput = document.getElementById("searchInput");
