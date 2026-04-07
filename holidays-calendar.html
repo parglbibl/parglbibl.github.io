@@ -206,6 +206,41 @@
         .holiday-like-btn.liked {
             color: #e5989b;
         }
+
+        /* Блок "Сегодня в календаре" */
+        .today-highlight {
+            background: #fff9f0;
+            border-left: 5px solid #e5989b;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .today-highlight h3 {
+            margin-top: 0;
+            color: #b5838d;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .today-events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .today-event-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        .today-event-item strong {
+            color: #e5989b;
+        }
+        .today-event-item .event-idea {
+            margin-top: 0.3rem;
+            background: none;
+            padding: 0;
+        }
+
         @media (max-width: 768px) {
             .calendar-table th, .calendar-table td {
                 padding: 0.75rem;
@@ -228,9 +263,7 @@
 <body class="page-transition">
     <header>
         <div class="container header-inner">
-            <a href="index.html" class="logo">
-                <img src="logo.PNG" alt="Парголовская библиотека" loading="lazy">
-            </a>
+            <a href="index.html" class="logo"><img src="logo.PNG" alt="Парголовская библиотека" loading="lazy"></a>
             <div class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></div>
             <nav class="nav" id="nav">
                 <ul>
@@ -253,6 +286,8 @@
                     <li data-mobile="more"><a href="book-recommendations.html"><i class="fas fa-star"></i> Что почитать по интересу</a></li>
                     <li data-mobile="more"><a href="book-kitchen.html"><i class="fas fa-utensils"></i> Книжная кухня</a></li>
                     <li data-mobile="more"><a href="holidays-calendar.html" class="active"><i class="fas fa-calendar-alt"></i> Календарь праздников</a></li>
+                    <li data-mobile="more"><a href="narody-pargolovo.html"><i class="fas fa-users"></i> Народы Парголово</a></li>
+                    <li data-mobile="more"><a href="narody-rossii.html"><i class="fas fa-flag"></i> Народы России</a></li>
                 </ul>
                 <div class="search-icon-container">
                     <i class="fas fa-search" id="searchIcon"></i>
@@ -279,9 +314,15 @@
 
             <h1 class="section-title">Библиотечный календарь 2026</h1>
             <div class="calendar-intro">
-    <p>Праздники, памятные даты и дни, которые можно провести в библиотеке с пользой. Для каждой даты мы подготовили идею мероприятия или выставки.</p>
-    <p><strong>Санкт-Петербург</strong> — добавлены городские памятные даты.</p>
-</div>
+                <p>Праздники, памятные даты и дни, которые можно провести в библиотеке с пользой. Для каждой даты мы подготовили идею мероприятия или выставки.</p>
+                <p><strong>Санкт-Петербург</strong> — добавлены городские памятные даты.</p>
+            </div>
+
+            <!-- Блок "Сегодня в календаре" -->
+            <div id="today-calendar" class="today-highlight">
+                <h3><i class="fas fa-calendar-day"></i> Сегодня в календаре</h3>
+                <div id="today-events-list" class="today-events-list"><p>Загрузка...</p></div>
+            </div>
 
             <div class="filter-bar">
                 <label><i class="fas fa-filter"></i> Фильтр:</label>
@@ -363,7 +404,7 @@
 
     <script src="common.js"></script>
     <script>
-        // ===== ДАННЫЕ КАЛЕНДАРЯ =====
+        // ===== ДАННЫЕ КАЛЕНДАРЯ (полный список, как был ранее) =====
         const holidaysData = [
             { month: 0, day: 1, name: "Новый год", desc: "Праздник начала нового календарного года", idea: "Книжная выставка «Новогодние чудеса», мастер-класс по созданию закладок" },
             { month: 0, day: 2, name: "День научной фантастики", desc: "Неофициальный праздник любителей фантастики", idea: "Выставка фантастики, викторина «Угадай книгу по экранизации»" },
@@ -472,6 +513,35 @@
         const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
         const monthIcons = ["fa-snowflake", "fa-heart", "fa-feather-alt", "fa-cloud-sun", "fa-leaf", "fa-sun", "fa-umbrella-beach", "fa-tree", "fa-apple-alt", "fa-leaf", "fa-cloud-rain", "fa-gift"];
 
+        // Функция отображения событий на сегодня
+        function renderTodayEvents() {
+            const today = new Date();
+            const currentDay = today.getDate();
+            const currentMonth = today.getMonth(); // 0-11
+            
+            const todayEvents = holidaysData.filter(event => event.month === currentMonth && event.day === currentDay);
+            const container = document.getElementById('today-events-list');
+            if (!container) return;
+            
+            if (todayEvents.length === 0) {
+                container.innerHTML = '<p>На сегодня событий в календаре нет. Загляните в другие дни!</p>';
+                return;
+            }
+            
+            let html = '';
+            todayEvents.forEach(event => {
+                html += `
+                    <div class="today-event-item">
+                        <strong>${event.name}</strong><br>
+                        ${event.desc}<br>
+                        <div class="event-idea"><i class="fas fa-lightbulb"></i> ${event.idea}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Основная функция рендеринга календаря (с фильтрацией и поиском)
         function renderCalendar(monthFilter = "all", searchQuery = "") {
             const container = document.getElementById("calendarContainer");
             if (!container) return;
@@ -540,8 +610,10 @@
             }
         }
 
+        // Инициализация страницы
         document.addEventListener("DOMContentLoaded", function() {
-            renderCalendar();
+            renderTodayEvents();       // показываем события сегодняшнего дня
+            renderCalendar();          // показываем весь календарь
             
             const monthFilter = document.getElementById("monthFilter");
             const searchInput = document.getElementById("searchInput");
