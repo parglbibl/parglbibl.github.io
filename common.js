@@ -1,11 +1,7 @@
 // common.js – общие скрипты для всего сайта
 
 document.addEventListener('DOMContentLoaded', function() {
-    // --- Cookie-баннер с согласием на Яндекс.Метрику (строгий режим) ---
-    const cookieBanner = document.getElementById('cookie-banner');
-    const acceptBtn = document.getElementById('cookie-accept');
-    const declineBtn = document.getElementById('cookie-decline');
-
+    // ===== Функция загрузки Яндекс.Метрики =====
     function loadYandexMetrika() {
         if (typeof ym !== 'undefined') return;
         (function(m,e,t,r,i,k,a){
@@ -16,6 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
         })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107242178', 'ym');
         ym(107242178, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
     }
+
+    // --- Определяем поискового робота (Яндекс, Google, Mail.ru и др.) ---
+    const isBot = /bot|yandex|google|mail\.ru|bing|yahoo|slurp|facebookexternalhit|facebot|baidu|twitterbot/i.test(navigator.userAgent);
+    if (isBot) {
+        // Для роботов загружаем Метрику сразу (чтобы Яндекс Вебмастер не ругался)
+        loadYandexMetrika();
+    }
+
+    // --- Cookie-баннер с согласием на Яндекс.Метрику (строгий режим) ---
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
 
     const cookieAccepted = localStorage.getItem('cookieAccepted');
     const cookieDeclined = localStorage.getItem('cookieDeclined');
@@ -44,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
         declineBtn.addEventListener('click', () => {
             localStorage.setItem('cookieDeclined', 'true');
             if (cookieBanner) cookieBanner.style.display = 'none';
-            // Отправляем событие в Метрику, если она уже загружена
             if (typeof ym !== 'undefined') {
                 ym(107242178, 'reachGoal', 'cookie_declined');
             }
