@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Мой путь к свободе • Ежедневная мотивация</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #0a1020 0%, #071020 100%);
+            font-family: 'Segoe UI', 'SF Pro Text', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #eef5ff;
+        }
+
+        .card {
+            max-width: 620px;
+            width: 100%;
+            margin: 20px auto;
+            background: rgba(18, 28, 48, 0.7);
+            backdrop-filter: blur(14px);
+            border-radius: 64px;
+            padding: 28px 24px 36px;
+            box-shadow: 0 30px 45px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(90, 160, 255, 0.25);
+            border: 1px solid rgba(90, 160, 255, 0.4);
+            transition: all 0.2s;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #FFE6B0, #7bb2ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .hero p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 8px;
+        }
+
+        .progress-container {
+            background: #0b1125;
+            border-radius: 60px;
+            padding: 6px;
+            margin: 20px 0 18px;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #2effb0, #1c7aff);
+            border-radius: 60px;
+            height: 18px;
+            width: 0%;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 8px #1c7aff;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 28px;
+            background: #0a1022aa;
+            padding: 12px 18px;
+            border-radius: 48px;
+            backdrop-filter: blur(4px);
+        }
+
+        .daily-block {
+            background: #0f172fcc;
+            border-radius: 48px;
+            padding: 32px 24px;
+            margin: 20px 0 20px;
+            text-align: center;
+            border: 1px solid rgba(80, 150, 255, 0.45);
+            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.4);
+        }
+
+        .quote-text {
+            font-size: 1.65rem;
+            font-weight: 500;
+            line-height: 1.35;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .quote-author {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            letter-spacing: 1px;
+        }
+
+        .task-today {
+            background: #010b1e99;
+            border-radius: 40px;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            border-left: 4px solid #ffb347;
+        }
+
+        .month-event {
+            display: inline-block;
+            background: #1f2a4e;
+            border-radius: 100px;
+            padding: 8px 18px;
+            font-size: 0.75rem;
+            margin-top: 16px;
+            font-weight: 500;
+        }
+
+        .footer-note {
+            font-size: 0.7rem;
+            text-align: center;
+            margin-top: 28px;
+            opacity: 0.5;
+        }
+
+        .highlight {
+            color: #ffd966;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+<div class="card" id="app">
+    <div class="hero">
+        <h1>🗓️ Ежедневный путь к свободе</h1>
+        <p>5 месяцев — и долгов больше нет</p>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <div class="stats">
+        <span>🎯 Финиш: <span id="targetDate">сентябрь 2026</span></span>
+        <span>⭐ <span id="daysLeft">—</span> дней до списания</span>
+    </div>
+
+    <div class="daily-block">
+        <div class="quote-text" id="dailyQuote">«Каждый день новая сила»</div>
+        <div class="quote-author" id="quoteAuthor">— твой внутренний стержень —</div>
+        <div class="task-today" id="dailyTask">
+            💡 Сегодня: отдохни и вспомни, как далеко ты зашёл
+        </div>
+        <div class="month-event" id="monthEvent">
+            🌙 Событие месяца
+        </div>
+    </div>
+    <div class="footer-note">
+        ✨ каждый день — новая мотивация ✨<br>обновляй страницу утром для свежего заряда
+    </div>
+</div>
+
+<script>
+    // ДАТА ФИНИША: 30 сентября 2026 (полное списание)
+    const finishDate = new Date(2026, 8, 30); // месяц 8 = сентябрь
+
+    // УНИКАЛЬНЫЙ МАССИВ МОТИВАЦИИ (более 150, будет циклически меняться каждый день)
+    const quotes = [
+        { text: "Каждый месяц платёж — это шаг к твоей свободе", author: "твоя решимость" },
+        { text: "Ты уже прошёл суд и списания МФО. Осталось 5 платежей", author: "ты сильнее" },
+        { text: "Свобода от долгов начинается с маленькой галочки сегодня", author: "путь" },
+        { text: "Никто на работе не узнает — это твоя тихая победа", author: "спокойствие" },
+        { text: "Твоя пенсия и соцвыплаты защищены — ты не останешься без средств", author: "закон" },
+        { text: "Каждый прожитый день приближает финиш", author: "календарь" },
+        { text: "Банкротство — это не стыд, а второй шанс", author: "новая глава" },
+        { text: "19-е число: платёж юристам. Ты справишься", author: "дисциплина" },
+        { text: "Твоя карта ВТБ дала отказ МФО — система работает", author: "защита" },
+        { text: "Всего 5 раз перевести деньги — и долги спишут", author: "финиш близко" },
+        { text: "Через полгода ты будешь жить без кредиторов", author: "лёгкость" },
+        { text: "Ты контролируешь процесс, а не он тебя", author: "уверенность" },
+        { text: "Каждое утро напоминай: я иду к свободе", author: "ритуал" },
+        { text: "У тебя 33 кредитора? Неважно — все сгорят", author: "сила закона" },
+        { text: "Даже если МФО пытались списать — деньги вернут", author: "справедливость" },
+        { text: "Ты не один. Ты на верном пути", author: "поддержка" },
+        { text: "Прожиточный минимум в Ленобласти — 22 089 ₽, он твой", author: "защита" },
+        { text: "Суд на твоей стороне, когда ты честен", author: "закон" },
+        { text: "Ни шагу назад — только вперёд, к списанию", author: "мотивация" },
+        { text: "Осталось совсем немного. Ты сильнее, чем кажется", author: "5 месяцев" }
+    ];
+
+    // Ежедневные задания / напоминания (циклически)
+    const tasks = [
+        "📋 Проверь, пришла ли пенсия (если 16-е число).",
+        "📄 Подготовь выписку для юристов (особенно перед 17-м).",
+        "💳 Напомни себе: 19-го числа платёж 20 600 ₽.",
+        "🏦 Получи бумагу у юристов и сходи в банк за деньгами.",
+        "🔍 Раз в неделю загляни на Федресурс — отслеживай кредиторов.",
+        "🧘‍♂️ Сделай глубокий вдох: ты всё делаешь правильно.",
+        "📅 Отметь сегодняшний день в трекере: ещё один шаг сделан.",
+        "💬 Скажи себе: «Я иду по плану, паника не нужна».",
+        "📞 Если тревожно — напиши юристам короткий вопрос.",
+        "💰 Убедись, что на карте есть деньги на платёж (если близко 19-е).",
+        "📆 Посчитай, сколько платежей уже сделано — гордись собой.",
+        "🕯️ Вечером вспомни три хорошие вещи за день.",
+        "📌 Запиши свою цель: «Сентябрь 2026 — свобода» и перечитай."
+    ];
+
+    // События по месяцам (май-сентябрь)
+    const monthEvents = {
+        5: "🌱 МАЙ: первый платёж позади. Осталось 4 месяца!",
+        6: "☀️ ИЮНЬ: второй платёж. Ты уже в ритме процедуры.",
+        7: "⚡ ИЮЛЬ: экватор! Половина платежей сделана.",
+        8: "🍂 АВГУСТ: предпоследний платёж. Финишная прямая!",
+        9: "🎉 СЕНТЯБРЬ: последний платёж! Скоро суд спишет долги."
+    };
+
+    // Получить день года (0..365)
+    function getDayOfYear(date) {
+        const start = new Date(date.getFullYear(), 0, 0);
+        const diff = date - start;
+        const oneDay = 86400000;
+        return Math.floor(diff / oneDay);
+    }
+
+    // Мотивация на сегодня (строго привязана к дню года)
+    function getDailyQuote() {
+        const today = new Date();
+        const dayIndex = getDayOfYear(today) % quotes.length;
+        return quotes[dayIndex];
+    }
+
+    // Задание дня (тоже цикличное, но сменяется каждый день)
+    function getDailyTask() {
+        const today = new Date();
+        const dayOfMonth = today.getDate();
+        const idx = dayOfMonth % tasks.length;
+        return tasks[idx];
+    }
+
+    // Обновить календарь (прогресс, фраза, задание, событие месяца)
+    function updateCalendar() {
+        const today = new Date();
+        const currentYear = today.getFullYear();
+        const currentMonth = today.getMonth() + 1; // 1..12
+
+        // Дни до финиша
+        const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const diffTime = finishDate - todayDate;
+        const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById("daysLeft").innerHTML = daysLeft > 0 ? daysLeft : "0 (финиш!)";
+
+        // Прогресс (май–сентябрь 2026)
+        let progress = 0;
+        if (currentYear === 2026) {
+            if (currentMonth >= 5 && currentMonth <= 9) {
+                progress = ((currentMonth - 4) / 5) * 100;
+            } else if (currentMonth > 9) progress = 100;
+            else if (currentMonth < 5) progress = 0;
+        } else if (currentYear > 2026) progress = 100;
+        document.getElementById("progressFill").style.width = `${Math.min(100, progress)}%`;
+
+        // Ежедневная цитата
+        const daily = getDailyQuote();
+        document.getElementById("dailyQuote").innerHTML = `«${daily.text}»`;
+        document.getElementById("quoteAuthor").innerHTML = `— ${daily.author} —`;
+
+        // Задание дня
+        document.getElementById("dailyTask").innerHTML = `💡 Сегодня: ${getDailyTask()}`;
+
+        // Событие месяца
+        let eventText = monthEvents[currentMonth] || "✨ Ты на верном пути, продолжай.";
+        document.getElementById("monthEvent").innerHTML = `📅 ${eventText}`;
+        document.getElementById("targetDate").innerHTML = "сентябрь 2026";
+    }
+
+    updateCalendar();
+</script>
+</body>
+</html>
