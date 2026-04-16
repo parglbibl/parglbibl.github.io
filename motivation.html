@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Мой путь к свободе • Ежедневная мотивация</title>
+    <title>Маленький принц • путь к свободе</title>
     <style>
         * {
             margin: 0;
@@ -12,277 +12,440 @@
         }
 
         body {
-            background: linear-gradient(145deg, #0a1020 0%, #071020 100%);
-            font-family: 'Segoe UI', 'SF Pro Text', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+            background: #fdf8f0;  /* тёплый светлый фон */
+            font-family: 'Segoe UI', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Georgia', serif;
             padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #eef5ff;
+            color: #3b2e24;
         }
 
+        /* карточка-планета */
         .card {
             max-width: 620px;
             width: 100%;
             margin: 20px auto;
-            background: rgba(18, 28, 48, 0.7);
-            backdrop-filter: blur(14px);
-            border-radius: 64px;
+            background: rgba(255, 251, 245, 0.92);
+            backdrop-filter: blur(2px);
+            border-radius: 72px;
             padding: 28px 24px 36px;
-            box-shadow: 0 30px 45px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(90, 160, 255, 0.25);
-            border: 1px solid rgba(90, 160, 255, 0.4);
-            transition: all 0.2s;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 0 0 1px #ffe6c7;
+            transition: all 0.2s ease;
+            border: 1px solid #ffefdb;
         }
 
+        /* звёздная шапка */
         .hero {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
-
         .hero h1 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #FFE6B0, #7bb2ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #c47c41;
+            letter-spacing: -0.2px;
         }
-
         .hero p {
+            font-size: 0.9rem;
+            color: #aa8c6e;
+            margin-top: 6px;
+        }
+        .date-time {
+            background: #fff6ed;
+            border-radius: 60px;
+            padding: 8px 16px;
+            display: inline-block;
+            margin-top: 12px;
             font-size: 0.85rem;
-            opacity: 0.7;
-            margin-top: 8px;
+            color: #b47c48;
+            border: 1px solid #ffe0c0;
         }
 
-        .progress-container {
-            background: #0b1125;
-            border-radius: 60px;
-            padding: 6px;
-            margin: 20px 0 18px;
+        /* прогресс к свободе */
+        .progress-section {
+            margin: 20px 0 20px;
         }
-
-        .progress-fill {
-            background: linear-gradient(90deg, #2effb0, #1c7aff);
-            border-radius: 60px;
-            height: 18px;
-            width: 0%;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 8px #1c7aff;
-        }
-
-        .stats {
+        .progress-label {
             display: flex;
             justify-content: space-between;
-            font-size: 0.85rem;
-            margin-bottom: 28px;
-            background: #0a1022aa;
-            padding: 12px 18px;
-            border-radius: 48px;
-            backdrop-filter: blur(4px);
+            font-size: 0.8rem;
+            color: #b68b60;
+            margin-bottom: 8px;
+        }
+        .progress-bar-bg {
+            background: #f0e2d4;
+            border-radius: 30px;
+            height: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #e0a87c, #c47c41);
+            width: 0%;
+            height: 100%;
+            border-radius: 30px;
+            transition: width 0.5s ease;
         }
 
-        .daily-block {
-            background: #0f172fcc;
-            border-radius: 48px;
-            padding: 32px 24px;
-            margin: 20px 0 20px;
+        /* главный блок — цитата Принца */
+        .quote-block {
+            background: #fffaf5;
+            border-radius: 60px;
+            padding: 28px 20px;
+            margin: 24px 0;
             text-align: center;
-            border: 1px solid rgba(80, 150, 255, 0.45);
-            box-shadow: 0 15px 25px -8px rgba(0,0,0,0.4);
+            border: 1px solid #ffebdb;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02);
         }
-
         .quote-text {
-            font-size: 1.65rem;
-            font-weight: 500;
-            line-height: 1.35;
-            margin-bottom: 20px;
-            color: #ffffff;
+            font-size: 1.55rem;
+            line-height: 1.4;
+            font-weight: 400;
+            color: #4f3a28;
+            font-style: normal;
         }
-
         .quote-author {
-            font-size: 0.85rem;
-            opacity: 0.7;
-            letter-spacing: 1px;
+            margin-top: 18px;
+            font-size: 0.8rem;
+            color: #bc8f63;
+            letter-spacing: 0.5px;
         }
 
-        .task-today {
-            background: #010b1e99;
-            border-radius: 40px;
-            padding: 16px;
-            margin-top: 20px;
-            font-size: 0.95rem;
-            border-left: 4px solid #ffb347;
-        }
-
-        .month-event {
-            display: inline-block;
-            background: #1f2a4e;
-            border-radius: 100px;
-            padding: 8px 18px;
-            font-size: 0.75rem;
+        /* напоминание (если есть задача) */
+        .reminder-card {
+            background: #fdefdf;
+            border-radius: 48px;
+            padding: 18px 20px;
             margin-top: 16px;
-            font-weight: 500;
+            border-left: 6px solid #e7b183;
+            text-align: left;
+        }
+        .reminder-title {
+            font-weight: 600;
+            color: #c1763e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .reminder-text {
+            font-size: 0.95rem;
+            color: #6e4f32;
+        }
+        .gentle-note {
+            font-size: 0.75rem;
+            margin-top: 8px;
+            color: #b28155;
         }
 
-        .footer-note {
-            font-size: 0.7rem;
+        /* чек-лист платежей (лёгкий прогресс) */
+        .months-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 28px;
+            background: #fff9f2;
+            padding: 18px 16px;
+            border-radius: 56px;
+        }
+        .month-item {
+            flex: 1;
+            text-align: center;
+            background: #ffffff;
+            border-radius: 48px;
+            padding: 8px 4px;
+            border: 1px solid #ffe0c0;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #b87a48;
+        }
+        .month-paid {
+            background: #e5d5c2;
+            color: #7b5a3e;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+        .month-pending {
+            background: #fff2e6;
+            border: 1px solid #ffdbb5;
+        }
+        .month-name {
+            display: block;
+            font-size: 0.9rem;
+        }
+        .check-symbol {
+            font-size: 1rem;
+            margin-left: 6px;
+        }
+
+        .footer-star {
             text-align: center;
             margin-top: 28px;
-            opacity: 0.5;
+            font-size: 0.7rem;
+            color: #d9b48b;
         }
 
-        .highlight {
-            color: #ffd966;
-            font-weight: 600;
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .tiny-btn {
+            font-size: 0.7rem;
+            background: #f0e2d4;
+            padding: 4px 10px;
+            border-radius: 40px;
+            margin-top: 8px;
+            color: #b47c48;
         }
     </style>
 </head>
 <body>
 <div class="card" id="app">
     <div class="hero">
-        <h1>🗓️ Ежедневный путь к свободе</h1>
-        <p>5 месяцев — и долгов больше нет</p>
+        <h1>✨ Маленький принц ✨</h1>
+        <p>«Самое главное — то, чего глазами не увидишь»</p>
+        <div class="date-time" id="dateTimeDisplay"></div>
     </div>
 
-    <div class="progress-container">
-        <div class="progress-fill" id="progressFill" style="width:0%"></div>
-    </div>
-    <div class="stats">
-        <span>🎯 Финиш: <span id="targetDate">сентябрь 2026</span></span>
-        <span>⭐ <span id="daysLeft">—</span> дней до списания</span>
+    <div class="progress-section">
+        <div class="progress-label">
+            <span>🌿 Путь к списанию долгов</span>
+            <span id="progressPercent">0%</span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+        <div class="progress-label" style="margin-top: 8px;">
+            <span>⭐ Осталось дней:</span>
+            <span id="daysLeft">—</span>
+        </div>
     </div>
 
-    <div class="daily-block">
-        <div class="quote-text" id="dailyQuote">«Каждый день новая сила»</div>
-        <div class="quote-author" id="quoteAuthor">— твой внутренний стержень —</div>
-        <div class="task-today" id="dailyTask">
-            💡 Сегодня: отдохни и вспомни, как далеко ты зашёл
-        </div>
-        <div class="month-event" id="monthEvent">
-            🌙 Событие месяца
-        </div>
+    <!-- цитата из "Маленького принца" меняется каждый день -->
+    <div class="quote-block">
+        <div class="quote-text" id="dailyQuote">«Зорко одно лишь сердце»</div>
+        <div class="quote-author" id="quoteAuthor">— Антуан де Сент-Экзюпери —</div>
     </div>
-    <div class="footer-note">
-        ✨ каждый день — новая мотивация ✨<br>обновляй страницу утром для свежего заряда
+
+    <!-- мягкое напоминание о задачах (показывается, если приближается важная дата) -->
+    <div id="reminderArea"></div>
+
+    <!-- прогресс по платежам (можно отмечать) -->
+    <div class="months-grid" id="monthsGrid"></div>
+    <div class="footer-star">
+        🌟 каждый день — новая надежда 🌟
     </div>
 </div>
 
 <script>
-    // ДАТА ФИНИША: 30 сентября 2026 (полное списание)
-    const finishDate = new Date(2026, 8, 30); // месяц 8 = сентябрь
+    // ------------------- ФИНИШНАЯ ДАТА (свобода) -------------------
+    const finishDate = new Date(2026, 8, 30); // 30 сентября 2026
 
-    // УНИКАЛЬНЫЙ МАССИВ МОТИВАЦИИ (более 150, будет циклически меняться каждый день)
-    const quotes = [
-        { text: "Каждый месяц платёж — это шаг к твоей свободе", author: "твоя решимость" },
-        { text: "Ты уже прошёл суд и списания МФО. Осталось 5 платежей", author: "ты сильнее" },
-        { text: "Свобода от долгов начинается с маленькой галочки сегодня", author: "путь" },
-        { text: "Никто на работе не узнает — это твоя тихая победа", author: "спокойствие" },
-        { text: "Твоя пенсия и соцвыплаты защищены — ты не останешься без средств", author: "закон" },
-        { text: "Каждый прожитый день приближает финиш", author: "календарь" },
-        { text: "Банкротство — это не стыд, а второй шанс", author: "новая глава" },
-        { text: "19-е число: платёж юристам. Ты справишься", author: "дисциплина" },
-        { text: "Твоя карта ВТБ дала отказ МФО — система работает", author: "защита" },
-        { text: "Всего 5 раз перевести деньги — и долги спишут", author: "финиш близко" },
-        { text: "Через полгода ты будешь жить без кредиторов", author: "лёгкость" },
-        { text: "Ты контролируешь процесс, а не он тебя", author: "уверенность" },
-        { text: "Каждое утро напоминай: я иду к свободе", author: "ритуал" },
-        { text: "У тебя 33 кредитора? Неважно — все сгорят", author: "сила закона" },
-        { text: "Даже если МФО пытались списать — деньги вернут", author: "справедливость" },
-        { text: "Ты не один. Ты на верном пути", author: "поддержка" },
-        { text: "Прожиточный минимум в Ленобласти — 22 089 ₽, он твой", author: "защита" },
-        { text: "Суд на твоей стороне, когда ты честен", author: "закон" },
-        { text: "Ни шагу назад — только вперёд, к списанию", author: "мотивация" },
-        { text: "Осталось совсем немного. Ты сильнее, чем кажется", author: "5 месяцев" }
+    // ---------- ЦИТАТЫ ИЗ "МАЛЕНЬКОГО ПРИНЦА" (с автором) ----------
+    const princeQuotes = [
+        { text: "«Зорко одно лишь сердце. Самого главного глазами не увидишь»", author: "Лис" },
+        { text: "«Ты навсегда в ответе за тех, кого приручил»", author: "Лис" },
+        { text: "«Встал поутру, умылся, привел себя в порядок — и сразу приведи в порядок свою планету»", author: "Принц" },
+        { text: "«Когда даёшь себя приручить, потом случается и плакать»", author: "Лис" },
+        { text: "«Слова только мешают понимать друг друга»", author: "Змея" },
+        { text: "«У каждого человека свои звёзды»", author: "Принц" },
+        { text: "«Время, которое ты потратил на свою розу, делает её такой важной»", author: "Лис" },
+        { text: "«Вода бывает нужна и сердцу»", author: "Повествователь" },
+        { text: "«Самая большая роскошь — это роскошь человеческого общения»", author: "Принц" },
+        { text: "«Пустыня прекрасна, потому что в ней где-то прячется колодец»", author: "Принц" }
     ];
 
-    // Ежедневные задания / напоминания (циклически)
-    const tasks = [
-        "📋 Проверь, пришла ли пенсия (если 16-е число).",
-        "📄 Подготовь выписку для юристов (особенно перед 17-м).",
-        "💳 Напомни себе: 19-го числа платёж 20 600 ₽.",
-        "🏦 Получи бумагу у юристов и сходи в банк за деньгами.",
-        "🔍 Раз в неделю загляни на Федресурс — отслеживай кредиторов.",
-        "🧘‍♂️ Сделай глубокий вдох: ты всё делаешь правильно.",
-        "📅 Отметь сегодняшний день в трекере: ещё один шаг сделан.",
-        "💬 Скажи себе: «Я иду по плану, паника не нужна».",
-        "📞 Если тревожно — напиши юристам короткий вопрос.",
-        "💰 Убедись, что на карте есть деньги на платёж (если близко 19-е).",
-        "📆 Посчитай, сколько платежей уже сделано — гордись собой.",
-        "🕯️ Вечером вспомни три хорошие вещи за день.",
-        "📌 Запиши свою цель: «Сентябрь 2026 — свобода» и перечитай."
+    // ---------- ЗАДАЧИ (мягкие напоминания) ----------
+    // ключ: месяц-день (без года) + текст напоминания
+    const reminders = [
+        { month: 4, day: 17, text: "🌹 завтра (17 апреля) — отнести выписку юристам. Маленький шаг к свободе" },
+        { month: 4, day: 18, text: "🌹 сегодня 18 апреля — завтра платёж юристам. Проверь, всё готово" },
+        { month: 4, day: 19, text: "💫 сегодня 19 апреля — платёж юристам 20 600 ₽. Ты справишься!" },
+        { month: 4, day: 20, text: "🌿 после 19-го — если ещё не заплатил, мягко напомни себе. Не торопись, но сделай" },
+        { month: 4, day: 22, text: "📜 22 апреля — получи бумагу у юристов и сними деньги в банке" },
+        { month: 4, day: 23, text: "⭐ если ещё не снял деньги — сегодня хороший день для визита в банк" },
+        { month: 5, day: 16, text: "📆 16 мая — пришла пенсия? завтра готовь выписку" },
+        { month: 5, day: 17, text: "🌻 17 мая — отнести выписку юристам" },
+        { month: 5, day: 19, text: "🌻 19 мая — платёж юристам (второй)" },
+        { month: 5, day: 22, text: "📜 22 мая — получить бумагу, снять деньги" },
+        { month: 6, day: 17, text: "🍀 17 июня — выписка юристам" },
+        { month: 6, day: 19, text: "🍀 19 июня — платёж юристам" },
+        { month: 6, day: 22, text: "📜 22 июня — бумага и деньги" },
+        { month: 7, day: 17, text: "🌾 17 июля — выписка юристам" },
+        { month: 7, day: 19, text: "🌾 19 июля — платёж юристам" },
+        { month: 7, day: 22, text: "📜 22 июля — бумага и деньги" },
+        { month: 8, day: 17, text: "🍂 17 августа — выписка юристам" },
+        { month: 8, day: 19, text: "🍂 19 августа — платёж юристам" },
+        { month: 8, day: 22, text: "📜 22 августа — бумага и деньги" },
+        { month: 9, day: 17, text: "🍂 17 сентября — выписка (возможно последняя)" },
+        { month: 9, day: 19, text: "🍂 19 сентября — финальный платёж? Уточни у юристов" }
     ];
 
-    // События по месяцам (май-сентябрь)
-    const monthEvents = {
-        5: "🌱 МАЙ: первый платёж позади. Осталось 4 месяца!",
-        6: "☀️ ИЮНЬ: второй платёж. Ты уже в ритме процедуры.",
-        7: "⚡ ИЮЛЬ: экватор! Половина платежей сделана.",
-        8: "🍂 АВГУСТ: предпоследний платёж. Финишная прямая!",
-        9: "🎉 СЕНТЯБРЬ: последний платёж! Скоро суд спишет долги."
-    };
+    // ---------- МЕСЯЦЫ ДЛЯ ПРОГРЕССА ПЛАТЕЖЕЙ ----------
+    // апрель 2026 (почти сделан), май, июнь, июль, август, сентябрь (возможно последний)
+    const paymentMonths = [
+        { name: "Апрель", key: "apr", year: 2026, monthIndex: 3 },
+        { name: "Май", key: "may", year: 2026, monthIndex: 4 },
+        { name: "Июнь", key: "jun", year: 2026, monthIndex: 5 },
+        { name: "Июль", key: "jul", year: 2026, monthIndex: 6 },
+        { name: "Август", key: "aug", year: 2026, monthIndex: 7 },
+        { name: "Сентябрь", key: "sep", year: 2026, monthIndex: 8 }
+    ];
 
-    // Получить день года (0..365)
-    function getDayOfYear(date) {
-        const start = new Date(date.getFullYear(), 0, 0);
-        const diff = date - start;
-        const oneDay = 86400000;
-        return Math.floor(diff / oneDay);
+    // Загрузка статуса платежей из localStorage
+    function loadPaymentsStatus() {
+        const stored = localStorage.getItem("princePayments");
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch(e) {}
+        }
+        // по умолчанию: апрель считаем уже почти оплаченным (допустим, true)
+        const defaultStatus = {};
+        paymentMonths.forEach(m => { defaultStatus[m.key] = (m.key === "apr"); });
+        return defaultStatus;
     }
 
-    // Мотивация на сегодня (строго привязана к дню года)
-    function getDailyQuote() {
+    let payments = loadPaymentsStatus();
+
+    // Сохранить статус
+    function savePayments() {
+        localStorage.setItem("princePayments", JSON.stringify(payments));
+    }
+
+    // Функция переключения отметки (по клику на месяц)
+    function toggleMonth(monthKey) {
+        payments[monthKey] = !payments[monthKey];
+        savePayments();
+        renderMonthsGrid();
+        updateProgressBar(); // обновим прогресс-бар
+    }
+
+    // Отрисовать сетку месяцев с чекбоксами (можно отмечать выполненные платежи)
+    function renderMonthsGrid() {
+        const container = document.getElementById("monthsGrid");
+        if (!container) return;
+        container.innerHTML = "";
+        paymentMonths.forEach(month => {
+            const isPaid = payments[month.key];
+            const div = document.createElement("div");
+            div.className = `month-item ${isPaid ? 'month-paid' : 'month-pending'}`;
+            div.style.cursor = "pointer";
+            div.onclick = () => toggleMonth(month.key);
+            div.innerHTML = `
+                <span class="month-name">${month.name}</span>
+                <span class="check-symbol">${isPaid ? '✓' : '○'}</span>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    // Обновить прогресс-бар и проценты на основе оплаченных месяцев + дней до финиша
+    function updateProgressBar() {
+        const totalMonths = paymentMonths.length;
+        let paidCount = 0;
+        paymentMonths.forEach(m => { if (payments[m.key]) paidCount++; });
+        const monthProgress = (paidCount / totalMonths) * 100;
+
+        // прогресс по дням до финиша
         const today = new Date();
-        const dayIndex = getDayOfYear(today) % quotes.length;
-        return quotes[dayIndex];
+        const todayClean = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+        const finishClean = new Date(finishDate.getFullYear(), finishDate.getMonth(), finishDate.getDate());
+        const diffDays = Math.ceil((finishClean - todayClean) / (1000 * 3600 * 24));
+        const daysLeft = diffDays > 0 ? diffDays : 0;
+        const totalDays = 180; // примерно 6 месяцев
+        let dayProgress = ((totalDays - daysLeft) / totalDays) * 100;
+        if (dayProgress < 0) dayProgress = 0;
+        if (dayProgress > 100) dayProgress = 100;
+
+        // комбинируем: 70% от прогресса платежей + 30% от дней (чтобы не было резко)
+        let finalPercent = Math.round(monthProgress * 0.7 + dayProgress * 0.3);
+        if (finalPercent > 100) finalPercent = 100;
+        document.getElementById("progressFill").style.width = finalPercent + "%";
+        document.getElementById("progressPercent").innerText = finalPercent + "%";
+        document.getElementById("daysLeft").innerHTML = daysLeft;
     }
 
-    // Задание дня (тоже цикличное, но сменяется каждый день)
-    function getDailyTask() {
+    // Получить случайную цитату в зависимости от дня года (но каждый день новая)
+    function getDailyPrinceQuote() {
         const today = new Date();
-        const dayOfMonth = today.getDate();
-        const idx = dayOfMonth % tasks.length;
-        return tasks[idx];
+        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 3600 * 24));
+        const idx = dayOfYear % princeQuotes.length;
+        return princeQuotes[idx];
     }
 
-    // Обновить календарь (прогресс, фраза, задание, событие месяца)
-    function updateCalendar() {
+    // Отображение даты и времени (МСК)
+    function updateDateTime() {
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Moscow' };
+        const formatted = now.toLocaleString('ru-RU', options);
+        document.getElementById("dateTimeDisplay").innerHTML = `📅 ${formatted} (МСК)`;
+    }
+
+    // Мягкое напоминание: проверяем, приближается ли событие (за 1-2 дня, либо сегодня)
+    function getReminder() {
         const today = new Date();
-        const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth() + 1; // 1..12
+        const currentMonth = today.getMonth() + 1;
+        const currentDay = today.getDate();
 
-        // Дни до финиша
-        const todayDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-        const diffTime = finishDate - todayDate;
-        const daysLeft = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        document.getElementById("daysLeft").innerHTML = daysLeft > 0 ? daysLeft : "0 (финиш!)";
-
-        // Прогресс (май–сентябрь 2026)
-        let progress = 0;
-        if (currentYear === 2026) {
-            if (currentMonth >= 5 && currentMonth <= 9) {
-                progress = ((currentMonth - 4) / 5) * 100;
-            } else if (currentMonth > 9) progress = 100;
-            else if (currentMonth < 5) progress = 0;
-        } else if (currentYear > 2026) progress = 100;
-        document.getElementById("progressFill").style.width = `${Math.min(100, progress)}%`;
-
-        // Ежедневная цитата
-        const daily = getDailyQuote();
-        document.getElementById("dailyQuote").innerHTML = `«${daily.text}»`;
-        document.getElementById("quoteAuthor").innerHTML = `— ${daily.author} —`;
-
-        // Задание дня
-        document.getElementById("dailyTask").innerHTML = `💡 Сегодня: ${getDailyTask()}`;
-
-        // Событие месяца
-        let eventText = monthEvents[currentMonth] || "✨ Ты на верном пути, продолжай.";
-        document.getElementById("monthEvent").innerHTML = `📅 ${eventText}`;
-        document.getElementById("targetDate").innerHTML = "сентябрь 2026";
+        // ищем подходящее напоминание на сегодня или ближайшие 2 дня
+        for (let offset = 0; offset <= 2; offset++) {
+            const checkDate = new Date(today);
+            checkDate.setDate(today.getDate() + offset);
+            const checkMonth = checkDate.getMonth() + 1;
+            const checkDay = checkDate.getDate();
+            const found = reminders.find(r => r.month === checkMonth && r.day === checkDay);
+            if (found) {
+                if (offset === 0) return { text: found.text, urgent: true, offset: 0 };
+                else return { text: found.text, urgent: false, offset: offset };
+            }
+        }
+        return null;
     }
 
-    updateCalendar();
+    function renderReminder() {
+        const reminderDiv = document.getElementById("reminderArea");
+        const reminder = getReminder();
+        if (reminder) {
+            let urgency = reminder.urgent ? "🌼 Сегодня" : `🌿 Через ${reminder.offset} дня (мягкое напоминание)`;
+            reminderDiv.innerHTML = `
+                <div class="reminder-card">
+                    <div class="reminder-title">
+                        <span>⭐ ${urgency} ⭐</span>
+                    </div>
+                    <div class="reminder-text">${reminder.text}</div>
+                    <div class="gentle-note">«Ты навсегда в ответе за тех, кого приручил» — позаботься о своём будущем</div>
+                </div>
+            `;
+        } else {
+            // если нет активных задач, показываем мягкое, вдохновляющее сообщение
+            reminderDiv.innerHTML = `
+                <div class="reminder-card" style="background: #fff5ec; border-left-color: #ecc897;">
+                    <div class="reminder-title">🌙 Сегодня нет срочных задач</div>
+                    <div class="reminder-text">Побудь в тишине, как Маленький принц на своей планете. Твой путь верен, каждый день приближает свободу.</div>
+                    <div class="gentle-note">«Встал поутру, умылся, привел себя в порядок — и сразу приведи в порядок свою планету»</div>
+                </div>
+            `;
+        }
+    }
+
+    // Инициализация страницы
+    function init() {
+        updateDateTime();
+        const quote = getDailyPrinceQuote();
+        document.getElementById("dailyQuote").innerHTML = quote.text;
+        document.getElementById("quoteAuthor").innerHTML = `— ${quote.author}, «Маленький принц» —`;
+        renderMonthsGrid();
+        updateProgressBar();
+        renderReminder();
+        // обновлять дату каждую минуту (для времени)
+        setInterval(() => updateDateTime(), 60000);
+    }
+
+    init();
 </script>
 </body>
 </html>
