@@ -211,4 +211,68 @@
         const booksData = [
             { title: "Сказки народов России", author: "Сборник", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EСказки%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
             { title: "Мифы и легенды народов России", author: "Сборник", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EМифы%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
-            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height
+            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EЭнциклопедия%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Расул Гамзатов. Стихи", author: "Расул Гамзатов", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EГамзатов%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Чингиз Айтматов. Плаха", author: "Чингиз Айтматов", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EАйтматов%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
+            { title: "Юрий Рытхэу. Сон в начале тумана", author: "Юрий Рытхэу", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EРытхэу%3C/text%3E%3C/svg%3E", link: "newbooks.html" }
+        ];
+
+        function renderBooksSlider() {
+            const container = document.getElementById('booksSlider');
+            if (!container) return;
+            let html = '';
+            booksData.forEach(book => {
+                html += `
+                    <div class="book-item">
+                        <img src="${book.image}" alt="${book.title}" loading="lazy">
+                        <h4>${book.title}</h4>
+                        <p>${book.author}</p>
+                        <a href="${book.link}" class="btn" style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; font-size: 0.7rem;">Подробнее</a>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Рецепты народов России (локальные плейсхолдеры)
+        const recipesData = [
+            { people: "Татары", title: "Чак-чак", desc: "Медовое лакомство из жареных кусочков теста. Традиционное угощение на свадьбах и праздниках.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EЧак-чак%3C/text%3E%3C/svg%3E" },
+            { people: "Буряты", title: "Буузы (позы)", desc: "Паровые мясные пирожки с бульоном внутри. Лепится 33 защипа — по числу складок на одежде богини.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EБуузы%3C/text%3E%3C/svg%3E" },
+            { people: "Карелы", title: "Калитки", desc: "Открытые ржаные пирожки с начинкой из картофеля, пшённой каши или творога. Символ карельской кухни.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EКалитки%3C/text%3E%3C/svg%3E" },
+            { people: "Осетины", title: "Осетинские пироги", desc: "Три вида пирогов: с сыром (уалибах), с мясом (фыдджин), с картофелем (картофджин). Символ Солнца, Земли и Неба.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EОсетинские пироги%3C/text%3E%3C/svg%3E" },
+            { people: "Якуты", title: "Строганина", desc: "Замороженная рыба (чир, муксун, нельма), нарезанная тонкими стружками. Традиционное блюдо северных народов.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EСтроганина%3C/text%3E%3C/svg%3E" },
+            { people: "Марийцы", title: "Команмелна", desc: "Марийские блины из кислого теста. Готовятся на праздники и поминки, подаются с маслом или сметаной.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EКоманмелна%3C/text%3E%3C/svg%3E" }
+        ];
+
+        function renderRecipes() {
+            const container = document.getElementById('recipesGrid');
+            if (!container) return;
+            let html = '';
+            recipesData.forEach(recipe => {
+                html += `
+                    <div class="recipe-card">
+                        <div class="recipe-img"><i class="fas fa-utensils"></i></div>
+                        <div class="recipe-content">
+                            <div class="recipe-title">${recipe.title}</div>
+                            <div class="recipe-people"><i class="fas fa-users"></i> ${recipe.people}</div>
+                            <div class="recipe-desc">${recipe.desc}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Форма акции (теперь только переключатель видимости)
+        document.getElementById('openFormBtn')?.addEventListener('click', function() {
+            const form = document.getElementById('actionForm');
+            if (form) {
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+
+        renderBooksSlider();
+        renderRecipes();
+    </script>
+</body>
+</html>
