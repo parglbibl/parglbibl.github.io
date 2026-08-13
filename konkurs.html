@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#b5838d">
 <link rel="manifest" href="/manifest.json">
-    <title>Конкурс «История одной улицы» — Парголовская библиотека</title>
-    <meta name="description" content="Конкурс краеведческих выставок «История одной улицы». Примите участие!">
+    <title>Парголовская библиотека - Услуги</title>
+    <meta name="description" content="Услуги Парголовской библиотеки: абонемент, электронные ресурсы, мероприятия, доступная среда, спидкубинг, МБА, книгообмен, компьютер для читателей.">
     
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,124 +17,62 @@
     <link rel="stylesheet" href="common.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
     
     <style>
+        .service-card {
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.12);
+        }
+
         .section { padding: 4rem 0; }
-        .back-link {
-            margin-bottom: 2rem;
-            text-align: left;
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .service-card { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; display: flex; flex-direction: column; }
+        .service-icon { font-size: 2.5rem; color: #b5838d; margin-bottom: 1rem; }
+        .service-card p { flex-grow: 1; margin-bottom: 1rem; }
+        .service-card .btn { margin-top: auto; align-self: center; }
+
+        /* Стили для раздела периодических изданий */
+        .magazines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
         }
-        .back-link a {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            border: 2px solid #e5989b;
-            color: #e5989b;
-            padding: 6px 18px;
+        .magazine-item {
+            background: #fff;
+            padding: 1rem 1.5rem;
             border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .back-link a:hover {
-            background-color: #e5989b;
-            color: white;
-        }
-
-        .info-block {
-            background: #fff;
-            padding: 2rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
-        }
-        .info-block h3 {
-            color: #b5838d;
-            margin-bottom: 1rem;
-        }
-
-        .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
             gap: 1rem;
-            margin-top: 2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
+            color: #4a4a4a;
         }
-        .photo-gallery a {
-            display: block;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-        }
-        .photo-gallery img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: transform 0.5s;
-        }
-        .photo-gallery a:hover img {
-            transform: scale(1.05);
-        }
-        .empty-gallery {
-            grid-column: 1/-1;
-            text-align: center;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 16px;
-            color: #888;
-        }
-
-        .voices-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .voice-card {
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-        .voice-card h3 {
-            margin-bottom: 0.5rem;
+        .magazine-item i {
             color: #b5838d;
-        }
-        .voice-card p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-        .voice-card small {
-            color: #aaa;
-            font-size: 0.85rem;
-        }
-
-        .btn-large {
-            font-size: 1.2rem;
-            padding: 1rem 3rem;
-            margin: 1rem 0;
-        }
-        .stats {
-            font-size: 1.2rem;
-            color: #b5838d;
-            font-weight: 600;
-            margin: 1rem 0;
-        }
-        .share-block {
+            font-size: 1.3rem;
+            min-width: 24px;
             text-align: center;
-            margin: 1rem 0 0;
         }
-        .share-block .btn {
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
+        .magazine-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 768px) {
+            .magazine-item {
+                border-radius: 16px;
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body class="page-transition">
-    <!-- Якорь #top удалён -->
     <header>
         <div class="container header-inner">
             <a href="index.html" class="logo">
@@ -147,7 +85,7 @@
                     <li data-mobile="main"><a href="about.html"><i class="fas fa-users"></i> О нас</a></li>
                     <li data-mobile="main"><a href="kraevedenie.html"><i class="fas fa-map-signs"></i> Краеведение</a></li>
                     <li data-mobile="main"><a href="newbooks.html"><i class="fas fa-book-open"></i> Новинки</a></li>
-                    <li data-mobile="main"><a href="services.html"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
+                    <li data-mobile="main"><a href="services.html" class="active"><i class="fas fa-concierge-bell"></i> Услуги</a></li>
                     <li data-mobile="main"><a href="events.html"><i class="fas fa-calendar-alt"></i> События</a></li>
                     <li data-mobile="main"><a href="faq.html"><i class="fas fa-question-circle"></i> Вопросы</a></li>
                     <li data-mobile="main"><a href="district-libraries.html"><i class="fas fa-building"></i> Библиотеки района</a></li>
@@ -179,51 +117,115 @@
         <div class="container">
             <div class="breadcrumbs">
                 <a href="index.html">Главная</a> &raquo;
-                <a href="kraevedenie.html">Краеведение</a> &raquo;
-                <a href="nizhnee-pargolovo.html">Нижнее Парголово</a> &raquo;
-                <span>Конкурс «История одной улицы»</span>
+                <span>Услуги</span>
             </div>
 
-            <div class="back-link fade-in">
-                <a href="nizhnee-pargolovo.html"><i class="fas fa-arrow-left"></i> Назад к Нижнему Парголово</a>
-            </div>
-
-            <h1 class="section-title">Конкурс «История одной улицы»</h1>
-
-            <div class="info-block fade-in" style="background-color: #fff9f0; border: 2px solid #e5989b;">
-    <h3><i class="fas fa-trophy" style="color: #e5989b;"></i> О конкурсе</h3>
-    <p>Мы участвуем в городском конкурсе краеведческих выставок <strong>«История одной улицы»</strong>, посвящённом улице Торфяной. Главное условие конкурса — <strong>сотворчество</strong>: вы можете стать соавторами нашей инсталляции, поделившись старыми фотографиями, документами, воспоминаниями.</p>
-    <p><strong>Сроки проведения:</strong> февраль – ноябрь 2026.<br>
-    <strong>Приём работ – до 30 сентября 2026.</strong></p>
-    <p><strong>Как участвовать:</strong> отправьте свои материалы на нашу электронную почту <a href="mailto:pargolovo@cbsvib.ru" style="color: #b5838d; font-weight: 600;">pargolovo@cbsvib.ru</a> или принесите их лично в библиотеку. Все участники будут отмечены в нашей галерее и на странице конкурса.</p>
-    <div class="stats">
-        <i class="fas fa-users"></i> Уже <span id="participant-counter">12</span> человек поделились историями и фотографиями. Спасибо!
-    </div>
-    <div style="text-align: center; margin-top: 2rem;">
-        <a href="mailto:pargolovo@cbsvib.ru" class="btn btn-large">📤 Отправить материалы по почте</a>
-    </div>
-    <div class="share-block">
-        <a href="https://vk.com/share.php?url=https://parglbibl.ru/konkurs.html&title=Конкурс%20«История%20одной%20улицы»&description=Мы%20участвуем%20в%20городском%20конкурсе%20краеведческих%20выставок,%20посвящённом%20улице%20Торфяной.%20Приём%20работ%20до%2030%20сентября%202026!&image=https://parglbibl.ru/logo.PNG" target="_blank" rel="noopener noreferrer" class="btn">
-            <i class="fab fa-vk"></i> Поделиться конкурсом
-        </a>
-    </div>
+            <h2 class="section-title">Что мы предлагаем</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Абонемент</h3>
+                    <p>Выдача книг на дом на 30 дней. Широкий выбор художественной и научной литературы.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-laptop"></i></div>
+                    <h3>Электронные ресурсы</h3>
+                    <p>Бесплатный доступ к электронным библиотекам по читательскому билету: Литрес, ibooks.ru, БиблиоРоссика и другие.</p>
+                    <a href="digital-resources.html" class="btn" style="margin-top: 1rem;">Все ресурсы</a>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-calendar-alt"></i></div>
+                    <h3>Мероприятия</h3>
+                    <p>Тематические встречи, праздники, лекции, мастер-классы для всех возрастов.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-child"></i></div>
+                    <h3>Детский отдел</h3>
+                    <p>Книжки для малышей и подростков, интерактивные занятия и игровые программы.</p>
+                </div>
+                <!-- Карточка доступной среды -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-hands"></i></div>
+                    <h3>Доступная среда</h3>
+                    <p>Видеоролики с сурдопереводом помогут легко ориентироваться в библиотеке.</p>
+                </div>
+                <!-- Карточка: Компьютер для читателей -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-desktop"></i></div>
+                    <h3>Компьютер для читателей</h3>
+                    <p>Бесплатный доступ к компьютеру с выходом в интернет для работы с электронными ресурсами, поиска информации, печати и сканирования документов.</p>
+                </div>
+                <!-- Карточка спидкубинга с кнопкой -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Спидкубинг</h3>
+                    <p>Занятия по сборке кубика Рубика для детей и взрослых (6+).</p>
+                    <a href="speedcubing.html" class="btn" style="margin-top: 1rem;">Подробнее</a>
+                </div>
+                <!-- Карточка МБА и ВСО -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Межбиблиотечный абонемент (МБА) и ВСО</h3>
+                    <p>Если нужной книги нет в нашей библиотеке, мы закажем её из другой библиотеки по системе МБА или внутрисистемного обмена (ВСО). Услуга бесплатна для читателей.</p>
+                    <a href="faq.html#mba" class="btn" style="margin-top: 1rem;">Подробнее</a>
+                </div>
+                <!-- Карточка книгообмена -->
+                <div class="service-card fade-in" id="bookcrossing">
+                    <div class="service-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Книгообмен</h3>
+                    <p>Принеси свою книгу в хорошем состоянии и возьми другую с полки свободного обмена. Акция «Читатели дарят читателям» работает постоянно.</p>
+                    <a href="faq.html#bookcrossing" class="btn" style="margin-top: 1rem;">Подробнее</a>
+                </div>
+                <!-- Карточка: Виртуальная примерочная книг -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-magic"></i></div>
+                    <h3>Виртуальная примерочная книг</h3>
+                    <p>Не знаете, что почитать? Ответьте на три вопроса — и подборка книг появится прямо на экране. Книги из нашего фонда по вашему настроению и возрасту.</p>
+                    <a href="bookmatcher.html" class="btn" style="margin-top: 1rem;">Подобрать книгу</a>
+                </div>
+                <!-- Новая карточка: Что почитать по интересу -->
+                <div class="service-card fade-in">
+                    <div class="service-icon"><i class="fas fa-star"></i></div>
+                    <h3>Что почитать по интересу</h3>
+                    <p>Расширенный подбор книг с фильтрами по жанру, настроению, длине, типу и возрасту. Сохраняйте понравившиеся подборки и оценивайте книги.</p>
+                    <a href="book-recommendations.html" class="btn" style="margin-top: 1rem;">Перейти</a>
+                </div>
+                <!-- Новая карточка: Книжная кухня -->
+                <div class="service-card fade-in">
+    <div class="service-icon"><i class="fas fa-utensils"></i></div>
+    <h3>Книжная кухня</h3>
+    <p>Рецепты из книг: от пушкинского пирога до уютных блюд из «Хайди», «Хоббита» и других произведений. Готовьте вместе с любимыми книгами!</p>
+    <a href="book-kitchen.html" class="btn" style="margin-top: 1rem;">Перейти</a>
 </div>
-
-            <h2 class="section-title">Народный альбом</h2>
-            <div class="photo-gallery fade-in" id="folkAlbum">
-                <div class="empty-gallery">
-                    <i class="fas fa-images" style="font-size: 3rem; color: #e5989b; margin-bottom: 1rem;"></i>
-                    <p>Здесь появятся фотографии, присланные вами. Присылайте свои снимки Торфяной улицы разных лет — и они попадут в этот альбом!</p>
-                </div>
             </div>
 
-            <h2 class="section-title">Голоса улицы</h2>
-            <div class="voices-grid fade-in" id="voicesGrid">
-                <div class="voice-card" style="background: #f8f8f8; border: 2px dashed #ccc; text-align: center; color: #aaa;">
-                    <i class="fas fa-microphone-alt" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-                    <p>Здесь будут ваши воспоминания. Делитесь историями о Торфяной улице!</p>
+            <!-- Периодические издания – 2026 -->
+            <section class="section">
+                <div class="container">
+                    <h2 class="section-title">Периодические издания – 2026</h2>
+                    <p style="text-align: center; margin-bottom: 2rem; font-size: 1.1rem;">
+                        Мы выписываем для вас самые интересные журналы! Все они доступны в читальном зале, а также выдаются на дом.
+                    </p>
+                    <div class="magazines-grid">
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Будь здоров! — 100 страниц о самом главном»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Ёжик»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Классный журнал»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Мир техники для детей»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Сваты на даче»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Сваты. Заготовки»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Свирелька. Детям о природе»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Смешарики»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Тошка и компания»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Шишкин лес»</div>
+                        <div class="magazine-item"><i class="fas fa-newspaper"></i> «Юный эрудит»</div>
+                    </div>
+                    <p style="text-align: center; margin-top: 2rem; color: #666;">
+                        <i class="fas fa-info-circle" style="color: #e5989b;"></i> 
+                        Журналы выдаются на тех же условиях, что и книги: до 10 экземпляров на 30 дней. 
+                        Подробнее об этом — в разделе <a href="faq.html" style="color: #e5989b;">«Часто задаваемые вопросы»</a>.
+                    </p>
                 </div>
-            </div>
+            </section>
         </div>
     </section>
 
@@ -276,9 +278,5 @@
     </div>
 
     <script src="common.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script>
-        Fancybox.bind("[data-fancybox]");
-    </script>
 </body>
 </html>
