@@ -41,11 +41,6 @@
         .action-card p { margin-bottom: 1.5rem; }
         
         .form-block { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 2rem; }
-        .form-group { margin-bottom: 1rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; }
-        .submit-btn { background-color: #e5989b; color: #fff; border: none; padding: 0.8rem 2rem; border-radius: 50px; cursor: pointer; font-weight: 600; transition: background 0.3s; }
-        .submit-btn:hover { background-color: #d68b8e; }
         
         .books-slider { display: flex; overflow-x: auto; gap: 1.5rem; padding: 1rem 0; scrollbar-width: thin; }
         .book-item { flex: 0 0 200px; text-align: center; background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
@@ -185,43 +180,13 @@
             </div>
 
             <div id="actionForm" class="form-block" style="display: none;">
-                <h3 style="color: #b5838d; margin-bottom: 1rem;">Форма участия</h3>
-                <form id="nativeLanguageForm">
-                    <div class="form-group">
-                        <label for="name">Ваше имя</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="language">Ваш родной язык</label>
-                        <input type="text" id="language" name="language" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="author">Автор произведения</label>
-                        <input type="text" id="author" name="author">
-                    </div>
-                    <div class="form-group">
-                        <label for="title">Название произведения</label>
-                        <input type="text" id="title" name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="link">Ссылка на видео (YouTube, VK, Яндекс.Диск)</label>
-                        <input type="url" id="link" name="link" placeholder="https://...">
-                    </div>
-                    <div class="form-group">
-                        <label for="comment">Комментарий</label>
-                        <textarea id="comment" name="comment" rows="3" placeholder="Расскажите о себе и о том, почему выбрали это произведение"></textarea>
-                    </div>
-                    <div class="form-group" style="display: flex; align-items: center; gap: 10px;">
-                        <input type="checkbox" id="privacy" name="privacy" required style="width: auto;">
-                        <label for="privacy">Я согласен с <a href="privacy.html">Политикой конфиденциальности</a></label>
-                    </div>
-                    <div id="formStatus" style="margin-bottom: 1rem;"></div>
-                    <button type="submit" class="submit-btn">Отправить заявку</button>
-                </form>
+                <h3 style="color: #b5838d; margin-bottom: 1rem;">Как принять участие</h3>
+                <p>Чтобы принять участие в акции, отправьте ваше видео, текст или ссылку на файл на нашу почту <a href="mailto:pargolovo@cbsvib.ru">pargolovo@cbsvib.ru</a>. В письме укажите ваше имя, название произведения и автора, а также комментарий, если есть. Лучшие работы будут опубликованы на сайте!</p>
+                <div style="margin-top: 1.5rem; display: flex; justify-content: center;">
+                    <a href="mailto:pargolovo@cbsvib.ru" style="display: inline-block; padding: 0.8rem 2rem; background-color: #e5989b; color: #fff; border-radius: 50px; text-decoration: none; font-weight: 600;">
+                        <i class="fas fa-envelope"></i> Отправить заявку по почте
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -246,92 +211,4 @@
         const booksData = [
             { title: "Сказки народов России", author: "Сборник", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EСказки%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
             { title: "Мифы и легенды народов России", author: "Сборник", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EМифы%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
-            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EЭнциклопедия%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
-            { title: "Расул Гамзатов. Стихи", author: "Расул Гамзатов", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EГамзатов%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
-            { title: "Чингиз Айтматов. Плаха", author: "Чингиз Айтматов", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EАйтматов%3C/text%3E%3C/svg%3E", link: "newbooks.html" },
-            { title: "Юрий Рытхэу. Сон в начале тумана", author: "Юрий Рытхэу", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='200' viewBox='0 0 150 200'%3E%3Crect width='150' height='200' fill='%23f9f0e7'/%3E%3Ctext x='75' y='100' font-family='Arial' font-size='12' fill='%23b5838d' text-anchor='middle'%3EРытхэу%3C/text%3E%3C/svg%3E", link: "newbooks.html" }
-        ];
-
-        function renderBooksSlider() {
-            const container = document.getElementById('booksSlider');
-            if (!container) return;
-            let html = '';
-            booksData.forEach(book => {
-                html += `
-                    <div class="book-item">
-                        <img src="${book.image}" alt="${book.title}" loading="lazy">
-                        <h4>${book.title}</h4>
-                        <p>${book.author}</p>
-                        <a href="${book.link}" class="btn" style="margin-top: 0.5rem; padding: 0.3rem 0.8rem; font-size: 0.7rem;">Подробнее</a>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // Рецепты народов России (локальные плейсхолдеры)
-        const recipesData = [
-            { people: "Татары", title: "Чак-чак", desc: "Медовое лакомство из жареных кусочков теста. Традиционное угощение на свадьбах и праздниках.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EЧак-чак%3C/text%3E%3C/svg%3E" },
-            { people: "Буряты", title: "Буузы (позы)", desc: "Паровые мясные пирожки с бульоном внутри. Лепится 33 защипа — по числу складок на одежде богини.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EБуузы%3C/text%3E%3C/svg%3E" },
-            { people: "Карелы", title: "Калитки", desc: "Открытые ржаные пирожки с начинкой из картофеля, пшённой каши или творога. Символ карельской кухни.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EКалитки%3C/text%3E%3C/svg%3E" },
-            { people: "Осетины", title: "Осетинские пироги", desc: "Три вида пирогов: с сыром (уалибах), с мясом (фыдджин), с картофелем (картофджин). Символ Солнца, Земли и Неба.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EОсетинские пироги%3C/text%3E%3C/svg%3E" },
-            { people: "Якуты", title: "Строганина", desc: "Замороженная рыба (чир, муксун, нельма), нарезанная тонкими стружками. Традиционное блюдо северных народов.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EСтроганина%3C/text%3E%3C/svg%3E" },
-            { people: "Марийцы", title: "Команмелна", desc: "Марийские блины из кислого теста. Готовятся на праздники и поминки, подаются с маслом или сметаной.", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='180' viewBox='0 0 300 180'%3E%3Crect width='300' height='180' fill='%23f0e6e0'/%3E%3Ctext x='150' y='95' font-family='Arial' font-size='14' fill='%23b5838d' text-anchor='middle'%3EКоманмелна%3C/text%3E%3C/svg%3E" }
-        ];
-
-        function renderRecipes() {
-            const container = document.getElementById('recipesGrid');
-            if (!container) return;
-            let html = '';
-            recipesData.forEach(recipe => {
-                html += `
-                    <div class="recipe-card">
-                        <div class="recipe-img"><i class="fas fa-utensils"></i></div>
-                        <div class="recipe-content">
-                            <div class="recipe-title">${recipe.title}</div>
-                            <div class="recipe-people"><i class="fas fa-users"></i> ${recipe.people}</div>
-                            <div class="recipe-desc">${recipe.desc}</div>
-                        </div>
-                    </div>
-                `;
-            });
-            container.innerHTML = html;
-        }
-
-        // Форма акции
-        document.getElementById('openFormBtn')?.addEventListener('click', function() {
-            const form = document.getElementById('actionForm');
-            if (form) {
-                form.style.display = form.style.display === 'none' ? 'block' : 'none';
-            }
-        });
-
-        document.getElementById('nativeLanguageForm')?.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
-            const statusDiv = document.getElementById('formStatus');
-            statusDiv.textContent = 'Отправка...';
-            try {
-                const response = await fetch('https://formspree.io/f/xdawoqrg', {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (response.ok) {
-                    statusDiv.textContent = 'Спасибо! Ваша заявка принята. Мы свяжемся с вами.';
-                    form.reset();
-                    document.getElementById('actionForm').style.display = 'none';
-                } else {
-                    statusDiv.textContent = 'Ошибка при отправке. Попробуйте позже.';
-                }
-            } catch (error) {
-                statusDiv.textContent = 'Ошибка сети. Проверьте подключение.';
-            }
-        });
-
-        renderBooksSlider();
-        renderRecipes();
-    </script>
-</body>
-</html>
+            { title: "Народы России. Энциклопедия", author: "Научное издание", image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height
