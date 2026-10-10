@@ -299,6 +299,8 @@
     <script src="common.js"></script>
     <script>
         // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ (ИСПРАВЛЕННЫЕ ДАТЫ) ==========
+        // ВАЖНО: месяц внутри объекта больше НЕ определяет, куда попадёт карточка.
+        // Карточка автоматически распределяется по полю date в renderAllEvents().
         const eventsData = {
             january: [
                 { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "/images/rubtsov.jpg", bio: "Николай Михайлович Рубцов (1936–1971) – русский лирический поэт. Его поэзия, проникнутая любовью к русской природе и истории, получила широкое признание. Основные сборники: «Звезда полей», «Душа хранит», «Сосен шум»." },
@@ -425,21 +427,25 @@
             { date: "1938", title: "Открытие библиотеки им. Горького", author: "", desc: "В здании на Выборгском шоссе открылась библиотека (предшественница нынешней).", local: "Это начало истории нашей библиотеки.", type: "local", imageUrl: "/images/library_history.jpg", bio: "В 1938 году в здании на Выборгском шоссе открылась библиотека имени Горького – предшественница нынешней Парголовской библиотеки." }
         ];
 
-        for (let ev of localEvents) {
-            const monthMap = { "января":"january", "февраля":"february", "марта":"march", "апреля":"april", "мая":"may", "июня":"june", "июля":"july", "августа":"august", "сентября":"september", "октября":"october", "ноября":"november", "декабря":"december" };
-            const parts = ev.date.split(" ");
-            if (parts.length >= 2) {
-                const monthName = parts[1];
-                const monthKey = monthMap[monthName];
-                if (monthKey && eventsData[monthKey]) eventsData[monthKey].push(ev);
-                else if (ev.date.includes("июнь") && eventsData.june) eventsData.june.push(ev);
-                else if (ev.date.includes("июль") && eventsData.july) eventsData.july.push(ev);
-                else if (ev.date.includes("август") && eventsData.august) eventsData.august.push(ev);
-                else if (ev.date.includes("сентябрь") && eventsData.september) eventsData.september.push(ev);
-                else if (ev.date.includes("октябрь") && eventsData.october) eventsData.october.push(ev);
-                else if (ev.date.includes("ноябрь") && eventsData.november) eventsData.november.push(ev);
-                else if (ev.date.includes("декабрь") && eventsData.december) eventsData.december.push(ev);
+        // ========== ОПРЕДЕЛЕНИЕ МЕСЯЦА ПО СТРОКЕ ДАТЫ ==========
+        function getMonthKey(dateStr) {
+            const monthMap = {
+                "января":"january", "февраля":"february", "марта":"march",
+                "апреля":"april", "мая":"may", "июня":"june",
+                "июля":"july", "августа":"august", "сентября":"september",
+                "октября":"october", "ноября":"november", "декабря":"december",
+                "январь":"january", "февраль":"february", "март":"march",
+                "апрель":"april", "май":"may", "июнь":"june",
+                "июль":"july", "август":"august", "сентябрь":"september",
+                "октябрь":"october", "ноябрь":"november", "декабрь":"december"
+            };
+            const words = dateStr.toLowerCase().split(/\s+/);
+            for (let w of words) {
+                // убираем знаки препинания
+                const clean = w.replace(/[.,;:!?()]/g, "");
+                if (monthMap[clean]) return monthMap[clean];
             }
+            return null;
         }
 
         // ========== ФУНКЦИИ ==========
@@ -504,11 +510,23 @@
         }
 
         function downloadICS(event) {
+            // Извлекаем день и месяц из строки даты
             const parts = event.date.split(" ");
-            const day = parseInt(parts[0]);
-            const monthName = parts[1];
-            const monthMap = { "января":0, "февраля":1, "марта":2, "апреля":3, "мая":4, "июня":5, "июля":6, "августа":7, "сентября":8, "октября":9, "ноября":10, "декабря":11 };
-            const month = monthMap[monthName];
+            let day = 1, monthName = "";
+            const monthMapFull = { "января":0, "февраля":1, "марта":2, "апреля":3, "мая":4, "июня":5, "июля":6, "августа":7, "сентября":8, "октября":9, "ноября":10, "декабря":11,
+                                    "январь":0, "февраль":1, "март":2, "апрель":3, "май":4, "июнь":5, "июль":6, "август":7, "сентябрь":8, "октябрь":9, "ноябрь":10, "декабрь":11 };
+            // Ищем день и месяц в строке
+            for (let p of parts) {
+                const clean = p.replace(/[.,;:!?()]/g, "");
+                const num = parseInt(clean);
+                if (!isNaN(num) && num >= 1 && num <= 31) {
+                    day = num;
+                }
+                if (monthMapFull[clean.toLowerCase()] !== undefined) {
+                    monthName = clean.toLowerCase();
+                }
+            }
+            const month = monthMapFull[monthName];
             if (month === undefined) return;
             const startDate = new Date(2026, month, day);
             const endDate = new Date(startDate);
@@ -527,26 +545,50 @@
         let currentSearch = "";
 
         function renderAllEvents() {
+            // Собираем ВСЕ события из всех массивов + книги-юбиляры
             const allEvents = [];
             for (let month in eventsData) {
                 if (Array.isArray(eventsData[month])) {
-                    eventsData[month].forEach(e => allEvents.push({ ...e, monthKey: month }));
+                    eventsData[month].forEach(e => allEvents.push({ ...e }));
                 }
             }
-            allEvents.push(...bookAnniversaries.map(e => ({ ...e, monthKey: "book-anniversaries" })));
-            
+            allEvents.push(...bookAnniversaries.map(e => ({ ...e })));
+
+            // Фильтрация по поиску
             let filtered = allEvents;
             if (currentSearch.trim() !== "") {
                 const search = currentSearch.toLowerCase();
-                filtered = filtered.filter(e => e.title.toLowerCase().includes(search) || (e.author && e.author.toLowerCase().includes(search)) || e.desc.toLowerCase().includes(search));
+                filtered = filtered.filter(e =>
+                    e.title.toLowerCase().includes(search) ||
+                    (e.author && e.author.toLowerCase().includes(search)) ||
+                    e.desc.toLowerCase().includes(search)
+                );
             }
+            // Фильтрация по типу
             if (currentFilter !== "all") {
                 filtered = filtered.filter(e => e.type === currentFilter);
             }
-            
+
+            // Группируем по РЕАЛЬНОМУ месяцу из поля date
             const grouped = {};
-            filtered.forEach(e => { if (!grouped[e.monthKey]) grouped[e.monthKey] = []; grouped[e.monthKey].push(e); });
-            
+            filtered.forEach(e => {
+                // Книги-юбиляры — в отдельный раздел
+                if (e.type === "book") {
+                    if (!grouped["book-anniversaries"]) grouped["book-anniversaries"] = [];
+                    grouped["book-anniversaries"].push(e);
+                    return;
+                }
+                const monthKey = getMonthKey(e.date);
+                if (monthKey) {
+                    if (!grouped[monthKey]) grouped[monthKey] = [];
+                    grouped[monthKey].push(e);
+                }
+                // Если месяц не распознан (например, "1880-е" или "1906") —
+                // такие события попадают в раздел "Прочее" (не отображается).
+                // Если нужно — можно добавить контейнер #other-events.
+            });
+
+            // Рендерим каждый месяц
             for (let month in eventsData) {
                 const container = document.getElementById(month + "-events");
                 if (container) renderEventList(container, grouped[month] || []);
