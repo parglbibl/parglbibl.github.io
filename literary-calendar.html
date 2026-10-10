@@ -299,8 +299,8 @@
     <script src="common.js"></script>
     <script>
         // ========== ПОЛНЫЙ МАССИВ СОБЫТИЙ (ИСПРАВЛЕННЫЕ ДАТЫ) ==========
-        // ВАЖНО: месяц внутри объекта больше НЕ определяет, куда попадёт карточка.
-        // Карточка автоматически распределяется по полю date в renderAllEvents().
+        // Месяц внутри объекта НЕ определяет, куда попадёт карточка.
+        // Распределение и сортировка происходят автоматически по полю date.
         const eventsData = {
             january: [
                 { date: "3 января", title: "90 лет со дня рождения Н.М. Рубцова (1936–1971)", author: "Николай Рубцов", desc: "Русский поэт. Сборники «Звезда полей», «Душа хранит», «Сосен шум».", local: "Стихи Рубцова о северной природе особенно близки нашим читателям.", litres: "https://www.litres.ru/nikolay-rubcov/", type: "birth", imageUrl: "/images/rubtsov.jpg", bio: "Николай Михайлович Рубцов (1936–1971) – русский лирический поэт. Его поэзия, проникнутая любовью к русской природе и истории, получила широкое признание. Основные сборники: «Звезда полей», «Душа хранит», «Сосен шум»." },
@@ -441,11 +441,21 @@
             };
             const words = dateStr.toLowerCase().split(/\s+/);
             for (let w of words) {
-                // убираем знаки препинания
                 const clean = w.replace(/[.,;:!?()]/g, "");
                 if (monthMap[clean]) return monthMap[clean];
             }
             return null;
+        }
+
+        // ========== ИЗВЛЕЧЕНИЕ ДНЯ МЕСЯЦА (ДЛЯ СОРТИРОВКИ) ==========
+        function getDayNumber(dateStr) {
+            const parts = dateStr.split(" ");
+            for (let p of parts) {
+                const clean = p.replace(/[.,;:!?()]/g, "");
+                const num = parseInt(clean);
+                if (!isNaN(num) && num >= 1 && num <= 31) return num;
+            }
+            return 999; // если день не найден — в конец списка
         }
 
         // ========== ФУНКЦИИ ==========
@@ -510,12 +520,10 @@
         }
 
         function downloadICS(event) {
-            // Извлекаем день и месяц из строки даты
             const parts = event.date.split(" ");
             let day = 1, monthName = "";
             const monthMapFull = { "января":0, "февраля":1, "марта":2, "апреля":3, "мая":4, "июня":5, "июля":6, "августа":7, "сентября":8, "октября":9, "ноября":10, "декабря":11,
                                     "январь":0, "февраль":1, "март":2, "апрель":3, "май":4, "июнь":5, "июль":6, "август":7, "сентябрь":8, "октябрь":9, "ноябрь":10, "декабрь":11 };
-            // Ищем день и месяц в строке
             for (let p of parts) {
                 const clean = p.replace(/[.,;:!?()]/g, "");
                 const num = parseInt(clean);
@@ -545,7 +553,7 @@
         let currentSearch = "";
 
         function renderAllEvents() {
-            // Собираем ВСЕ события из всех массивов + книги-юбиляры
+            // Собираем ВСЕ события
             const allEvents = [];
             for (let month in eventsData) {
                 if (Array.isArray(eventsData[month])) {
@@ -554,7 +562,7 @@
             }
             allEvents.push(...bookAnniversaries.map(e => ({ ...e })));
 
-            // Фильтрация по поиску
+            // Фильтрация
             let filtered = allEvents;
             if (currentSearch.trim() !== "") {
                 const search = currentSearch.toLowerCase();
@@ -564,15 +572,13 @@
                     e.desc.toLowerCase().includes(search)
                 );
             }
-            // Фильтрация по типу
             if (currentFilter !== "all") {
                 filtered = filtered.filter(e => e.type === currentFilter);
             }
 
-            // Группируем по РЕАЛЬНОМУ месяцу из поля date
+            // Группируем по РЕАЛЬНОМУ месяцу
             const grouped = {};
             filtered.forEach(e => {
-                // Книги-юбиляры — в отдельный раздел
                 if (e.type === "book") {
                     if (!grouped["book-anniversaries"]) grouped["book-anniversaries"] = [];
                     grouped["book-anniversaries"].push(e);
@@ -583,10 +589,12 @@
                     if (!grouped[monthKey]) grouped[monthKey] = [];
                     grouped[monthKey].push(e);
                 }
-                // Если месяц не распознан (например, "1880-е" или "1906") —
-                // такие события попадают в раздел "Прочее" (не отображается).
-                // Если нужно — можно добавить контейнер #other-events.
             });
+
+            // ⚡ СОРТИРУЕМ события внутри каждого месяца по дню
+            for (let key in grouped) {
+                grouped[key].sort((a, b) => getDayNumber(a.date) - getDayNumber(b.date));
+            }
 
             // Рендерим каждый месяц
             for (let month in eventsData) {
