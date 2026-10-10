@@ -1,118 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-        <loc>https://parglbibl.ru/</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/about.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/services.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/events.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/faq.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/contacts.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/newbooks.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/kraevedenie.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/nizhnee-pargolovo.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/verkhnee-pargolovo.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/torfyanaya.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/pargolovo-culture.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/shuvalovsky-park.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/khramy-verkhnee-pargolovo.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/map.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/konkurs.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/digital-resources.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/speedcubing.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/district-libraries.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/partners.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/gallery.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.6</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/literary-calendar.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://parglbibl.ru/privacy.html</loc>
-        <lastmod>2026-08-13</lastmod>
-        <priority>0.4</priority>
-    </url>
+<url>
+<loc>https://parglbibl.ru/</loc>
+<lastmod>2026-10-10T17:06:13+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/about.html</loc>
+<lastmod>2026-03-31T15:53:36+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/book-kitchen.html</loc>
+<lastmod>2026-03-30T20:01:50+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/book-recommendations.html</loc>
+<lastmod>2026-03-30T20:02:27+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/bookmatcher.html</loc>
+<lastmod>2026-03-30T20:06:46+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/contacts.html</loc>
+<lastmod>2026-08-13T18:01:27+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/digital-resources.html</loc>
+<lastmod>2026-04-07T23:17:38+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/district-libraries.html</loc>
+<lastmod>2026-03-31T15:57:19+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/events.html</loc>
+<lastmod>2026-03-30T20:54:36+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/exhibitions.html</loc>
+<lastmod>2026-03-31T15:58:50+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/faq.html</loc>
+<lastmod>2026-03-31T15:59:54+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/gallery.html</loc>
+<lastmod>2026-03-31T16:00:27+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/holidays-calendar.html</loc>
+<lastmod>2026-04-08T18:55:22+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/khramy-verkhnee-pargolovo.html</loc>
+<lastmod>2026-03-30T20:13:48+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/konkurs.html</loc>
+<lastmod>2026-08-13T18:59:56+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/kraevedenie.html</loc>
+<lastmod>2026-04-06T01:56:41+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/likes-stats.html</loc>
+<lastmod>2026-04-05T02:21:42+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/literary-calendar.html</loc>
+<lastmod>2026-10-10T15:58:51+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/literary-portrait.html</loc>
+<lastmod>2026-03-31T16:03:56+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/map.html</loc>
+<lastmod>2026-03-31T16:04:55+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/motivation.html</loc>
+<lastmod>2026-04-16T03:44:28+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/narody-pargolovo.html</loc>
+<lastmod>2026-04-06T01:18:18+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/narody-rossii.html</loc>
+<lastmod>2026-08-13T18:04:17+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/newbooks.html</loc>
+<lastmod>2026-04-05T02:24:11+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/newbooks2.html</loc>
+<lastmod>2026-03-16T00:09:25+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/nizhnee-pargolovo.html</loc>
+<lastmod>2026-03-31T16:08:24+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/pargolovo-culture.html</loc>
+<lastmod>2026-03-31T16:09:10+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/partners.html</loc>
+<lastmod>2026-03-31T16:10:09+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/services.html</loc>
+<lastmod>2026-03-30T20:20:47+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/shuvalovsky-park.html</loc>
+<lastmod>2026-03-31T16:11:39+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/speedcubing.html</loc>
+<lastmod>2026-03-31T16:12:56+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/timeline.html</loc>
+<lastmod>2026-03-31T16:13:36+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/torfyanaya.html</loc>
+<lastmod>2026-08-13T19:00:57+03:00</lastmod>
+</url>
+<url>
+<loc>https://parglbibl.ru/verkhnee-pargolovo.html</loc>
+<lastmod>2026-03-31T16:15:06+03:00</lastmod>
+</url>
 </urlset>
