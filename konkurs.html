@@ -54,43 +54,49 @@
             margin-bottom: 1rem;
         }
 
+        /* ИСПРАВЛЕННАЯ ГАЛЕРЕЯ */
         .photo-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            /* На мобильных — одна колонка, на планшетах и ПК — две */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
-        .photo-gallery a {
-            display: block;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
+        .photo-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #fff;
+            padding: 1rem;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .photo-gallery a {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            text-decoration: none;
+            overflow: hidden;
         }
         .photo-gallery img {
             width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.5s;
+            /* Убираем жесткую высоту и обрезку */
+            height: auto; 
+            max-height: 450px; /* Ограничитель, чтобы вертикальные фото не были слишком длинными */
+            object-fit: contain; /* Фото видно целиком */
+            border-radius: 8px;
+            transition: transform 0.3s;
         }
         .photo-gallery a:hover img {
-            transform: scale(1.05);
+            transform: scale(1.02); /* Легкое увеличение при наведении */
         }
         .photo-caption {
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #666;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             font-style: italic;
-        }
-        .empty-gallery {
-            grid-column: 1/-1;
-            text-align: center;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 16px;
-            color: #888;
+            line-height: 1.4;
         }
 
         .voices-grid {
@@ -200,7 +206,7 @@
     <h3><i class="fas fa-trophy" style="color: #e5989b;"></i> О конкурсе</h3>
     <p>Мы участвуем в городском конкурсе краеведческих выставок <strong>«История одной улицы»</strong>, посвящённом улице Торфяной. Главное условие конкурса — <strong>сотворчество</strong>: вы можете стать соавторами нашей инсталляции, поделившись старыми фотографиями, документами, воспоминаниями.</p>
     <p><strong>Сроки проведения:</strong> февраль – ноябрь 2026.<br>
-    <strong>Приём работ – до 30 сентября 2026.</strong></p>
+    <strong>Прием работ – до 30 сентября 2026.</strong></p>
     <p><strong>Как участвовать:</strong> отправьте свои материалы на нашу электронную почту <a href="mailto:pargolovo@cbsvib.ru" style="color: #b5838d; font-weight: 600;">pargolovo@cbsvib.ru</a> или принесите их лично в библиотеку. Все участники будут отмечены в нашей галерее и на странице конкурса.</p>
     <div class="stats">
         <i class="fas fa-users"></i> Уже <span id="participant-counter">16</span> человек поделились историями и фотографиями. Спасибо!
@@ -218,28 +224,28 @@
             <h2 class="section-title">Народный альбом</h2>
             <div class="photo-gallery fade-in" id="folkAlbum">
                 <!-- Фото 1 -->
-                <div>
+                <div class="photo-item">
                     <a href="photo1.PNG" data-fancybox="gallery" data-caption="Первоклассники. 1 сентября. Начало 1960-х годов.">
                         <img src="photo1.PNG" alt="Первоклассники с букетами" loading="lazy">
                     </a>
                     <div class="photo-caption">Первоклассники. 1 сентября. Начало 1960-х годов.</div>
                 </div>
                 <!-- Фото 2 -->
-                <div>
+                <div class="photo-item">
                     <a href="photo2.PNG" data-fancybox="gallery" data-caption="Жители Торфяной улицы. Двор дома. 1970-е годы.">
                         <img src="photo2.PNG" alt="Женщина с мальчиками" loading="lazy">
                     </a>
                     <div class="photo-caption">Жители Торфяной улицы. Двор дома. 1970-е годы.</div>
                 </div>
                 <!-- Фото 3 -->
-                <div>
+                <div class="photo-item">
                     <a href="photo3.jpg" data-fancybox="gallery" data-caption="Братья на крыльце дома. 1970-е годы.">
                         <img src="photo3.jpg" alt="Мальчики на крыльце" loading="lazy">
                     </a>
                     <div class="photo-caption">Братья на крыльце дома. 1970-е годы.</div>
                 </div>
                 <!-- Фото 4 -->
-                <div>
+                <div class="photo-item">
                     <a href="photo4.PNG" data-fancybox="gallery" data-caption="На благоустройстве территории. 1960-е годы.">
                         <img src="photo4.PNG" alt="Женщина с лопатой" loading="lazy">
                     </a>
